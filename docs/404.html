@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="nl"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pagina niet gevonden | De Rozengracht</title><meta name="description" content="BIZ Ondernemersvereniging Rozengracht, Amsterdam"><!-- PREVIEW-FASE: voorkomt dat zoekmachines deze (nog niet definitieve) preview-URL
+         indexeren. Verwijder deze regel zodra de site echt live gaat op het eigen domein. --><meta name="robots" content="noindex, nofollow"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300..800;1,300..800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="icon" href="data:,"><link rel="stylesheet" href="/_astro/bereikbaarheid.C_ih_cwt.css"></head> <body> <a class="skip-link" href="#main-content" data-astro-cid-dmqpwcec>Direct naar de inhoud</a> <header class="site-nav" data-astro-cid-dmqpwcec> <div class="container nav-inner" data-astro-cid-dmqpwcec> <a class="brand" href="/" data-astro-cid-dmqpwcec> <img src="/_astro/logo_lockup_green.BhPFOU9__ZvACbY.webp" alt="Rozengracht" loading="eager" data-astro-cid-dmqpwcec width="70" height="45" decoding="async"> </a> <nav id="primary-nav" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>De Rozengracht</a></li><li data-astro-cid-dmqpwcec><a href="/ondernemers" data-astro-cid-dmqpwcec>Ondernemers</a></li><li data-astro-cid-dmqpwcec><a href="/nieuws" data-astro-cid-dmqpwcec>Nieuws</a></li><li data-astro-cid-dmqpwcec><a href="/verhalen" data-astro-cid-dmqpwcec>Verhalen</a></li><li data-astro-cid-dmqpwcec><a href="/bereikbaarheid" data-astro-cid-dmqpwcec>Bereikbaarheid</a></li> </ul> </nav> <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" data-astro-cid-dmqpwcec> <span data-astro-cid-dmqpwcec></span><span data-astro-cid-dmqpwcec></span><span data-astro-cid-dmqpwcec></span> </button> </div> </header> <script>
+  // is:inline i.p.v. een gehoiste module-script: zo blijft dit ook werken in
+  // een dubbelklik-vanaf-schijf-preview (file://), waar browsers uit
+  // veiligheidsoverwegingen module-scripts blokkeren maar gewone inline
+  // scripts prima uitvoeren. Kan daardoor geen TypeScript-syntax gebruiken
+  // (die wordt hier niet getranspileerd) — vandaar platte JS.
+  //
+  // Zet de werkelijke hoogte van de sticky header in een CSS-variabele, zodat
+  // pagina's met een eigen sticky/scroll-vergrendelde sectie (zoals de
+  // homepage-transitie) daar precies onder kunnen beginnen i.p.v. erachter
+  // verstopt te raken.
+  var header = document.querySelector('.site-nav');
+  function updateNavHeight() {
+    if (header) {
+      document.documentElement.style.setProperty('--nav-height', header.offsetHeight + 'px');
+    }
+  }
+  updateNavHeight();
+  window.addEventListener('resize', updateNavHeight);
+
+  // Mobiel hamburger-menu: eenvoudige disclosure, geen animatie-fantasie nodig
+  // voor een klein, weinig-frequent bediend navigatie-element.
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primary-nav');
+  toggle && toggle.addEventListener('click', () => {
+    var isOpen = nav && nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    updateNavHeight();
+  });
+  nav && nav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('is-open');
+      toggle && toggle.setAttribute('aria-expanded', 'false');
+      updateNavHeight();
+    }
+  });
+</script>  <main id="main-content" class="container" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">  <h1>404 — Pagina niet gevonden</h1> <p>Deze pagina bestaat niet (meer). <a href="/">Terug naar de homepage</a>.</p>  </main> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="container footer-inner" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>&copy; 2026 BIZ Ondernemersvereniging Rozengracht</p> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="/contact" data-astro-cid-sz7xmlte>Contact / word lid</a></li> <li data-astro-cid-sz7xmlte><a href="/privacy" data-astro-cid-sz7xmlte>Privacy</a></li> <li data-astro-cid-sz7xmlte><a href="/cookies" data-astro-cid-sz7xmlte>Cookies</a></li> </ul> </div> </footer>  </body></html>
