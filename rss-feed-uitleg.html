@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RSS-feed voor de Rozengracht-website</title>
+<style>
+  :root {
+    --green-deep: #1b3b2f;
+    --green-black: #12241d;
+    --rose: #d9a9a0;
+    --rose-deep: #c0847a;
+    --ochre: #b9793f;
+    --cream: #f3f6f1;
+    --cream-card: #ffffff;
+    --line: #e3dbcf;
+    --ink: #20302a;
+    --ink-soft: #5b6b63;
+    --rose-tint: #f4e6e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  body, p, li, td, .cat, .verdict, .badge, code, pre {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    color: var(--green-black);
+    line-height: 1.2;
+    margin: 0 0 0.5em 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 2rem; margin-bottom: 0.3em; }
+  .intro { color: var(--ink-soft); font-size: 1.05rem; max-width: 560px; }
+  .card {
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 28px 0;
+  }
+  .card.accent-rose { border-top: 3px solid var(--rose); }
+  .card.accent-ochre { border-top: 3px solid var(--ochre); }
+  .card.accent-green { border-top: 3px solid var(--green-deep); }
+  h2 { font-size: 1.3rem; margin-bottom: 0.4em; }
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--rose-tint);
+    color: var(--green-deep);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .verdict {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .verdict.nee { background: var(--rose-tint); color: var(--rose-deep); }
+  .verdict.ja { background: #e4ede4; color: var(--green-deep); }
+  ul.platformen {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  ul.platformen li {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+  }
+  ul.platformen li strong { color: var(--green-deep); }
+  .bron {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+  }
+  .voorbeeld-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--green-deep);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  pre {
+    background: var(--green-black);
+    color: #e9f2ec;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin: 16px 0 0;
+  }
+  pre .tag { color: #9fd6b8; }
+  pre .attr { color: var(--rose); }
+  pre .val { color: #e6c48a; }
+  pre .txt { color: #e9f2ec; }
+  .advies {
+    background: var(--green-deep);
+    color: #fbfaf7;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 28px;
+  }
+  .advies h2 { color: #fbfaf7; }
+  .advies p { color: rgba(251,250,247,0.85); margin: 0; }
+  footer {
+    margin-top: 40px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">Achtergrond &middot; Rozengracht-website</span>
+    <h1>RSS-feed: wat is het, en is het nuttig voor ons?</h1>
+    <p class="intro">Een kort overzicht van wat een RSS-feed doet, of het helpt bij vindbaarheid op Google, en voor wie het eigenlijk wél interessant is.</p>
+
+    <div class="card accent-green">
+      <h2><span class="num">1</span>Wat is een RSS-feed eigenlijk?</h2>
+      <p>Een RSS-feed is een machineleesbaar bestand (bijvoorbeeld <code>/nieuws/rss.xml</code>) dat automatisch bijhoudt welke nieuwsartikelen er op de site staan &mdash; titel, datum, samenvatting en link, per artikel. Mensen lezen dat bestand zelf zelden rechtstreeks; het is bedoeld om door <em>andere systemen</em> ingelezen te worden, zodat nieuwe artikelen ergens anders automatisch verschijnen zonder dat iemand het handmatig moet overtypen.</p>
+    </div>
+
+    <div class="card accent-rose">
+      <h2><span class="num">2</span>Helpt het bij Google?</h2>
+      <span class="verdict nee">Grotendeels nee</span>
+      <p>Google heeft bevestigd dat een RSS-feed <strong>geen ranking-voordeel</strong> geeft. Voor gewone zoekresultaten maakt een XML-sitemap (die de site al heeft) het verschil, niet een RSS-feed. En sinds begin 2025 accepteert het Google News Publisher Center zelfs helemaal geen RSS-inzendingen meer &mdash; nieuwsopname daar gebeurt nu volledig automatisch via crawlen en gestructureerde data, niet via een feed die je zelf aanlevert.</p>
+      <p class="bron">Bron: Google Search Central-documentatie over Feedfetcher &amp; sitemaps; Google News Publisher Center-aankondiging (2025).</p>
+    </div>
+
+    <div class="card accent-ochre">
+      <h2><span class="num">3</span>Waar is het dan wél goed voor?</h2>
+      <span class="verdict ja">Zeker nuttig &mdash; voor andere doelen</span>
+      <p>Een RSS-feed is de standaardkoppeling waarmee <em>andere</em> diensten nieuwe artikelen kunnen oppikken, zonder dat wij daar iets voor moeten doen:</p>
+      <ul class="platformen">
+        <li><strong>Feedlezers</strong><br>Feedly, Inoreader &mdash; leden die zelf willen bijblijven</li>
+        <li><strong>Nieuwsbrief-tools</strong><br>Mailchimp, Substack &mdash; automatisch een mail bij een nieuw artikel</li>
+        <li><strong>Automatisering</strong><br>Zapier, Make, IFTTT &mdash; nieuws doorzetten naar social media</li>
+        <li><strong>Chat-bots</strong><br>Slack/Discord-bots die een kanaal updaten</li>
+        <li><strong>Aggregatoren</strong><br>een lokale nieuwssite of gemeente die content overneemt</li>
+        <li><strong>Podcasts</strong><br>(niet relevant hier, maar wel de andere grote RSS-toepassing)</li>
+      </ul>
+    </div>
+
+    <div class="card accent-green">
+      <div class="voorbeeld-head">
+        <h2 style="margin-bottom:0;"><span class="num">4</span>Voorbeeld: hoe zo'n feed eruit ziet</h2>
+        <span class="badge">/nieuws/rss.xml</span>
+      </div>
+      <p>Zo zou een RSS-feed voor de nieuwsartikelen van de Rozengracht-site eruitzien &mdash; per artikel titel, link, datum en samenvatting:</p>
+<pre><span class="tag">&lt;?xml</span> <span class="attr">version</span>=<span class="val">"1.0"</span> <span class="attr">encoding</span>=<span class="val">"UTF-8"</span><span class="tag">?&gt;</span>
+<span class="tag">&lt;rss</span> <span class="attr">version</span>=<span class="val">"2.0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;channel&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="txt">Nieuws &ndash; BIZ Rozengracht</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;link&gt;</span><span class="txt">https://rozengracht.amsterdam/nieuws</span><span class="tag">&lt;/link&gt;</span>
+    <span class="tag">&lt;description&gt;</span><span class="txt">Nieuws van de ondernemers aan de Rozengracht</span><span class="tag">&lt;/description&gt;</span>
+
+    <span class="tag">&lt;item&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="txt">Panke: nieuw Grieks daily op de Rozengracht</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;link&gt;</span><span class="txt">https://rozengracht.amsterdam/nieuws/panke-grieks-daily</span><span class="tag">&lt;/link&gt;</span>
+      <span class="tag">&lt;pubDate&gt;</span><span class="txt">Mon, 01 Jun 2026 00:00:00 GMT</span><span class="tag">&lt;/pubDate&gt;</span>
+      <span class="tag">&lt;description&gt;</span><span class="txt">Nieuw op de Rozengracht: Panke, een Grieks dagrestaurant&hellip;</span><span class="tag">&lt;/description&gt;</span>
+    <span class="tag">&lt;/item&gt;</span>
+
+    <span class="tag">&lt;item&gt;</span>
+      <span class="tag">&lt;title&gt;</span><span class="txt">Boom Chicago's Rozentheater: comedy de hele zomer door</span><span class="tag">&lt;/title&gt;</span>
+      <span class="tag">&lt;link&gt;</span><span class="txt">https://rozengracht.amsterdam/nieuws/rozentheater-zomer</span><span class="tag">&lt;/link&gt;</span>
+      <span class="tag">&lt;pubDate&gt;</span><span class="txt">Mon, 15 Jun 2026 00:00:00 GMT</span><span class="tag">&lt;/pubDate&gt;</span>
+      <span class="tag">&lt;description&gt;</span><span class="txt">Het Rozentheater op Rozengracht 117 draait deze zomer&hellip;</span><span class="tag">&lt;/description&gt;</span>
+    <span class="tag">&lt;/item&gt;</span>
+  <span class="tag">&lt;/channel&gt;</span>
+<span class="tag">&lt;/rss&gt;</span></pre>
+      <p style="margin-top:16px;">Dit bestand zou vanzelf worden bijgewerkt zodra er een nieuw artikel op de site komt &mdash; elk item hierboven komt rechtstreeks overeen met een artikel dat al in het nieuws-overzicht staat.</p>
+    </div>
+
+    <div class="advies">
+      <h2><span class="num" style="background:rgba(255,255,255,0.15);color:#fbfaf7;">5</span>Advies voor nu</h2>
+      <p>Met een handvol artikelen en zonder nieuwsbrief-automatisering levert een RSS-feed nu weinig op. Zodra jullie wél iets willen bouwen dat automatisch reageert op nieuwe artikelen &mdash; bijvoorbeeld een nieuwsbrief per nieuw bericht, of automatisch doorzetten naar social media &mdash; is dit met <code>@astrojs/rss</code> in een halfuur toe te voegen aan de bestaande Astro-site.</p>
+    </div>
+
+    <footer>Rozengracht-website &middot; achtergronddocument, geen onderdeel van de live site</footer>
+  </div>
+</body>
+</html>

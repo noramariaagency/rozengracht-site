@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FotoFallback from '../../components/FotoFallback.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { categorieLabels, categorieIconen } from '../../lib/categorieen';
+
+const ruw = await getCollection(
+  'ondernemers',
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+);
+
+function huisnummerSortValue(h) {
+  if (!h) return null;
+  const match = h.match(/\d+/);
+  return match ? parseInt(match[0], 10) : null;
+}
+
+const items = await Promise.all(
+  ruw.map(async (o) => {
+    // Foto is optioneel — een ondernemer zonder (goede) foto krijgt geen
+    // gebroken <img>, maar valt terug op FotoFallback (categorie-icoon).
+    // Vierkant i.p.v. 4:3 — zelfde beeldverhouding als de kaartjes op de
+    // homepage ("Laatst geopend"), voor een consistente kaartstijl door de
+    // hele site.
+    const foto = o.data.fotos[0]
+      ? await getImage({ src: o.data.fotos[0], width: 360, height: 360 })
+      : null;
+    return {
+      slug: o.slug,
+      naam: o.data.naam,
+      huisnummer: o.data.huisnummer,
+      huisnummerSort: huisnummerSortValue(o.data.huisnummer),
+      categorie: o.data.categorie,
+      categorieLabel: categorieLabels[o.data.categorie] ?? o.data.categorie,
+      foto: foto?.src ?? null,
+    };
+  })
+);
+
+// Ondernemers zonder (nog) bevestigd huisnummer kunnen niet op volgorde
+// gezet worden — die tonen we onderaan de lijst, in plaats van een
+// verzonnen huisnummer te sorteren alsof het een echte positie is.
+items.sort((a, b) => {
+  if (a.huisnummerSort === null && b.huisnummerSort === null) return 0;
+  if (a.huisnummerSort === null) return 1;
+  if (b.huisnummerSort === null) return -1;
+  return a.huisnummerSort - b.huisnummerSort;
+});
+
+// Schematische kaart (zelfde stijl als de kaart op de homepage): pins op
+// x-positie naar huisnummer, met een vaste y-cyclus voor spreiding — net als
+// de homepage-kaart is dit een schematische plek-aanduiding, geen echte
+// GPS-kaart. Ondernemers zonder huisnummer krijgen geen pin (die kunnen we
+// nergens op de gevellijn plaatsen), maar staan wel gewoon in de grid
+// hieronder.
+const metHuisnummer = items.filter((i) => i.huisnummerSort !== null);
+const minNr = Math.min(...metHuisnummer.map((i) => i.huisnummerSort));
+const maxNr = Math.max(...metHuisnummer.map((i) => i.huisnummerSort));
+const spanNr = Math.max(maxNr - minNr, 1);
+const yCyclus = [22, 68, 40, 82, 30, 58];
+const itemsMetKaartPositie = metHuisnummer.map((item, i) => ({
+  ...item,
+  kaartX: 8 + ((item.huisnummerSort - minNr) / spanNr) * 84,
+  kaartY: yCyclus[i % yCyclus.length],
+}));
+
+const categorieen = Object.entries(categorieLabels);
+---
+<BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op volgorde van huisnummer.">
+  <h1>Ondernemers op de Rozengracht</h1>
+  <p style="color: var(--color-muted); max-width: 640px;">
+    {items.length} ondernemers, op volgorde van huisnummer — van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
+  </p>
+
+  <div class="locatie-kaart">
+    {itemsMetKaartPositie.map((item) => (
+      <a
+        class="kaart-pin"
+        href={`/ondernemers/${item.slug}/`}
+        data-cat={item.categorie}
+        style={`top:${item.kaartY}%;left:${item.kaartX}%;`}
+        title={`${item.naam} — Rozengracht ${item.huisnummer}`}
+      >
+        <span class="visually-hidden">{item.naam}, Rozengracht {item.huisnummer}</span>
+      </a>
+    ))}
+    <span class="locatie-kaart-label">Rozengracht, Westermarkt&ndash;Marnixstraat</span>
+  </div>
+
+  <section class="ondernemers-zone">
+    <div class="zone-inner">
+      <div class="filters" data-filters role="group" aria-label="Filter op categorie">
+        <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">Alles</button>
+        {categorieen.map(([key, label]) => (
+          <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
+            <span>{label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="ondernemers-grid" data-grid>
+        {items.map((item) => (
+          <a class="ondernemer-card" href={`/ondernemers/${item.slug}/`} data-cat={item.categorie}>
+            <div class="photo-wrap">
+              {item.foto ? (
+                <img class="photo" src={item.foto} alt={item.naam} width="360" height="360" loading="lazy" />
+              ) : (
+                <FotoFallback categorie={item.categorie} />
+              )}
+              {item.huisnummer && <span class="huisnr-badge">{item.huisnummer}</span>}
+            </div>
+            <h2>{item.naam}</h2>
+            <div class="role">{item.categorieLabel}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    // is:inline i.p.v. een gehoiste module-script — werkt daardoor ook in een
+    // dubbelklik-vanaf-schijf-preview (file://), waar module-scripts door de
+    // browser geblokkeerd worden. Geen TypeScript-syntax hier, want dat wordt
+    // in een is:inline-script niet getranspileerd.
+    //
+    // Categoriefilter: simpele class-toggle op zowel de kaartjes als de pins
+    // op de kaart hierboven — geen client-side detailweergave meer nodig,
+    // elke kaart is gewoon een link naar de eigen pagina.
+    var filterBar = document.querySelector('[data-filters]');
+    filterBar && filterBar.addEventListener('click', (e) => {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      filterBar.querySelectorAll('.filter-btn').forEach((b) => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-pressed', 'true');
+      var cat = btn.dataset.cat;
+      document.querySelectorAll('.ondernemer-card, .kaart-pin').forEach((el) => {
+        var visible = cat === 'alle' || el.dataset.cat === cat;
+        el.classList.toggle('is-filtered-out', !visible);
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  /* Zelfde schematische-kaart-stijl als de CTA-kaart op de homepage, maar in
+     de lichte kleurstelling van deze pagina — met echte pins per ondernemer
+     i.p.v. decoratieve stippen. */
+  .locatie-kaart {
+    position: relative;
+    aspect-ratio: 16/5;
+    min-height: 180px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--rose-tint), var(--cream-card));
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    margin: var(--space-md) 0;
+  }
+  .kaart-pin {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--green-deep);
+    transform: translate(-50%, -100%) rotate(-45deg);
+    box-shadow: 0 0 0 4px rgba(27, 59, 47, 0.14);
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+  .kaart-pin:hover { background: var(--rose-deep); transform: translate(-50%, -100%) rotate(-45deg) scale(1.15); }
+  .kaart-pin.is-filtered-out { display: none; }
+  .locatie-kaart-label {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* Zelfde donkergroene sectie als de "Ontdek"-zone op de homepage — het is
+     de SECTIE die donkergroen is, niet de losse kaartjes zelf (die blijven
+     transparant met lichte tekst, zoals de "Wie kwam er laatst bij?"-strip
+     op home). "Breekt uit" de gecentreerde .container-layout van deze pagina
+     met de klassieke 100vw-truc, zodat alleen dit blok edge-to-edge gaat. */
+  .ondernemers-zone {
+    background: var(--green-deep);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: var(--space-lg);
+    padding: var(--space-lg) 0 var(--space-xl);
+  }
+  .zone-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .filters {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    margin: 0 0 var(--space-md);
+  }
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    color: #fbfaf7;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .filter-btn svg { width: 16px; height: 16px; }
+  .filter-btn.is-active {
+    background: #fbfaf7;
+    color: var(--green-deep);
+    border-color: #fbfaf7;
+  }
+
+  /* Kaartjes: transparant op de donkergroene sectie-achtergrond, zelfde
+     stijl als de "Wie kwam er laatst bij?"-strip op de homepage. */
+  .ondernemers-grid {
+    display: grid;
+    gap: var(--space-md) var(--space-lg);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .ondernemer-card { text-decoration: none; color: #fbfaf7; display: block; }
+  .ondernemer-card.is-filtered-out { display: none; }
+  .ondernemer-card .photo-wrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .ondernemer-card .photo { width: 100%; height: 100%; border-radius: 0; object-fit: cover; }
+  .ondernemer-card .photo-wrap :global(.foto-fallback) { background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)); color: #fbfaf7; }
+  .ondernemer-card h2 { font-size: 0.98rem; font-weight: 600; margin-bottom: 2px; color: #fbfaf7; }
+  .ondernemer-card .role { font-size: 0.82rem; color: rgba(251, 250, 247, 0.65); }
+  .huisnr-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(18, 36, 29, 0.78);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+</style>

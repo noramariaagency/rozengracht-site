@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { nieuwsToItem, resolveFoto } from '../../lib/items';
+
+const berichten = (await getCollection('nieuws')).sort(
+  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
+);
+
+const items = await Promise.all(
+  berichten.map(async (bericht) => {
+    const ondernemer = bericht.data.gerelateerde_ondernemer
+      ? await getEntry(bericht.data.gerelateerde_ondernemer)
+      : null;
+    const foto = await resolveFoto(bericht.data.foto);
+    return nieuwsToItem(bericht, ondernemer, foto);
+  })
+);
+
+// Redactionele opbouw i.p.v. een kaal mozaïek-grid: net als bij AT5 neemt de
+// prominentie van de kaarten stap voor stap af — 2 kolommen, dan 1 (breed),
+// dan weer 2, dan 3 — en alles daarna verzandt in een dichte lijst met
+// kleine items in 2 kolommen. Zo blijft het nieuwste nieuws groot en
+// leesbaar zonder dat oudere berichten evenveel ruimte claimen.
+const HERO_PATRONEN = [2, 1, 2, 3];
+let cursor = 0;
+const heroRijen: { cols: number; items: typeof items }[] = [];
+for (const cols of HERO_PATRONEN) {
+  const rij = items.slice(cursor, cursor + cols);
+  if (rij.length === 0) break;
+  heroRijen.push({ cols, items: rij });
+  cursor += rij.length;
+}
+const kleineItems = items.slice(cursor);
+---
+<BaseLayout title="Nieuws" description="Al het nieuws over ondernemers, evenementen en ontwikkelingen aan de Rozengracht in Amsterdam.">
+  <h1>Nieuws</h1>
+
+  <!-- Mozaïek van foto-kaarten i.p.v. een kale tekstlijst — geïnspireerd op
+       hoe lokale nieuwssites als AT5 hun nieuwsoverzicht opbouwen, maar in
+       onze eigen kleuren/typografie. Vaste rij-opbouw (2/1/2/3 kolommen,
+       dan kleine items) i.p.v. auto-fit, zodat de aandacht bewust afneemt
+       naarmate je verder naar onder scrolt. -->
+
+  {heroRijen.map((rij) => (
+    <div class={`hero-rij cols-${rij.cols}`}>
+      {rij.items.map((item) => (
+        <ContentCard item={item} variant="feature" />
+      ))}
+    </div>
+  ))}
+
+  {kleineItems.length > 0 && (
+    <div class="kleine-rij">
+      {kleineItems.map((item) => (
+        <ContentCard item={item} variant="compact" />
+      ))}
+    </div>
+  )}
+</BaseLayout>
+
+<style>
+  .hero-rij {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: stretch;
+    margin-top: var(--space-lg);
+  }
+  .hero-rij.cols-1 { grid-template-columns: 1fr; }
+  .hero-rij.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .hero-rij.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+  /* Kaartgrootte/foto-verhouding schaalt mee met de dichtheid van de rij:
+     hoe minder kolommen, hoe prominenter de kaart. Dit gaat via custom
+     properties (die ContentCard.astro zelf leest) i.p.v. een :global()
+     override — Astro's eigen scoping-attribuut op ContentCard's regels
+     wint anders altijd van een gewone class-selector vanuit de pagina. */
+  /* Bij 1 kolom is de kaart twee keer zo breed als bij 2 kolommen, dus een
+     "normale" brede foto-ratio (21/9) maakt hem juist absoluut hóger i.p.v.
+     lager dan een 2-koloms kaart. Een veel platter beeldvlak (10/3) houdt de
+     foto-hoogte in pixels ongeveer gelijk aan die van een 2-koloms kaart. */
+  .hero-rij.cols-1 { --card-foto-ratio: 10/3; --card-title-size: 1.7rem; }
+  .hero-rij.cols-2 { --card-foto-ratio: 16/10; }
+  .hero-rij.cols-3 { --card-foto-ratio: 4/3; --card-title-size: 1.05rem; }
+
+  .hero-rij :global(.content-card.feature) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-rij :global(.content-card.feature .body) { flex: 1 1 auto; }
+  .hero-rij :global(.content-card.feature:hover) { border-color: var(--rose); transform: translateY(-3px); }
+
+  /* Kleine items: dichte lijst in 2 kolommen, net als de minder prominente
+     berichten onderaan een nieuwssite als AT5 — hetzelfde compacte
+     kaart-element dat ook op de verhalenpagina en in "Meer nieuws" gebruikt
+     wordt, zodat dit niet als een nieuw, apart patroon aanvoelt. */
+  .kleine-rij {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm) var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  @media (max-width: 900px) {
+    .hero-rij.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero-rij.cols-1,
+    .hero-rij.cols-2,
+    .hero-rij.cols-3 {
+      grid-template-columns: 1fr;
+    }
+    .kleine-rij { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rij :global(.content-card.feature) { transition: none; }
+    .hero-rij :global(.content-card.feature:hover) { transform: none; }
+  }
+</style>

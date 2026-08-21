@@ -1,0 +1,5 @@
+# PREVIEW-FASE: blokkeert alle zoekmachines zolang dit nog geen definitieve
+# live URL is. Verwijder/pas dit aan zodra de site op het eigen domein staat
+# en wél gevonden mag worden.
+User-agent: *
+Disallow: /

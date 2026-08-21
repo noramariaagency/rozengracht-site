@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Contact / word lid">
+  <h1>Contact &amp; word lid</h1>
+  <div class="card" style="max-width: 480px;">
+    <p style="color: var(--color-muted);">
+      [PLACEHOLDER — formulier wordt in fase 6 gekoppeld aan een vormverwerker zonder eigen backend
+      (bijv. Cloudflare Forms/Formspree). Onderstaande velden tonen alleen de structuur.]
+    </p>
+    <form>
+      <label>Naam<br /><input type="text" disabled /></label><br /><br />
+      <label>E-mail<br /><input type="email" disabled /></label><br /><br />
+      <label>Bericht<br /><textarea disabled></textarea></label><br /><br />
+      <button type="button" disabled>Versturen</button>
+    </form>
+  </div>
+</BaseLayout>

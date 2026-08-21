@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import OndernemerKaart from '../../components/OndernemerKaart.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
+import { bepaalLocatie } from '../../lib/locatie';
+
+export async function getStaticPaths() {
+  const verhalen = await getCollection('verhalen');
+  return verhalen.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const ondernemer = data.gerelateerde_ondernemer
+  ? await getEntry(data.gerelateerde_ondernemer)
+  : null;
+const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
+---
+<BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)}>
+  <article class="artikel">
+    <a class="back-link" href="/verhalen">&larr; Alle verhalen</a>
+    <span class="eyebrow">Verhaal</span>
+    <h1>{data.titel_nl}</h1>
+
+    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+
+    {ondernemer ? (
+      <OndernemerKaart ondernemer={ondernemer} label="Nu op deze plek" />
+    ) : losseLocatie && (
+      <p class="locatie-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+        {losseLocatie}
+      </p>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .artikel { max-width: 680px; }
+  .back-link {
+    display: inline-block;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-bottom: var(--space-md);
+  }
+  .back-link:hover { color: var(--green-deep); }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+  .artikel-tekst :global(p) { margin: 0 0 var(--space-sm) 0; line-height: 1.7; }
+  .locatie-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: var(--space-lg) 0 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  .locatie-badge svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--rose-deep); }
+</style>

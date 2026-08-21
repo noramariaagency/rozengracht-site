@@ -1,0 +1,20 @@
+ROZENGRACHT-WEBSITE — VOORBEELDVERSIE
+======================================
+
+Hoe openen?
+-----------
+Dubbelklik op "index.html" in deze map. De site opent in je browser en je
+kunt gewoon doorklikken naar alle pagina's (Ondernemers, Nieuws, Verhalen,
+Bereikbaarheid, etc.) — inclusief de filters, het citaat dat bij elk bezoek
+wisselt, het mobiele menu en de scroll-animatie. Alles werkt hier hetzelfde
+als straks op de live site.
+
+Er is geen internetverbinding of server voor nodig; alles werkt rechtstreeks
+vanaf je schijf.
+
+Dit is een momentopname
+------------------------
+Deze map is een export van de huidige stand van de website. Latere
+aanpassingen aan de "echte" site (via GitHub/Cloudflare, zodra dat is
+opgezet) komen hier niet automatisch in terecht — het is een losse kopie
+voor nu.

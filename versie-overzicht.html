@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rozengracht-website — versies &amp; updates</title>
+<style>
+  :root {
+    --green-deep: #1b3b2f;
+    --green-black: #12241d;
+    --rose: #d9a9a0;
+    --rose-deep: #c0847a;
+    --ochre: #b9793f;
+    --cream: #f3f6f1;
+    --cream-card: #ffffff;
+    --line: #e3dbcf;
+    --ink: #20302a;
+    --ink-soft: #5b6b63;
+    --rose-tint: #f4e6e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    color: var(--green-black);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 90px; }
+  header { margin-bottom: 40px; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 2rem; margin-bottom: 0.3em; }
+  .intro { color: var(--ink-soft); font-size: 1.02rem; max-width: 580px; margin: 10px 0 0; }
+  .meta-line { font-size: 0.85rem; color: var(--ink-soft); margin-top: 14px; }
+
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .versie {
+    position: relative;
+    margin-bottom: 36px;
+  }
+  .versie::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--cream-card);
+    border: 3px solid var(--green-deep);
+  }
+  .versie.status-live::before { border-color: var(--green-deep); }
+  .versie.status-nu::before { border-color: var(--ochre); }
+
+  .versie-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .versie-nr {
+    font-family: Georgia, serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--green-deep);
+  }
+  .versie-titel { font-size: 1.2rem; }
+  .status-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .status-pill.live { background: #e4ede4; color: var(--green-deep); }
+  .status-pill.nu { background: var(--rose-tint); color: var(--ochre); }
+
+  .card {
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 10px;
+  }
+  .card ul { margin: 0; padding-left: 20px; }
+  .card li { margin-bottom: 8px; font-size: 0.95rem; }
+  .card li:last-child { margin-bottom: 0; }
+  .card li .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--rose-deep);
+    background: var(--rose-tint);
+    border-radius: 100px;
+    padding: 1px 8px;
+    margin-right: 6px;
+    position: relative;
+    top: -1px;
+  }
+  .card li .tag.fix { color: var(--ochre); background: #f5e9da; }
+  .card li .tag.bug { color: #a13d3d; background: #f6e4e2; }
+
+  .volgende {
+    background: var(--green-deep);
+    color: #fbfaf7;
+    border-radius: 12px;
+    padding: 26px 28px;
+    margin-top: 44px;
+  }
+  .volgende h2 { color: #fbfaf7; font-size: 1.2rem; margin-bottom: 12px; }
+  .volgende ul { margin: 0; padding-left: 20px; }
+  .volgende li { margin-bottom: 8px; font-size: 0.95rem; color: rgba(251,250,247,0.9); }
+  .volgende li:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">Rozengracht-website</span>
+      <h1>Versies &amp; updates</h1>
+      <p class="intro">Overzicht van wat er tot nu toe is gebouwd en aangepast aan de website van BIZ Ondernemersvereniging Rozengracht. Nog geen formele versiebeheer (GitHub) — dit overzicht houdt de voortgang in de tussentijd bij.</p>
+      <p class="meta-line">Laatste update: 13 augustus 2026</p>
+    </header>
+
+    <div class="timeline">
+
+      <div class="versie status-live">
+        <div class="versie-head">
+          <span class="versie-nr">v0.1</span>
+          <span class="versie-titel">Fundament</span>
+          <span class="status-pill live">Gebouwd</span>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span class="tag">Opzet</span>Astro-project opgezet, gespiegeld aan de techniek van Nora Maria Agency (Astro + GitHub + Cloudflare Pages, met GitHub/Cloudflare bewust uitgesteld tot een latere fase).</li>
+            <li><span class="tag">Nieuw</span>Ondernemers-pagina gebouwd als kaart/lijst/detail-verkenner: een schematische gevellijn met echte huisnummers als klikbare pins, categoriefilters, en een detailweergave die direct in de pagina opent zonder herladen.</li>
+            <li><span class="tag">Keuze</span>Bewust géén ledensysteem of inlog — "Contact / word lid" blijft een eenvoudig contactformulier.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="versie status-live">
+        <div class="versie-head">
+          <span class="versie-nr">v0.2</span>
+          <span class="versie-titel">Huisstijl vastgesteld</span>
+          <span class="status-pill live">Gebouwd</span>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span class="tag">Ontwerp</span>Eerste kleurrichting (teal/blush, Playfair + Poppins) vervangen door de definitieve huisstijl: donkergroen, stoffig roze, oker en roomwit, met Fraunces voor koppen en Inter voor lopende tekst.</li>
+            <li><span class="tag">Nieuw</span>Homepage volledig herbouwd: bereikbaarheids-ticker, asymmetrisch nieuwsraster, events-sectie, een scroll-gestuurde overgangsanimatie tussen de lichte en donkergroene zone, een ondernemers-strip, citatenkarrousel en een call-to-action met kaart.</li>
+            <li><span class="tag fix">Fix</span>Mobiel hamburgermenu toegevoegd aan de navigatie — ontbrak nog, waardoor het menu op een telefoon over drie regels uitwaaierde.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="versie status-live">
+        <div class="versie-head">
+          <span class="versie-nr">v0.3</span>
+          <span class="versie-titel">Kwaliteitscontrole &amp; toegankelijkheid</span>
+          <span class="status-pill live">Gebouwd</span>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span class="tag">Tooling</span>Drie skills geïnstalleerd om het ontwerp te toetsen: frontend-design (Anthropic), web design guidelines (Vercel), en motion-principes.</li>
+            <li><span class="tag fix">Fix</span>Volledige toetsing tegen de Web Interface Guidelines uitgevoerd. Opgelost: geen <code>&lt;h1&gt;</code> op de homepage, ontbrekende afbeeldingsafmetingen (CLS-risico), geen "skip naar inhoud"-link, ontbrekende focus-stijlen voor toetsenbordgebruikers, Cmd/Ctrl-klik die niet werkte op ondernemerskaartjes, en een kopstructuur die niveaus oversloeg.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="versie status-live">
+        <div class="versie-head">
+          <span class="versie-nr">v0.4</span>
+          <span class="versie-titel">Nieuws &amp; verhalen als hoofdcontent</span>
+          <span class="status-pill live">Gebouwd</span>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span class="tag">Nieuw</span><code>/nieuws</code> en <code>/verhalen</code> (overzicht + artikel) volledig herbouwd in de huisstijl — waren nog kale lijstjes met alleen een titel en datum, zonder samenvatting of uitstraling.</li>
+            <li><span class="tag bug">Bugfix</span>Kapotte alinea-weergave in artikelen gerepareerd: ontbrekende openings- en sluit-tags maakten de HTML van elk artikel ongeldig.</li>
+            <li><span class="tag fix">Fix</span>Elk artikel krijgt nu zijn eigen zoekmachine-omschrijving, in plaats van dat alle artikelen dezelfde generieke tekst deelden.</li>
+            <li><span class="tag">Nieuw</span>Artikelen tonen onderaan "Meer nieuws" en, indien van toepassing, een koppeling naar de bijbehorende ondernemer.</li>
+            <li><span class="tag bug">Bugfix</span>Foto's op ondernemerspagina's werden onverkleind geserveerd (tot 2,7 MB per foto) — nu automatisch verkleind naar een paar tientallen kB's.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="versie status-nu">
+        <div class="versie-head">
+          <span class="versie-nr">v0.5</span>
+          <span class="versie-titel">Live kunnen gaan zonder foto's</span>
+          <span class="status-pill nu">Meest recent</span>
+        </div>
+        <div class="card">
+          <ul>
+            <li><span class="tag">Wijziging</span>Foto's zijn overal optioneel gemaakt (waren verplicht) — een ondernemer zonder foto blokkeert het live gaan niet langer.</li>
+            <li><span class="tag">Nieuw</span>Nette vervanging (categorie-icoon op een merkkleur-achtergrond) waar een foto ontbreekt, in plaats van een grijze "foto volgt"-doos.</li>
+            <li><span class="tag">Wijziging</span>Instagram-sectie op de homepage vervangen door één duidelijke volg-kaart, in plaats van zes nep-tegels die een live feed suggereerden die er nog niet is.</li>
+            <li><span class="tag">Nieuw</span>Artikelen kunnen een locatie tonen; is een artikel gekoppeld aan een ondernemer, dan komt het adres automatisch van die ondernemer zelf.</li>
+            <li><span class="tag bug">Bugfix</span>Ondernemerskaartjes op de homepage bleven onzichtbaar zodra ze buiten de horizontale scrollpositie van de strip vielen — animatie daar uitgezet.</li>
+            <li><span class="tag bug">Bugfix</span>Categorie op de ondernemerspagina toonde de ruwe code ("eten-drinken") in plaats van het leesbare label ("Eten &amp; drinken").</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="volgende">
+      <h2>Nog te doen</h2>
+      <ul>
+        <li>Live zetten via GitHub + Cloudflare Pages (tot nu toe bewust uitgesteld).</li>
+        <li>Echte foto's van ondernemers verzamelen, zodra beschikbaar.</li>
+        <li>Placeholder-onderdelen vervangen door echte content: events-agenda, citaten van echte ondernemers, Instagram-koppeling.</li>
+        <li>RSS-feed toevoegen — pas nuttig zodra er een automatisering (bijv. nieuwsbrief) aan gekoppeld wordt.</li>
+      </ul>
+    </div>
+
+    <footer>Rozengracht-website &middot; intern voortgangsoverzicht, geen onderdeel van de live site</footer>
+  </div>
+</body>
+</html>

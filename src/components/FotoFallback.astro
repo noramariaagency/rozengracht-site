@@ -1,0 +1,37 @@
+---
+// Nette vervanger voor een ontbrekende foto: een categorie-icoon op een
+// zachte merkkleur-achtergrond, i.p.v. een grijs vlak of "foto volgt".
+// Vult altijd de volledige ouder (position: absolute, inset: 0) — de
+// aanroepende pagina bepaalt de vorm/aspect-ratio via een positioned
+// container.
+import { categorieIconen } from '../lib/categorieen';
+
+interface Props {
+  categorie: string;
+}
+
+const { categorie } = Astro.props;
+const icoon = categorieIconen[categorie] ?? categorieIconen['diensten'];
+---
+<div class="foto-fallback" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" set:html={icoon} />
+</div>
+
+<style>
+  .foto-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cream-card), var(--rose-tint));
+    color: var(--green-deep);
+    opacity: 0.55;
+  }
+  .foto-fallback svg {
+    width: 34%;
+    height: 34%;
+    max-width: 64px;
+    max-height: 64px;
+  }
+</style>

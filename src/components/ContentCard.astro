@@ -1,0 +1,154 @@
+---
+// Eén gedeelde kaart-component voor nieuws, verhalen én events (zie
+// src/lib/items.ts voor het gedeelde datamodel). Twee varianten:
+// "feature" (groot, met tekst) en "compact" (rij met datum-blokje) — beide
+// overal in de site herbruikt, zodat de drie contenttypes er consistent
+// uitzien en desgewenst gemixed getoond kunnen worden.
+import type { FeedItem } from '../lib/items';
+
+interface Props {
+  item: FeedItem;
+  variant?: 'feature' | 'compact';
+}
+
+const { item, variant = 'compact' } = Astro.props;
+
+// Icoon voor het kleurvlak wanneer er (nog) geen foto is — één per soort,
+// zodat een fotoloze kaart nog steeds als "af" leest i.p.v. als een gat dat
+// op een foto wacht.
+const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
+  nieuws: '<rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M8 13h4" /><path d="M8 16.5h8" />',
+  verhaal: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />',
+  event: '<rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4" /><path d="M16 3v4" /><path d="M3 10h18" />',
+};
+---
+{variant === 'feature' ? (
+  <a class={`content-card feature accent-${item.accent}`} href={item.href}>
+    <div class="foto-vlak">
+      {item.image ? (
+        <img src={item.image.src} width={item.image.width} height={item.image.height} alt="" loading="lazy" />
+      ) : (
+        <div class="foto-fallback" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={FALLBACK_ICOON[item.kind]} />
+        </div>
+      )}
+      <div class="foto-overlay">
+        <span class="cat">{item.kindLabel}</span>
+        <h3>{item.title}</h3>
+      </div>
+    </div>
+    <div class="body">
+      {item.excerpt && <p class="excerpt">{item.excerpt}</p>}
+      <div class="meta">
+        {item.dateLabel && <span>{item.dateLabel}</span>}
+        {item.locationLabel && <span class="loc">{item.locationLabel}</span>}
+      </div>
+    </div>
+  </a>
+) : (
+  <a class={`content-card compact accent-${item.accent}`} href={item.href}>
+    {item.dateBlock ? (
+      <div class="date-block">
+        <div class="d">{item.dateBlock.day}</div>
+        <div class="m">{item.dateBlock.month}</div>
+      </div>
+    ) : (
+      <div class="kind-block" aria-hidden="true"></div>
+    )}
+    <div class="body">
+      <span class="cat">{item.kindLabel}</span>
+      <h3>{item.title}</h3>
+      {!item.dateBlock && item.dateLabel && <div class="compact-date">{item.dateLabel}</div>}
+      {item.locationLabel && <div class="loc">{item.locationLabel}</div>}
+    </div>
+  </a>
+)}
+
+<style>
+  .content-card { display: block; text-decoration: none; color: inherit; }
+  .content-card .cat {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .accent-rose .cat { color: var(--rose-deep); }
+  .accent-ochre .cat { color: var(--ochre); }
+  .accent-green .cat { color: var(--green-deep); }
+
+  /* Feature: foto-eerst, in de trant van een nieuwssite (grote foto met
+     titel erover), i.p.v. een kaal tekstvlak — met een kleurvlak+icoon als
+     nette vervanger zolang er nog geen foto is (zie FALLBACK_ICOON). */
+  .content-card.feature {
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .content-card.feature .foto-vlak {
+    position: relative;
+    /* Via een custom property i.p.v. een vaste waarde, zodat een pagina die
+       deze kaart in een eigen grid-context gebruikt (bv. de nieuws-mozaïek
+       met wisselende kolombreedtes) de foto-verhouding per plek kan
+       aanpassen. Een gewone :global() override vanuit de pagina verliest
+       het namelijk van Astro's eigen scoping-attribuut op deze regel, dus
+       een custom property (die wél door scoping heen erft) is hier nodig. */
+    aspect-ratio: var(--card-foto-ratio, 16/10);
+    overflow: hidden;
+  }
+  .content-card.feature .foto-vlak img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+  .content-card.feature .foto-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .accent-rose .foto-fallback { background: linear-gradient(135deg, var(--rose-deep), #8f5850); }
+  .accent-ochre .foto-fallback { background: linear-gradient(135deg, var(--ochre), #7a4f28); }
+  .accent-green .foto-fallback { background: linear-gradient(135deg, var(--green-deep), var(--green-black)); }
+  .content-card.feature .foto-fallback svg { width: 30%; height: 30%; max-width: 56px; max-height: 56px; color: rgba(255, 255, 255, 0.55); }
+  /* Donkere gradient onderin de foto, zodat de witte titel altijd leesbaar
+     blijft — ook boven op een lichte foto. */
+  .content-card.feature .foto-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(10, 18, 14, 0.82) 0%, rgba(10, 18, 14, 0.25) 60%, transparent 100%);
+  }
+  .content-card.feature .foto-overlay .cat { color: #fbfaf7; margin-bottom: 6px; }
+  .content-card.feature .foto-overlay h3 { color: #fff; font-size: var(--card-title-size, 1.3rem); line-height: 1.24; margin: 0; }
+  .content-card.feature .body { padding: 20px 22px 22px; }
+  .content-card.feature .excerpt { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+  .content-card.feature .meta { font-size: 0.78rem; color: var(--ink-soft); margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .content-card.feature .meta .loc { font-weight: 600; }
+
+  /* Compact: rij met datum-blokje, voor lijsten/sub-secties. */
+  .content-card.compact { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .content-card.compact .date-block {
+    flex: 0 0 54px;
+    text-align: center;
+    background: transparent;
+    border-radius: 10px;
+    padding: 7px 0;
+  }
+  .accent-rose .date-block { color: var(--rose-deep); border: 1.5px solid var(--rose-deep); }
+  .accent-ochre .date-block { color: var(--ochre); border: 1.5px solid var(--ochre); }
+  .accent-green .date-block { color: var(--green-deep); border: 1.5px solid var(--green-deep); }
+  .content-card.compact .date-block .d { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; line-height: 1; }
+  .content-card.compact .date-block .m { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .content-card.compact .kind-block { flex: 0 0 6px; align-self: stretch; border-radius: 3px; }
+  .accent-rose .kind-block { background: var(--rose); }
+  .accent-ochre .kind-block { background: var(--ochre); }
+  .accent-green .kind-block { background: var(--green-deep); }
+  .content-card.compact h3 { font-size: 1.05rem; line-height: 1.3; margin-bottom: 4px; }
+  /* Kleine, losse publicatie-/periodedatum — bewust klein en zonder blokje,
+     zodat dit nooit verward wordt met de grote datumblokjes van events. */
+  .content-card.compact .compact-date { font-size: 0.76rem; color: var(--ink-soft); margin-bottom: 2px; }
+  .content-card.compact .loc { font-size: 0.82rem; color: var(--ink-soft); }
+</style>

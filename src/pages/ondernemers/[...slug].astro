@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FotoFallback from '../../components/FotoFallback.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { naarParagrafen } from '../../lib/tekst';
+import { categorieLabels } from '../../lib/categorieen';
+import { nieuwsToItem, verhaalToItem, eventToItem } from '../../lib/items';
+
+export async function getStaticPaths() {
+  const ondernemers = await getCollection('ondernemers');
+  return ondernemers.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+// Geoptimaliseerde versies van de foto's (i.p.v. de ruwe, onverkleinde
+// bron-afbeelding rechtstreeks serveren) — voorkomt onnodig grote downloads
+// en geeft expliciete width/height voor CLS.
+const fotos = await Promise.all(
+  data.fotos.map((foto) => getImage({ src: foto, width: 640 }))
+);
+const logo = data.logo ? await getImage({ src: data.logo, width: 240 }) : null;
+const dagen = [
+  ['ma', 'Maandag'], ['di', 'Dinsdag'], ['wo', 'Woensdag'], ['do', 'Donderdag'],
+  ['vr', 'Vrijdag'], ['za', 'Zaterdag'], ['zo', 'Zondag'],
+];
+
+// Gerelateerd nieuws, verhalen én events: alles waarvan gerelateerde_ondernemer
+// naar deze pagina verwijst. Zo blijft de koppeling omkeerbaar zonder dat de
+// ondernemer-pagina zelf iets van nieuws/verhalen/events hoeft te weten.
+// Alle drie gaan door dezelfde *ToItem()-normalizers en dezelfde ContentCard
+// als op de homepage/nieuws-/verhalenpagina, zodat ze hier ook gemixed en
+// gelijk-uitziend te tonen zijn (i.p.v. losse ad-hoc kaartjes per type).
+const alNieuws = await getCollection('nieuws');
+const gerelateerdNieuwsItems = alNieuws
+  .filter((n) => n.data.gerelateerde_ondernemer?.id === entry.slug)
+  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())
+  .map((n) => nieuwsToItem(n, entry));
+
+const alVerhalen = await getCollection('verhalen');
+const gerelateerdeVerhalenItems = alVerhalen
+  .filter((v) => v.data.gerelateerde_ondernemer?.id === entry.slug)
+  .map((v) => verhaalToItem(v, entry));
+
+const alEvents = await getCollection('events');
+const gerelateerdeEventsItems = alEvents
+  .filter((e) => e.data.gerelateerde_ondernemer?.id === entry.slug)
+  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())
+  .map((e) => eventToItem(e, entry));
+
+const gerelateerdeItems = [
+  ...gerelateerdNieuwsItems,
+  ...gerelateerdeVerhalenItems,
+  ...gerelateerdeEventsItems,
+].sort((a, b) => b.sortValue - a.sortValue);
+---
+<BaseLayout title={data.meta_title_nl ?? data.naam} description={data.meta_description_nl}>
+  <a href="/ondernemers" style="color: var(--color-muted); font-size: 0.9rem;">&larr; Alle ondernemers</a>
+
+  <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg); margin-top: var(--space-md); align-items: start;">
+    <div>
+      <h1>{data.naam}</h1>
+      <p>
+        <span class="tag">{categorieLabels[data.categorie] ?? data.categorie}</span>
+        {data.subcategorie && <span class="subcategorie">&nbsp;&middot; {data.subcategorie}</span>}
+      </p>
+      {fotos.length > 0 ? (
+        <div class="foto-tekst">
+          <div class="foto-stapel">
+            {fotos.map((foto, i) => (
+              <div class="foto-tegel">
+                <img
+                  src={foto.src}
+                  width={foto.attributes.width}
+                  height={foto.attributes.height}
+                  alt={data.naam}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={i === 0 ? 'high' : undefined}
+                />
+              </div>
+            ))}
+          </div>
+          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+        </div>
+      ) : (
+        <>
+          <div class="foto-hero-fallback">
+            <FotoFallback categorie={data.categorie} />
+          </div>
+          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} style="max-width: 640px;" />
+        </>
+      )}
+    </div>
+
+    <aside class="card">
+      {logo && (
+        <div class="logo-tegel">
+          <img src={logo.src} width={logo.attributes.width} height={logo.attributes.height} alt={`${data.naam} logo`} />
+        </div>
+      )}
+      {data.huisnummer ? (
+        <p><strong>Adres</strong><br />Rozengracht {data.huisnummer}, Amsterdam</p>
+      ) : (
+        <p class="adres-onbekend"><strong>Adres</strong><br />Binnenkort bekend</p>
+      )}
+      {data.website && <p><a href={data.website} target="_blank">{data.website.replace(/^https?:\/\//, '')}</a></p>}
+      {data.openingstijden && (
+        <div>
+          <strong>Openingstijden</strong>
+          <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
+            {dagen.map(([key, label]) => data.openingstijden[key] && (
+              <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                <span>{label}</span><span>{data.openingstijden[key]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </aside>
+  </div>
+
+  {gerelateerdeItems.length > 0 && (
+    <section class="meer-over" style="margin-top: var(--space-xl);">
+      <h2>Meer over {data.naam}</h2>
+      <div class="meer-over-grid">
+        {gerelateerdeItems.map((item) => (
+          <ContentCard item={item} variant="compact" />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .subcategorie { color: var(--color-muted); font-size: 0.92rem; }
+  .adres-onbekend { color: var(--color-muted); }
+
+  .foto-hero-fallback {
+    position: relative;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: var(--space-md) 0;
+  }
+
+  /* Tekst gelijk naast de foto('s) i.p.v. een foto-rij met de tekst daaronder
+     — dezelfde vaste-beeldverhouding + object-fit: cover-kaart als de
+     kaartjes op de homepage/ondernemerspagina, zodat foto's hier ook nooit
+     uit verhouding getrokken worden. */
+  .foto-tekst {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    margin: var(--space-md) 0;
+  }
+  @media (max-width: 640px) {
+    .foto-tekst { grid-template-columns: 1fr; }
+  }
+  .foto-stapel { display: flex; flex-direction: column; gap: var(--space-sm); }
+  @media (max-width: 640px) {
+    .foto-stapel { flex-direction: row; flex-wrap: wrap; }
+  }
+  .foto-tegel {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    flex: 1 1 160px;
+  }
+  .foto-tegel img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+
+  /* Logo krijgt ook een vast kader, maar met object-fit: contain i.p.v. cover
+     — een logo mag nooit bijgesneden worden (dat knipt tekst/vorm af), enkel
+     ingepast. */
+  .logo-tegel {
+    width: 120px;
+    height: 80px;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-sm);
+    overflow: hidden;
+  }
+  .logo-tegel img { width: 100%; height: 100%; object-fit: contain; object-position: left center; border-radius: 0; }
+
+  .meer-over-grid {
+    display: grid;
+    gap: var(--space-md) var(--space-lg);
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: var(--space-md);
+  }
+  @media (max-width: 640px) {
+    .meer-over-grid { grid-template-columns: 1fr; }
+  }
+</style>

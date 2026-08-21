@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import OndernemerKaart from '../../components/OndernemerKaart.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
+import { bepaalLocatie } from '../../lib/locatie';
+import { nieuwsToItem } from '../../lib/items';
+
+export async function getStaticPaths() {
+  const berichten = await getCollection('nieuws');
+  return berichten.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+const ondernemer = data.gerelateerde_ondernemer
+  ? await getEntry(data.gerelateerde_ondernemer)
+  : null;
+// Zonder koppeling aan een ondernemer gebruiken we het losse locatie-veld;
+// mét koppeling komt het adres altijd van de ondernemer zelf (zie
+// src/lib/locatie.ts) zodat het nooit los raakt van de ondernemerspagina.
+const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
+
+// Andere recente nieuwsberichten, voor "Meer nieuws" onderaan het artikel —
+// via dezelfde nieuwsToItem()-normalizer en <ContentCard /> als op de
+// homepage en de nieuwspagina, i.p.v. een eigen ad-hoc kaartje hier.
+const alleBerichten = (await getCollection('nieuws'))
+  .filter((b) => b.slug !== entry.slug)
+  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())
+  .slice(0, 3);
+const meerNieuwsItems = await Promise.all(
+  alleBerichten.map(async (bericht) => {
+    const berichtOndernemer = bericht.data.gerelateerde_ondernemer
+      ? await getEntry(bericht.data.gerelateerde_ondernemer)
+      : null;
+    return nieuwsToItem(bericht, berichtOndernemer);
+  })
+);
+---
+<BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)}>
+  <article class="artikel">
+    <a class="back-link" href="/nieuws">&larr; Alle nieuwsberichten</a>
+    <span class="eyebrow">Nieuws</span>
+    <h1>{data.titel_nl}</h1>
+    <p class="datum">{data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+
+    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+
+    {ondernemer ? (
+      <OndernemerKaart ondernemer={ondernemer} label="Dit artikel gaat over" />
+    ) : losseLocatie && (
+      <p class="locatie-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+        {losseLocatie}
+      </p>
+    )}
+  </article>
+
+  {meerNieuwsItems.length > 0 && (
+    <section class="meer-nieuws">
+      <h2>Meer nieuws</h2>
+      <div class="meer-nieuws-grid">
+        {meerNieuwsItems.map((item) => (
+          <ContentCard item={item} variant="compact" />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .artikel { max-width: 680px; }
+  .back-link {
+    display: inline-block;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-bottom: var(--space-md);
+  }
+  .back-link:hover { color: var(--green-deep); }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+  .datum { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 var(--space-md) 0; }
+  .artikel-tekst :global(p) { margin: 0 0 var(--space-sm) 0; line-height: 1.7; }
+  .locatie-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: var(--space-lg) 0 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  .locatie-badge svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--rose-deep); }
+  .meer-nieuws { margin-top: var(--space-xl); max-width: 900px; }
+  .meer-nieuws h2 { font-size: 1.3rem; }
+  .meer-nieuws-grid { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+</style>

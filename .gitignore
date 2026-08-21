@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+*.zip
+.DS_Store
+
+# Lokale dev/debug-scripts, geen onderdeel van de live site
+/build_checklist.py
+/relativize.py
+/screenshot.cjs
+/verify_local.cjs
+/verify_local2.cjs

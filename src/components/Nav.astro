@@ -1,0 +1,171 @@
+---
+import logoLockup from '../assets/branding/logo_lockup_green.png';
+import { Image } from 'astro:assets';
+
+const links = [
+  { href: '/', label: 'De Rozengracht' },
+  { href: '/ondernemers', label: 'Ondernemers' },
+  { href: '/nieuws', label: 'Nieuws' },
+  { href: '/verhalen', label: 'Verhalen' },
+  { href: '/bereikbaarheid', label: 'Bereikbaarheid' },
+];
+---
+<a class="skip-link" href="#main-content">Direct naar de inhoud</a>
+<header class="site-nav">
+  <div class="container nav-inner">
+    <a class="brand" href="/">
+      <Image src={logoLockup} alt="Rozengracht" width={70} height={45} loading="eager" />
+    </a>
+    <nav id="primary-nav">
+      <ul>
+        {links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<script is:inline>
+  // is:inline i.p.v. een gehoiste module-script: zo blijft dit ook werken in
+  // een dubbelklik-vanaf-schijf-preview (file://), waar browsers uit
+  // veiligheidsoverwegingen module-scripts blokkeren maar gewone inline
+  // scripts prima uitvoeren. Kan daardoor geen TypeScript-syntax gebruiken
+  // (die wordt hier niet getranspileerd) — vandaar platte JS.
+  //
+  // Zet de werkelijke hoogte van de sticky header in een CSS-variabele, zodat
+  // pagina's met een eigen sticky/scroll-vergrendelde sectie (zoals de
+  // homepage-transitie) daar precies onder kunnen beginnen i.p.v. erachter
+  // verstopt te raken.
+  var header = document.querySelector('.site-nav');
+  function updateNavHeight() {
+    if (header) {
+      document.documentElement.style.setProperty('--nav-height', header.offsetHeight + 'px');
+    }
+  }
+  updateNavHeight();
+  window.addEventListener('resize', updateNavHeight);
+
+  // Mobiel hamburger-menu: eenvoudige disclosure, geen animatie-fantasie nodig
+  // voor een klein, weinig-frequent bediend navigatie-element.
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primary-nav');
+  toggle && toggle.addEventListener('click', () => {
+    var isOpen = nav && nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    updateNavHeight();
+  });
+  nav && nav.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('is-open');
+      toggle && toggle.setAttribute('aria-expanded', 'false');
+      updateNavHeight();
+    }
+  });
+</script>
+
+<style>
+  /* Skip-link: visueel verborgen tot het element focus krijgt (toetsenbord),
+     zodat toetsenbord- en screenreader-gebruikers de nav kunnen overslaan. */
+  .skip-link {
+    /* Ver buiten beeld i.p.v. net -40px: bij -40px stak er door
+       sub-pixel/lineHeight-afronding soms een streepje van <1px in beeld aan
+       de bovenkant van de pagina. -9999px sluit dat afrondingsprobleem
+       volledig uit. */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    z-index: 30;
+    background: var(--green-deep);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .skip-link:focus-visible {
+    top: var(--space-sm);
+    left: var(--space-sm);
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--cream);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-sm) 0;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .brand img { border-radius: 0; }
+  nav ul {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  nav a:hover {
+    color: var(--green-deep);
+    border-bottom-color: var(--rose);
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    touch-action: manipulation;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--green-black);
+    border-radius: 1px;
+  }
+
+  @media (max-width: 760px) {
+    nav#primary-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-sm) var(--space-md) var(--space-md);
+    }
+    nav#primary-nav.is-open { display: block; }
+    nav#primary-nav ul { flex-direction: column; gap: var(--space-sm); }
+    nav#primary-nav a { display: block; font-size: 1.05rem; }
+    .nav-toggle { display: flex; }
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+// Klein kaartje met foto, naam en adres van een gekoppelde ondernemer — voor
+// gebruik op nieuws- en verhalen-detailpagina's wanneer het artikel/verhaal
+// een gerelateerde_ondernemer heeft. Eén gedeeld element i.p.v. een losse
+// tekst-link per pagina, zodat het er overal hetzelfde uitziet.
+import { getImage } from 'astro:assets';
+import FotoFallback from './FotoFallback.astro';
+import { categorieLabels } from '../lib/categorieen';
+
+interface Props {
+  ondernemer: any;
+  label?: string;
+}
+
+const { ondernemer, label = 'Ondernemer' } = Astro.props;
+const { data, slug } = ondernemer;
+const foto = data.fotos?.[0]
+  ? await getImage({ src: data.fotos[0], width: 200, height: 200 })
+  : null;
+---
+<a class="ondernemer-kaart" href={`/ondernemers/${slug}/`}>
+  <div class="foto-wrap">
+    {foto ? (
+      <img src={foto.src} width="200" height="200" alt={data.naam} loading="lazy" />
+    ) : (
+      <FotoFallback categorie={data.categorie} />
+    )}
+  </div>
+  <div class="tekst">
+    <span class="label">{label}</span>
+    <strong>{data.naam}</strong>
+    <span class="adres">
+      {data.huisnummer && <>Rozengracht {data.huisnummer} &middot; </>}
+      {categorieLabels[data.categorie] ?? data.categorie}
+    </span>
+  </div>
+  <span class="arrow" aria-hidden="true">&rarr;</span>
+</a>
+
+<style>
+  .ondernemer-kaart {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .ondernemer-kaart .foto-wrap {
+    position: relative;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+  .ondernemer-kaart .foto-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .ondernemer-kaart .tekst { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .ondernemer-kaart .label { color: var(--color-muted); font-size: 0.8rem; }
+  .ondernemer-kaart .adres { color: var(--color-muted); font-size: 0.85rem; }
+  .ondernemer-kaart .arrow { margin-left: auto; color: var(--green-deep); flex-shrink: 0; }
+</style>

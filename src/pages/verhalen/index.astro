@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { verhaalToItem } from '../../lib/items';
+import { naarParagrafen } from '../../lib/tekst';
+
+function huisnummerSortValue(locatie) {
+  if (!locatie) return null;
+  const match = locatie.match(/\d+/);
+  return match ? parseInt(match[0], 10) : null;
+}
+
+function periodeJaar(periode) {
+  if (!periode) return null;
+  const match = periode.match(/\d{3,4}/);
+  return match ? parseInt(match[0], 10) : null;
+}
+
+const ruw = await getCollection('verhalen');
+const verhalen = await Promise.all(
+  ruw.map(async (v) => {
+    const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
+    const item = verhaalToItem(v, ondernemer);
+    // Voor de sortering/positie op de gevellijn gebruiken we het adres NA
+    // overname van de ondernemer (item.locationLabel), niet het ruwe
+    // locatie-veld — zo klopt de plek in de wandeling ook als een verhaal
+    // straks aan een ondernemer gekoppeld wordt.
+    return {
+      slug: v.slug,
+      data: v.data,
+      item,
+      ondernemer,
+      huisnummerSort: huisnummerSortValue(item.locationLabel),
+      jaar: periodeJaar(v.data.periode),
+    };
+  })
+);
+
+const metAdres = verhalen.filter((v) => v.huisnummerSort !== null).sort((a, b) => a.huisnummerSort - b.huisnummerSort);
+const zonderAdres = verhalen.filter((v) => v.huisnummerSort === null);
+const gesorteerd = [...metAdres, ...zonderAdres];
+
+// Twee kleine selectiestrips: op huisnummer (zelfde as als de leeslijst) en
+// op periode (chronologisch). Klikken selecteert het bijbehorende verhaal in
+// het leespaneel rechts — puur navigatie via de URL-hash, geen filter die
+// content verbergt.
+const metHuisnummer = gesorteerd.filter((v) => v.huisnummerSort !== null);
+const minNr = Math.min(...metHuisnummer.map((v) => v.huisnummerSort));
+const maxNr = Math.max(...metHuisnummer.map((v) => v.huisnummerSort));
+const spanNr = Math.max(maxNr - minNr, 1);
+const huisnummerPins = metHuisnummer.map((v) => ({
+  slug: v.slug,
+  label: v.item.locationLabel,
+  positie: 8 + ((v.huisnummerSort - minNr) / spanNr) * 84,
+}));
+
+const metJaar = gesorteerd.filter((v) => v.jaar !== null);
+const minJaar = Math.min(...metJaar.map((v) => v.jaar));
+const maxJaar = Math.max(...metJaar.map((v) => v.jaar));
+const spanJaar = Math.max(maxJaar - minJaar, 1);
+const jaarPins = metJaar.map((v) => ({
+  slug: v.slug,
+  label: v.item.dateLabel,
+  positie: 8 + ((v.jaar - minJaar) / spanJaar) * 84,
+}));
+
+const eersteSlug = gesorteerd[0]?.slug ?? null;
+---
+<BaseLayout title="Verhalen" description="De geschiedenis en bijzondere plekken van de Rozengracht in Amsterdam.">
+  <h1>Verhalen van de Rozengracht</h1>
+  <p class="intro">
+    Een wandeling door de geschiedenis van de straat, op volgorde van huisnummer, van de Westermarkt tot de Marnixstraat. Kies links een stop, en lees rechts het hele verhaal.
+  </p>
+
+  <div class="selectors">
+    <div class="selector">
+      <span class="selector-label">Op huisnummer</span>
+      <div class="selector-line">
+        {huisnummerPins.map((pin) => (
+          <a class="selector-pin" data-jump={pin.slug} href={`#${pin.slug}`} style={`left:${pin.positie}%;`} title={pin.label}></a>
+        ))}
+      </div>
+    </div>
+    <div class="selector">
+      <span class="selector-label">Op periode</span>
+      <div class="selector-line">
+        {jaarPins.map((pin) => (
+          <a class="selector-pin periode" data-jump={pin.slug} href={`#${pin.slug}`} style={`left:${pin.positie}%;`} title={pin.label}></a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="verhalen-app" data-eerste={eersteSlug}>
+    <!-- Leeslijst: links, klikbaar, springt naar het verhaal rechts via de
+         URL-hash (#slug) — dat werkt ook zonder JavaScript dankzij :target
+         hieronder in de CSS. Het scriptje onderaan voegt alleen de
+         "geselecteerd"-markering toe en zorgt dat er bij binnenkomst zonder
+         hash toch al iets rechts staat. -->
+    <nav class="verhalen-lijst" aria-label="Verhalen">
+      <ol>
+        {gesorteerd.map((v) => (
+          <li>
+            <a class="lijst-item" data-jump={v.slug} href={`#${v.slug}`}>
+              <span class="lijst-titel">{v.item.title}</span>
+              <span class="lijst-meta">
+                {v.item.locationLabel}
+                {v.item.dateLabel && ` · ${v.item.dateLabel}`}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <!-- Leespaneel: rechts, alle verhalen zitten al in de pagina (geen fetch
+         nodig) — CSS toont alleen degene die met de URL-hash overeenkomt. -->
+    <div class="leespaneel-wrap">
+      {gesorteerd.map((v) => (
+        <article id={v.slug} class="leespaneel">
+          <a class="back-link-mobile" href="/verhalen/#lijst">&larr; Alle verhalen</a>
+          <header class="pane-header">
+            <span class="eyebrow">Verhaal</span>
+            <h2>{v.item.title}</h2>
+            <div class="pane-meta">
+              {v.item.locationLabel && (
+                <span class="meta-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                  {v.item.locationLabel}
+                </span>
+              )}
+              {v.data.periode && (
+                <span class="meta-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+                  {v.data.periode}
+                </span>
+              )}
+              {v.ondernemer && (
+                <a class="meta-pill meta-pill-link" href={`/ondernemers/${v.ondernemer.slug}`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /></svg>
+                  Nu: {v.ondernemer.data.naam}
+                </a>
+              )}
+            </div>
+          </header>
+          <div class="pane-tekst" set:html={naarParagrafen(v.data.tekst_nl)} />
+          <a class="pane-permalink" href={`/verhalen/${v.slug}/`}>Directe link naar dit verhaal &rarr;</a>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ eersteSlug }}>
+    // is:inline zodat dit ook in een file://-preview werkt (browsers
+    // blokkeren module-scripts onder file://).
+    //
+    // De CSS hieronder toont het verhaal waarvan het element-id met de
+    // URL-hash overeenkomt (:target) — dat werkt al zonder dit script. Dit
+    // script doet twee dingen extra:
+    // 1. Als er nog geen hash in de URL staat, zet 'm op het eerste verhaal
+    //    (met replaceState, dus geen extra entry in de terug-knop-historie).
+    // 2. Markeert het bijbehorende item in de leeslijst én op de
+    //    huisnummer/periode-pins als "geselecteerd", want :target werkt
+    //    alleen op het paneel zelf, niet op de link die ernaartoe verwijst.
+    function markeerSelectie() {
+      var slug = (window.location.hash || '').replace('#', '') || eersteSlug;
+      document.querySelectorAll('[data-jump].is-selected').forEach((el) => el.classList.remove('is-selected'));
+      if (slug) {
+        document.querySelectorAll('[data-jump="' + slug + '"]').forEach((el) => el.classList.add('is-selected'));
+      }
+    }
+    if (!window.location.hash && eersteSlug) {
+      history.replaceState(null, '', '#' + eersteSlug);
+    }
+    markeerSelectie();
+    window.addEventListener('hashchange', markeerSelectie);
+  </script>
+</BaseLayout>
+
+<style>
+  .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
+
+  .selectors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+  @media (max-width: 640px) {
+    .selectors { grid-template-columns: 1fr; gap: var(--space-md); }
+  }
+  .selector-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin-bottom: 10px;
+  }
+  .selector-line {
+    position: relative;
+    height: 4px;
+    background: var(--line);
+    border-radius: 2px;
+    margin: 14px 4px;
+  }
+  .selector-pin {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream-card);
+    border: 2px solid var(--green-deep);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    padding: 0;
+    touch-action: manipulation;
+  }
+  .selector-pin.periode { border-color: var(--ochre); }
+  .selector-pin:hover { background: var(--rose); border-color: var(--rose); }
+  .selector-pin.is-selected { background: var(--rose-deep); border-color: var(--rose-deep); }
+
+  /* Master-detail: leeslijst links (vaste breedte), leespaneel rechts (de
+     rest van de ruimte) — zoals een mailbox: kies links, lees rechts. */
+  .verhalen-app {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .verhalen-app { grid-template-columns: 1fr; }
+  }
+
+  .verhalen-lijst {
+    position: sticky;
+    top: calc(var(--nav-height, 0px) + var(--space-md));
+    max-height: calc(100vh - var(--nav-height, 0px) - var(--space-xl));
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--cream-card);
+  }
+  @media (max-width: 900px) {
+    .verhalen-lijst { position: static; max-height: none; }
+  }
+  .verhalen-lijst ol { list-style: none; margin: 0; padding: 0; }
+  .verhalen-lijst li { border-bottom: 1px solid var(--line); }
+  .verhalen-lijst li:last-child { border-bottom: none; }
+  .lijst-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: var(--color-text);
+    border-left: 3px solid transparent;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .lijst-item:hover { background: rgba(0, 0, 0, 0.02); }
+  .lijst-item.is-selected {
+    background: var(--cream);
+    border-left-color: var(--rose-deep);
+  }
+  .lijst-titel { font-family: var(--font-heading); font-weight: 600; font-size: 0.98rem; }
+  .lijst-item.is-selected .lijst-titel { color: var(--green-deep); }
+  .lijst-meta { font-size: 0.78rem; color: var(--color-muted); }
+
+  /* Leespaneel: alle verhalen staan al in de DOM, maar enkel degene waarvan
+     het id met de URL-hash overeenkomt (:target) is zichtbaar. Zonder hash
+     toont het scriptje hierboven bij binnenkomst automatisch het eerste
+     verhaal (via replaceState); de :first-of-type-regel hieronder is de
+     CSS-only vangnet-variant voor het geval JavaScript uitstaat. */
+  .leespaneel-wrap { min-width: 0; }
+  .leespaneel { display: none; }
+  .leespaneel:target { display: block; }
+  .leespaneel-wrap:not(:has(.leespaneel:target)) .leespaneel:first-of-type { display: block; }
+
+  .back-link-mobile { display: none; color: var(--color-muted); font-size: 0.9rem; text-decoration: none; margin-bottom: var(--space-sm); }
+  @media (max-width: 900px) {
+    .back-link-mobile { display: inline-block; }
+  }
+
+  .pane-header { margin-bottom: var(--space-md); padding-bottom: var(--space-md); border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+  .pane-header h2 { margin: 0 0 var(--space-sm); }
+  .pane-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px 13px;
+    text-decoration: none;
+  }
+  .meta-pill svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--rose-deep); }
+  .meta-pill-link { color: var(--green-deep); font-weight: 600; }
+  .meta-pill-link:hover { background: var(--cream); border-color: var(--green-deep); }
+
+  .pane-tekst { max-width: 680px; }
+  .pane-tekst :global(p) { margin: 0 0 var(--space-sm) 0; line-height: 1.7; }
+
+  .pane-permalink {
+    display: inline-block;
+    margin-top: var(--space-md);
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+  .pane-permalink:hover { color: var(--green-deep); }
+</style>
