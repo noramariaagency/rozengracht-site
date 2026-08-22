@@ -3,5 +3,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Pagina niet gevonden">
   <h1>404 — Pagina niet gevonden</h1>
-  <p>Deze pagina bestaat niet (meer). <a href="/">Terug naar de homepage</a>.</p>
+  <p>Deze pagina bestaat niet (meer). <a href={import.meta.env.BASE_URL}>Terug naar de homepage</a>.</p>
 </BaseLayout>

@@ -61,7 +61,7 @@ const gerelateerdeItems = [
 ].sort((a, b) => b.sortValue - a.sortValue);
 ---
 <BaseLayout title={data.meta_title_nl ?? data.naam} description={data.meta_description_nl}>
-  <a href="/ondernemers" style="color: var(--color-muted); font-size: 0.9rem;">&larr; Alle ondernemers</a>
+  <a href={`${import.meta.env.BASE_URL}ondernemers`} style="color: var(--color-muted); font-size: 0.9rem;">&larr; Alle ondernemers</a>
 
   <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg); margin-top: var(--space-md); align-items: start;">
     <div>

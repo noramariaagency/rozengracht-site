@@ -118,7 +118,7 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
     <div class="leespaneel-wrap">
       {gesorteerd.map((v) => (
         <article id={v.slug} class="leespaneel">
-          <a class="back-link-mobile" href="/verhalen/#lijst">&larr; Alle verhalen</a>
+          <a class="back-link-mobile" href={`${import.meta.env.BASE_URL}verhalen/#lijst`}>&larr; Alle verhalen</a>
           <header class="pane-header">
             <span class="eyebrow">Verhaal</span>
             <h2>{v.item.title}</h2>
@@ -136,7 +136,7 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
                 </span>
               )}
               {v.ondernemer && (
-                <a class="meta-pill meta-pill-link" href={`/ondernemers/${v.ondernemer.slug}`}>
+                <a class="meta-pill meta-pill-link" href={`${import.meta.env.BASE_URL}ondernemers/${v.ondernemer.slug}`}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /></svg>
                   Nu: {v.ondernemer.data.naam}
                 </a>
@@ -144,7 +144,7 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
             </div>
           </header>
           <div class="pane-tekst" set:html={naarParagrafen(v.data.tekst_nl)} />
-          <a class="pane-permalink" href={`/verhalen/${v.slug}/`}>Directe link naar dit verhaal &rarr;</a>
+          <a class="pane-permalink" href={`${import.meta.env.BASE_URL}verhalen/${v.slug}/`}>Directe link naar dit verhaal &rarr;</a>
         </article>
       ))}
     </div>

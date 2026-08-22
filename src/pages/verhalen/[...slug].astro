@@ -23,7 +23,7 @@ const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
 ---
 <BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)}>
   <article class="artikel">
-    <a class="back-link" href="/verhalen">&larr; Alle verhalen</a>
+    <a class="back-link" href={`${import.meta.env.BASE_URL}verhalen`}>&larr; Alle verhalen</a>
     <span class="eyebrow">Verhaal</span>
     <h1>{data.titel_nl}</h1>
 

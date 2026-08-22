@@ -77,7 +77,7 @@ const categorieen = Object.entries(categorieLabels);
     {itemsMetKaartPositie.map((item) => (
       <a
         class="kaart-pin"
-        href={`/ondernemers/${item.slug}/`}
+        href={`${import.meta.env.BASE_URL}ondernemers/${item.slug}/`}
         data-cat={item.categorie}
         style={`top:${item.kaartY}%;left:${item.kaartX}%;`}
         title={`${item.naam} — Rozengracht ${item.huisnummer}`}
@@ -102,7 +102,7 @@ const categorieen = Object.entries(categorieLabels);
 
       <div class="ondernemers-grid" data-grid>
         {items.map((item) => (
-          <a class="ondernemer-card" href={`/ondernemers/${item.slug}/`} data-cat={item.categorie}>
+          <a class="ondernemer-card" href={`${import.meta.env.BASE_URL}ondernemers/${item.slug}/`} data-cat={item.categorie}>
             <div class="photo-wrap">
               {item.foto ? (
                 <img class="photo" src={item.foto} alt={item.naam} width="360" height="360" loading="lazy" />
