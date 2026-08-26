@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FotoFallback from '../../components/FotoFallback.astro';
+import OndernemersKaart from '../../components/OndernemersKaart.astro';
+import plekken from '../../data/places.json';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
@@ -53,6 +55,24 @@ items.sort((a, b) => {
   return a.huisnummerSort - b.huisnummerSort;
 });
 
+// Alleen ondernemers met een bekende locatie (uit places.json, via de
+// Places API opgehaald) krijgen een pin — geen coordinaten verzinnen voor
+// de rest.
+const kaartItems = items
+  .map((item) => {
+    const plek = plekken[item.slug];
+    if (!plek || plek.lat == null || plek.lng == null) return null;
+    return {
+      slug: item.slug,
+      naam: item.naam,
+      categorie: item.categorie,
+      lat: plek.lat,
+      lng: plek.lng,
+      href: getRelativeLocaleUrl(lang, `ondernemers/${item.slug}/`),
+    };
+  })
+  .filter((x) => x !== null);
+
 const categorieen = Object.entries(categorieLabels);
 ---
 <BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op volgorde van huisnummer." lang={lang}>
@@ -61,14 +81,7 @@ const categorieen = Object.entries(categorieLabels);
     {items.length} ondernemers, op volgorde van huisnummer: van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
   </p>
 
-  <div class="locatie-kaart">
-    <iframe
-      src="https://www.google.com/maps?q=Rozengracht,+Amsterdam&output=embed"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Kaart van de Rozengracht, Amsterdam"
-    ></iframe>
-  </div>
+  <OndernemersKaart items={kaartItems} />
 
   <section class="ondernemers-zone">
     <div class="zone-inner">
@@ -128,19 +141,6 @@ const categorieen = Object.entries(categorieLabels);
 </BaseLayout>
 
 <style>
-  /* Echte kaart (Google Maps) i.p.v. de eerdere schematische placeholder met
-     losse decoratieve stippen. */
-  .locatie-kaart {
-    position: relative;
-    aspect-ratio: 16/6;
-    min-height: 220px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: inset 0 0 0 1px var(--color-border);
-    margin: var(--space-md) 0;
-  }
-  .locatie-kaart iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-
   /* Zelfde donkergroene sectie als de "Ontdek"-zone op de homepage — het is
      de SECTIE die donkergroen is, niet de losse kaartjes zelf (die blijven
      transparant met lichte tekst, zoals de "Wie kwam er laatst bij?"-strip

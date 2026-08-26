@@ -1,0 +1,109 @@
+---
+// Interactieve kaart met een pin per ondernemer (i.p.v. de eerdere platte
+// straat-embed zonder pins). Gebruikt de Maps JavaScript API met de
+// publieke, referrer-beperkte sleutel (zie Google Cloud Console — alleen
+// bruikbaar vanaf de bekende site-domeinen, dus veilig om hier client-side
+// te gebruiken). Locatiedata komt uit src/data/places.json, dat apart via
+// de "Places verversen" GitHub Action wordt gevuld — ondernemers zonder
+// bekende locatie worden hier gewoon overgeslagen (geen pin verzinnen).
+export interface Props {
+  items: { slug: string; naam: string; categorie: string; lat: number; lng: number; href: string }[];
+}
+const { items } = Astro.props;
+
+// Referrer-beperkte publieke sleutel (alleen te gebruiken vanaf
+// derozengracht.com / www.derozengracht.com / noramariaagency.github.io) —
+// geen server-side geheim, vandaar hier direct in de client-code.
+const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--lN2KDmEQ';
+---
+
+<div
+  id="ondernemers-kaart"
+  class="locatie-kaart"
+  data-items={JSON.stringify(items)}
+  data-maps-key={MAPS_KEY}
+>
+</div>
+
+<script is:inline>
+  // is:inline i.p.v. een gehoiste module-script — zelfde reden als elders in
+  // deze codebase (blijft ook werken in een file://-preview). Geen
+  // TypeScript-syntax hier.
+  function initOndernemersKaart() {
+    var el = document.getElementById('ondernemers-kaart');
+    if (!el) return;
+    var items = JSON.parse(el.dataset.items || '[]');
+    if (items.length === 0) return;
+
+    var map = new google.maps.Map(el, {
+      center: { lat: 52.3735, lng: 4.8815 },
+      zoom: 15,
+      mapId: undefined,
+    });
+
+    var bounds = new google.maps.LatLngBounds();
+    var infoWindow = new google.maps.InfoWindow();
+    var markers = [];
+
+    items.forEach(function (item) {
+      var positie = { lat: item.lat, lng: item.lng };
+      var marker = new google.maps.Marker({
+        position: positie,
+        map: map,
+        title: item.naam,
+      });
+      marker.addListener('click', function () {
+        var link = document.createElement('a');
+        link.href = item.href;
+        link.textContent = item.naam;
+        link.style.fontWeight = '600';
+        infoWindow.setContent(link);
+        infoWindow.open(map, marker);
+      });
+      marker.categorie = item.categorie;
+      markers.push(marker);
+      bounds.extend(positie);
+    });
+
+    map.fitBounds(bounds, 40);
+
+    // Reageert op dezelfde categorie-filterknoppen als de kaartjes-grid
+    // eronder — apart luisterend event i.p.v. de bestaande listener
+    // aanpassen, zodat kaart en grid onafhankelijk van elkaar blijven werken.
+    var filterBar = document.querySelector('[data-filters]');
+    filterBar && filterBar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      var cat = btn.dataset.cat;
+      var zichtbareBounds = new google.maps.LatLngBounds();
+      var heeftZichtbare = false;
+      markers.forEach(function (marker) {
+        var zichtbaar = cat === 'alle' || marker.categorie === cat;
+        marker.setVisible(zichtbaar);
+        if (zichtbaar) {
+          zichtbareBounds.extend(marker.getPosition());
+          heeftZichtbare = true;
+        }
+      });
+      if (heeftZichtbare) map.fitBounds(zichtbareBounds, 40);
+    });
+  }
+  window.initOndernemersKaart = initOndernemersKaart;
+</script>
+<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--lN2KDmEQ&callback=initOndernemersKaart&loading=async" async></script>
+
+<style>
+  /* Verhuisd hierheen vanuit de ondernemers-overzichtspagina's — Astro's
+     scoped CSS matcht alleen elementen die in hetzelfde bestand als de
+     <style> staan, dus CSS op de paginas zelf zou dit element hier niet
+     raken. */
+  .locatie-kaart {
+    position: relative;
+    aspect-ratio: 16/6;
+    min-height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    margin: var(--space-md) 0;
+  }
+</style>

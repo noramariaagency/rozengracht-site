@@ -61,8 +61,13 @@ const t = TEKST[lang];
 const VLAG: Record<Lang, string> = { nl: '🇳🇱', en: '🇬🇧' };
 
 const base = import.meta.env.BASE_URL;
+// BASE_URL heeft geen trailing slash gegarandeerd (afhankelijk van hoe
+// `base` in astro.config.mjs is ingesteld) — zonder normalisatie plakt
+// 'en/' direct achter het pad-segment vast (bv. '/rozengracht-siteen/'),
+// wat een 404 op de logo-link veroorzaakte.
+const baseSlash = base.endsWith('/') ? base : `${base}/`;
 const restPad = kaalPad(Astro.url.pathname, base);
-const homeHref = lang === 'en' ? `${base}en/` : base;
+const homeHref = lang === 'en' ? `${baseSlash}en/` : baseSlash;
 const andereTaal: Lang = lang === 'en' ? 'nl' : 'en';
 const taalWisselHref = getRelativeLocaleUrl(andereTaal, restPad);
 // De taal-banner kondigt de ANDERE taalversie aan, dus die tekst moet ook in
