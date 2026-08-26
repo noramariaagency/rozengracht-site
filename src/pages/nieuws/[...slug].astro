@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import OndernemerKaart from '../../components/OndernemerKaart.astro';
 import ContentCard from '../../components/ContentCard.astro';
+import EventDetails from '../../components/EventDetails.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
 import { bepaalLocatie } from '../../lib/locatie';
@@ -26,6 +27,21 @@ const ondernemer = data.gerelateerde_ondernemer
 // src/lib/locatie.ts) zodat het nooit los raakt van de ondernemerspagina.
 const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
 
+// Is er een event dat naar dit artikel verwijst? Elk event is verplicht aan
+// precies één nieuwsartikel gekoppeld (events.gerelateerd_nieuwsbericht,
+// verplicht in content/config.ts) — dat artikel is de enige plek met de
+// volledige uitleg over het event. Bestaat die koppeling, dan tonen we de
+// agenda-kerngegevens (datum/tijd/locatie) hier in de zijkolom, via
+// <EventDetails />, in plaats van elders nog een keer detailtekst te tonen.
+const alleEvents = await getCollection('events');
+const gerelateerdEvent =
+  alleEvents.find((e) => e.data.gerelateerd_nieuwsbericht.slug === entry.slug) ?? null;
+
+// Zijkolom tonen we alleen als er ook echt iets in te tonen is (event,
+// gekoppelde ondernemer, of anders de losse locatietekst) — zonder dat blijft
+// het artikel gewoon één kolom, zoals voorheen.
+const heeftZijkolom = Boolean(gerelateerdEvent || ondernemer || losseLocatie);
+
 // Andere recente nieuwsberichten, voor "Meer nieuws" onderaan het artikel —
 // via dezelfde nieuwsToItem()-normalizer en <ContentCard /> als op de
 // homepage en de nieuwspagina, i.p.v. een eigen ad-hoc kaartje hier.
@@ -43,23 +59,30 @@ const meerNieuwsItems = await Promise.all(
 );
 ---
 <BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)}>
-  <article class="artikel">
-    <a class="back-link" href={`${import.meta.env.BASE_URL}nieuws`}>&larr; Alle nieuwsberichten</a>
-    <span class="eyebrow">Nieuws</span>
-    <h1>{data.titel_nl}</h1>
-    <p class="datum">{data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+  <div class={`artikel-layout${heeftZijkolom ? ' met-zijkolom' : ''}`}>
+    <article class="artikel">
+      <a class="back-link" href={`${import.meta.env.BASE_URL}nieuws`}>&larr; Alle nieuwsberichten</a>
+      <span class="eyebrow">Nieuws</span>
+      <h1>{data.titel_nl}</h1>
+      <p class="datum">{data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
 
-    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+      <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+    </article>
 
-    {ondernemer ? (
-      <OndernemerKaart ondernemer={ondernemer} label="Dit artikel gaat over" />
-    ) : losseLocatie && (
-      <p class="locatie-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
-        {losseLocatie}
-      </p>
+    {heeftZijkolom && (
+      <aside class="zijkolom">
+        {gerelateerdEvent && <EventDetails event={gerelateerdEvent} />}
+        {ondernemer ? (
+          <OndernemerKaart ondernemer={ondernemer} label="Dit artikel gaat over" />
+        ) : losseLocatie && (
+          <p class="locatie-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+            {losseLocatie}
+          </p>
+        )}
+      </aside>
     )}
-  </article>
+  </div>
 
   {meerNieuwsItems.length > 0 && (
     <section class="meer-nieuws">
@@ -74,7 +97,22 @@ const meerNieuwsItems = await Promise.all(
 </BaseLayout>
 
 <style>
+  .artikel-layout {
+    display: grid;
+    gap: var(--space-lg);
+  }
+  .artikel-layout.met-zijkolom {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
   .artikel { max-width: 680px; }
+  .met-zijkolom .artikel { max-width: none; }
+  .zijkolom { position: sticky; top: var(--space-lg); }
+  .zijkolom :global(.ondernemer-kaart) { margin-top: 0; }
+  @media (max-width: 800px) {
+    .artikel-layout.met-zijkolom { grid-template-columns: 1fr; }
+    .zijkolom { position: static; }
+  }
   .back-link {
     display: inline-block;
     color: var(--color-muted);
@@ -98,7 +136,7 @@ const meerNieuwsItems = await Promise.all(
     display: flex;
     align-items: center;
     gap: 6px;
-    margin: var(--space-lg) 0 0;
+    margin: 0;
     color: var(--color-muted);
     font-size: 0.9rem;
   }

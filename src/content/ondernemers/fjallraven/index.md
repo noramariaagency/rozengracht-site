@@ -23,7 +23,7 @@ status: "klaar"
 tekst_nl: |
   De Fjällräven Brand Store op Rozengracht 219-225 is de grootste Fjällräven-winkel ter wereld. 500 m² verdeeld over drie verdiepingen, geopend in 2013 als de eerste Brand Store buiten Scandinavië.
 
-  De winkel verkoopt het volledige assortiment van het Zweedse outdoormerk: jassen, rugzakken, wandelkleding en de beroemde Kånken — de tas die op de rug van half Amsterdam te vinden is. Eén hele muur in de winkel is gevuld met Kånkens in alle kleuren en maten. De medewerkers kennen het assortiment van binnen en van buiten en kunnen adviseren over zowel stadsgebruik als meerdaagse tochten.
+  De winkel verkoopt het volledige assortiment van het Zweedse outdoormerk: jassen, rugzakken, wandelkleding en de beroemde Kånken, de tas die op de rug van half Amsterdam te vinden is. Eén hele muur in de winkel is gevuld met Kånkens in alle kleuren en maten. De medewerkers kennen het assortiment van binnen en van buiten en kunnen adviseren over zowel stadsgebruik als meerdaagse tochten.
 
   Op de Rozengracht, een van de drukste winkelstraten van Amsterdam, is de Fjällräven-winkel niet te missen.
 
@@ -31,7 +31,7 @@ tekst_nl: |
 tekst_en: |
   The Fjällräven Brand Store at Rozengracht 219-225 is the largest Fjällräven store in the world. 500 m² across three floors, opened in 2013 as the first Brand Store outside Scandinavia.
 
-  The store carries the full range from the Swedish outdoor brand: jackets, backpacks, hiking clothing, and the iconic Kånken — the bag that seems to be on the back of half of Amsterdam. One entire wall of the store is filled with Kånkens in every colour and size. The staff know the range inside out and can advise on both city use and multi-day hiking trips.
+  The store carries the full range from the Swedish outdoor brand: jackets, backpacks, hiking clothing, and the iconic Kånken, the bag that seems to be on the back of half of Amsterdam. One entire wall of the store is filled with Kånkens in every colour and size. The staff know the range inside out and can advise on both city use and multi-day hiking trips.
 
   On the Rozengracht, one of Amsterdam's busiest shopping streets, the Fjällräven store is hard to miss.
 

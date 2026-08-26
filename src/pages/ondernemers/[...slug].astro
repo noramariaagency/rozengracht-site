@@ -39,20 +39,25 @@ const dagen = [
 // gelijk-uitziend te tonen zijn (i.p.v. losse ad-hoc kaartjes per type).
 const alNieuws = await getCollection('nieuws');
 const gerelateerdNieuwsItems = alNieuws
-  .filter((n) => n.data.gerelateerde_ondernemer?.id === entry.slug)
+  .filter((n) => n.data.gerelateerde_ondernemer?.slug === entry.slug)
   .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())
   .map((n) => nieuwsToItem(n, entry));
 
 const alVerhalen = await getCollection('verhalen');
 const gerelateerdeVerhalenItems = alVerhalen
-  .filter((v) => v.data.gerelateerde_ondernemer?.id === entry.slug)
+  .filter((v) => v.data.gerelateerde_ondernemer?.slug === entry.slug)
   .map((v) => verhaalToItem(v, entry));
 
 const alEvents = await getCollection('events');
-const gerelateerdeEventsItems = alEvents
-  .filter((e) => e.data.gerelateerde_ondernemer?.id === entry.slug)
-  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())
-  .map((e) => eventToItem(e, entry));
+const gerelateerdeEventsRuw = alEvents
+  .filter((e) => e.data.gerelateerde_ondernemer?.slug === entry.slug)
+  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf());
+const gerelateerdeEventsItems = await Promise.all(
+  gerelateerdeEventsRuw.map(async (e) => {
+    const nieuwsEntry = await getEntry(e.data.gerelateerd_nieuwsbericht);
+    return eventToItem(e, nieuwsEntry, entry);
+  })
+);
 
 const gerelateerdeItems = [
   ...gerelateerdNieuwsItems,

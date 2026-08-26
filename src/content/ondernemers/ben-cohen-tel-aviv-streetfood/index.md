@@ -12,7 +12,7 @@ meta_description_nl: "Ben Cohen Tel-Aviv Streetfood op Rozengracht 239 Amsterdam
 meta_description_en: "Ben Cohen Tel-Aviv Streetfood at Rozengracht 239 Amsterdam. Hummus, pita, lamb tajine, and roasted cauliflower. Family business since 1978."
 status: "klaar"
 tekst_nl: |
-  Ben Cohen begon in 1978 op de Rozengracht met shoarma — toen bijna niemand in Amsterdam wist wat het was. Nu runnen zijn zonen Dalien en Allon het restaurant op nummer 239, en het heet Ben Cohen Tel-Aviv Streetfood.
+  Ben Cohen begon in 1978 op de Rozengracht met shoarma, toen bijna niemand in Amsterdam wist wat het was. Nu runnen zijn zonen Dalien en Allon het restaurant op nummer 239, en het heet Ben Cohen Tel-Aviv Streetfood.
 
   De kaart draait om Tel Avivse straatkeuken: hummus op drie manieren, pita, lamstagine en geroosterde bloemkool. Eerlijk eten, bereid met recepten die de familie al decennia meedraagt. Op de Rozengracht, waar de wereld samenkomt in één straat, is Ben Cohen een van de plekken die er al was voordat de straat dit populair werd.
 tekst_en: |

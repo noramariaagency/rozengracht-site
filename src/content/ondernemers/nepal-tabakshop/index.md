@@ -25,7 +25,7 @@ tekst_nl: |
 
   De ingang heeft een paar steile treden, dus let even op als je iets zwaars draagt of moeilijk kunt traplopen.
 
-  Open voor wie snel iets nodig heeft — sigaretten, drank of een kaartje voor onderweg.
+  Open voor wie snel iets nodig heeft: sigaretten, drank of een kaartje voor onderweg.
 tekst_en: |
   Nepal Tabakshop on the Rozengracht in Amsterdam is exactly what the name says: a tobacco shop, not a restaurant, not a supermarket in disguise.
 

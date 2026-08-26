@@ -22,17 +22,17 @@ tekst_nl: |
 
   De Rozengracht is 's avonds allang niet meer alleen een winkelstraat, en 24/7 BurgerHouse vult precies het gat dat andere keukens om een uur of tien al dichtdoen.
 
-  Eten kan aan de toonbank, maar de meeste bestellingen gaan via Uber Eats of Thuisbezorgd, of rechtstreeks via de eigen website — ook om drie uur 's nachts nog.
+  Eten kan aan de toonbank, maar de meeste bestellingen gaan via Uber Eats of Thuisbezorgd, of rechtstreeks via de eigen website, ook om drie uur 's nachts nog.
 
   Voor een burger na middernacht is dit op de Rozengracht het adres dat openblijft.
 tekst_en: |
   24/7 BurgerHouse on the Rozengracht in Amsterdam opens at five every afternoon and doesn't close until five the next morning.
 
-  Gabril runs the place and is listed as the contact for the local business association. The menu is fully halal and sticks to burgers, snacks, and milkshakes — nothing more complicated than that.
+  Gabril runs the place and is listed as the contact for the local business association. The menu is fully halal and sticks to burgers, snacks, and milkshakes. Nothing more complicated than that.
 
   The Rozengracht, one of Amsterdam's main shopping streets in the Jordaan, turns into something else after dark, and 24/7 BurgerHouse fills the gap left when other kitchens shut around ten.
 
-  You can eat at the counter, but most orders go out through Uber Eats or Thuisbezorgd, or straight from their own website — even at three in the morning.
+  You can eat at the counter, but most orders go out through Uber Eats or Thuisbezorgd, or straight from their own website, even at three in the morning.
 
   For a burger after midnight, this is the address on the Rozengracht that stays open.
 ---

@@ -16,7 +16,7 @@ meta_description_nl: "Döner Palace (Eethuis de Jordaan) op Rozengracht 89 Amste
 meta_description_en: "Döner Palace (Eethuis de Jordaan) at Rozengracht 89 Amsterdam. Döner kebab, lahmacun, baklava and more. Open until 02:30. Generous portions, honest prices."
 status: "klaar"
 tekst_nl: |
-  Döner Palace — ook bekend als Eethuis de Jordaan — serveert al jaren Turkse en Griekse keuken op de Rozengracht 89, en houdt de keuken open tot diep in de nacht.
+  Döner Palace, ook bekend als Eethuis de Jordaan, serveert al jaren Turkse en Griekse keuken op de Rozengracht 89, en houdt de keuken open tot diep in de nacht.
 
   Het menu draait om döner kebab, lahmacun, linzensoep, rijstpudding en baklava, gemaakt met huisgemaakte recepten en verse ingrediënten. De porties zijn royaal en de prijs is eerlijk. Wie op de Rozengracht na tienen nog honger heeft, weet Döner Palace te vinden.
 
@@ -24,7 +24,7 @@ tekst_nl: |
 
   Geopend dinsdag t/m zaterdag 12:00–02:30, zondag 14:00–02:30 (maandag gesloten). Rozengracht 89, Amsterdam. Telefoon +31 20 620 5445.
 tekst_en: |
-  Döner Palace — also known as Eethuis de Jordaan — has been serving Turkish and Greek food at Rozengracht 89 for years, keeping the kitchen open well into the night.
+  Döner Palace, also known as Eethuis de Jordaan, has been serving Turkish and Greek food at Rozengracht 89 for years, keeping the kitchen open well into the night.
 
   The menu centres on döner kebab, lahmacun, lentil soup, rice pudding, and baklava, made with house recipes and fresh ingredients. The portions are generous and the prices are honest. If you're hungry on the Rozengracht after ten at night, Döner Palace is where you go.
 

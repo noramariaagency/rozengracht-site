@@ -26,7 +26,7 @@ tekst_nl: |
 
   Amigo Grill zit al jaren op Rozengracht 5, midden in de Jordaan, en heeft een vaste klantenkring die er keer op keer voor terugkeert. Het restaurant is open van 12:00 tot middernacht, zodat je er zowel voor de lunch als voor een uitgebreide avondmaaltijd terechtkunt.
 
-  Reserveer via OpenTable of loop gewoon binnen — Halim maakt graag een plekje voor je vrij.
+  Reserveer via OpenTable of loop gewoon binnen: Halim maakt graag een plekje voor je vrij.
 tekst_en: |
   Halim knows exactly how you want your steak.
 
@@ -34,5 +34,5 @@ tekst_en: |
 
   Amigo Grill has held its spot at Rozengracht 5, in the middle of Amsterdam's Jordaan neighbourhood, long enough to earn a loyal local following that keeps coming back. The restaurant is open from noon until midnight, making it a solid choice for both lunch and a long, relaxed dinner.
 
-  Walk in or book through OpenTable — either way, Halim will find you a table.
+  Walk in or book through OpenTable. Either way, Halim will find you a table.
 ---

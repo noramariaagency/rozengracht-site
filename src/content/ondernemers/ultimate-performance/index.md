@@ -23,7 +23,7 @@ status: "klaar"
 tekst_nl: |
   Ultimate Performance op de Rozengracht 207-F is geen gewone sportschool. Het is een privaat personal training centrum van meer dan 550 m² met alleen één-op-één coaching, op afspraak. Hier bestaan geen groepslessen, open gymtijden en geen abonnementen.
 
-  Elk trainingsprogramma is volledig afgestemd op de persoon: training, voeding en leefstijl worden samen met een vaste elite trainer in kaart gebracht en bijgehouden. De apparatuur is professioneel van het merk Atlantis. Ultimate Performance is een internationaal netwerk van PT-centra met vestigingen in Europa, Azië en de VS — en de Jordaan is hun Amsterdamse thuis.
+  Elk trainingsprogramma is volledig afgestemd op de persoon: training, voeding en leefstijl worden samen met een vaste elite trainer in kaart gebracht en bijgehouden. De apparatuur is professioneel van het merk Atlantis. Ultimate Performance is een internationaal netwerk van PT-centra met vestigingen in Europa, Azië en de VS, en de Jordaan is hun Amsterdamse thuis.
 
   Op de Rozengracht, een straat die ook voor werk en professionaliteit ruimte heeft, past een centrum als dit.
 
@@ -33,7 +33,7 @@ tekst_nl: |
 tekst_en: |
   Ultimate Performance at Rozengracht 207-F is not a regular gym. It's a private personal training facility of over 550 m² with only one-to-one coaching, by appointment. There are no group classes, open gym access, and no memberships.
 
-  Every programme is built around the individual: training, nutrition, and lifestyle are mapped out and tracked with a dedicated elite trainer. Equipment is professional-grade Atlantis. Ultimate Performance is an international network of personal training centres with locations across Europe, Asia, and the US — and the Jordaan is their Amsterdam home.
+  Every programme is built around the individual: training, nutrition, and lifestyle are mapped out and tracked with a dedicated elite trainer. Equipment is professional-grade Atlantis. Ultimate Performance is an international network of personal training centres with locations across Europe, Asia, and the US, and the Jordaan is their Amsterdam home.
 
   On the Rozengracht, a street that makes room for professionalism as much as leisure, a facility like this fits well.
 

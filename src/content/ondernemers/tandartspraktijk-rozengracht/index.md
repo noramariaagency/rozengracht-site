@@ -22,7 +22,7 @@ tekst_nl: |
 
   Het team van tandartsen, mondhygiënisten en assistenten behandelt zowel reguliere tandheelkunde als meer gespecialiseerde ingrepen. De naam "Leuke Tandarts" is geen marketingtruc. De praktijk is opgebouwd rond een aanpak waarbij patiënten de tijd en uitleg krijgen die ze nodig hebben. Er is ook een spoednummer voor noodsituaties buiten openingstijden.
 
-  Op de Rozengracht zit veel zorg en dienstverlening — Tandartspraktijk Rozengracht is er een die goed bereikbaar is voor de hele omliggende wijk.
+  Op de Rozengracht zit veel zorg en dienstverlening, en Tandartspraktijk Rozengracht is er een die goed bereikbaar is voor de hele omliggende wijk.
 
   Open maandag t/m donderdag 8:30–17:00 (vrijdag gesloten). Rozengracht 68-70, Amsterdam. Telefoon 020 626 0951. Meer op leuketandarts.nl.
 tekst_en: |

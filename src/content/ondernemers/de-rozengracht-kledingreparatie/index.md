@@ -21,7 +21,7 @@ status: "klaar"
 tekst_nl: |
   De Rozengracht Kledingreparatie & Stomerij zit al meer dan 30 jaar op nummer 216. Het repareert, stoomt en strijkt kleding met de snelheid die een drukke winkelstraat vraagt.
 
-  Wie een broek wil inkorten, een jas wil laten innemen, een trouwjurk wil stomen of een spoedklus heeft die dezelfde dag klaar moet zijn, is hier aan het juiste adres. De winkel werkt met reparaties die soms al binnen een uur klaar zijn. Stomen gaat de dag zelf. Alle soorten kleding worden aangenomen — van dagelijkse kledingstukken tot formele pakken en bruidsstoffen.
+  Wie een broek wil inkorten, een jas wil laten innemen, een trouwjurk wil stomen of een spoedklus heeft die dezelfde dag klaar moet zijn, is hier aan het juiste adres. De winkel werkt met reparaties die soms al binnen een uur klaar zijn. Stomen gaat de dag zelf. Alle soorten kleding worden aangenomen, van dagelijkse kledingstukken tot formele pakken en bruidsstoffen.
 
   Meer dan drie decennia op de Rozengracht betekent dat de kleermaker het pand, de buurt en de stamgasten inmiddels net zo goed kent als zijn schaar.
 

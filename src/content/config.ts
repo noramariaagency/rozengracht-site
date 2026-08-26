@@ -122,9 +122,15 @@ const events = defineCollection({
       // "is dit al geweest"-vlag die kan gaan afwijken van de werkelijkheid.
       datum: z.coerce.date(),
       datum_tot: z.coerce.date().optional(),
-      tekst_nl: z.string().optional(),
       locatie: z.string().optional(),
       gerelateerde_ondernemer: reference('ondernemers').optional(),
+      // Verplicht (niet optioneel): een event heeft zelf geen uitgebreide
+      // tekst meer (zie hierboven, geen tekst_nl). De volledige uitleg over
+      // een event staat altijd in een nieuwsartikel; dit veld koppelt het
+      // event daaraan, en het event-kaartje linkt altijd door naar dat
+      // artikel (zie eventToItem in src/lib/items.ts). Zo bestaat er nooit
+      // twee plekken met detailinformatie over hetzelfde event.
+      gerelateerd_nieuwsbericht: reference('nieuws'),
       foto: image().optional(),
     }),
 });

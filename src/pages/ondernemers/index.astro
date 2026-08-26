@@ -70,7 +70,7 @@ const categorieen = Object.entries(categorieLabels);
 <BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op volgorde van huisnummer.">
   <h1>Ondernemers op de Rozengracht</h1>
   <p style="color: var(--color-muted); max-width: 640px;">
-    {items.length} ondernemers, op volgorde van huisnummer — van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
+    {items.length} ondernemers, op volgorde van huisnummer: van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
   </p>
 
   <div class="locatie-kaart">
@@ -80,7 +80,7 @@ const categorieen = Object.entries(categorieLabels);
         href={`${import.meta.env.BASE_URL}ondernemers/${item.slug}/`}
         data-cat={item.categorie}
         style={`top:${item.kaartY}%;left:${item.kaartX}%;`}
-        title={`${item.naam} — Rozengracht ${item.huisnummer}`}
+        title={`${item.naam}, Rozengracht ${item.huisnummer}`}
       >
         <span class="visually-hidden">{item.naam}, Rozengracht {item.huisnummer}</span>
       </a>

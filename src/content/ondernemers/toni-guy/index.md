@@ -23,7 +23,7 @@ tekst_nl: |
 
   De salon maakt deel uit van de wereldwijde Toni&Guy-organisatie, met kapsalons van Londen tot Tokio, maar wordt in Amsterdam als zelfstandige vestiging gerund. Het team werkt met de kleur- en verzorgingslijnen van Schwarzkopf, Label.M en Authentic Beauty Concept en behandelt zowel knippen en kleuren als keratinebehandelingen en bruidskapsels, voor mannen en vrouwen.
 
-  De Rozengracht is een van de drukste winkelstraten van de Jordaan, op loopafstand van de Westermarkt — voor veel mensen uit de buurt is dit gewoon de kapper om de hoek, met een internationale naam op de gevel.
+  De Rozengracht is een van de drukste winkelstraten van de Jordaan, op loopafstand van de Westermarkt. Voor veel mensen uit de buurt is dit gewoon de kapper om de hoek, met een internationale naam op de gevel.
 
   Er wordt geknipt, gekleurd en behandeld: van een snelle wash-and-blow-dry tot balayage, extensions en toners.
 
@@ -33,7 +33,7 @@ tekst_en: |
 
   The salon belongs to the international Toni&Guy chain, with locations from London to Tokyo, but this branch is run as an independent business in Amsterdam. The team works with color and care lines from Schwarzkopf, Label.M and Authentic Beauty Concept, covering everything from cuts and color to keratin treatments and bridal styling, for men and women.
 
-  The Rozengracht runs from the Jordaan toward the canal belt, close to the Westermarkt — for a lot of people in the neighborhood, this is simply the local hairdresser, with an international name above the door.
+  The Rozengracht runs from the Jordaan toward the canal belt, close to the Westermarkt. For a lot of people in the neighborhood, this is simply the local hairdresser, with an international name above the door.
 
   Services on offer range from a quick wash and blow-dry to balayage, extensions and toning treatments.
 

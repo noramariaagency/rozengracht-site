@@ -6,7 +6,7 @@ const routes = [
   {
     titel: 'Lopend',
     icoon: '<path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" />',
-    tekst: 'Vanaf de Dam: neem de Raadhuisstraat westwaarts. Na de Westerkerk en de Westermarkt loopt die direct over in de Rozengracht — ongeveer 10 minuten lopen.',
+    tekst: 'Vanaf de Dam: neem de Raadhuisstraat westwaarts. Na de Westerkerk en de Westermarkt loopt die direct over in de Rozengracht, ongeveer 10 minuten lopen.',
   },
   {
     titel: 'Met de fiets',
@@ -31,7 +31,7 @@ function formatDatum(d: Date) {
   return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 ---
-<BaseLayout title="Bereikbaarheid" description="Hoe je de Rozengracht in Amsterdam bereikt — lopend, fietsend, met de auto of het OV — plus actuele updates over werkzaamheden en evenementen.">
+<BaseLayout title="Bereikbaarheid" description="Hoe je de Rozengracht in Amsterdam bereikt: lopend, fietsend, met de auto of het OV, plus actuele updates over werkzaamheden en evenementen.">
   <span class="eyebrow">De straat</span>
   <h1>Bereikbaarheid</h1>
   <p class="intro">De Rozengracht loopt van oost naar west door de Jordaan en is vanuit alle richtingen goed te bereiken.</p>
@@ -51,7 +51,7 @@ function formatDatum(d: Date) {
         ))}
       </div>
     ) : (
-      <p class="geen-updates">Geen bijzonderheden op dit moment — de Rozengracht is normaal bereikbaar.</p>
+      <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
     )}
   </section>
 

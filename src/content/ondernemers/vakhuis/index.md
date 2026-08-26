@@ -20,13 +20,13 @@ status: "klaar"
 tekst_nl: |
   Sanne runt Vakhuis op Rozengracht 218, een kleine borduurspeciaalzaak in de Jordaan die portretten, logo's en teksten op stof borduurt.
 
-  Vakhuis werkt voor particulieren die een kledingstuk willen personaliseren, voor kunstenaars en architecten die werken met textiel op grotere schaal, en voor bedrijven die hun logo op kleding of tassen willen laten zetten. Voor evenementen en productlanceringen komt Sanne ook ter plekke borduren — met haar machines en al. Op de Rozengracht, een straat die veel standaard winkels heeft, doet Vakhuis iets dat de meeste mensen nog niet eerder zijn tegengekomen.
+  Vakhuis werkt voor particulieren die een kledingstuk willen personaliseren, voor kunstenaars en architecten die werken met textiel op grotere schaal, en voor bedrijven die hun logo op kleding of tassen willen laten zetten. Voor evenementen en productlanceringen komt Sanne ook ter plekke borduren, met haar machines en al. Op de Rozengracht, een straat die veel standaard winkels heeft, doet Vakhuis iets dat de meeste mensen nog niet eerder zijn tegengekomen.
 
   Open maandag t/m vrijdag 12:00–17:30. Rozengracht 218, Amsterdam. Telefoon 0621860609. Meer op vakhuis.net.
 tekst_en: |
   Sanne runs Vakhuis at Rozengracht 218, a small embroidery specialist in the Jordaan that stitches portraits, logos, and texts onto fabric.
 
-  Vakhuis works for private customers who want to personalise a garment, for artists and architects working with textile at a larger scale, and for businesses wanting their logo on clothing or bags. For events and product launches, Sanne also comes on location to embroider — machines included. On the Rozengracht, a street with plenty of standard shops, Vakhuis does something most people haven't come across before.
+  Vakhuis works for private customers who want to personalise a garment, for artists and architects working with textile at a larger scale, and for businesses wanting their logo on clothing or bags. For events and product launches, Sanne also comes on location to embroider, machines included. On the Rozengracht, a street with plenty of standard shops, Vakhuis does something most people haven't come across before.
 
   Open Monday–Friday 12:00–17:30. Rozengracht 218, Amsterdam. Phone 0621860609. More at vakhuis.net.
 ---

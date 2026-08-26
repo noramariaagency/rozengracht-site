@@ -15,15 +15,15 @@ status: "klaar"
 tekst_nl: |
   Représentable opende in 2019 aan de Rozengracht 162 met een simpel uitgangspunt: tafelgerei dat het verdient om gezien te worden.
 
-  De showroom van 130 m² is ingericht als een plek om te kijken en te vergelijken — alles op kleur gerangschikt in op maat gemaakte vitrines. Het assortiment omvat servies, glaswerk, bestek en tafellinnen van ontwerpers en keramisten uit de Benelux, Scandinavië, Frankrijk, Zuid-Europa en Turkije. Niet alleen te koop: een groot deel van de collectie is ook te huur, voor diners, fotoshoots, evenementen of zakelijke bijeenkomsten. Représentable bedient zowel particulieren als horecaprofessionals.
+  De showroom van 130 m² is ingericht als een plek om te kijken en te vergelijken: alles op kleur gerangschikt in op maat gemaakte vitrines. Het assortiment omvat servies, glaswerk, bestek en tafellinnen van ontwerpers en keramisten uit de Benelux, Scandinavië, Frankrijk, Zuid-Europa en Turkije. Niet alleen te koop: een groot deel van de collectie is ook te huur, voor diners, fotoshoots, evenementen of zakelijke bijeenkomsten. Représentable bedient zowel particulieren als horecaprofessionals.
 
-  De Rozengracht heeft meer interieur- en designwinkels dan menig andere straat in Amsterdam — en Représentable past daar naadloos in, met een eigen focus op wat er op tafel staat.
+  De Rozengracht heeft meer interieur- en designwinkels dan menig andere straat in Amsterdam, en Représentable past daar naadloos in, met een eigen focus op wat er op tafel staat.
 
   Kom langs, kijk rond of vraag naar de verhuurmogelijkheden. Représentable, Rozengracht 162, Amsterdam. Meer op representable.nl.
 tekst_en: |
   Représentable opened on the Rozengracht in 2019 with a straightforward premise: tableware that deserves to be seen.
 
-  The 130 m² showroom is set up as a place to look, compare, and discover — everything arranged by colour in custom-made display cases. The range includes crockery, glassware, cutlery, and table linen from designers and ceramicists across the Benelux, Scandinavia, France, Southern Europe, and Turkey. Much of the collection is not just for sale but also available to rent — for private dinners, photo shoots, events, or business occasions. Représentable serves both private customers and hospitality professionals.
+  The 130 m² showroom is set up as a place to look, compare, and discover: everything arranged by colour in custom-made display cases. The range includes crockery, glassware, cutlery, and table linen from designers and ceramicists across the Benelux, Scandinavia, France, Southern Europe, and Turkey. Much of the collection is not just for sale but also available to rent: for private dinners, photo shoots, events, or business occasions. Représentable serves both private customers and hospitality professionals.
 
   The Rozengracht has more interior and design shops than almost any other street in Amsterdam, and Représentable sits comfortably within that, with a dedicated focus on what goes on the table.
 

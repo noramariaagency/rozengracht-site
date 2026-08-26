@@ -1,6 +1,6 @@
 ---
-titel_nl: "Rembrandt's laatste huis — Rozengracht 184"
-titel_en: "Rembrandt's last house — Rozengracht 184"
+titel_nl: "Rembrandt's laatste huis: Rozengracht 184"
+titel_en: "Rembrandt's last house: Rozengracht 184"
 locatie: "Rozengracht 184 (gedenkplaat)"
 periode: "1658 tot 1669"
 tekst_nl: |
@@ -14,5 +14,5 @@ tekst_en: |
 
   Rembrandt van Rijn moved to the Rozengracht in 1658, after declaring bankruptcy. He was 52. He stayed until his death on 4 October 1669.
 
-  Four days later, on 8 October 1669, he was buried at the Westerkerk — less than a ten-minute walk from his last home.
+  Four days later, on 8 October 1669, he was buried at the Westerkerk, less than a ten-minute walk from his last home.
 ---

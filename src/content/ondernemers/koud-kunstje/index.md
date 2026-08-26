@@ -22,7 +22,7 @@ tekst_nl: |
 
   De winkel is tegelijk een creatieve werkplaats en een winkel vol handgemaakt werk. Naast het assortiment van originele producten organiseert Koud Kunstje workshops voor volwassenen en kinderen: sieraden maken, tekenen, kaarsen gieten, en meer creatieve technieken, begeleid door ervaren instructeurs. Voor een kinderfeestje kunnen groepen van maximaal 10 kinderen (vanaf 5 jaar) terecht in een begeleide workshop voor €25 per kind.
 
-  De winkel zit bewust aan de Rozengracht — een straat die door haar mix van buurtbewoners, toeristen en creatieve ondernemers precies de energie geeft die bij een plek als deze past.
+  De winkel zit bewust aan de Rozengracht, een straat die door haar mix van buurtbewoners, toeristen en creatieve ondernemers precies de energie geeft die bij een plek als deze past.
 
   Wil je zelf iets maken zonder aanleiding? Het workshopatelier aan de Geuzenstraat 59 staat open voor losse sessies en cursussen. Kijk op de website voor het actuele aanbod, of loop gewoon binnen aan de Rozengracht.
 

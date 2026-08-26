@@ -25,13 +25,13 @@ tekst_nl: |
 
   Binnenlopen kan zonder afspraak, van 's ochtends vroeg tot diep in de nacht.
 tekst_en: |
-  Coffeeshop Flower Power on the Rozengracht opens early — a spot for a joint with your morning coffee rather than a night out.
+  Coffeeshop Flower Power on the Rozengracht opens early: a spot for a joint with your morning coffee rather than a night out.
 
   The place has wood-panelled walls and a pinball machine, more old Amsterdam brown bar than tourist shop, and draws as many locals as visitors from elsewhere in the city.
 
-  It sits on the Rozengracht, one of Amsterdam's main shopping streets in the Jordaan, just off the busiest tourist route through the neighbourhood — which explains the local crowd.
+  It sits on the Rozengracht, one of Amsterdam's main shopping streets in the Jordaan, just off the busiest tourist route through the neighbourhood, which explains the local crowd.
 
   The menu runs through familiar strains like Amnesia Haze, Silver Haze, and Gorilla Glue, alongside hash and edibles. Doors open around eleven on weekdays, earlier at weekends.
 
-  No appointment needed — just walk in, morning or well into the night.
+  No appointment needed. Just walk in, morning or well into the night.
 ---

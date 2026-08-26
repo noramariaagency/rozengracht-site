@@ -22,19 +22,19 @@ meta_description_en: "Wulf Meubelen, also known as Wulf Wonen, spans Rozengracht
 tekst_nl: |
   Op Rozengracht 74 tot en met 78 staat al meer dan zestig jaar een meubelzaak met de naam Wulf op de gevel, nu gerund door de derde generatie van de familie, met Dennis Wulf aan het hoofd.
 
-  Wulf Meubelen — ook bekend als Wulf Wonen — beslaat drie panden op de Rozengracht en heeft er op ruim 1.000 vierkante meter een assortiment banken, kasten, tafels, stoelen, barkrukken en woonaccessoires staan. Het bedrijf noemt zichzelf zelf een familiebedrijf met een persoonlijke benadering, en dat merk je: klanten die vaker langskomen worden herkend.
+  Wulf Meubelen, ook bekend als Wulf Wonen, beslaat drie panden op de Rozengracht en heeft er op ruim 1.000 vierkante meter een assortiment banken, kasten, tafels, stoelen, barkrukken en woonaccessoires staan. Het bedrijf noemt zichzelf zelf een familiebedrijf met een persoonlijke benadering, en dat merk je: klanten die vaker langskomen worden herkend.
 
-  De zaak zit al zo lang op de Rozengracht in Amsterdam dat de naam Wulf voor veel mensen uit de buurt gewoon bij de straat hoort — drie generaties verder staat de winkel nog altijd op dezelfde adressen.
+  De zaak zit al zo lang op de Rozengracht in Amsterdam dat de naam Wulf voor veel mensen uit de buurt gewoon bij de straat hoort. Drie generaties verder staat de winkel nog altijd op dezelfde adressen.
 
   Binnen loop je langs een breed aanbod meubels en accessoires voor de woonkamer, slaapkamer en keuken, met ruimte voor interieuradvies per pand.
 
   Voor advies of een rondleiding door de collectie kun je gewoon binnenlopen.
 tekst_en: |
-  For more than sixty years, a furniture shop bearing the name Wulf has stood at Rozengracht 74 through 78 — now run by the third generation of the family, with Dennis Wulf at the helm.
+  For more than sixty years, a furniture shop bearing the name Wulf has stood at Rozengracht 74 through 78, now run by the third generation of the family, with Dennis Wulf at the helm.
 
-  Wulf Meubelen, also known as Wulf Wonen, spans three buildings on the Rozengracht, one of Amsterdam's main shopping streets in the Jordaan, with more than 1,000 square metres of sofas, cabinets, tables, chairs, bar stools and home accessories. The business describes itself as a family firm built on a personal approach, and regulars notice it — staff recognise returning customers.
+  Wulf Meubelen, also known as Wulf Wonen, spans three buildings on the Rozengracht, one of Amsterdam's main shopping streets in the Jordaan, with more than 1,000 square metres of sofas, cabinets, tables, chairs, bar stools and home accessories. The business describes itself as a family firm built on a personal approach, and regulars notice it: staff recognise returning customers.
 
-  The shop has been on the Rozengracht for so long that the Wulf name is now part of the street itself — three generations on, it's still standing at the same addresses.
+  The shop has been on the Rozengracht for so long that the Wulf name is now part of the street itself. Three generations on, it's still standing at the same addresses.
 
   Inside, the collection runs across living room, bedroom and kitchen furniture, with interior advice available across the different buildings.
 

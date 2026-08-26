@@ -47,10 +47,14 @@ export type FeedItem = {
   image: { src: string; width: number; height: number } | null;
 };
 
+// timeZone: 'Europe/Amsterdam' expliciet meegeven bij elke datumweergave in
+// dit bestand — zonder dat leest een bouwserver die niet toevallig in
+// Amsterdamse tijd draait (bv. UTC, zoals de meeste CI/build-omgevingen) een
+// datum/tijd soms verkeerd af (zie ook src/components/EventDetails.astro).
 function dagMaand(d: Date) {
   return {
-    day: d.toLocaleDateString('nl-NL', { day: 'numeric' }),
-    month: d.toLocaleDateString('nl-NL', { month: 'short' }).replace('.', ''),
+    day: d.toLocaleDateString('nl-NL', { day: 'numeric', timeZone: 'Europe/Amsterdam' }),
+    month: d.toLocaleDateString('nl-NL', { month: 'short', timeZone: 'Europe/Amsterdam' }).replace('.', ''),
   };
 }
 
@@ -67,7 +71,7 @@ export function nieuwsToItem(
     title: entry.data.titel_nl,
     excerpt: eersteAlinea(entry.data.tekst_nl, 150),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
-    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' }),
+    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', timeZone: 'Europe/Amsterdam' }),
     // Geen dateBlock (het grote datumblokje) voor nieuws — dat is voorbehouden
     // aan events, zodat de twee visueel niet op elkaar lijken. Nieuws toont de
     // publicatiedatum als kleine tekst (zie ContentCard.astro).
@@ -101,6 +105,7 @@ export function verhaalToItem(
 
 export function eventToItem(
   entry: CollectionEntry<'events'>,
+  nieuwsEntry: CollectionEntry<'nieuws'>,
   ondernemer: CollectionEntry<'ondernemers'> | null,
   image: FeedItem['image'] = null
 ): FeedItem {
@@ -108,11 +113,14 @@ export function eventToItem(
     kind: 'event',
     kindLabel: 'Event',
     accent: 'green',
-    href: `${import.meta.env.BASE_URL}#events`,
+    // Een event heeft geen eigen pagina: de volledige uitleg staat in het
+    // gekoppelde nieuwsartikel (gerelateerd_nieuwsbericht, verplicht in het
+    // schema), dus een klik op het kaartje gaat daar altijd direct naartoe.
+    href: `${import.meta.env.BASE_URL}nieuws/${nieuwsEntry.slug}/`,
     title: entry.data.titel_nl,
-    excerpt: entry.data.tekst_nl ? eersteAlinea(entry.data.tekst_nl, 150) : null,
+    excerpt: eersteAlinea(nieuwsEntry.data.tekst_nl, 150),
     locationLabel: entry.data.locatie ?? bepaalLocatie(entry.data, ondernemer),
-    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' }),
+    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', timeZone: 'Europe/Amsterdam' }),
     dateBlock: dagMaand(entry.data.datum),
     sortValue: entry.data.datum.valueOf(),
     image,

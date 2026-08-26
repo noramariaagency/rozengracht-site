@@ -32,8 +32,11 @@ const alleEventsRuw = await getCollection('events');
 const alleEventsItems = await Promise.all(
   alleEventsRuw.map(async (e) => {
     const ondernemer = e.data.gerelateerde_ondernemer ? await getEntry(e.data.gerelateerde_ondernemer) : null;
+    // Verplichte koppeling: elk event verwijst naar het nieuwsartikel met de
+    // volledige uitleg, en het kaartje linkt daar ook naartoe (zie eventToItem).
+    const nieuwsEntry = await getEntry(e.data.gerelateerd_nieuwsbericht);
     const foto = await resolveFoto(e.data.foto);
-    return { entry: e, item: eventToItem(e, ondernemer, foto) };
+    return { entry: e, item: eventToItem(e, nieuwsEntry, ondernemer, foto) };
   })
 );
 const binnenkortEvents = alleEventsItems
@@ -88,7 +91,7 @@ const categorieen = Object.entries(categorieLabels);
 <BaseLayout title="Home" fullBleed>
   <!-- Visueel verborgen h1: de homepage heeft geen zichtbare hero-titel in het
        ontwerp, maar elke pagina heeft een <h1> nodig voor kopstructuur/SEO. -->
-  <h1 class="visually-hidden">BIZ Ondernemersvereniging Rozengracht — Amsterdam</h1>
+  <h1 class="visually-hidden">BIZ Ondernemersvereniging Rozengracht, Amsterdam</h1>
 
   <!-- Bereikbaarheidsbalk: alleen de headline over bereikbaarheid, geen
        ticker met andere onderwerpen erdoorheen. -->
@@ -221,7 +224,7 @@ const categorieen = Object.entries(categorieLabels);
               <div class="reel-quote" id="ondernemerQuote" data-naam={citaten[0].naam}>
                 <div class="mark"></div>
                 <blockquote>{citaten[0].quote}</blockquote>
-                <div class="who">&mdash; {citaten[0].naam}</div>
+                <div class="who">{citaten[0].naam}</div>
               </div>
             ) : (
               <p class="placeholder-note light">Nog geen citaten van ondernemers verzameld.</p>
@@ -511,7 +514,7 @@ const categorieen = Object.entries(categorieLabels);
       var blockquote = quoteEl.querySelector('blockquote');
       var who = quoteEl.querySelector('.who');
       if (blockquote) blockquote.textContent = gekozen.quote;
-      if (who) who.textContent = '— ' + gekozen.naam;
+      if (who) who.textContent = gekozen.naam;
     }
   }
 

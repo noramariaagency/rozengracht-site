@@ -1,0 +1,98 @@
+---
+// Kleine "agenda"-kaart met de kerngegevens van een event (datum/tijd +
+// locatie), voor gebruik op de nieuwsartikel-detailpagina wanneer een event
+// naar dit artikel verwijst (events.gerelateerd_nieuwsbericht, verplicht in
+// het schema). Het artikel zelf blijft de enige plek met de volledige
+// uitleg — dit kaartje herhaalt die tekst dus bewust niet, alleen de
+// praktische gegevens (zie ook src/lib/items.ts en content/config.ts).
+import { getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { bepaalLocatie } from '../lib/locatie';
+
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { data } = event;
+
+const ondernemer = data.gerelateerde_ondernemer
+  ? await getEntry(data.gerelateerde_ondernemer)
+  : null;
+const locatie = data.locatie ?? bepaalLocatie(data, ondernemer);
+
+// Expliciet timeZone: 'Europe/Amsterdam' meegeven — zonder dat leest een
+// bouwserver die niet toevallig in Amsterdamse tijd draait (bv. UTC, zoals de
+// meeste CI/build-omgevingen) de opgeslagen tijd verkeerd af: 10:00 Amsterdamse
+// tijd zou dan als 08:00 getoond worden. Voor een lokaal Amsterdams
+// straatevenement moet de tijd altijd als Amsterdamse kloktijd te lezen zijn,
+// ongeacht waar/wanneer de site gebouwd wordt.
+function formatDatum(d: Date) {
+  const tekst = d.toLocaleDateString('nl-NL', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Europe/Amsterdam',
+  });
+  return tekst.charAt(0).toUpperCase() + tekst.slice(1);
+}
+function formatTijd(d: Date) {
+  return d.toLocaleTimeString('nl-NL', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Amsterdam',
+  });
+}
+
+// Dag/tijd altijd als Amsterdamse kloktijd vergelijken, nooit via de
+// server-lokale tijd (Date.getHours()/toDateString() gebruiken anders de
+// tijdzone van de bouwserver, met dezelfde valkuil als hierboven).
+function amsterdamDatumKey(d: Date) {
+  return d.toLocaleDateString('en-CA', { timeZone: 'Europe/Amsterdam' });
+}
+function amsterdamTijdKey(d: Date) {
+  return d.toLocaleTimeString('nl-NL', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Europe/Amsterdam',
+  });
+}
+
+// Alleen een tijd tonen als er echt een kloktijd is opgegeven — 00:00 lezen
+// we als "geen tijd bekend, alleen een dag", net als elders in dit project
+// (nieuw_sinds/laatst_gecontroleerd) geen datum/tijd verzinnen die er niet is.
+const heeftTijd = amsterdamTijdKey(data.datum) !== '00:00';
+const meerdereDagen = data.datum_tot
+  ? amsterdamDatumKey(data.datum) !== amsterdamDatumKey(data.datum_tot)
+  : false;
+---
+<div class="event-details card">
+  <span class="label">Op de agenda</span>
+  <p class="datum">
+    {formatDatum(data.datum)}{meerdereDagen && data.datum_tot && <> &ndash; {formatDatum(data.datum_tot)}</>}
+  </p>
+  {heeftTijd && (
+    <p class="tijd">
+      {formatTijd(data.datum)}{data.datum_tot && !meerdereDagen && <> &ndash; {formatTijd(data.datum_tot)}</>} uur
+    </p>
+  )}
+  {locatie && <p class="locatie">{locatie}</p>}
+</div>
+
+<style>
+  .event-details { margin-bottom: var(--space-md); }
+  .event-details .label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    margin-bottom: var(--space-xs);
+  }
+  .event-details .datum { font-weight: 600; margin: 0; }
+  .event-details .tijd { color: var(--color-muted); margin: 2px 0 0; }
+  .event-details .locatie { color: var(--color-muted); margin: var(--space-xs) 0 0; }
+</style>
