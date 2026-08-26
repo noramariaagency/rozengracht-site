@@ -1,5 +1,5 @@
 ---
-import logoLockup from '../assets/branding/logo_lockup_green.png';
+import logoMark from '../assets/branding/logo_mark_kleur.png';
 import { Image } from 'astro:assets';
 
 const base = import.meta.env.BASE_URL;
@@ -15,7 +15,7 @@ const links = [
 <header class="site-nav">
   <div class="container nav-inner">
     <a class="brand" href={base}>
-      <Image src={logoLockup} alt="Rozengracht" width={70} height={45} loading="eager" />
+      <Image src={logoMark} alt="Rozengracht" width={40} height={42} loading="eager" />
     </a>
     <nav id="primary-nav">
       <ul>
@@ -95,9 +95,9 @@ const links = [
     position: sticky;
     top: 0;
     z-index: 20;
-    background: var(--cream);
+    background: var(--cream-card);
     border-bottom: 1px solid var(--color-border);
-    padding: var(--space-sm) 0;
+    padding: var(--space-xs) 0;
   }
   .nav-inner {
     display: flex;
