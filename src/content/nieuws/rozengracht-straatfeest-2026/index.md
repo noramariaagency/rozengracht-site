@@ -3,6 +3,7 @@ titel_nl: "Straatfeest voor de hele Rozengracht op zaterdag 19 september"
 titel_en: "Rozengracht throws a street festival on Saturday 19 September"
 datum: 2026-08-22
 locatie: "Rozengracht"
+foto: "./foto_01.jpg"
 tekst_nl: |
   Op zaterdag 19 september viert de Rozengracht in Amsterdam zichzelf met een straatfeest, van 10.00 tot 18.00 uur. De bestrating is na maanden wegwerkzaamheden nog niet overal af, maar dat weerhoudt de straat er niet van om voor één dag alle remmen los te gooien.
 

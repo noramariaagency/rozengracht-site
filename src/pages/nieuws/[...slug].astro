@@ -6,7 +6,7 @@ import EventDetails from '../../components/EventDetails.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
 import { bepaalLocatie } from '../../lib/locatie';
-import { nieuwsToItem } from '../../lib/items';
+import { nieuwsToItem, resolveFoto } from '../../lib/items';
 
 export async function getStaticPaths() {
   const berichten = await getCollection('nieuws');
@@ -26,6 +26,11 @@ const ondernemer = data.gerelateerde_ondernemer
 // mét koppeling komt het adres altijd van de ondernemer zelf (zie
 // src/lib/locatie.ts) zodat het nooit los raakt van de ondernemerspagina.
 const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
+
+// Bewust geen groot formaat opvragen: resolveFoto zou de bron anders
+// onnodig fors uitvergroten (vaag/korrelig) als de brontfoto zelf kleiner
+// is. 640 is ruim genoeg voor de art (max-width van .artikel-foto).
+const foto = await resolveFoto(data.foto, 640);
 
 // Is er een event dat naar dit artikel verwijst? Elk event is verplicht aan
 // precies één nieuwsartikel gekoppeld (events.gerelateerd_nieuwsbericht,
@@ -65,6 +70,16 @@ const meerNieuwsItems = await Promise.all(
       <span class="eyebrow">Nieuws</span>
       <h1>{data.titel_nl}</h1>
       <p class="datum">{data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+
+      {foto && (
+        <img
+          class="artikel-foto"
+          src={foto.src}
+          width={foto.width}
+          height={foto.height}
+          alt=""
+        />
+      )}
 
       <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
     </article>
@@ -131,6 +146,18 @@ const meerNieuwsItems = await Promise.all(
     margin-bottom: var(--space-xs);
   }
   .datum { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 var(--space-md) 0; }
+  .artikel-foto {
+    display: block;
+    /* Bewust niet 100% van de artikelbreedte: de brontfoto (een liggende
+       promo-poster van Instagram) is niet hoog genoeg opgelost om over de
+       volle 680px breed en scherp te blijven. Een beperkte breedte houdt
+       'm scherp i.p.v. zichtbaar vaag uitgerekt. */
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    border-radius: 12px;
+    margin: 0 0 var(--space-md) 0;
+  }
   .artikel-tekst :global(p) { margin: 0 0 var(--space-sm) 0; line-height: 1.7; }
   .locatie-badge {
     display: flex;
