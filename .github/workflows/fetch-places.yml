@@ -1,0 +1,46 @@
+name: Places verversen
+
+# Ververst src/data/places.json (locatie + openingstijden per ondernemer via
+# de Places API) en committeert het resultaat terug naar main. Draait NIET
+# automatisch bij elke push — alleen handmatig ("Run workflow") of op de
+# wekelijkse planning hieronder — zodat de gewone deploy-workflow nooit een
+# live Google-afhankelijkheid of extra kosten heeft.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 1' # elke maandag 04:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  ververs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installeer gray-matter
+        run: npm install --no-save gray-matter
+
+      - name: Haal Places-data op
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: node scripts/fetch-places.mjs
+
+      - name: Commit als er wijzigingen zijn
+        run: |
+          if git diff --quiet -- src/data/places.json; then
+            echo "Geen wijzigingen in places.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/places.json
+          git commit -m "chore: ververs places.json (locatie + openingstijden)"
+          git push

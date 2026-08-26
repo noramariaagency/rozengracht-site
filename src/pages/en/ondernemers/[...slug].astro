@@ -9,6 +9,7 @@ import { getCategorieLabels } from '../../../lib/categorieen';
 import { nieuwsToItem, verhaalToItem, eventToItem } from '../../../lib/items';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Lang } from '../../../lib/i18n';
+import plekken from '../../../data/places.json';
 
 const lang: Lang = 'en';
 const categorieLabels = getCategorieLabels(lang);
@@ -23,6 +24,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { data } = entry;
+const plekData = plekken[entry.slug];
 
 const fotos = await Promise.all(
   data.fotos.map((foto) => getImage({ src: foto, width: 640 }))
@@ -110,17 +112,33 @@ const gerelateerdeItems = [
       ) : (
         <p class="adres-onbekend"><strong>Address</strong><br />Coming soon</p>
       )}
+      {data.huisnummer && (
+        <div class="mini-kaart">
+          <iframe
+            src={`https://www.google.com/maps?q=${encodeURIComponent(`${data.naam}, Rozengracht ${data.huisnummer}, Amsterdam`)}&z=17&output=embed`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title={`Map: ${data.naam}, Rozengracht ${data.huisnummer}`}
+          ></iframe>
+        </div>
+      )}
       {data.website && <p><a href={data.website} target="_blank">{data.website.replace(/^https?:\/\//, '')}</a></p>}
-      {data.openingstijden && (
+      {(data.openingstijden || plekData?.hoursByDay) && (
         <div>
           <strong>Opening hours</strong>
           <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
-            {dagen.map(([key, label]) => data.openingstijden[key] && (
-              <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                <span>{label}</span><span>{data.openingstijden[key]}</span>
-              </li>
-            ))}
+            {dagen.map(([key, label]) => {
+              const uren = data.openingstijden?.[key] ?? plekData?.hoursByDay?.[key];
+              return uren && (
+                <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                  <span>{label}</span><span>{uren}</span>
+                </li>
+              );
+            })}
           </ul>
+          {!data.openingstijden && plekData?.hoursByDay && (
+            <p style="font-size: 0.72rem; color: var(--color-muted); margin-top: var(--space-xs);">Source: Google</p>
+          )}
         </div>
       )}
     </aside>
@@ -141,6 +159,16 @@ const gerelateerdeItems = [
 <style>
   .subcategorie { color: var(--color-muted); font-size: 0.92rem; }
   .adres-onbekend { color: var(--color-muted); }
+
+  .mini-kaart {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    margin: var(--space-sm) 0;
+  }
+  .mini-kaart iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
   .foto-hero-fallback {
     position: relative;
