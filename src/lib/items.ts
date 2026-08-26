@@ -10,8 +10,10 @@
 
 import type { CollectionEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { bepaalLocatie } from './locatie';
 import { eersteAlinea } from './tekst';
+import type { Lang } from './i18n';
 
 // Kleine helper om het herhaalde "foto er, geoptimaliseerde versie ophalen;
 // foto niet er, null" patroon niet op elke pagina opnieuw te moeten
@@ -47,31 +49,43 @@ export type FeedItem = {
   image: { src: string; width: number; height: number } | null;
 };
 
+const KIND_LABELS: Record<Lang, { nieuws: string; verhaal: string; event: string }> = {
+  nl: { nieuws: 'Nieuws', verhaal: 'Verhaal', event: 'Event' },
+  en: { nieuws: 'News', verhaal: 'Story', event: 'Event' },
+};
+
 // timeZone: 'Europe/Amsterdam' expliciet meegeven bij elke datumweergave in
 // dit bestand — zonder dat leest een bouwserver die niet toevallig in
 // Amsterdamse tijd draait (bv. UTC, zoals de meeste CI/build-omgevingen) een
 // datum/tijd soms verkeerd af (zie ook src/components/EventDetails.astro).
-function dagMaand(d: Date) {
+function dagMaand(d: Date, lang: Lang) {
+  const locale = lang === 'en' ? 'en-GB' : 'nl-NL';
   return {
-    day: d.toLocaleDateString('nl-NL', { day: 'numeric', timeZone: 'Europe/Amsterdam' }),
-    month: d.toLocaleDateString('nl-NL', { month: 'short', timeZone: 'Europe/Amsterdam' }).replace('.', ''),
+    day: d.toLocaleDateString(locale, { day: 'numeric', timeZone: 'Europe/Amsterdam' }),
+    month: d.toLocaleDateString(locale, { month: 'short', timeZone: 'Europe/Amsterdam' }).replace('.', ''),
   };
+}
+
+function langDateLabel(d: Date, lang: Lang) {
+  const locale = lang === 'en' ? 'en-GB' : 'nl-NL';
+  return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', timeZone: 'Europe/Amsterdam' });
 }
 
 export function nieuwsToItem(
   entry: CollectionEntry<'nieuws'>,
   ondernemer: CollectionEntry<'ondernemers'> | null,
-  image: FeedItem['image'] = null
+  image: FeedItem['image'] = null,
+  lang: Lang = 'nl'
 ): FeedItem {
   return {
     kind: 'nieuws',
-    kindLabel: 'Nieuws',
+    kindLabel: KIND_LABELS[lang].nieuws,
     accent: 'rose',
-    href: `${import.meta.env.BASE_URL}nieuws/${entry.slug}/`,
-    title: entry.data.titel_nl,
-    excerpt: eersteAlinea(entry.data.tekst_nl, 150),
+    href: getRelativeLocaleUrl(lang, `nieuws/${entry.slug}/`),
+    title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
+    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
-    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', timeZone: 'Europe/Amsterdam' }),
+    dateLabel: langDateLabel(entry.data.datum, lang),
     // Geen dateBlock (het grote datumblokje) voor nieuws — dat is voorbehouden
     // aan events, zodat de twee visueel niet op elkaar lijken. Nieuws toont de
     // publicatiedatum als kleine tekst (zie ContentCard.astro).
@@ -84,17 +98,18 @@ export function nieuwsToItem(
 export function verhaalToItem(
   entry: CollectionEntry<'verhalen'>,
   ondernemer: CollectionEntry<'ondernemers'> | null,
-  image: FeedItem['image'] = null
+  image: FeedItem['image'] = null,
+  lang: Lang = 'nl'
 ): FeedItem {
   // Periode-label (bv. "1913 – nu") staat los van de sortering op huisnummer
   // die de verhalenpagina zelf doet — hier alleen het vaste label tonen.
   return {
     kind: 'verhaal',
-    kindLabel: 'Verhaal',
+    kindLabel: KIND_LABELS[lang].verhaal,
     accent: 'ochre',
-    href: `${import.meta.env.BASE_URL}verhalen/${entry.slug}/`,
-    title: entry.data.titel_nl,
-    excerpt: eersteAlinea(entry.data.tekst_nl, 150),
+    href: getRelativeLocaleUrl(lang, `verhalen/${entry.slug}/`),
+    title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
+    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
     dateLabel: entry.data.periode ?? null,
     dateBlock: null,
@@ -107,21 +122,22 @@ export function eventToItem(
   entry: CollectionEntry<'events'>,
   nieuwsEntry: CollectionEntry<'nieuws'>,
   ondernemer: CollectionEntry<'ondernemers'> | null,
-  image: FeedItem['image'] = null
+  image: FeedItem['image'] = null,
+  lang: Lang = 'nl'
 ): FeedItem {
   return {
     kind: 'event',
-    kindLabel: 'Event',
+    kindLabel: KIND_LABELS[lang].event,
     accent: 'green',
     // Een event heeft geen eigen pagina: de volledige uitleg staat in het
     // gekoppelde nieuwsartikel (gerelateerd_nieuwsbericht, verplicht in het
     // schema), dus een klik op het kaartje gaat daar altijd direct naartoe.
-    href: `${import.meta.env.BASE_URL}nieuws/${nieuwsEntry.slug}/`,
-    title: entry.data.titel_nl,
-    excerpt: eersteAlinea(nieuwsEntry.data.tekst_nl, 150),
+    href: getRelativeLocaleUrl(lang, `nieuws/${nieuwsEntry.slug}/`),
+    title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
+    excerpt: eersteAlinea(lang === 'en' ? nieuwsEntry.data.tekst_en : nieuwsEntry.data.tekst_nl, 150),
     locationLabel: entry.data.locatie ?? bepaalLocatie(entry.data, ondernemer),
-    dateLabel: entry.data.datum.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', timeZone: 'Europe/Amsterdam' }),
-    dateBlock: dagMaand(entry.data.datum),
+    dateLabel: langDateLabel(entry.data.datum, lang),
+    dateBlock: dagMaand(entry.data.datum, lang),
     sortValue: entry.data.datum.valueOf(),
     image,
   };

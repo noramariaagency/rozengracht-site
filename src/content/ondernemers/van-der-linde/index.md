@@ -21,6 +21,7 @@ meta_description_nl: "Van der Linde op Rozengracht 36-38 Amsterdam. Kunstenaarsm
 meta_description_en: "Van der Linde at Rozengracht 36-38 Amsterdam. Artists' materials and graphic supplies. 65,000+ items. Framing atelier on site. Est. 1898."
 status: "klaar"
 quote_nl: "Andere winkels op deze straat komen en gaan. Wij staan er al sinds 1898. Dat is geen toeval."
+quote_en: "Other shops on this street come and go. We've been here since 1898. That's no coincidence."
 tekst_nl: |
   Van der Linde bestaat al sinds 1898 en zit al die tijd aan de Rozengracht, op nummer 36-38, in het hart van de Jordaan.
 

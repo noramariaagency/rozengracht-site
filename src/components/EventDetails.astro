@@ -8,18 +8,21 @@
 import { getEntry } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { bepaalLocatie } from '../lib/locatie';
+import type { Lang } from '../lib/i18n';
 
 interface Props {
   event: CollectionEntry<'events'>;
+  lang?: Lang;
 }
 
-const { event } = Astro.props;
+const { event, lang = 'nl' } = Astro.props;
 const { data } = event;
 
 const ondernemer = data.gerelateerde_ondernemer
   ? await getEntry(data.gerelateerde_ondernemer)
   : null;
 const locatie = data.locatie ?? bepaalLocatie(data, ondernemer);
+const locale = lang === 'en' ? 'en-GB' : 'nl-NL';
 
 // Expliciet timeZone: 'Europe/Amsterdam' meegeven — zonder dat leest een
 // bouwserver die niet toevallig in Amsterdamse tijd draait (bv. UTC, zoals de
@@ -28,7 +31,7 @@ const locatie = data.locatie ?? bepaalLocatie(data, ondernemer);
 // straatevenement moet de tijd altijd als Amsterdamse kloktijd te lezen zijn,
 // ongeacht waar/wanneer de site gebouwd wordt.
 function formatDatum(d: Date) {
-  const tekst = d.toLocaleDateString('nl-NL', {
+  const tekst = d.toLocaleDateString(locale, {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -38,7 +41,7 @@ function formatDatum(d: Date) {
   return tekst.charAt(0).toUpperCase() + tekst.slice(1);
 }
 function formatTijd(d: Date) {
-  return d.toLocaleTimeString('nl-NL', {
+  return d.toLocaleTimeString(locale, {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: 'Europe/Amsterdam',
@@ -67,15 +70,17 @@ const heeftTijd = amsterdamTijdKey(data.datum) !== '00:00';
 const meerdereDagen = data.datum_tot
   ? amsterdamDatumKey(data.datum) !== amsterdamDatumKey(data.datum_tot)
   : false;
+const label = lang === 'en' ? 'On the agenda' : 'Op de agenda';
+const uurSuffix = lang === 'en' ? '' : ' uur';
 ---
 <div class="event-details card">
-  <span class="label">Op de agenda</span>
+  <span class="label">{label}</span>
   <p class="datum">
     {formatDatum(data.datum)}{meerdereDagen && data.datum_tot && <> &ndash; {formatDatum(data.datum_tot)}</>}
   </p>
   {heeftTijd && (
     <p class="tijd">
-      {formatTijd(data.datum)}{data.datum_tot && !meerdereDagen && <> &ndash; {formatTijd(data.datum_tot)}</>} uur
+      {formatTijd(data.datum)}{data.datum_tot && !meerdereDagen && <> &ndash; {formatTijd(data.datum_tot)}</>}{uurSuffix}
     </p>
   )}
   {locatie && <p class="locatie">{locatie}</p>}

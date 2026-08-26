@@ -53,6 +53,10 @@ const ondernemers = defineCollection({
       // ondernemers) in de homepage-sectie "Ondernemers spreken". Eén zin,
       // in de eigen stem van de ondernemer — geen marketingtaal.
       quote_nl: z.string().optional(),
+      // Engelse vertaling van quote_nl — alleen invullen als quote_nl ook is
+      // ingevuld (de EN "Aan het woord"-sectie laat een ondernemer zonder
+      // quote_en gewoon weg, net als NL dat doet zonder quote_nl).
+      quote_en: z.string().optional(),
       meta_title_nl: z.string().optional(),
       meta_title_en: z.string().optional(),
       meta_description_nl: z.string().optional(),
@@ -116,6 +120,7 @@ const events = defineCollection({
   schema: ({ image }) =>
     z.object({
       titel_nl: z.string(),
+      titel_en: z.string(),
       // Eén datum (dagevenement) of een periode (vanaf/tot, bv. een markt-
       // weekend). "Binnenkort" vs. "Terugblik" op de homepage wordt hieruit
       // afgeleid — net als bij de bereikbaarheidsupdates dus geen handmatige

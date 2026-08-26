@@ -10,6 +10,22 @@ export const categorieLabels: Record<string, string> = {
   'cultuur-vrije-tijd': 'Cultuur & vrije tijd',
 };
 
+// Engelse vertaling van dezelfde categorieën, voor de /en/-versie van de
+// site. Zelfde keys als categorieLabels, zodat ze altijd gelijk oplopen.
+export const categorieLabelsEn: Record<string, string> = {
+  'eten-drinken': 'Food & drink',
+  winkels: 'Shops',
+  'gezondheid-wellness': 'Health & wellness',
+  diensten: 'Services',
+  'cultuur-vrije-tijd': 'Culture & leisure',
+};
+
+// Haalt de juiste labelset op voor de meegegeven taal — voorkomt dat elke
+// pagina zelf een if/else nl/en moet uitschrijven.
+export function getCategorieLabels(lang: 'nl' | 'en'): Record<string, string> {
+  return lang === 'en' ? categorieLabelsEn : categorieLabels;
+}
+
 // Duidelijk herkenbare lijn-iconen (stijl: Lucide) die letterlijk verbeelden
 // waar de categorie over gaat, in plaats van abstracte vormen die niemand
 // zonder bijschrift zou herkennen — vork+lepel voor eten & drinken, een

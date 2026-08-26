@@ -1,16 +1,16 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FotoFallback from '../../components/FotoFallback.astro';
-import ContentCard from '../../components/ContentCard.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FotoFallback from '../../../components/FotoFallback.astro';
+import ContentCard from '../../../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
-import { naarParagrafen } from '../../lib/tekst';
-import { getCategorieLabels } from '../../lib/categorieen';
-import { nieuwsToItem, verhaalToItem, eventToItem } from '../../lib/items';
+import { naarParagrafen } from '../../../lib/tekst';
+import { getCategorieLabels } from '../../../lib/categorieen';
+import { nieuwsToItem, verhaalToItem, eventToItem } from '../../../lib/items';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { Lang } from '../../lib/i18n';
+import type { Lang } from '../../../lib/i18n';
 
-const lang: Lang = 'nl';
+const lang: Lang = 'en';
 const categorieLabels = getCategorieLabels(lang);
 
 export async function getStaticPaths() {
@@ -24,24 +24,15 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { data } = entry;
 
-// Geoptimaliseerde versies van de foto's (i.p.v. de ruwe, onverkleinde
-// bron-afbeelding rechtstreeks serveren) — voorkomt onnodig grote downloads
-// en geeft expliciete width/height voor CLS.
 const fotos = await Promise.all(
   data.fotos.map((foto) => getImage({ src: foto, width: 640 }))
 );
 const logo = data.logo ? await getImage({ src: data.logo, width: 240 }) : null;
 const dagen = [
-  ['ma', 'Maandag'], ['di', 'Dinsdag'], ['wo', 'Woensdag'], ['do', 'Donderdag'],
-  ['vr', 'Vrijdag'], ['za', 'Zaterdag'], ['zo', 'Zondag'],
+  ['ma', 'Monday'], ['di', 'Tuesday'], ['wo', 'Wednesday'], ['do', 'Thursday'],
+  ['vr', 'Friday'], ['za', 'Saturday'], ['zo', 'Sunday'],
 ];
 
-// Gerelateerd nieuws, verhalen én events: alles waarvan gerelateerde_ondernemer
-// naar deze pagina verwijst. Zo blijft de koppeling omkeerbaar zonder dat de
-// ondernemer-pagina zelf iets van nieuws/verhalen/events hoeft te weten.
-// Alle drie gaan door dezelfde *ToItem()-normalizers en dezelfde ContentCard
-// als op de homepage/nieuws-/verhalenpagina, zodat ze hier ook gemixed en
-// gelijk-uitziend te tonen zijn (i.p.v. losse ad-hoc kaartjes per type).
 const alNieuws = await getCollection('nieuws');
 const gerelateerdNieuwsItems = alNieuws
   .filter((n) => n.data.gerelateerde_ondernemer?.slug === entry.slug)
@@ -70,8 +61,8 @@ const gerelateerdeItems = [
   ...gerelateerdeEventsItems,
 ].sort((a, b) => b.sortValue - a.sortValue);
 ---
-<BaseLayout title={data.meta_title_nl ?? data.naam} description={data.meta_description_nl} lang={lang}>
-  <a href={getRelativeLocaleUrl(lang, 'ondernemers')} style="color: var(--color-muted); font-size: 0.9rem;">&larr; Alle ondernemers</a>
+<BaseLayout title={data.meta_title_en ?? data.naam} description={data.meta_description_en} lang={lang}>
+  <a href={getRelativeLocaleUrl(lang, 'ondernemers')} style="color: var(--color-muted); font-size: 0.9rem;">&larr; All businesses</a>
 
   <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg); margin-top: var(--space-md); align-items: start;">
     <div>
@@ -96,14 +87,14 @@ const gerelateerdeItems = [
               </div>
             ))}
           </div>
-          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_en)} />
         </div>
       ) : (
         <>
           <div class="foto-hero-fallback">
             <FotoFallback categorie={data.categorie} />
           </div>
-          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} style="max-width: 640px;" />
+          <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_en)} style="max-width: 640px;" />
         </>
       )}
     </div>
@@ -115,14 +106,14 @@ const gerelateerdeItems = [
         </div>
       )}
       {data.huisnummer ? (
-        <p><strong>Adres</strong><br />Rozengracht {data.huisnummer}, Amsterdam</p>
+        <p><strong>Address</strong><br />Rozengracht {data.huisnummer}, Amsterdam</p>
       ) : (
-        <p class="adres-onbekend"><strong>Adres</strong><br />Binnenkort bekend</p>
+        <p class="adres-onbekend"><strong>Address</strong><br />Coming soon</p>
       )}
       {data.website && <p><a href={data.website} target="_blank">{data.website.replace(/^https?:\/\//, '')}</a></p>}
       {data.openingstijden && (
         <div>
-          <strong>Openingstijden</strong>
+          <strong>Opening hours</strong>
           <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
             {dagen.map(([key, label]) => data.openingstijden[key] && (
               <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
@@ -137,7 +128,7 @@ const gerelateerdeItems = [
 
   {gerelateerdeItems.length > 0 && (
     <section class="meer-over" style="margin-top: var(--space-xl);">
-      <h2>Meer over {data.naam}</h2>
+      <h2>More about {data.naam}</h2>
       <div class="meer-over-grid">
         {gerelateerdeItems.map((item) => (
           <ContentCard item={item} variant="compact" />
@@ -159,10 +150,6 @@ const gerelateerdeItems = [
     margin: var(--space-md) 0;
   }
 
-  /* Tekst gelijk naast de foto('s) i.p.v. een foto-rij met de tekst daaronder
-     — dezelfde vaste-beeldverhouding + object-fit: cover-kaart als de
-     kaartjes op de homepage/ondernemerspagina, zodat foto's hier ook nooit
-     uit verhouding getrokken worden. */
   .foto-tekst {
     display: grid;
     grid-template-columns: 220px 1fr;
@@ -187,9 +174,6 @@ const gerelateerdeItems = [
   }
   .foto-tegel img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
 
-  /* Logo krijgt ook een vast kader, maar met object-fit: contain i.p.v. cover
-     — een logo mag nooit bijgesneden worden (dat knipt tekst/vorm af), enkel
-     ingepast. */
   .logo-tegel {
     width: 120px;
     height: 80px;

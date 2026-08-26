@@ -19,7 +19,10 @@
   --rose: #d9a9a0;
   --rose-deep: #c0847a;
   --ochre: #b9793f;
-  --cream: #f3f6f1;
+  /* Iets frisser/witter dan de originele #f3f6f1 uit de brief, op
+     verzoek — nog altijd een fractie warm i.p.v. klinisch wit, zodat het
+     bij de rest van de (warme) huisstijl blijft passen. */
+  --cream: #fafbf8;
   --cream-card: #ffffff;
   --line: #e3dbcf;
   --ink: #20302a;

@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FotoFallback from '../../components/FotoFallback.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FotoFallback from '../../../components/FotoFallback.astro';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getCategorieLabels, categorieIconen } from '../../lib/categorieen';
-import type { Lang } from '../../lib/i18n';
+import { getCategorieLabels, categorieIconen } from '../../../lib/categorieen';
+import type { Lang } from '../../../lib/i18n';
 
-const lang: Lang = 'nl';
+const lang: Lang = 'en';
 const categorieLabels = getCategorieLabels(lang);
 
 const ruw = await getCollection(
@@ -23,11 +23,6 @@ function huisnummerSortValue(h) {
 
 const items = await Promise.all(
   ruw.map(async (o) => {
-    // Foto is optioneel — een ondernemer zonder (goede) foto krijgt geen
-    // gebroken <img>, maar valt terug op FotoFallback (categorie-icoon).
-    // Vierkant i.p.v. 4:3 — zelfde beeldverhouding als de kaartjes op de
-    // homepage ("Laatst geopend"), voor een consistente kaartstijl door de
-    // hele site.
     const foto = o.data.fotos[0]
       ? await getImage({ src: o.data.fotos[0], width: 360, height: 360 })
       : null;
@@ -43,9 +38,6 @@ const items = await Promise.all(
   })
 );
 
-// Ondernemers zonder (nog) bevestigd huisnummer kunnen niet op volgorde
-// gezet worden — die tonen we onderaan de lijst, in plaats van een
-// verzonnen huisnummer te sorteren alsof het een echte positie is.
 items.sort((a, b) => {
   if (a.huisnummerSort === null && b.huisnummerSort === null) return 0;
   if (a.huisnummerSort === null) return 1;
@@ -55,10 +47,10 @@ items.sort((a, b) => {
 
 const categorieen = Object.entries(categorieLabels);
 ---
-<BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op volgorde van huisnummer." lang={lang}>
-  <h1>Ondernemers op de Rozengracht</h1>
+<BaseLayout title="Businesses" description="All the businesses on the Rozengracht in Amsterdam, in order of house number." lang={lang}>
+  <h1>Businesses on the Rozengracht</h1>
   <p style="color: var(--color-muted); max-width: 640px;">
-    {items.length} ondernemers, op volgorde van huisnummer: van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
+    {items.length} businesses, in order of house number: from the Westermarkt to the Marnixstraat. Click a card for more info.
   </p>
 
   <div class="locatie-kaart">
@@ -66,14 +58,14 @@ const categorieen = Object.entries(categorieLabels);
       src="https://www.google.com/maps?q=Rozengracht,+Amsterdam&output=embed"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      title="Kaart van de Rozengracht, Amsterdam"
+      title="Map of the Rozengracht, Amsterdam"
     ></iframe>
   </div>
 
   <section class="ondernemers-zone">
     <div class="zone-inner">
-      <div class="filters" data-filters role="group" aria-label="Filter op categorie">
-        <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">Alles</button>
+      <div class="filters" data-filters role="group" aria-label="Filter by category">
+        <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">All</button>
         {categorieen.map(([key, label]) => (
           <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
@@ -102,12 +94,6 @@ const categorieen = Object.entries(categorieLabels);
   </section>
 
   <script is:inline>
-    // is:inline i.p.v. een gehoiste module-script — werkt daardoor ook in een
-    // dubbelklik-vanaf-schijf-preview (file://), waar module-scripts door de
-    // browser geblokkeerd worden. Geen TypeScript-syntax hier, want dat wordt
-    // in een is:inline-script niet getranspileerd.
-    //
-    // Categoriefilter: simpele class-toggle op de kaartjes.
     var filterBar = document.querySelector('[data-filters]');
     filterBar && filterBar.addEventListener('click', (e) => {
       var btn = e.target.closest('.filter-btn');
@@ -128,8 +114,6 @@ const categorieen = Object.entries(categorieLabels);
 </BaseLayout>
 
 <style>
-  /* Echte kaart (Google Maps) i.p.v. de eerdere schematische placeholder met
-     losse decoratieve stippen. */
   .locatie-kaart {
     position: relative;
     aspect-ratio: 16/6;
@@ -141,11 +125,6 @@ const categorieen = Object.entries(categorieLabels);
   }
   .locatie-kaart iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-  /* Zelfde donkergroene sectie als de "Ontdek"-zone op de homepage — het is
-     de SECTIE die donkergroen is, niet de losse kaartjes zelf (die blijven
-     transparant met lichte tekst, zoals de "Wie kwam er laatst bij?"-strip
-     op home). "Breekt uit" de gecentreerde .container-layout van deze pagina
-     met de klassieke 100vw-truc, zodat alleen dit blok edge-to-edge gaat. */
   .ondernemers-zone {
     background: var(--green-deep);
     width: 100vw;
@@ -187,8 +166,6 @@ const categorieen = Object.entries(categorieLabels);
     border-color: #fbfaf7;
   }
 
-  /* Kaartjes: transparant op de donkergroene sectie-achtergrond, zelfde
-     stijl als de "Wie kwam er laatst bij?"-strip op de homepage. */
   .ondernemers-grid {
     display: grid;
     gap: var(--space-md) var(--space-lg);

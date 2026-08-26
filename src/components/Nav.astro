@@ -1,34 +1,110 @@
 ---
 import logoMark from '../assets/branding/logo_mark_kleur.png';
 import { Image } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { kaalPad, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'nl' } = Astro.props;
+
+// Tekst voor de twee talen — klein genoeg (vijf menu-items + wat losse
+// labels) om hier gewoon inline te houden i.p.v. een aparte woordenboek-module.
+const TEKST: Record<Lang, {
+  skip: string;
+  home: string;
+  nieuws: string;
+  ondernemers: string;
+  verhalen: string;
+  bereikbaarheid: string;
+  menu: string;
+  taalWisselNaar: string;
+  taalBanner: string;
+  taalBannerLink: string;
+  taalBannerSluiten: string;
+}> = {
+  nl: {
+    skip: 'Direct naar de inhoud',
+    home: 'Home',
+    nieuws: 'Nieuws',
+    ondernemers: 'Ondernemers',
+    verhalen: 'Verhalen',
+    bereikbaarheid: 'Bereikbaarheid',
+    menu: 'Menu',
+    taalWisselNaar: 'View this page in English',
+    taalBanner: 'Deze site is ook in het Engels beschikbaar.',
+    taalBannerLink: 'Bekijk in het Engels',
+    taalBannerSluiten: 'Melding sluiten',
+  },
+  en: {
+    skip: 'Skip to content',
+    home: 'Home',
+    nieuws: 'News',
+    ondernemers: 'Businesses',
+    verhalen: 'Stories',
+    bereikbaarheid: 'Getting there',
+    menu: 'Menu',
+    taalWisselNaar: 'Bekijk deze pagina in het Nederlands',
+    taalBanner: 'This site is also available in Dutch.',
+    taalBannerLink: 'Bekijk in het Nederlands',
+    taalBannerSluiten: 'Dismiss',
+  },
+};
+const t = TEKST[lang];
 
 const base = import.meta.env.BASE_URL;
+const restPad = kaalPad(Astro.url.pathname, base);
+const homeHref = lang === 'en' ? `${base}en/` : base;
+const andereTaal: Lang = lang === 'en' ? 'nl' : 'en';
+const taalWisselHref = getRelativeLocaleUrl(andereTaal, restPad);
+
 const links = [
-  { href: base, label: 'De Rozengracht' },
-  { href: `${base}ondernemers`, label: 'Ondernemers' },
-  { href: `${base}nieuws`, label: 'Nieuws' },
-  { href: `${base}verhalen`, label: 'Verhalen' },
-  { href: `${base}bereikbaarheid`, label: 'Bereikbaarheid' },
+  { href: getRelativeLocaleUrl(lang, 'nieuws'), label: t.nieuws },
+  { href: getRelativeLocaleUrl(lang, 'ondernemers'), label: t.ondernemers },
+  { href: getRelativeLocaleUrl(lang, 'verhalen'), label: t.verhalen },
+  { href: getRelativeLocaleUrl(lang, 'bereikbaarheid'), label: t.bereikbaarheid },
 ];
 ---
-<a class="skip-link" href="#main-content">Direct naar de inhoud</a>
+<a class="skip-link" href="#main-content">{t.skip}</a>
 <header class="site-nav">
   <div class="container nav-inner">
-    <a class="brand" href={base}>
+    <a class="brand" href={homeHref}>
       <Image src={logoMark} alt="Rozengracht" width={40} height={42} loading="eager" />
+      <span class="brand-naam">Rozengracht</span>
     </a>
-    <nav id="primary-nav">
+    <nav id="primary-nav" aria-label={t.menu}>
       <ul>
+        <li class="nav-home-mobiel"><a href={homeHref}>{t.home}</a></li>
         {links.map((link) => (
           <li><a href={link.href}>{link.label}</a></li>
         ))}
       </ul>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-tools">
+      <a class="lang-switch" href={taalWisselHref} hreflang={andereTaal} title={t.taalWisselNaar}>
+        {andereTaal.toUpperCase()}
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label={t.menu} aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- Taal-attendering: verborgen tot het scriptje hieronder vaststelt dat de
+     browsertaal niet bij de huidige paginataal past — en dan alleen als de
+     bezoeker 'm niet al eerder heeft weggeklikt (localStorage). Geen
+     automatische omleiding: de bezoeker kiest zelf, de standaardtaal op het
+     domein blijft gewoon Nederlands. -->
+<div class="taal-banner" id="taalBanner" data-lang={lang} hidden>
+  <div class="container taal-banner-inner">
+    <span>{t.taalBanner}</span>
+    <a href={taalWisselHref}>{t.taalBannerLink} &rarr;</a>
+    <button type="button" id="taalBannerSluiten" aria-label={t.taalBannerSluiten}>&times;</button>
+  </div>
+</div>
 
 <script is:inline>
   // is:inline i.p.v. een gehoiste module-script: zo blijft dit ook werken in
@@ -65,6 +141,32 @@ const links = [
       toggle && toggle.setAttribute('aria-expanded', 'false');
       updateNavHeight();
     }
+  });
+
+  // Taal-attendering: alleen tonen op de NL-versie, alleen als de
+  // browsertaal niet Nederlands is, en alleen als de bezoeker 'm nog niet
+  // eerder heeft weggeklikt. Standaardtaal op het domein blijft gewoon NL —
+  // dit stelt alleen vast (constateert) dat Engels misschien prettiger is,
+  // in plaats van automatisch om te leiden.
+  var taalBanner = document.getElementById('taalBanner');
+  if (taalBanner && taalBanner.dataset.lang === 'nl') {
+    var reedsGezien = false;
+    try {
+      reedsGezien = localStorage.getItem('rg-taalbanner-gezien') === '1';
+    } catch (e) {}
+    var browserTaal = ((navigator.language || navigator.userLanguage || '') + '').toLowerCase();
+    if (!reedsGezien && browserTaal.indexOf('nl') !== 0) {
+      taalBanner.hidden = false;
+      updateNavHeight();
+    }
+  }
+  var taalBannerSluiten = document.getElementById('taalBannerSluiten');
+  taalBannerSluiten && taalBannerSluiten.addEventListener('click', () => {
+    if (taalBanner) taalBanner.hidden = true;
+    try {
+      localStorage.setItem('rg-taalbanner-gezien', '1');
+    } catch (e) {}
+    updateNavHeight();
   });
 </script>
 
@@ -108,10 +210,18 @@ const links = [
   .brand {
     display: flex;
     align-items: center;
+    gap: 10px;
     text-decoration: none;
     flex-shrink: 0;
   }
   .brand img { border-radius: 0; }
+  .brand-naam {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+    color: var(--green-black);
+  }
   nav ul {
     display: flex;
     gap: var(--space-md);
@@ -132,6 +242,34 @@ const links = [
     color: var(--green-deep);
     border-bottom-color: var(--rose);
   }
+  /* "Home" staat alleen in het uitklap-menu op mobiel — op desktop is het
+     logo + de "Rozengracht"-tekst al een link naar home, dus daar zou een
+     los "Home"-item dubbelop zijn. */
+  .nav-home-mobiel { display: none; }
+
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+  }
+  .lang-switch {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--green-deep);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 5px 11px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  }
+  .lang-switch:hover {
+    color: var(--rose-deep);
+    border-color: var(--rose-deep);
+    background: var(--rose-tint);
+  }
+
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -153,6 +291,34 @@ const links = [
     border-radius: 1px;
   }
 
+  /* Taal-attendering: dunne balk direct onder de header, alleen zichtbaar
+     als het scriptje hierboven besluit 'm te tonen. */
+  .taal-banner {
+    background: var(--rose-tint);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .taal-banner-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 0.85rem;
+    color: var(--green-black);
+  }
+  .taal-banner-inner a { color: var(--rose-deep); font-weight: 600; text-decoration: underline; }
+  .taal-banner-inner button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--color-muted);
+    cursor: pointer;
+    padding: 2px 4px;
+  }
+  .taal-banner-inner button:hover { color: var(--green-black); }
+
   @media (max-width: 760px) {
     nav#primary-nav {
       display: none;
@@ -160,13 +326,14 @@ const links = [
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--cream);
+      background: var(--cream-card);
       border-bottom: 1px solid var(--color-border);
       padding: var(--space-sm) var(--space-md) var(--space-md);
     }
     nav#primary-nav.is-open { display: block; }
     nav#primary-nav ul { flex-direction: column; gap: var(--space-sm); }
     nav#primary-nav a { display: block; font-size: 1.05rem; }
+    .nav-home-mobiel { display: list-item; }
     .nav-toggle { display: flex; }
   }
 </style>

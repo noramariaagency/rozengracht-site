@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import OndernemerKaart from '../../components/OndernemerKaart.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import OndernemerKaart from '../../../components/OndernemerKaart.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
-import { bepaalLocatie } from '../../lib/locatie';
+import { naarParagrafen, eersteAlinea } from '../../../lib/tekst';
+import { bepaalLocatie } from '../../../lib/locatie';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { Lang } from '../../lib/i18n';
+import type { Lang } from '../../../lib/i18n';
 
-const lang: Lang = 'nl';
+const lang: Lang = 'en';
 
 export async function getStaticPaths() {
   const verhalen = await getCollection('verhalen');
@@ -25,16 +25,16 @@ const ondernemer = data.gerelateerde_ondernemer
   : null;
 const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
 ---
-<BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)} lang={lang}>
+<BaseLayout title={data.titel_en} description={eersteAlinea(data.tekst_en, 155)} lang={lang}>
   <article class="artikel">
-    <a class="back-link" href={getRelativeLocaleUrl(lang, 'verhalen')}>&larr; Alle verhalen</a>
-    <span class="eyebrow">Verhaal</span>
-    <h1>{data.titel_nl}</h1>
+    <a class="back-link" href={getRelativeLocaleUrl(lang, 'verhalen')}>&larr; All stories</a>
+    <span class="eyebrow">Story</span>
+    <h1>{data.titel_en}</h1>
 
-    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
+    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_en)} />
 
     {ondernemer ? (
-      <OndernemerKaart ondernemer={ondernemer} label="Nu op deze plek" lang={lang} />
+      <OndernemerKaart ondernemer={ondernemer} label="Now at this spot" lang={lang} />
     ) : losseLocatie && (
       <p class="locatie-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>

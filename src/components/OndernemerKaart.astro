@@ -4,21 +4,26 @@
 // een gerelateerde_ondernemer heeft. Eén gedeeld element i.p.v. een losse
 // tekst-link per pagina, zodat het er overal hetzelfde uitziet.
 import { getImage } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import FotoFallback from './FotoFallback.astro';
-import { categorieLabels } from '../lib/categorieen';
+import { getCategorieLabels } from '../lib/categorieen';
+import type { Lang } from '../lib/i18n';
 
 interface Props {
   ondernemer: any;
   label?: string;
+  lang?: Lang;
 }
 
-const { ondernemer, label = 'Ondernemer' } = Astro.props;
+const { ondernemer, label, lang = 'nl' } = Astro.props;
+const gekozenLabel = label ?? (lang === 'en' ? 'Business' : 'Ondernemer');
 const { data, slug } = ondernemer;
 const foto = data.fotos?.[0]
   ? await getImage({ src: data.fotos[0], width: 200, height: 200 })
   : null;
+const categorieLabels = getCategorieLabels(lang);
 ---
-<a class="ondernemer-kaart" href={`${import.meta.env.BASE_URL}ondernemers/${slug}/`}>
+<a class="ondernemer-kaart" href={getRelativeLocaleUrl(lang, `ondernemers/${slug}/`)}>
   <div class="foto-wrap">
     {foto ? (
       <img src={foto.src} width="200" height="200" alt={data.naam} loading="lazy" />
@@ -27,7 +32,7 @@ const foto = data.fotos?.[0]
     )}
   </div>
   <div class="tekst">
-    <span class="label">{label}</span>
+    <span class="label">{gekozenLabel}</span>
     <strong>{data.naam}</strong>
     <span class="adres">
       {data.huisnummer && <>Rozengracht {data.huisnummer} &middot; </>}

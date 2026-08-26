@@ -1,12 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { verhaalToItem } from '../../lib/items';
-import { naarParagrafen } from '../../lib/tekst';
+import { verhaalToItem } from '../../../lib/items';
+import { naarParagrafen } from '../../../lib/tekst';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { Lang } from '../../lib/i18n';
+import type { Lang } from '../../../lib/i18n';
 
-const lang: Lang = 'nl';
+const lang: Lang = 'en';
+
+// Simpele periode-vertaler: er is geen apart periode_en veld (het is een
+// korte, vrije tekst als "1913 tot nu"), dus we hertalen 'm hier on the fly
+// i.p.v. een extra content-veld toe te voegen voor drie woordjes.
+function periodeEn(periode: string | undefined) {
+  if (!periode) return periode ?? null;
+  return periode.replace(/ tot nu$/, ' to now').replace(/ tot /, ' to ');
+}
 
 function huisnummerSortValue(locatie) {
   if (!locatie) return null;
@@ -25,10 +33,7 @@ const verhalen = await Promise.all(
   ruw.map(async (v) => {
     const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
     const item = verhaalToItem(v, ondernemer, undefined, lang);
-    // Voor de sortering/positie op de gevellijn gebruiken we het adres NA
-    // overname van de ondernemer (item.locationLabel), niet het ruwe
-    // locatie-veld — zo klopt de plek in de wandeling ook als een verhaal
-    // straks aan een ondernemer gekoppeld wordt.
+    item.dateLabel = periodeEn(v.data.periode);
     return {
       slug: v.slug,
       data: v.data,
@@ -44,10 +49,6 @@ const metAdres = verhalen.filter((v) => v.huisnummerSort !== null).sort((a, b) =
 const zonderAdres = verhalen.filter((v) => v.huisnummerSort === null);
 const gesorteerd = [...metAdres, ...zonderAdres];
 
-// Twee kleine selectiestrips: op huisnummer (zelfde as als de leeslijst) en
-// op periode (chronologisch). Klikken selecteert het bijbehorende verhaal in
-// het leespaneel rechts — puur navigatie via de URL-hash, geen filter die
-// content verbergt.
 const metHuisnummer = gesorteerd.filter((v) => v.huisnummerSort !== null);
 const minNr = Math.min(...metHuisnummer.map((v) => v.huisnummerSort));
 const maxNr = Math.max(...metHuisnummer.map((v) => v.huisnummerSort));
@@ -70,15 +71,15 @@ const jaarPins = metJaar.map((v) => ({
 
 const eersteSlug = gesorteerd[0]?.slug ?? null;
 ---
-<BaseLayout title="Verhalen" description="De geschiedenis en bijzondere plekken van de Rozengracht in Amsterdam." lang={lang}>
-  <h1>Verhalen van de Rozengracht</h1>
+<BaseLayout title="Stories" description="The history and special places of the Rozengracht in Amsterdam." lang={lang}>
+  <h1>Stories of the Rozengracht</h1>
   <p class="intro">
-    Een wandeling door de geschiedenis van de straat, op volgorde van huisnummer, van de Westermarkt tot de Marnixstraat. Kies links een stop, en lees rechts het hele verhaal.
+    A walk through the history of the street, in order of house number, from the Westermarkt to the Marnixstraat. Pick a stop on the left, and read the full story on the right.
   </p>
 
   <div class="selectors">
     <div class="selector">
-      <span class="selector-label">Op huisnummer</span>
+      <span class="selector-label">By house number</span>
       <div class="selector-line">
         {huisnummerPins.map((pin) => (
           <a class="selector-pin" data-jump={pin.slug} href={`#${pin.slug}`} style={`left:${pin.positie}%;`} title={pin.label}></a>
@@ -86,7 +87,7 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
       </div>
     </div>
     <div class="selector">
-      <span class="selector-label">Op periode</span>
+      <span class="selector-label">By period</span>
       <div class="selector-line">
         {jaarPins.map((pin) => (
           <a class="selector-pin periode" data-jump={pin.slug} href={`#${pin.slug}`} style={`left:${pin.positie}%;`} title={pin.label}></a>
@@ -96,12 +97,7 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
   </div>
 
   <div class="verhalen-app" data-eerste={eersteSlug}>
-    <!-- Leeslijst: links, klikbaar, springt naar het verhaal rechts via de
-         URL-hash (#slug) — dat werkt ook zonder JavaScript dankzij :target
-         hieronder in de CSS. Het scriptje onderaan voegt alleen de
-         "geselecteerd"-markering toe en zorgt dat er bij binnenkomst zonder
-         hash toch al iets rechts staat. -->
-    <nav class="verhalen-lijst" aria-label="Verhalen">
+    <nav class="verhalen-lijst" aria-label="Stories">
       <ol>
         {gesorteerd.map((v) => (
           <li>
@@ -117,14 +113,12 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
       </ol>
     </nav>
 
-    <!-- Leespaneel: rechts, alle verhalen zitten al in de pagina (geen fetch
-         nodig) — CSS toont alleen degene die met de URL-hash overeenkomt. -->
     <div class="leespaneel-wrap">
       {gesorteerd.map((v) => (
         <article id={v.slug} class="leespaneel">
-          <a class="back-link-mobile" href={`${getRelativeLocaleUrl(lang, 'verhalen')}#lijst`}>&larr; Alle verhalen</a>
+          <a class="back-link-mobile" href={`${getRelativeLocaleUrl(lang, 'verhalen')}#lijst`}>&larr; All stories</a>
           <header class="pane-header">
-            <span class="eyebrow">Verhaal</span>
+            <span class="eyebrow">Story</span>
             <h2>{v.item.title}</h2>
             <div class="pane-meta">
               {v.item.locationLabel && (
@@ -136,36 +130,25 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
               {v.data.periode && (
                 <span class="meta-pill">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
-                  {v.data.periode}
+                  {periodeEn(v.data.periode)}
                 </span>
               )}
               {v.ondernemer && (
                 <a class="meta-pill meta-pill-link" href={getRelativeLocaleUrl(lang, `ondernemers/${v.ondernemer.slug}`)}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /></svg>
-                  Nu: {v.ondernemer.data.naam}
+                  Now: {v.ondernemer.data.naam}
                 </a>
               )}
             </div>
           </header>
-          <div class="pane-tekst" set:html={naarParagrafen(v.data.tekst_nl)} />
-          <a class="pane-permalink" href={getRelativeLocaleUrl(lang, `verhalen/${v.slug}/`)}>Directe link naar dit verhaal &rarr;</a>
+          <div class="pane-tekst" set:html={naarParagrafen(v.data.tekst_en)} />
+          <a class="pane-permalink" href={getRelativeLocaleUrl(lang, `verhalen/${v.slug}/`)}>Direct link to this story &rarr;</a>
         </article>
       ))}
     </div>
   </div>
 
   <script is:inline define:vars={{ eersteSlug }}>
-    // is:inline zodat dit ook in een file://-preview werkt (browsers
-    // blokkeren module-scripts onder file://).
-    //
-    // De CSS hieronder toont het verhaal waarvan het element-id met de
-    // URL-hash overeenkomt (:target) — dat werkt al zonder dit script. Dit
-    // script doet twee dingen extra:
-    // 1. Als er nog geen hash in de URL staat, zet 'm op het eerste verhaal
-    //    (met replaceState, dus geen extra entry in de terug-knop-historie).
-    // 2. Markeert het bijbehorende item in de leeslijst én op de
-    //    huisnummer/periode-pins als "geselecteerd", want :target werkt
-    //    alleen op het paneel zelf, niet op de link die ernaartoe verwijst.
     function markeerSelectie() {
       var slug = (window.location.hash || '').replace('#', '') || eersteSlug;
       document.querySelectorAll('[data-jump].is-selected').forEach((el) => el.classList.remove('is-selected'));
@@ -226,8 +209,6 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
   .selector-pin:hover { background: var(--rose); border-color: var(--rose); }
   .selector-pin.is-selected { background: var(--rose-deep); border-color: var(--rose-deep); }
 
-  /* Master-detail: leeslijst links (vaste breedte), leespaneel rechts (de
-     rest van de ruimte) — zoals een mailbox: kies links, lees rechts. */
   .verhalen-app {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -273,11 +254,6 @@ const eersteSlug = gesorteerd[0]?.slug ?? null;
   .lijst-item.is-selected .lijst-titel { color: var(--green-deep); }
   .lijst-meta { font-size: 0.78rem; color: var(--color-muted); }
 
-  /* Leespaneel: alle verhalen staan al in de DOM, maar enkel degene waarvan
-     het id met de URL-hash overeenkomt (:target) is zichtbaar. Zonder hash
-     toont het scriptje hierboven bij binnenkomst automatisch het eerste
-     verhaal (via replaceState); de :first-of-type-regel hieronder is de
-     CSS-only vangnet-variant voor het geval JavaScript uitstaat. */
   .leespaneel-wrap { min-width: 0; }
   .leespaneel { display: none; }
   .leespaneel:target { display: block; }

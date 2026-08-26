@@ -14,6 +14,7 @@ fotos:
   - "./foto_01.jpg"
 status: "klaar"
 quote_nl: "Een goed feest begint met iemand die weet waar je moet zoeken. Dat doen wij al meer dan 125 jaar."
+quote_en: "A good party starts with someone who knows where to look. We've been doing that for over 125 years."
 meta_title_nl: "Witbaard Feestartikelen"
 meta_description_nl: "Rozengracht 63 heeft alles voor elk feest: kostuums, pruiken, maskers en decoraties. Familiebedrijf in feestartikelen al meer dan 125 jaar in Amsterdam."
 tekst_nl: |

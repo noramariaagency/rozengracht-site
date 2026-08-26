@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Contact / become a member" lang="en">
+  <h1>Contact &amp; become a member</h1>
+  <div class="card" style="max-width: 480px;">
+    <p style="color: var(--color-muted);">
+      [PLACEHOLDER: the form will be connected to a form handler without its own backend in
+      phase 6 (e.g. Cloudflare Forms/Formspree). The fields below only show the structure.]
+    </p>
+    <form>
+      <label>Name<br /><input type="text" disabled /></label><br /><br />
+      <label>Email<br /><input type="email" disabled /></label><br /><br />
+      <label>Message<br /><textarea disabled></textarea></label><br /><br />
+      <button type="button" disabled>Send</button>
+    </form>
+  </div>
+</BaseLayout>

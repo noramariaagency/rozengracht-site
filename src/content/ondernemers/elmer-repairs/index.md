@@ -15,6 +15,7 @@ fotos:
   - "./foto_01.jpg"
 status: "klaar"
 quote_nl: "Een gebarsten scherm gebeurt altijd op het slechtste moment. Wij zorgen dat je er binnen een halfuur weer mee verder kan."
+quote_en: "A cracked screen always happens at the worst possible moment. We make sure you're back up and running within half an hour."
 meta_title_nl: "Elmer Repairs Apple Amsterdam"
 meta_description_nl: "Elmer Repairs op Rozengracht 214B Amsterdam. iPhone reparatie in 30 minuten, iPad & MacBook in 12-24 uur. 1 jaar garantie."
 tekst_nl: |

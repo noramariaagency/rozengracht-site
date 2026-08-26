@@ -17,6 +17,7 @@ fotos:
 status: "klaar"
 nieuw_sinds: 2022-09-30
 quote_nl: "We bakken elke burger nog steeds precies zo als op de openingsdag: recht voor je neus, geen shortcuts."
+quote_en: "We still grill every burger exactly like we did on opening day: right in front of you, no shortcuts."
 meta_title_nl: "Maijard Smashburgers Rozengracht"
 meta_description_nl: "Smashburgers van de broers Asselberghs op Rozengracht 9 Amsterdam. Maillard-korst, open keuken, verkozen tot beste burger van Nederland."
 tekst_nl: |
