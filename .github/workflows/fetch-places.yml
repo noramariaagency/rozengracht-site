@@ -1,8 +1,9 @@
 name: Places verversen
 
-# Ververst src/data/places.json (locatie + openingstijden per ondernemer)
-# en src/data/bereikbaarheid-places.json (parkeergarage + tramhaltes) via
-# de Places API, en committeert het resultaat terug naar main. Draait NIET
+# Ververst src/data/places.json (locatie + openingstijden per ondernemer),
+# src/data/bereikbaarheid-places.json (parkeergarage + tramhaltes) en
+# src/data/bereikbaarheid-routes.json (wandel-/looproutes) via de Places-
+# en Directions API, en committeert het resultaat terug naar main. Draait NIET
 # automatisch bij elke push — alleen handmatig ("Run workflow") of op de
 # wekelijkse planning hieronder — zodat de gewone deploy-workflow nooit een
 # live Google-afhankelijkheid of extra kosten heeft.
@@ -36,12 +37,12 @@ jobs:
 
       - name: Commit als er wijzigingen zijn
         run: |
-          if git diff --quiet -- src/data/places.json src/data/bereikbaarheid-places.json; then
-            echo "Geen wijzigingen in places.json of bereikbaarheid-places.json"
+          if git diff --quiet -- src/data/places.json src/data/bereikbaarheid-places.json src/data/bereikbaarheid-routes.json; then
+            echo "Geen wijzigingen in places.json, bereikbaarheid-places.json of bereikbaarheid-routes.json"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/data/places.json src/data/bereikbaarheid-places.json
-          git commit -m "chore: ververs places.json en bereikbaarheid-places.json"
+          git add src/data/places.json src/data/bereikbaarheid-places.json src/data/bereikbaarheid-routes.json
+          git commit -m "chore: ververs places.json, bereikbaarheid-places.json en bereikbaarheid-routes.json"
           git push
