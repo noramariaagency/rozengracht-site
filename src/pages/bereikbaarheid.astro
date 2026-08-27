@@ -34,11 +34,11 @@ const routes = [
   },
 ];
 
-// Vaste bereikbaarheids-POI's op de kaart hieronder — de "Lopend"- en
-// "Fiets"-kaartjes beschrijven een route, geen losse locatie, dus die
-// hebben bewust geen eigen pin (klikken erop toont gewoon weer alles).
-// Locatiedata komt uit src/data/bereikbaarheid-places.json, gevuld door
-// dezelfde "Places verversen" GitHub Action als de ondernemers-pins (zie
+// Vaste bereikbaarheids-POI's op de kaart hieronder — de "Fiets"-kaartje
+// beschrijft een route, geen losse locatie, dus dat heeft bewust geen eigen
+// pin (klikken erop toont gewoon weer alles). Locatiedata komt uit
+// src/data/bereikbaarheid-places.json, gevuld door dezelfde "Places
+// verversen" GitHub Action als de ondernemers-pins (zie
 // scripts/fetch-places.mjs) — een POI zonder bekende locatie wordt hier
 // overgeslagen (geen pin verzinnen).
 const poiConfig = [
@@ -54,7 +54,29 @@ const kaartItems = poiConfig
   })
   .filter((x) => x !== null);
 
-const updates = actueleUpdates();
+// Wandelroute voor het "Lopend"-kaartje: Dam → Westermarkt (via de
+// Raadhuisstraat, zoals de tekst hierboven ook beschrijft) → het midden van
+// de Rozengracht. Het laatste punt is geen los opgezochte plek maar
+// hetzelfde vaste centrum-punt waar de kaart standaard op centreert — er is
+// immers geen "eindpunt" van de Rozengracht als plaats. Ontbreekt de
+// Dam-locatie (bv. vóór de eerste "Places verversen"-run), dan wordt er
+// niets getekend in plaats van een verzonnen route.
+const ROZENGRACHT_CENTRUM = { lat: 52.3735, lng: 4.8815 };
+const damPlek = bereikbaarheidPlekken['dam-amsterdam'];
+const westermarktPlek = bereikbaarheidPlekken['tram-westermarkt'];
+const walkRoute =
+  damPlek && damPlek.lat != null && westermarktPlek && westermarktPlek.lat != null
+    ? [
+        { lat: damPlek.lat, lng: damPlek.lng },
+        { lat: westermarktPlek.lat, lng: westermarktPlek.lng },
+        ROZENGRACHT_CENTRUM,
+      ]
+    : null;
+
+// Alleen de meest recente actuele update tonen, bovenaan de pagina — een
+// lijst van alle actieve updates voegde weinig toe zodra er meer dan één
+// tegelijk actief is. actueleUpdates() sorteert al nieuwste eerst.
+const laatsteUpdate = actueleUpdates()[0] ?? null;
 
 function formatDatum(d: Date) {
   return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -65,7 +87,21 @@ function formatDatum(d: Date) {
   <h1>Bereikbaarheid</h1>
   <p class="intro">De Rozengracht loopt van oost naar west door de Jordaan en is vanuit alle richtingen goed te bereiken.</p>
 
-  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} />}
+  <section class="updates-section">
+    {laatsteUpdate ? (
+      <div class="update-card">
+        <div class="update-periode">
+          {formatDatum(laatsteUpdate.vanaf)}{laatsteUpdate.tot ? ` – ${formatDatum(laatsteUpdate.tot)}` : ' – tot nader order'}
+        </div>
+        <h2>{laatsteUpdate.titel}</h2>
+        <p>{laatsteUpdate.tekst}</p>
+      </div>
+    ) : (
+      <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
+    )}
+  </section>
+
+  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} walkRoute={walkRoute} />}
 
   <div class="routes-grid" data-filters role="group" aria-label="Filter op vervoerswijze">
     {routes.map((route) => (
@@ -78,25 +114,6 @@ function formatDatum(d: Date) {
       </button>
     ))}
   </div>
-
-  <section class="updates-section">
-    <h2>Actuele updates</h2>
-    {updates.length > 0 ? (
-      <div class="updates-list">
-        {updates.map((update) => (
-          <div class="update-card">
-            <div class="update-periode">
-              {formatDatum(update.vanaf)}{update.tot ? ` – ${formatDatum(update.tot)}` : ' – tot nader order'}
-            </div>
-            <h3>{update.titel}</h3>
-            <p>{update.tekst}</p>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
-    )}
-  </section>
 </BaseLayout>
 
 <script is:inline>
@@ -169,8 +186,6 @@ function formatDatum(d: Date) {
   .route-card p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
 
   .updates-section { margin-top: var(--space-lg); }
-  .updates-section h2 { font-size: 1.3rem; margin-bottom: var(--space-md); }
-  .updates-list { display: flex; flex-direction: column; gap: var(--space-sm); }
   .update-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -187,7 +202,7 @@ function formatDatum(d: Date) {
     color: var(--ochre);
     margin-bottom: 8px;
   }
-  .update-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .update-card h2 { font-size: 1.05rem; margin-bottom: 6px; }
   .update-card p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
   .geen-updates {
     color: var(--ink-soft);

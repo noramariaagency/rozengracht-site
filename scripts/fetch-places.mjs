@@ -1,14 +1,14 @@
 // Haalt voor elke ondernemer met een huisnummer de locatie + openingstijden
 // op via de Places API (New) Text Search, en schrijft het resultaat naar
 // src/data/places.json. Ververst daarnaast ook een kleine vaste lijst
-// bereikbaarheids-POI's (parkeergarage + tramhaltes) naar
-// src/data/bereikbaarheid-places.json — zelfde API, zelfde reden om dit
-// hier te doen i.p.v. in de gewone build (zie hieronder). Dit script draait
-// NIET tijdens de normale build (die blijft snel en heeft geen live
-// Google-afhankelijkheid) maar alleen via de aparte "Places verversen"
-// GitHub Action (handmatig of periodiek), zodat de kosten voorspelbaar
-// blijven en een gewone content-only build nooit een externe API nodig
-// heeft.
+// bereikbaarheids-POI's (parkeergarage, tramhaltes, Dam als startpunt van
+// de wandelroute) naar src/data/bereikbaarheid-places.json — zelfde API,
+// zelfde reden om dit hier te doen i.p.v. in de gewone build (zie
+// hieronder). Dit script draait NIET tijdens de normale build (die blijft
+// snel en heeft geen live Google-afhankelijkheid) maar alleen via de
+// aparte "Places verversen" GitHub Action (handmatig of periodiek), zodat
+// de kosten voorspelbaar blijven en een gewone content-only build nooit
+// een externe API nodig heeft.
 //
 // Vereist: env var GOOGLE_PLACES_API_KEY (alleen server-side, nooit in de
 // client-bundel — zie de restricted key in Google Cloud Console).
@@ -37,11 +37,16 @@ const ROZENGRACHT_CENTRUM = { latitude: 52.3735, longitude: 4.8815 };
 // Vaste, kleine lijst — geen ondernemer, dus los van de map hierboven.
 // Namen/adressen zijn vooraf handmatig geverifieerd (Q-Park-website +
 // Google Maps) zodat de zoekopdracht zelf al zo precies mogelijk is; de
-// locationBias hierboven is de tweede vangrail.
+// locationBias hierboven is de tweede vangrail. "dam-amsterdam" is geen
+// bereikbaarheids-POI met een eigen pin, maar het startpunt van de
+// wandelroute op het "Lopend"-kaartje (zie BereikbaarheidKaart.astro) —
+// zelfde bron, dus hier meegenomen i.p.v. een handmatig getranscribeerd
+// coördinaat.
 const BEREIKBAARHEID_POIS = [
   { key: 'parkeergarage-marnix', query: 'Q-Park Europarking, Marnixstraat 250, Amsterdam' },
   { key: 'tram-westermarkt', query: 'Tramhalte Westermarkt, Amsterdam' },
   { key: 'tram-marnixstraat', query: 'Tramhalte Marnixstraat/Rozengracht, Amsterdam' },
+  { key: 'dam-amsterdam', query: 'Dam, Amsterdam' },
 ];
 
 // Google's dag-index (0 = zondag ... 6 = zaterdag) naar onze eigen ma..zo-sleutels

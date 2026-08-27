@@ -34,13 +34,13 @@ const routes = [
   },
 ];
 
-// Fixed getting-there POIs shown on the map below — the "On foot" and "By
-// bike" cards describe a route rather than a single location, so they
-// deliberately have no pin of their own (clicking them just shows every POI
-// again). Location data comes from src/data/bereikbaarheid-places.json,
-// filled by the same "Places verversen" GitHub Action as the ondernemer
-// pins (see scripts/fetch-places.mjs) — a POI without a known location is
-// skipped here (never invent a pin).
+// Fixed getting-there POIs shown on the map below — the "By bike" card
+// describes a route rather than a single location, so it deliberately has
+// no pin of its own (clicking it just shows every POI again). Location
+// data comes from src/data/bereikbaarheid-places.json, filled by the same
+// "Places verversen" GitHub Action as the ondernemer pins (see
+// scripts/fetch-places.mjs) — a POI without a known location is skipped
+// here (never invent a pin).
 const poiConfig = [
   { key: 'parkeergarage-marnix', naam: 'Marnix parking garage', vervoerswijze: 'auto' },
   { key: 'tram-westermarkt', naam: 'Westermarkt tram stop', vervoerswijze: 'ov' },
@@ -54,7 +54,29 @@ const kaartItems = poiConfig
   })
   .filter((x) => x !== null);
 
-const updates = actueleUpdates();
+// Walking route for the "On foot" card: Dam Square → Westermarkt (via
+// Raadhuisstraat, as described above) → the middle of the Rozengracht. The
+// last point isn't a separately looked-up place but the same fixed centre
+// point the map defaults to — there's no single "endpoint" place for the
+// Rozengracht itself. If the Dam location is missing (e.g. before the
+// first "Places verversen" run), nothing is drawn instead of an invented
+// route.
+const ROZENGRACHT_CENTRUM = { lat: 52.3735, lng: 4.8815 };
+const damPlek = bereikbaarheidPlekken['dam-amsterdam'];
+const westermarktPlek = bereikbaarheidPlekken['tram-westermarkt'];
+const walkRoute =
+  damPlek && damPlek.lat != null && westermarktPlek && westermarktPlek.lat != null
+    ? [
+        { lat: damPlek.lat, lng: damPlek.lng },
+        { lat: westermarktPlek.lat, lng: westermarktPlek.lng },
+        ROZENGRACHT_CENTRUM,
+      ]
+    : null;
+
+// Only show the most recent active update, at the top of the page — a list
+// of every active update added little once more than one is active at the
+// same time. actueleUpdates() already sorts newest first.
+const laatsteUpdate = actueleUpdates()[0] ?? null;
 
 function formatDatum(d: Date) {
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -65,7 +87,21 @@ function formatDatum(d: Date) {
   <h1>Getting there</h1>
   <p class="intro">The Rozengracht runs east to west through the Jordaan and is easy to reach from every direction.</p>
 
-  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} />}
+  <section class="updates-section">
+    {laatsteUpdate ? (
+      <div class="update-card">
+        <div class="update-periode">
+          {formatDatum(laatsteUpdate.vanaf)}{laatsteUpdate.tot ? ` – ${formatDatum(laatsteUpdate.tot)}` : ' – until further notice'}
+        </div>
+        <h2>{laatsteUpdate.titel_en}</h2>
+        <p>{laatsteUpdate.tekst_en}</p>
+      </div>
+    ) : (
+      <p class="geen-updates">Nothing to report right now: the Rozengracht is accessible as usual.</p>
+    )}
+  </section>
+
+  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} walkRoute={walkRoute} />}
 
   <div class="routes-grid" data-filters role="group" aria-label="Filter by transport mode">
     {routes.map((route) => (
@@ -78,25 +114,6 @@ function formatDatum(d: Date) {
       </button>
     ))}
   </div>
-
-  <section class="updates-section">
-    <h2>Current updates</h2>
-    {updates.length > 0 ? (
-      <div class="updates-list">
-        {updates.map((update) => (
-          <div class="update-card">
-            <div class="update-periode">
-              {formatDatum(update.vanaf)}{update.tot ? ` – ${formatDatum(update.tot)}` : ' – until further notice'}
-            </div>
-            <h3>{update.titel_en}</h3>
-            <p>{update.tekst_en}</p>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p class="geen-updates">Nothing to report right now: the Rozengracht is accessible as usual.</p>
-    )}
-  </section>
 </BaseLayout>
 
 <script is:inline>
@@ -169,8 +186,6 @@ function formatDatum(d: Date) {
   .route-card p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
 
   .updates-section { margin-top: var(--space-lg); }
-  .updates-section h2 { font-size: 1.3rem; margin-bottom: var(--space-md); }
-  .updates-list { display: flex; flex-direction: column; gap: var(--space-sm); }
   .update-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -187,7 +202,7 @@ function formatDatum(d: Date) {
     color: var(--ochre);
     margin-bottom: 8px;
   }
-  .update-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+  .update-card h2 { font-size: 1.05rem; margin-bottom: 6px; }
   .update-card p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
   .geen-updates {
     color: var(--ink-soft);

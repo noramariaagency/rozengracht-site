@@ -43,8 +43,12 @@ export const updates: BereikbaarheidUpdate[] = [
   },
 ];
 
+// Nieuwste eerst (op "vanaf") — de bereikbaarheidspagina toont alleen de
+// allerlaatste actuele update, dus alleen de sortering hier bepaalt welke
+// dat is. Eerdere (nog actieve) updates blijven in de lijst bestaan voor
+// als de nieuwste ooit verwijderd wordt, maar worden niet meer los getoond.
 export function actueleUpdates(vandaag: Date = new Date()) {
   return updates
     .filter((u) => !u.tot || u.tot >= vandaag)
-    .sort((a, b) => a.vanaf.valueOf() - b.vanaf.valueOf());
+    .sort((a, b) => b.vanaf.valueOf() - a.vanaf.valueOf());
 }
