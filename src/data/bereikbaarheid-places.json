@@ -1,1 +1,23 @@
-{}
+{
+  "parkeergarage-marnix": {
+    "placeId": "ChIJfeFWyt0JxkcRyAdjyt_zGdg",
+    "naamGevonden": "Q-Park Europarking",
+    "lat": 52.370070999999996,
+    "lng": 4.877091,
+    "fetchedAt": "2026-08-27T07:41:44.083Z"
+  },
+  "tram-westermarkt": {
+    "placeId": "ChIJVT6O68QJxkcR1GJsgXt5tfk",
+    "naamGevonden": "Westermarkt",
+    "lat": 52.3740047,
+    "lng": 4.8841285999999995,
+    "fetchedAt": "2026-08-27T07:41:44.428Z"
+  },
+  "tram-marnixstraat": {
+    "placeId": "ChIJY8wqBNwJxkcRNjc4j8X0-kI",
+    "naamGevonden": "Amsterdam, Marnixstraat",
+    "lat": 52.3723958,
+    "lng": 4.8764493,
+    "fetchedAt": "2026-08-27T07:41:44.772Z"
+  }
+}
