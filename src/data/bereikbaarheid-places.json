@@ -4,28 +4,28 @@
     "naamGevonden": "Q-Park Europarking",
     "lat": 52.370070999999996,
     "lng": 4.877091,
-    "fetchedAt": "2026-08-27T12:25:13.391Z"
+    "fetchedAt": "2026-08-27T12:30:43.566Z"
   },
   "tram-westermarkt": {
     "placeId": "ChIJVT6O68QJxkcR1GJsgXt5tfk",
     "naamGevonden": "Westermarkt",
     "lat": 52.3740047,
     "lng": 4.8841285999999995,
-    "fetchedAt": "2026-08-27T12:25:13.742Z"
+    "fetchedAt": "2026-08-27T12:30:43.906Z"
   },
   "tram-marnixstraat": {
     "placeId": "ChIJY8wqBNwJxkcRNjc4j8X0-kI",
     "naamGevonden": "Amsterdam, Marnixstraat",
     "lat": 52.3723958,
     "lng": 4.8764493,
-    "fetchedAt": "2026-08-27T12:25:14.135Z"
+    "fetchedAt": "2026-08-27T12:30:44.257Z"
   },
   "dam-amsterdam": {
     "placeId": "ChIJ7xRLO8cJxkcRctLO4sffhn4",
     "naamGevonden": "Dam",
     "lat": 52.3730701,
     "lng": 4.8926473,
-    "fetchedAt": "2026-08-27T12:25:14.500Z"
+    "fetchedAt": "2026-08-27T12:30:44.634Z"
   },
   "raadhuisstraat-amsterdam": {
     "placeId": "ChIJF2PiFcQJxkcR-y9GHVH1Xoc",
@@ -39,7 +39,7 @@
     "naamGevonden": "Rozengracht",
     "lat": 52.3729638,
     "lng": 4.878705,
-    "fetchedAt": "2026-08-27T12:25:14.790Z"
+    "fetchedAt": "2026-08-27T12:30:44.937Z"
   },
   "ov-ChIJXRoxsQJxkcRI": {
     "placeId": "ChIJ_XRoxsQJxkcRI6n38Y2u-NQ",
@@ -55,7 +55,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:14.996Z"
+    "fetchedAt": "2026-08-27T12:30:45.162Z"
   },
   "ov-ChIJm2xmBNwJxkcR": {
     "placeId": "ChIJm2xmBNwJxkcRiF5OmseNM6g",
@@ -71,7 +71,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.395Z"
   },
   "ov-ChIJN7KdAdwJxkcR": {
     "placeId": "ChIJN7KdAdwJxkcRJ7kAYbs9dto",
@@ -87,7 +87,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.395Z"
   },
   "ov-ChIJzXtkpt4JxkcR": {
     "placeId": "ChIJzXtkpt4JxkcRTzdZlW-ofPs",
@@ -103,7 +103,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   },
   "ov-ChIJ7x8NHNwJxkcR": {
     "placeId": "ChIJ7x8NHNwJxkcRlz8UY2Q2F_Q",
@@ -113,14 +113,14 @@
     "vervoerswijze": "ov",
     "types": [
       "transit_stop",
-      "tram_stop",
       "bus_stop",
+      "tram_stop",
       "transit_station",
       "transportation_service",
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   },
   "ov-ChIJfeAMHNwJxkcR": {
     "placeId": "ChIJfeAMHNwJxkcRqimCiuN804o",
@@ -136,7 +136,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   },
   "ov-ChIJAyiAdwJxkcRM": {
     "placeId": "ChIJAy_iAdwJxkcRMUE2QkqGinA",
@@ -152,7 +152,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   },
   "ov-ChIJk6eaHNwJxkcR": {
     "placeId": "ChIJk6eaHNwJxkcRoa0tp5Z4FCo",
@@ -168,7 +168,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   },
   "ov-ChIJbxNANwJxkcRf": {
     "placeId": "ChIJb_xNANwJxkcRfX5vh5t7img",
@@ -184,6 +184,6 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T12:25:15.203Z"
+    "fetchedAt": "2026-08-27T12:30:45.396Z"
   }
 }
