@@ -4,27 +4,186 @@
     "naamGevonden": "Q-Park Europarking",
     "lat": 52.370070999999996,
     "lng": 4.877091,
-    "fetchedAt": "2026-08-27T09:01:16.412Z"
+    "fetchedAt": "2026-08-27T10:41:59.191Z"
   },
   "tram-westermarkt": {
     "placeId": "ChIJVT6O68QJxkcR1GJsgXt5tfk",
     "naamGevonden": "Westermarkt",
     "lat": 52.3740047,
     "lng": 4.8841285999999995,
-    "fetchedAt": "2026-08-27T09:01:16.750Z"
+    "fetchedAt": "2026-08-27T10:41:59.559Z"
   },
   "tram-marnixstraat": {
     "placeId": "ChIJY8wqBNwJxkcRNjc4j8X0-kI",
     "naamGevonden": "Amsterdam, Marnixstraat",
     "lat": 52.3723958,
     "lng": 4.8764493,
-    "fetchedAt": "2026-08-27T09:01:17.104Z"
+    "fetchedAt": "2026-08-27T10:41:59.947Z"
   },
   "dam-amsterdam": {
     "placeId": "ChIJ7xRLO8cJxkcRctLO4sffhn4",
     "naamGevonden": "Dam",
     "lat": 52.3730701,
     "lng": 4.8926473,
-    "fetchedAt": "2026-08-27T09:01:17.480Z"
+    "fetchedAt": "2026-08-27T10:42:00.304Z"
+  },
+  "raadhuisstraat-amsterdam": {
+    "placeId": "ChIJF2PiFcQJxkcR-y9GHVH1Xoc",
+    "naamGevonden": "Raadhuisstraat",
+    "lat": 52.3733988,
+    "lng": 4.8877873,
+    "fetchedAt": "2026-08-27T10:42:00.612Z"
+  },
+  "rozengracht-straat": {
+    "placeId": "ChIJX5L8htsJxkcRymycKyKTq_I",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.3729638,
+    "lng": 4.878705,
+    "fetchedAt": "2026-08-27T10:42:00.951Z"
+  },
+  "ov-ChIJXRoxsQJxkcRI": {
+    "placeId": "ChIJ_XRoxsQJxkcRI6n38Y2u-NQ",
+    "naamGevonden": "Westermarkt",
+    "lat": 52.3741031,
+    "lng": 4.8836347,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.189Z"
+  },
+  "ov-ChIJm2xmBNwJxkcR": {
+    "placeId": "ChIJm2xmBNwJxkcRiF5OmseNM6g",
+    "naamGevonden": "Marnixstraat",
+    "lat": 52.3723307,
+    "lng": 4.8762072,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJN7KdAdwJxkcR": {
+    "placeId": "ChIJN7KdAdwJxkcRJ7kAYbs9dto",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.3725726,
+    "lng": 4.8758186,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJzXtkpt4JxkcR": {
+    "placeId": "ChIJzXtkpt4JxkcRTzdZlW-ofPs",
+    "naamGevonden": "Amsterdam, Marnixstraat",
+    "lat": 52.37202,
+    "lng": 4.87521,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJ7x8NHNwJxkcR": {
+    "placeId": "ChIJ7x8NHNwJxkcRlz8UY2Q2F_Q",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.3719055,
+    "lng": 4.8759548,
+    "vervoerswijze": "ov",
+    "types": [
+      "transit_stop",
+      "tram_stop",
+      "bus_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJfeAMHNwJxkcR": {
+    "placeId": "ChIJfeAMHNwJxkcRqimCiuN804o",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.37188,
+    "lng": 4.875910000000001,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJAyiAdwJxkcRM": {
+    "placeId": "ChIJAy_iAdwJxkcRMUE2QkqGinA",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.37254000000001,
+    "lng": 4.87566,
+    "vervoerswijze": "ov",
+    "types": [
+      "tram_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJk6eaHNwJxkcR": {
+    "placeId": "ChIJk6eaHNwJxkcRoa0tp5Z4FCo",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.372012999999995,
+    "lng": 4.87592,
+    "vervoerswijze": "ov",
+    "types": [
+      "bus_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
+  },
+  "ov-ChIJbxNANwJxkcRf": {
+    "placeId": "ChIJb_xNANwJxkcRfX5vh5t7img",
+    "naamGevonden": "Rozengracht",
+    "lat": 52.372659999999996,
+    "lng": 4.87582,
+    "vervoerswijze": "ov",
+    "types": [
+      "bus_stop",
+      "transit_stop",
+      "transit_station",
+      "transportation_service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "fetchedAt": "2026-08-27T10:42:01.433Z"
   }
 }
