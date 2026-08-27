@@ -4,28 +4,28 @@
     "naamGevonden": "Q-Park Europarking",
     "lat": 52.370070999999996,
     "lng": 4.877091,
-    "fetchedAt": "2026-08-27T10:41:59.191Z"
+    "fetchedAt": "2026-08-27T12:22:39.183Z"
   },
   "tram-westermarkt": {
     "placeId": "ChIJVT6O68QJxkcR1GJsgXt5tfk",
     "naamGevonden": "Westermarkt",
     "lat": 52.3740047,
     "lng": 4.8841285999999995,
-    "fetchedAt": "2026-08-27T10:41:59.559Z"
+    "fetchedAt": "2026-08-27T12:22:39.523Z"
   },
   "tram-marnixstraat": {
     "placeId": "ChIJY8wqBNwJxkcRNjc4j8X0-kI",
     "naamGevonden": "Amsterdam, Marnixstraat",
     "lat": 52.3723958,
     "lng": 4.8764493,
-    "fetchedAt": "2026-08-27T10:41:59.947Z"
+    "fetchedAt": "2026-08-27T12:22:39.878Z"
   },
   "dam-amsterdam": {
     "placeId": "ChIJ7xRLO8cJxkcRctLO4sffhn4",
     "naamGevonden": "Dam",
     "lat": 52.3730701,
     "lng": 4.8926473,
-    "fetchedAt": "2026-08-27T10:42:00.304Z"
+    "fetchedAt": "2026-08-27T12:22:40.247Z"
   },
   "raadhuisstraat-amsterdam": {
     "placeId": "ChIJF2PiFcQJxkcR-y9GHVH1Xoc",
@@ -39,7 +39,7 @@
     "naamGevonden": "Rozengracht",
     "lat": 52.3729638,
     "lng": 4.878705,
-    "fetchedAt": "2026-08-27T10:42:00.951Z"
+    "fetchedAt": "2026-08-27T12:22:40.562Z"
   },
   "ov-ChIJXRoxsQJxkcRI": {
     "placeId": "ChIJ_XRoxsQJxkcRI6n38Y2u-NQ",
@@ -55,7 +55,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.189Z"
+    "fetchedAt": "2026-08-27T12:22:40.803Z"
   },
   "ov-ChIJm2xmBNwJxkcR": {
     "placeId": "ChIJm2xmBNwJxkcRiF5OmseNM6g",
@@ -71,7 +71,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJN7KdAdwJxkcR": {
     "placeId": "ChIJN7KdAdwJxkcRJ7kAYbs9dto",
@@ -87,7 +87,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJzXtkpt4JxkcR": {
     "placeId": "ChIJzXtkpt4JxkcRTzdZlW-ofPs",
@@ -103,7 +103,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJ7x8NHNwJxkcR": {
     "placeId": "ChIJ7x8NHNwJxkcRlz8UY2Q2F_Q",
@@ -120,7 +120,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJfeAMHNwJxkcR": {
     "placeId": "ChIJfeAMHNwJxkcRqimCiuN804o",
@@ -136,7 +136,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJAyiAdwJxkcRM": {
     "placeId": "ChIJAy_iAdwJxkcRMUE2QkqGinA",
@@ -152,7 +152,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJk6eaHNwJxkcR": {
     "placeId": "ChIJk6eaHNwJxkcRoa0tp5Z4FCo",
@@ -168,7 +168,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   },
   "ov-ChIJbxNANwJxkcRf": {
     "placeId": "ChIJb_xNANwJxkcRfX5vh5t7img",
@@ -184,6 +184,6 @@
       "point_of_interest",
       "establishment"
     ],
-    "fetchedAt": "2026-08-27T10:42:01.433Z"
+    "fetchedAt": "2026-08-27T12:22:41.052Z"
   }
 }
