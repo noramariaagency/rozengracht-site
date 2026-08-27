@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FotoFallback from '../components/FotoFallback.astro';
+import OndernemersKaart from '../components/OndernemersKaart.astro';
+import plekken from '../data/places.json';
 import ContentCard from '../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -92,6 +94,24 @@ const citaten = alleOndernemers
   .map((o) => ({ naam: o.data.naam, quote: o.data.quote_nl }));
 
 const categorieen = Object.entries(categorieLabels);
+// Kaart in de CTA-sectie hieronder: dezelfde ondernemers-locaties als
+// op de ondernemers-overzichtspagina, alleen wie een bekende locatie
+// heeft (uit places.json) krijgt een pin.
+const kaartItems = alleOndernemers
+  .map((o) => {
+    const plek = plekken[o.slug];
+    if (!plek || plek.lat == null || plek.lng == null) return null;
+    return {
+      slug: o.slug,
+      naam: o.data.naam,
+      categorie: o.data.categorie,
+      lat: plek.lat,
+      lng: plek.lng,
+      href: getRelativeLocaleUrl(lang, `ondernemers/${o.slug}/`),
+    };
+  })
+  .filter((x) => x !== null);
+
 ---
 <BaseLayout title="Home" fullBleed lang={lang}>
   <!-- Visueel verborgen h1: de homepage heeft geen zichtbare hero-titel in het
@@ -236,26 +256,38 @@ const categorieen = Object.entries(categorieLabels);
       </div>
 
       <div class="sub-section cta-card">
-        <div class="cta-map reveal-item">
-          <iframe
-            src="https://www.google.com/maps?q=Rozengracht,+Amsterdam&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Kaart van de Rozengracht, Amsterdam"
-          ></iframe>
-        </div>
+        <OndernemersKaart items={kaartItems} variant="cta" class="reveal-item" />
         <div class="cta-card-text reveal-item">
           <span class="eyebrow">Alles op één plek</span>
           <h2>Bekijk alle ondernemers op de kaart</h2>
-          <div class="categories">
+          <div class="categories" data-filters role="group" aria-label="Filter op categorie">
+            <button type="button" class="chip filter-btn is-active" data-cat="alle" aria-pressed="true">Alles</button>
             {categorieen.map(([key, label]) => (
-              <span class="chip">{label}</span>
+              <button type="button" class="chip filter-btn" data-cat={key} aria-pressed="false">{label}</button>
             ))}
           </div>
           <a class="btn" href={getRelativeLocaleUrl(lang, 'ondernemers')}>Alle ondernemers bekijken</a>
         </div>
       </div>
     </div>
+
+    <script is:inline>
+      // is:inline i.p.v. een gehoiste module-script, zelfde reden als
+      // elders in deze codebase. Zet alleen de actieve-knop-styling om;
+      // het filteren van de kaart zelf gebeurt in OndernemersKaart.astro,
+      // die naar dezelfde [data-filters] .filter-btn clicks luistert.
+      var ctaFilterBar = document.querySelector('.cta-card [data-filters]');
+      ctaFilterBar && ctaFilterBar.addEventListener('click', (e) => {
+        var btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        ctaFilterBar.querySelectorAll('.filter-btn').forEach((b) => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    </script>
   </section>
 </BaseLayout>
 
@@ -428,11 +460,19 @@ const categorieen = Object.entries(categorieLabels);
   .chip {
     font-size: 0.82rem;
     font-weight: 500;
+    font-family: var(--font-body);
     border: 1px solid rgba(255, 255, 255, 0.22);
     background: rgba(255, 255, 255, 0.08);
     padding: 7px 15px;
     border-radius: 100px;
     color: #fbfaf7;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .chip.is-active {
+    background: #fbfaf7;
+    color: var(--green-deep);
+    border-color: #fbfaf7;
   }
   .cta-card { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
   @media (max-width: 760px) {
@@ -440,14 +480,6 @@ const categorieen = Object.entries(categorieLabels);
   }
   .cta-card h2 { font-size: 1.7rem; margin: 8px 0 16px; color: #fbfaf7; }
   .cta-card .eyebrow { color: var(--rose); }
-  .cta-map {
-    position: relative;
-    aspect-ratio: 4/3;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
-  }
-  .cta-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .btn {
     display: inline-block;
     background: #fbfaf7;

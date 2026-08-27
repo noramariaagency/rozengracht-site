@@ -8,8 +8,13 @@
 // bekende locatie worden hier gewoon overgeslagen (geen pin verzinnen).
 export interface Props {
   items: { slug: string; naam: string; categorie: string; lat: number; lng: number; href: string }[];
+  // 'cta' = donkere call-to-action-sectie op de homepage (andere
+  // beeldverhouding/rand dan het standaard gebruik op de
+  // ondernemers-overzichtspagina's).
+  variant?: 'standaard' | 'cta';
+  class?: string;
 }
-const { items } = Astro.props;
+const { items, variant = 'standaard', class: className } = Astro.props;
 
 // Referrer-beperkte publieke sleutel (alleen te gebruiken vanaf
 // derozengracht.com / www.derozengracht.com / noramariaagency.github.io) —
@@ -19,7 +24,7 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
 
 <div
   id="ondernemers-kaart"
-  class="locatie-kaart"
+  class:list={['locatie-kaart', variant === 'cta' && 'locatie-kaart--cta', className]}
   data-items={JSON.stringify(items)}
   data-maps-key={MAPS_KEY}
 >
@@ -29,6 +34,12 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
   // is:inline i.p.v. een gehoiste module-script — zelfde reden als elders in
   // deze codebase (blijft ook werken in een file://-preview). Geen
   // TypeScript-syntax hier.
+  //
+  // Let op: dit component kan meerdere keren op dezelfde pagina voorkomen
+  // is (nu) niet het geval, maar de callback-functie werkt globaal via
+  // window.initOndernemersKaart — bij hergebruik zou dit herzien moeten
+  // worden. Voor nu: precies één kaart per pagina (homepage-CTA of
+  // ondernemers-overzicht, nooit beide tegelijk).
   function initOndernemersKaart() {
     var el = document.getElementById('ondernemers-kaart');
     if (!el) return;
@@ -67,9 +78,10 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
 
     map.fitBounds(bounds, 40);
 
-    // Reageert op dezelfde categorie-filterknoppen als de kaartjes-grid
-    // eronder — apart luisterend event i.p.v. de bestaande listener
-    // aanpassen, zodat kaart en grid onafhankelijk van elkaar blijven werken.
+    // Reageert op dezelfde categorie-filterknoppen als de kaartjes-grid (of
+    // de chips in de CTA-sectie op de homepage) eronder — apart luisterend
+    // event i.p.v. de bestaande listener aanpassen, zodat kaart en
+    // grid/chips onafhankelijk van elkaar blijven werken.
     var filterBar = document.querySelector('[data-filters]');
     filterBar && filterBar.addEventListener('click', function (e) {
       var btn = e.target.closest('.filter-btn');
@@ -105,5 +117,13 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
     overflow: hidden;
     box-shadow: inset 0 0 0 1px var(--color-border);
     margin: var(--space-md) 0;
+  }
+  /* CTA-variant op de homepage: donkere sectie, dus lichte rand i.p.v.
+     --color-border, en dezelfde 4/3-verhouding als de oude platte
+     iframe-embed die dit vervangt. */
+  .locatie-kaart--cta {
+    aspect-ratio: 4/3;
+    margin: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
   }
 </style>
