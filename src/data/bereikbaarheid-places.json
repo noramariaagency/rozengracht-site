@@ -4,20 +4,27 @@
     "naamGevonden": "Q-Park Europarking",
     "lat": 52.370070999999996,
     "lng": 4.877091,
-    "fetchedAt": "2026-08-27T07:41:44.083Z"
+    "fetchedAt": "2026-08-27T09:01:16.412Z"
   },
   "tram-westermarkt": {
     "placeId": "ChIJVT6O68QJxkcR1GJsgXt5tfk",
     "naamGevonden": "Westermarkt",
     "lat": 52.3740047,
     "lng": 4.8841285999999995,
-    "fetchedAt": "2026-08-27T07:41:44.428Z"
+    "fetchedAt": "2026-08-27T09:01:16.750Z"
   },
   "tram-marnixstraat": {
     "placeId": "ChIJY8wqBNwJxkcRNjc4j8X0-kI",
     "naamGevonden": "Amsterdam, Marnixstraat",
     "lat": 52.3723958,
     "lng": 4.8764493,
-    "fetchedAt": "2026-08-27T07:41:44.772Z"
+    "fetchedAt": "2026-08-27T09:01:17.104Z"
+  },
+  "dam-amsterdam": {
+    "placeId": "ChIJ7xRLO8cJxkcRctLO4sffhn4",
+    "naamGevonden": "Dam",
+    "lat": 52.3730701,
+    "lng": 4.8926473,
+    "fetchedAt": "2026-08-27T09:01:17.480Z"
   }
 }
