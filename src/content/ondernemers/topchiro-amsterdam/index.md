@@ -4,13 +4,6 @@ huisnummer: "217"
 categorie: "gezondheid-wellness"
 subcategorie: "Chiropractie"
 website: "https://topchiro.nl/chiropractor-amsterdam/"
-openingstijden:
-  ma: "08:30-12:00, 16:00-19:00"
-  di: "08:30-12:00, 16:00-19:00"
-  wo: "08:30-12:00, 16:00-19:00"
-  do: "08:30-12:00, 16:00-19:00"
-  vr: "08:30-12:00, 16:00-19:00"
-  za: "08:30-12:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

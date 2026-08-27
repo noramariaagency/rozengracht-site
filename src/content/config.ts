@@ -80,6 +80,23 @@ const nieuws = defineCollection({
       datum: z.coerce.date(),
       tekst_nl: z.string(),
       tekst_en: z.string(),
+      // Elk nieuwsbericht hoort bij één categorie — "algemeen" (het
+      // standaard nieuwsoverzicht) of "bereikbaarheid" (wegwerkzaamheden,
+      // evenementen die de straat raken, etc.). Zo kan de
+      // bereikbaarheidspagina hieruit filteren en alleen de meest actuele
+      // bereikbaarheids-update tonen, terwijl /nieuws gewoon alles laat
+      // zien — één contentmodel i.p.v. een apart, met de hand bijgehouden
+      // lijstje ernaast.
+      categorie: z.enum(['algemeen', 'bereikbaarheid']).default('algemeen'),
+      // Einddatum, alleen relevant voor tijdelijke berichten (vooral
+      // categorie "bereikbaarheid", bv. wegwerkzaamheden met een bekend
+      // einde). Ontbreekt "tot", dan blijft het bericht als "actueel"
+      // gelden totdat iemand een einddatum toevoegt of het bericht
+      // verwijdert. Is "tot" wel bekend en inmiddels verstreken, dan
+      // verdwijnt het bericht automatisch uit de "meest actuele
+      // bereikbaarheids-update" op de bereikbaarheidspagina (het blijft wel
+      // gewoon terug te vinden op /nieuws).
+      tot: z.coerce.date().optional(),
       // Koppeling naar een ondernemer, zodat we op de ondernemerspagina kunnen
       // laten zien welk nieuws bij hen hoort. reference() valideert bij het
       // builden dat de opgegeven ondernemer-slug ook echt bestaat.

@@ -4,13 +4,6 @@ huisnummer: "36-38"
 categorie: "winkels"
 subcategorie: "Kunstenaarsmaterialen"
 website: "https://vanderlindewebshop.com"
-openingstijden:
-  ma: "09:30-18:00"
-  di: "09:00-18:00"
-  wo: "09:00-18:00"
-  do: "09:00-18:00"
-  vr: "09:00-18:00"
-  za: "11:00-17:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

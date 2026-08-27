@@ -4,12 +4,6 @@ huisnummer: "214B"
 categorie: "diensten"
 subcategorie: "Reparatie & elektronica"
 website: "https://www.elmerrepairs.com"
-openingstijden:
-  ma: "10:00-18:00"
-  di: "10:00-18:00"
-  wo: "10:00-18:00"
-  do: "10:00-18:00"
-  vr: "10:00-18:00"
 logo: "./logo.png"
 fotos:
   - "./foto_01.jpg"

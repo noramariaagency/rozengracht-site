@@ -2,8 +2,10 @@
 // op via de Places API (New) Text Search, en schrijft het resultaat naar
 // src/data/places.json. Ververst daarnaast ook een kleine vaste lijst
 // bereikbaarheids-POI's (parkeergarage, tramhaltes, Dam als startpunt van
-// de wandelroute) naar src/data/bereikbaarheid-places.json — zelfde API,
-// zelfde reden om dit hier te doen i.p.v. in de gewone build (zie
+// de wandelroute, wegpunten voor de routelijnen) naar
+// src/data/bereikbaarheid-places.json, plus alle tram- en bushaltes binnen
+// 100m van de twee bekende Rozengracht-haltes via een Nearby Search — zelfde
+// API, zelfde reden om dit hier te doen i.p.v. in de gewone build (zie
 // hieronder). Dit script draait NIET tijdens de normale build (die blijft
 // snel en heeft geen live Google-afhankelijkheid) maar alleen via de
 // aparte "Places verversen" GitHub Action (handmatig of periodiek), zodat
@@ -34,19 +36,30 @@ const BEREIKBAARHEID_OUTPUT_PATH = path.join(ROOT, 'src/data/bereikbaarheid-plac
 // gepakt.
 const ROZENGRACHT_CENTRUM = { latitude: 52.3735, longitude: 4.8815 };
 
+// Straal (in meter) waarbinnen een tram- of bushalte nog als "bij de
+// Rozengracht" telt voor de OV-kaart — zie de Nearby Search hieronder.
+const OV_HALTE_STRAAL = 100;
+
 // Vaste, kleine lijst — geen ondernemer, dus los van de map hierboven.
 // Namen/adressen zijn vooraf handmatig geverifieerd (Q-Park-website +
 // Google Maps) zodat de zoekopdracht zelf al zo precies mogelijk is; de
-// locationBias hierboven is de tweede vangrail. "dam-amsterdam" is geen
-// bereikbaarheids-POI met een eigen pin, maar het startpunt van de
-// wandelroute op het "Lopend"-kaartje (zie BereikbaarheidKaart.astro) —
-// zelfde bron, dus hier meegenomen i.p.v. een handmatig getranscribeerd
-// coördinaat.
+// locationBias hierboven is de tweede vangrail.
+//
+// "dam-amsterdam", "raadhuisstraat-amsterdam" en "rozengracht-straat" zijn
+// geen bereikbaarheids-POI's met een eigen pin, maar wegpunten voor de
+// route-lijnen op de kaart (zie BereikbaarheidKaart.astro): de wandelroute
+// Dam -> Raadhuisstraat -> Westermarkt -> Rozengracht, en de korte
+// autoroute Parkeergarage -> Rozengracht. Stuk voor stuk echte, opgehaalde
+// punten i.p.v. een handmatig geschat coördinaat, zodat de lijn niet één
+// kunstmatig rechte diagonaal is maar een paar keer buigt langs de
+// werkelijke straten.
 const BEREIKBAARHEID_POIS = [
   { key: 'parkeergarage-marnix', query: 'Q-Park Europarking, Marnixstraat 250, Amsterdam' },
   { key: 'tram-westermarkt', query: 'Tramhalte Westermarkt, Amsterdam' },
   { key: 'tram-marnixstraat', query: 'Tramhalte Marnixstraat/Rozengracht, Amsterdam' },
   { key: 'dam-amsterdam', query: 'Dam, Amsterdam' },
+  { key: 'raadhuisstraat-amsterdam', query: 'Raadhuisstraat, Amsterdam' },
+  { key: 'rozengracht-straat', query: 'Rozengracht, Amsterdam' },
 ];
 
 // Google's dag-index (0 = zondag ... 6 = zaterdag) naar onze eigen ma..zo-sleutels
@@ -93,6 +106,33 @@ async function zoekPlaats(query, locationBias) {
   }
   const data = await res.json();
   return data.places?.[0] ?? null;
+}
+
+// Nearby Search i.p.v. Text Search: hiermee vragen we Google letterlijk
+// "welke halte-achtige plekken liggen er binnen X meter van dit punt" i.p.v.
+// zelf te moeten raden welke tram/bushaltes er allemaal in de buurt zijn.
+// Dat is de enige manier om "alle haltes binnen 100m" te tonen zonder ze
+// met de hand te verzinnen of te missen.
+async function zoekDichtbij(center, straal, types) {
+  const res = await fetch('https://places.googleapis.com/v1/places:searchNearby', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'places.id,places.location,places.displayName,places.types',
+    },
+    body: JSON.stringify({
+      includedTypes: types,
+      maxResultCount: 20,
+      locationRestriction: { circle: { center, radius: straal } },
+    }),
+  });
+  if (!res.ok) {
+    const body2 = await res.text();
+    throw new Error(`Places API (nearby) ${res.status}: ${body2.slice(0, 300)}`);
+  }
+  const data = await res.json();
+  return data.places ?? [];
 }
 
 async function verversOndernemers() {
@@ -166,7 +206,15 @@ async function verversBereikbaarheid() {
     // nog geen bestand — start leeg
   }
 
-  const resultaat = { ...bestaand };
+  // Alle vorige "ov-"-sleutels (dynamisch gevonden tram/bushaltes) eerst
+  // weggooien i.p.v. samenvoegen: als een halte inmiddels is verdwenen of
+  // verplaatst, moet 'ie ook uit de site verdwijnen i.p.v. voor altijd te
+  // blijven hangen als "laatst bekende stand".
+  const resultaat = {};
+  for (const [key, waarde] of Object.entries(bestaand)) {
+    if (!key.startsWith('ov-')) resultaat[key] = waarde;
+  }
+
   let opgehaald = 0;
   let mislukt = 0;
 
@@ -195,8 +243,58 @@ async function verversBereikbaarheid() {
     await new Promise((r) => setTimeout(r, 150));
   }
 
+  // Alle tram- en bushaltes binnen OV_HALTE_STRAAL meter van de twee
+  // bekende Rozengracht-tramhaltes — dat zijn de twee plekken waar
+  // Rozengracht een kruising heeft en dus waar haltes normaal clusteren.
+  // Eén cirkel rond het midden van de straat zou een straat van ~800m
+  // lang niet dekken; dit dekt in elk geval beide uiteinden echt.
+  const ankerpunten = ['tram-westermarkt', 'tram-marnixstraat']
+    .map((key) => resultaat[key])
+    .filter((plek) => plek && plek.lat != null && plek.lng != null);
+
+  const bekendeIds = new Set(
+    BEREIKBAARHEID_POIS.map((poi) => resultaat[poi.key]?.placeId).filter(Boolean)
+  );
+  const gevondenOvIds = new Set();
+  let ovOpgehaald = 0;
+
+  for (const anker of ankerpunten) {
+    try {
+      const plekken = await zoekDichtbij(
+        { latitude: anker.lat, longitude: anker.lng },
+        OV_HALTE_STRAAL,
+        ['bus_stop', 'tram_stop']
+      );
+      for (const plek of plekken) {
+        if (!plek.id || bekendeIds.has(plek.id) || gevondenOvIds.has(plek.id)) continue;
+        if (plek.location?.latitude == null || plek.location?.longitude == null) continue;
+        gevondenOvIds.add(plek.id);
+        // Sleutel op basis van het Google place-ID (niet op naam): zo krijgt
+        // dezelfde halte bij een volgende run weer dezelfde sleutel i.p.v.
+        // een nieuwe naast de oude te worden.
+        const key = `ov-${plek.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 16)}`;
+        resultaat[key] = {
+          placeId: plek.id,
+          naamGevonden: plek.displayName?.text ?? null,
+          lat: plek.location.latitude,
+          lng: plek.location.longitude,
+          vervoerswijze: 'ov',
+          types: plek.types ?? [],
+          fetchedAt: new Date().toISOString(),
+        };
+        ovOpgehaald++;
+        console.log(`  ok: ${key} -> ${plek.displayName?.text ?? '(geen naam)'}`);
+      }
+    } catch (err) {
+      console.warn(`  mislukt voor haltes rond ${anker.naamGevonden ?? '?'}: ${err.message}`);
+    }
+    await new Promise((r) => setTimeout(r, 150));
+  }
+
   await writeFile(BEREIKBAARHEID_OUTPUT_PATH, JSON.stringify(resultaat, null, 2) + '\n', 'utf-8');
-  console.log(`Bereikbaarheid: ${opgehaald} opgehaald, ${mislukt} mislukt.`);
+  console.log(
+    `Bereikbaarheid: ${opgehaald} opgehaald, ${mislukt} mislukt, ${ovOpgehaald} tram/bushalte(s) binnen ${OV_HALTE_STRAAL}m gevonden.`
+  );
 }
 
 async function main() {

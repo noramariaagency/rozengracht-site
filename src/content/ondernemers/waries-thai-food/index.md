@@ -4,12 +4,6 @@ huisnummer: "235"
 categorie: "eten-drinken"
 subcategorie: "Thais restaurant"
 website: "https://wariethaifood.nl"
-openingstijden:
-  ma: "16:30-22:00"
-  di: "16:30-22:00"
-  wo: "16:30-22:00"
-  do: "16:30-22:00"
-  vr: "16:30-22:30"
 fotos:
   - "./foto_01.png"
   - "./foto_02.png"

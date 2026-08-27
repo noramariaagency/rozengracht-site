@@ -4,12 +4,6 @@ huisnummer: "4"
 categorie: "winkels"
 subcategorie: "Wijnwinkel"
 website: "https://www.alexwijnen.nl/"
-openingstijden:
-  di: "11:00-19:00"
-  wo: "11:00-19:00"
-  do: "11:00-19:00"
-  vr: "11:00-19:00"
-  za: "10:30-18:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

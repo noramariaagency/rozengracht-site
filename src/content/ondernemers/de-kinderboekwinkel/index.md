@@ -4,13 +4,6 @@ huisnummer: "34"
 categorie: "winkels"
 subcategorie: "Kinderboekwinkel"
 website: "https://kinderboekwinkel.nl"
-openingstijden:
-  ma: "10:00-18:00"
-  di: "10:00-18:00"
-  wo: "10:00-18:00"
-  do: "10:00-18:00"
-  vr: "10:00-18:00"
-  za: "10:00-18:00"
 fotos:
   - "./foto_01.png"
   - "./foto_02.png"

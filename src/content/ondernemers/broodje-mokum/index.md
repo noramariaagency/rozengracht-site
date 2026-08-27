@@ -3,13 +3,6 @@ naam: "Broodje Mokum"
 huisnummer: "26"
 categorie: "eten-drinken"
 subcategorie: "Lunchroom"
-openingstijden:
-  ma: "09:00-17:00"
-  di: "09:00-17:00"
-  wo: "09:00-17:00"
-  do: "09:00-17:00"
-  vr: "09:00-17:00"
-  za: "09:00-17:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

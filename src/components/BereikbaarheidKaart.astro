@@ -3,25 +3,26 @@
 // ondernemerspins — apart component van OndernemersKaart.astro omdat de
 // databron en interactie anders zijn: geen link naar een detailpagina, wel
 // filteren per vervoerswijze via dezelfde route-kaartjes die al op de
-// bereikbaarheid-pagina stonden ("Lopend"/"Fiets" hebben geen eigen pin en
-// tonen bij een klik gewoon weer alles — "Lopend" tekent er bovendien de
-// wandelroute Dam → Rozengracht bij, zie walkRoute hieronder). Locatiedata
-// komt uit src/data/bereikbaarheid-places.json, gevuld door dezelfde
-// "Places verversen" GitHub Action als de ondernemers-pins (zie
+// bereikbaarheid-pagina stonden. "Lopend" tekent de wandelroute Dam →
+// Rozengracht, "Met de auto" tekent de korte looproute Parkeergarage →
+// Rozengracht (zie routes hieronder) — "Fiets" heeft geen eigen pin/route en
+// toont bij een klik gewoon weer alles. Locatiedata komt uit
+// src/data/bereikbaarheid-places.json, gevuld door dezelfde "Places
+// verversen" GitHub Action als de ondernemers-pins (zie
 // scripts/fetch-places.mjs) — POI's zonder bekende locatie worden al vóór
 // dit component eruit gefilterd (geen pin verzinnen).
 export interface Props {
   items: { key: string; naam: string; vervoerswijze: 'auto' | 'ov'; lat: number; lng: number }[];
-  // Route Dam → Westermarkt → Rozengracht, alleen getekend als "Lopend"
-  // actief is. Puntenlijst i.p.v. live Directions API: geen extra
-  // Google-afhankelijkheid/kosten in de normale pageload voor een route die
-  // toch al vastligt (zie de tekst bij het "Lopend"-kaartje). Ontbreekt de
-  // data (bv. voordat de Places-actie draaide), dan wordt er niets getekend
-  // — geen route verzinnen.
-  walkRoute?: { lat: number; lng: number }[] | null;
+  // Eén route-lijn per filter-categorie die er een heeft. Puntenlijst i.p.v.
+  // live Directions API: geen extra Google-afhankelijkheid/kosten in de
+  // normale pageload voor routes die toch al vastliggen (zie de tekst bij de
+  // route-kaartjes). Ontbreekt de data voor een categorie (bv. voordat de
+  // Places-actie draaide), dan wordt er voor die categorie niets getekend —
+  // geen route verzinnen.
+  routes?: Partial<Record<'lopend' | 'auto', { lat: number; lng: number }[]>> | null;
   class?: string;
 }
-const { items, walkRoute = null, class: className } = Astro.props;
+const { items, routes = null, class: className } = Astro.props;
 
 // Zelfde publieke, referrer-beperkte sleutel als OndernemersKaart.astro.
 const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
@@ -66,6 +67,15 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
     size: grootte,
   };
 }
+
+// Lijnkleur per route-categorie — "lopend" blijft het bestaande donkergroen
+// (los van de pin-kleuren, want lopen heeft geen eigen pin), "auto" krijgt
+// dezelfde kleur als de parkeergarage-pin zodat de twee zichtbaar bij elkaar
+// horen.
+const ROUTE_KLEUREN: Record<string, string> = {
+  lopend: '#1b3b2f',
+  auto: KLEUREN.auto,
+};
 ---
 
 <div
@@ -73,7 +83,8 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
   class:list={['locatie-kaart', className]}
   data-items={JSON.stringify(items)}
   data-marker-icons={JSON.stringify(markerIcons)}
-  data-walk-route={walkRoute ? JSON.stringify(walkRoute) : ''}
+  data-routes={routes ? JSON.stringify(routes) : ''}
+  data-route-kleuren={JSON.stringify(ROUTE_KLEUREN)}
 >
 </div>
 
@@ -86,7 +97,8 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
     var items = JSON.parse(el.dataset.items || '[]');
     if (items.length === 0) return;
     var iconMap = JSON.parse(el.dataset.markerIcons || '{}');
-    var walkRoute = el.dataset.walkRoute ? JSON.parse(el.dataset.walkRoute) : null;
+    var routes = el.dataset.routes ? JSON.parse(el.dataset.routes) : {};
+    var routeKleuren = JSON.parse(el.dataset.routeKleuren || '{}');
 
     var map = new google.maps.Map(el, {
       center: { lat: 52.3735, lng: 4.8815 },
@@ -119,29 +131,38 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
       markers.push(marker);
     });
 
-    // Wandelroute Dam → Westermarkt → Rozengracht — een gestippelde lijn
-    // i.p.v. een gevulde polyline, zodat die niet aanvoelt als een exacte
-    // navigatie-instructie maar als een schematische aanduiding. Start
-    // onzichtbaar; wordt pas getoond bij een klik op "Lopend" hieronder.
-    var walkPolyline = null;
-    if (walkRoute && walkRoute.length > 1) {
-      walkPolyline = new google.maps.Polyline({
-        path: walkRoute,
+    // Eén gestippelde polyline per route-categorie (bv. "lopend": Dam →
+    // Rozengracht, "auto": Parkeergarage → Rozengracht) i.p.v. een gevulde
+    // lijn, zodat die niet aanvoelt als een exacte navigatie-instructie maar
+    // als een schematische aanduiding. Start onzichtbaar; wordt pas getoond
+    // bij een klik op het bijpassende filter-kaartje hieronder.
+    var routePolylines = {};
+    Object.keys(routes).forEach(function (cat) {
+      var pad = routes[cat];
+      if (!pad || pad.length < 2) return;
+      routePolylines[cat] = new google.maps.Polyline({
+        path: pad,
         map: map,
         visible: false,
         strokeOpacity: 0,
         icons: [
           {
-            icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, strokeColor: '#1b3b2f', strokeWeight: 3, scale: 3 },
+            icon: {
+              path: 'M 0,-1 0,1',
+              strokeOpacity: 1,
+              strokeColor: routeKleuren[cat] || '#1b3b2f',
+              strokeWeight: 3,
+              scale: 3,
+            },
             offset: '0',
             repeat: '14px',
           },
         ],
       });
-    }
+    });
 
     // Past de kaartweergave aan op de zichtbare markers (en eventueel de
-    // wandelroute erbij). Bij precies één zichtbare marker en geen route
+    // actieve route erbij). Bij precies één zichtbare marker en geen route
     // gebruiken we een vaste, redelijke zoom i.p.v. fitBounds — fitBounds op
     // één punt zoomt helemaal tot de maximale zoom (veel te dichtbij op een
     // los pand als de parkeergarage).
@@ -167,9 +188,10 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
     pasKaartAan(markers, null);
 
     // Reageert op dezelfde route-kaartjes eronder. "Fiets" beschrijft een
-    // route zonder eigen pin en toont daarom gewoon weer alle bekende
-    // POI's, net als de andere kaartjes doen voor hun eigen vervoerswijze.
-    // "Lopend" doet hetzelfde, maar tekent er ook de wandelroute bij.
+    // route zonder eigen pin/route-lijn en toont daarom gewoon weer alle
+    // bekende POI's, net als de andere kaartjes doen voor hun eigen
+    // vervoerswijze. "Lopend" en "Met de auto" tonen daarnaast hun eigen
+    // route-lijn, als die er is.
     var filterBar = document.querySelector('[data-filters]');
     filterBar && filterBar.addEventListener('click', function (e) {
       var btn = e.target.closest('.filter-btn');
@@ -182,9 +204,11 @@ for (const [key, iconPath] of Object.entries(ICONEN)) {
         marker.setVisible(zichtbaar);
         if (zichtbaar) zichtbareMarkers.push(marker);
       });
-      var toonRoute = cat === 'lopend' && walkPolyline;
-      if (walkPolyline) walkPolyline.setVisible(!!toonRoute);
-      pasKaartAan(zichtbareMarkers, toonRoute ? walkRoute : null);
+      var actieveRoute = routePolylines[cat] || null;
+      Object.keys(routePolylines).forEach(function (routeCat) {
+        routePolylines[routeCat].setVisible(routeCat === cat);
+      });
+      pasKaartAan(zichtbareMarkers, actieveRoute ? routes[cat] : null);
     });
   }
   window.initBereikbaarheidKaart = initBereikbaarheidKaart;

@@ -4,12 +4,6 @@ huisnummer: "72H"
 categorie: "gezondheid-wellness"
 subcategorie: "Natuurlijke & veganistische cosmetica"
 website: "https://natureskins.nl"
-openingstijden:
-  di: "10:00-17:00"
-  wo: "10:00-17:00"
-  do: "10:00-17:00"
-  vr: "10:00-17:00"
-  za: "10:00-17:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

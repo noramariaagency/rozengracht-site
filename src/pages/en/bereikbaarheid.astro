@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BereikbaarheidKaart from '../../components/BereikbaarheidKaart.astro';
+import ContentCard from '../../components/ContentCard.astro';
 import bereikbaarheidPlekken from '../../data/bereikbaarheid-places.json';
-import { actueleUpdates } from '../../data/bereikbaarheid-updates';
+import { getCollection, getEntry } from 'astro:content';
+import { nieuwsToItem, resolveFoto } from '../../lib/items';
 import type { Lang } from '../../lib/i18n';
 
 const lang: Lang = 'en';
@@ -24,13 +26,13 @@ const routes = [
     titel: 'By car',
     cat: 'auto',
     icoon: '<rect width="18" height="18" x="3" y="3" rx="2" /><path d="M9 17V7h4a3 3 0 0 1 0 6H9" />',
-    tekst: 'Parking on the Rozengracht itself is limited and paid. Parking garage Marnix (Marnixstraat 250) is the nearest garage.',
+    tekst: 'Parking on the Rozengracht itself is limited and paid. Parking garage Marnix (Marnixstraat 250) is the nearest garage — the map below also shows the walking route from there to the Rozengracht.',
   },
   {
     titel: 'By public transport',
     cat: 'ov',
     icoon: '<path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><circle cx="16" cy="18" r="2" />',
-    tekst: 'Trams 13 and 17 stop on the Rozengracht itself, with stops at the Westermarkt and at the Marnixstraat.',
+    tekst: 'Trams 13 and 17 stop on the Rozengracht itself. The map below shows every tram and bus stop on the street and within 100 metres of it.',
   },
 ];
 
@@ -46,7 +48,7 @@ const poiConfig = [
   { key: 'tram-westermarkt', naam: 'Westermarkt tram stop', vervoerswijze: 'ov' },
   { key: 'tram-marnixstraat', naam: 'Marnixstraat tram stop', vervoerswijze: 'ov' },
 ];
-const kaartItems = poiConfig
+const vastePois = poiConfig
   .map((poi) => {
     const plek = bereikbaarheidPlekken[poi.key];
     if (!plek || plek.lat == null || plek.lng == null) return null;
@@ -54,33 +56,75 @@ const kaartItems = poiConfig
   })
   .filter((x) => x !== null);
 
-// Walking route for the "On foot" card: Dam Square → Westermarkt (via
-// Raadhuisstraat, as described above) → the middle of the Rozengracht. The
-// last point isn't a separately looked-up place but the same fixed centre
-// point the map defaults to — there's no single "endpoint" place for the
-// Rozengracht itself. If the Dam location is missing (e.g. before the
-// first "Places verversen" run), nothing is drawn instead of an invented
-// route.
-const ROZENGRACHT_CENTRUM = { lat: 52.3735, lng: 4.8815 };
-const damPlek = bereikbaarheidPlekken['dam-amsterdam'];
-const westermarktPlek = bereikbaarheidPlekken['tram-westermarkt'];
-const walkRoute =
-  damPlek && damPlek.lat != null && westermarktPlek && westermarktPlek.lat != null
-    ? [
-        { lat: damPlek.lat, lng: damPlek.lng },
-        { lat: westermarktPlek.lat, lng: westermarktPlek.lng },
-        ROZENGRACHT_CENTRUM,
-      ]
-    : null;
+// Every dynamically-discovered tram/bus stop within 100m of the Rozengracht
+// (see scripts/fetch-places.mjs, "ov-" keys) — on top of the two fixed tram
+// stops above, so other stops (e.g. buses) also show up on the map without
+// needing to be maintained by hand.
+const dynamischeOvHaltes = Object.entries(bereikbaarheidPlekken)
+  .filter(([key, plek]) => key.startsWith('ov-') && plek && plek.lat != null && plek.lng != null)
+  .map(([key, plek]) => ({
+    key,
+    naam: plek.naamGevonden ?? 'Tram/bus stop',
+    vervoerswijze: 'ov',
+    lat: plek.lat,
+    lng: plek.lng,
+  }));
 
-// Only show the most recent active update, at the top of the page — a list
-// of every active update added little once more than one is active at the
-// same time. actueleUpdates() already sorts newest first.
-const laatsteUpdate = actueleUpdates()[0] ?? null;
+const kaartItems = [...vastePois, ...dynamischeOvHaltes];
 
-function formatDatum(d: Date) {
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+// Waypoints for the two route lines — each a real place fetched via the
+// Places API (see scripts/fetch-places.mjs) rather than a hand-guessed
+// coordinate, so the lines bend a few times along the actual streets
+// instead of being one artificially straight diagonal. If a place is
+// missing (e.g. before the first "Places verversen" run), the
+// corresponding route simply isn't drawn instead of an invented line.
+function heeftLocatie(plek) {
+  return !!plek && plek.lat != null && plek.lng != null;
 }
+function naarPunt(plek) {
+  return { lat: plek.lat, lng: plek.lng };
+}
+
+const damPlek = bereikbaarheidPlekken['dam-amsterdam'];
+const raadhuisstraatPlek = bereikbaarheidPlekken['raadhuisstraat-amsterdam'];
+const westermarktPlek = bereikbaarheidPlekken['tram-westermarkt'];
+const rozengrachtStraatPlek = bereikbaarheidPlekken['rozengracht-straat'];
+const parkeergaragePlek = bereikbaarheidPlekken['parkeergarage-marnix'];
+
+// Walking route for the "On foot" card: Dam Square → Raadhuisstraat →
+// Westermarkt → Rozengracht, as described in the card text above.
+const walkRoute = [damPlek, raadhuisstraatPlek, westermarktPlek, rozengrachtStraatPlek].every(heeftLocatie)
+  ? [damPlek, raadhuisstraatPlek, westermarktPlek, rozengrachtStraatPlek].map(naarPunt)
+  : null;
+
+// Walking route for the "By car" card: Marnix parking garage → start of the
+// Rozengracht, so drivers immediately see how to get from the garage to
+// the street.
+const garageRoute = [parkeergaragePlek, rozengrachtStraatPlek].every(heeftLocatie)
+  ? [parkeergaragePlek, rozengrachtStraatPlek].map(naarPunt)
+  : null;
+
+// Getting-there updates are just news articles with category
+// "bereikbaarheid" (see src/content/config.ts) — here we only show the
+// most recent, active one (a list of every active update added little once
+// more than one is active at the same time). Every getting-there update,
+// including older/expired ones, stays findable on /nieuws.
+const vandaag = new Date();
+const bereikbaarheidBerichten = (await getCollection('nieuws'))
+  .filter((n) => n.data.categorie === 'bereikbaarheid')
+  .filter((n) => !n.data.tot || n.data.tot >= vandaag)
+  .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf());
+const laatsteUpdateEntry = bereikbaarheidBerichten[0] ?? null;
+const laatsteUpdateItem = laatsteUpdateEntry
+  ? nieuwsToItem(
+      laatsteUpdateEntry,
+      laatsteUpdateEntry.data.gerelateerde_ondernemer
+        ? await getEntry(laatsteUpdateEntry.data.gerelateerde_ondernemer)
+        : null,
+      await resolveFoto(laatsteUpdateEntry.data.foto),
+      lang
+    )
+  : null;
 ---
 <BaseLayout title="Getting there" description="How to reach the Rozengracht in Amsterdam: on foot, by bike, by car or by public transport, plus current updates about roadworks and events." lang={lang}>
   <span class="eyebrow">The street</span>
@@ -88,20 +132,14 @@ function formatDatum(d: Date) {
   <p class="intro">The Rozengracht runs east to west through the Jordaan and is easy to reach from every direction.</p>
 
   <section class="updates-section">
-    {laatsteUpdate ? (
-      <div class="update-card">
-        <div class="update-periode">
-          {formatDatum(laatsteUpdate.vanaf)}{laatsteUpdate.tot ? ` – ${formatDatum(laatsteUpdate.tot)}` : ' – until further notice'}
-        </div>
-        <h2>{laatsteUpdate.titel_en}</h2>
-        <p>{laatsteUpdate.tekst_en}</p>
-      </div>
+    {laatsteUpdateItem ? (
+      <ContentCard item={laatsteUpdateItem} variant="compact" />
     ) : (
       <p class="geen-updates">Nothing to report right now: the Rozengracht is accessible as usual.</p>
     )}
   </section>
 
-  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} walkRoute={walkRoute} />}
+  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} routes={{ lopend: walkRoute, auto: garageRoute }} />}
 
   <div class="routes-grid" data-filters role="group" aria-label="Filter by transport mode">
     {routes.map((route) => (
@@ -186,24 +224,6 @@ function formatDatum(d: Date) {
   .route-card p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
 
   .updates-section { margin-top: var(--space-lg); }
-  .update-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-top: 3px solid var(--ochre);
-    border-radius: var(--radius);
-    padding: var(--space-md);
-  }
-  .update-periode {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--ochre);
-    margin-bottom: 8px;
-  }
-  .update-card h2 { font-size: 1.05rem; margin-bottom: 6px; }
-  .update-card p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
   .geen-updates {
     color: var(--ink-soft);
     background: var(--color-surface);

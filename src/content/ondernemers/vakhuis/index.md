@@ -3,12 +3,6 @@ naam: "Vakhuis"
 huisnummer: "218"
 categorie: "winkels"
 subcategorie: "Borduurspecialist"
-openingstijden:
-  ma: "12:00-17:30"
-  di: "12:00-17:30"
-  wo: "12:00-17:30"
-  do: "12:00-17:30"
-  vr: "12:00-17:30"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

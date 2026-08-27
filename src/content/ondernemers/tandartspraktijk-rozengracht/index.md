@@ -4,11 +4,6 @@ huisnummer: "68-70"
 categorie: "gezondheid-wellness"
 subcategorie: "Tandarts"
 website: "https://leuketandarts.nl"
-openingstijden:
-  ma: "08:30-17:00"
-  di: "08:30-17:00"
-  wo: "08:30-17:00"
-  do: "08:30-17:00"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

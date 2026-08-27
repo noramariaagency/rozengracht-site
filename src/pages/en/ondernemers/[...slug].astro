@@ -123,24 +123,28 @@ const gerelateerdeItems = [
         </div>
       )}
       {data.website && <p><a href={data.website} target="_blank">{data.website.replace(/^https?:\/\//, '')}</a></p>}
-      {(data.openingstijden || plekData?.hoursByDay) && (
-        <div>
-          <strong>Opening hours</strong>
-          <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
-            {dagen.map(([key, label]) => {
-              const uren = data.openingstijden?.[key] ?? plekData?.hoursByDay?.[key];
-              return uren && (
-                <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                  <span>{label}</span><span>{uren}</span>
-                </li>
-              );
-            })}
-          </ul>
-          {!data.openingstijden && plekData?.hoursByDay && (
-            <p style="font-size: 0.72rem; color: var(--color-muted); margin-top: var(--space-xs);">Source: Google</p>
-          )}
-        </div>
-      )}
+      <div>
+        <strong>Opening hours</strong>
+        {(data.openingstijden || plekData?.hoursByDay) ? (
+          <>
+            <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
+              {dagen.map(([key, label]) => {
+                const uren = data.openingstijden?.[key] ?? plekData?.hoursByDay?.[key];
+                return uren && (
+                  <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                    <span>{label}</span><span>{uren}</span>
+                  </li>
+                );
+              })}
+            </ul>
+            {!data.openingstijden && plekData?.hoursByDay && (
+              <p style="font-size: 0.72rem; color: var(--color-muted); margin-top: var(--space-xs);">Source: Google</p>
+            )}
+          </>
+        ) : (
+          <p style="font-size: 0.9rem; color: var(--color-muted); margin: var(--space-xs) 0 0 0;">No opening hours known</p>
+        )}
+      </div>
     </aside>
   </div>
 
