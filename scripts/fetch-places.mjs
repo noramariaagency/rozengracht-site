@@ -220,7 +220,7 @@ async function haalRoute(van, naar, modus) {
     }),
   });
   if (!res.ok) {
-    throw new Error(`Routes API ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    throw new Error(`Routes API ${res.status}: ${(await res.text()).slice(0, 700)}`);
   }
   const data = await res.json();
   const polyline = data.routes?.[0]?.polyline?.encodedPolyline;
