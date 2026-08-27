@@ -26,6 +26,21 @@ export function getCategorieLabels(lang: 'nl' | 'en'): Record<string, string> {
   return lang === 'en' ? categorieLabelsEn : categorieLabels;
 }
 
+// Eén kleur per categorie voor de pins op de interactieve kaart
+// (OndernemersKaart.astro) — 100+ identieke rode pinnetjes op een rij
+// zei niets, dit tenminste wel. Kleuren zijn een gevalideerde
+// categorische set (Okabe-Ito-achtig): onderscheidbaar bij de gangbare
+// vormen van kleurenblindheid, niet alleen voor wie normaal kleuren ziet.
+// Elke pin krijgt daarnaast ook het bijpassende lijn-icoon hieronder in
+// het wit — kleur is dus nooit de enige drager van betekenis.
+export const categorieKleuren: Record<string, string> = {
+  'eten-drinken': '#E69F00',
+  winkels: '#0072B2',
+  'gezondheid-wellness': '#CC79A7',
+  diensten: '#D55E00',
+  'cultuur-vrije-tijd': '#009E73',
+};
+
 // Duidelijk herkenbare lijn-iconen (stijl: Lucide) die letterlijk verbeelden
 // waar de categorie over gaat, in plaats van abstracte vormen die niemand
 // zonder bijschrift zou herkennen — vork+lepel voor eten & drinken, een

@@ -6,6 +6,8 @@
 // te gebruiken). Locatiedata komt uit src/data/places.json, dat apart via
 // de "Places verversen" GitHub Action wordt gevuld — ondernemers zonder
 // bekende locatie worden hier gewoon overgeslagen (geen pin verzinnen).
+import { categorieIconen, categorieKleuren } from '../lib/categorieen';
+
 export interface Props {
   items: { slug: string; naam: string; categorie: string; lat: number; lng: number; href: string }[];
   // 'cta' = donkere call-to-action-sectie op de homepage (andere
@@ -20,6 +22,30 @@ const { items, variant = 'standaard', class: className } = Astro.props;
 // derozengracht.com / www.derozengracht.com / noramariaagency.github.io) —
 // geen server-side geheim, vandaar hier direct in de client-code.
 const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
+
+// Kleur + icoon per categorie op de pin zelf, i.p.v. 100+ identieke rode
+// druppels — dat liet geen enkel patroon zien. Wordt hier server-side
+// samengesteld tot kant-en-klare data-URI's (geen canvas/afbeeldingen
+// nodig), zodat het client-scriptje er alleen nog een categorie-lookup op
+// hoeft te doen. Kleur ís niet de enige drager van betekenis: het
+// bijpassende lijn-icoon (dezelfde set als op de filterknoppen) staat er
+// altijd bovenop in het wit.
+const STANDAARD_KLEUR = '#1b3b2f';
+function pinIconSvg(kleur: string, iconPath: string) {
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">` +
+    `<circle cx="15" cy="15" r="13" fill="${kleur}" stroke="#ffffff" stroke-width="2"/>` +
+    `<g transform="translate(7,7) scale(0.667)" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${iconPath}</g>` +
+    `</svg>`
+  );
+}
+const markerIconsPerCategorie: Record<string, string> = {
+  __standaard__: `data:image/svg+xml,${encodeURIComponent(pinIconSvg(STANDAARD_KLEUR, ''))}`,
+};
+for (const [cat, iconPath] of Object.entries(categorieIconen)) {
+  const kleur = categorieKleuren[cat] ?? STANDAARD_KLEUR;
+  markerIconsPerCategorie[cat] = `data:image/svg+xml,${encodeURIComponent(pinIconSvg(kleur, iconPath))}`;
+}
 ---
 
 <div
@@ -27,6 +53,7 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
   class:list={['locatie-kaart', variant === 'cta' && 'locatie-kaart--cta', className]}
   data-items={JSON.stringify(items)}
   data-maps-key={MAPS_KEY}
+  data-marker-icons={JSON.stringify(markerIconsPerCategorie)}
 >
 </div>
 
@@ -45,6 +72,7 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
     if (!el) return;
     var items = JSON.parse(el.dataset.items || '[]');
     if (items.length === 0) return;
+    var iconMap = JSON.parse(el.dataset.markerIcons || '{}');
 
     var map = new google.maps.Map(el, {
       center: { lat: 52.3735, lng: 4.8815 },
@@ -58,10 +86,18 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
 
     items.forEach(function (item) {
       var positie = { lat: item.lat, lng: item.lng };
+      var iconUrl = iconMap[item.categorie] || iconMap.__standaard__;
       var marker = new google.maps.Marker({
         position: positie,
         map: map,
         title: item.naam,
+        icon: iconUrl
+          ? {
+              url: iconUrl,
+              scaledSize: new google.maps.Size(30, 30),
+              anchor: new google.maps.Point(15, 15),
+            }
+          : undefined,
       });
       marker.addListener('click', function () {
         var link = document.createElement('a');
