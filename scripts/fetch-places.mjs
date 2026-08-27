@@ -5,17 +5,21 @@
 // de wandelroute) naar src/data/bereikbaarheid-places.json, plus alle
 // tram- en bushaltes binnen 100m van de twee bekende Rozengracht-haltes via
 // een Nearby Search, en de twee route-lijnen (wandelroute Dam->Rozengracht,
-// looproute parkeergarage->Rozengracht) via de Directions API naar
-// src/data/bereikbaarheid-routes.json — zelfde soort API, zelfde reden om
-// dit hier te doen i.p.v. in de gewone build (zie hieronder).
+// looproute parkeergarage->Rozengracht) via de Routes API (New) naar
+// src/data/bereikbaarheid-routes.json — zelfde "New"-familie als de Places
+// calls hierboven, zelfde reden om dit hier te doen i.p.v. in de gewone
+// build (zie hieronder).
 //
-// De routes komen bewust uit de Directions API i.p.v. een handmatige keten
-// van los opgezochte plekken: een paar named places op een rij zetten geeft
+// De routes komen bewust uit de Routes API i.p.v. een handmatige keten van
+// los opgezochte plekken: een paar named places op een rij zetten geeft
 // alleen een paar rechte stukken die dwars door blokken/grachten snijden
-// zodra de straat zelf bocht (precies wat er eerst gebeurde). De Directions
-// API kent het echte stratenpatroon en levert een polyline die wél de weg
+// zodra de straat zelf bocht (precies wat er eerst gebeurde). De Routes API
+// kent het echte stratenpatroon en levert een polyline die wél de weg
 // volgt — nog steeds één keer opgehaald bij het verversen, dus geen live
-// Google-afhankelijkheid in de normale pageload.
+// Google-afhankelijkheid in de normale pageload. (De oudere/legacy
+// Directions API stond niet aan voor dit project en gaf REQUEST_DENIED —
+// de Routes API is Google's eigen aanbevolen vervanger en gebruikt dezelfde
+// sleutel als de Places API (New) calls hieronder.)
 //
 // Dit script draait NIET tijdens de normale build (die blijft snel en
 // heeft geen live Google-afhankelijkheid) maar alleen via de aparte
@@ -25,7 +29,7 @@
 //
 // Vereist: env var GOOGLE_PLACES_API_KEY (alleen server-side, nooit in de
 // client-bundel — zie de restricted key in Google Cloud Console). Moet
-// zowel de Places API (New) als de Directions API mogen aanroepen.
+// zowel de Places API (New) als de Routes API mogen aanroepen.
 
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -191,25 +195,35 @@ function decodeerPolyline(encoded) {
 }
 
 // Haalt de echte, over-het-stratennet lopende route tussen twee punten op
-// via de Directions API — in tegenstelling tot Places, retourneert deze
-// legacy API status/foutmeldingen altijd met HTTP 200 (de fout zit in het
-// "status"-veld, bv. "REQUEST_DENIED" of "ZERO_RESULTS"), dus die wordt
-// hier expliciet gecontroleerd i.p.v. alleen op res.ok te vertrouwen.
+// via de Routes API (New) — dezelfde "New"-familie als places:searchText/
+// searchNearby hierboven, met dezelfde sleutel. De oudere/legacy Directions
+// API (maps/api/directions/json) gaf hier REQUEST_DENIED terug: die legacy
+// API staat niet aan voor dit project en Google verwijst zelf naar de
+// Routes API (New) als vervanger — geen reden om een tweede, apart aan te
+// zetten API te vragen als deze al werkt. Fouten komen bij deze API wél
+// gewoon terug als een non-2xx HTTP-status (i.p.v. verstopt in een
+// "status"-veld zoals bij de legacy API), dus res.ok is hier voldoende.
+const ROUTES_MODUS_MAP = { walking: 'WALK', driving: 'DRIVE', bicycling: 'BICYCLE' };
 async function haalRoute(van, naar, modus) {
-  const url = new URL('https://maps.googleapis.com/maps/api/directions/json');
-  url.searchParams.set('origin', `${van.lat},${van.lng}`);
-  url.searchParams.set('destination', `${naar.lat},${naar.lng}`);
-  url.searchParams.set('mode', modus);
-  url.searchParams.set('key', API_KEY);
-  const res = await fetch(url);
+  const travelMode = ROUTES_MODUS_MAP[modus] ?? 'WALK';
+  const res = await fetch('https://routes.googleapis.com/directions/v2:computeRoutes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': API_KEY,
+      'X-Goog-FieldMask': 'routes.polyline.encodedPolyline',
+    },
+    body: JSON.stringify({
+      origin: { location: { latLng: { latitude: van.lat, longitude: van.lng } } },
+      destination: { location: { latLng: { latitude: naar.lat, longitude: naar.lng } } },
+      travelMode,
+    }),
+  });
   if (!res.ok) {
-    throw new Error(`Directions API ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    throw new Error(`Routes API ${res.status}: ${(await res.text()).slice(0, 300)}`);
   }
   const data = await res.json();
-  if (data.status !== 'OK') {
-    throw new Error(`Directions API status ${data.status}: ${data.error_message ?? '(geen foutmelding)'}`);
-  }
-  const polyline = data.routes?.[0]?.overview_polyline?.points;
+  const polyline = data.routes?.[0]?.polyline?.encodedPolyline;
   if (!polyline) return null;
   return decodeerPolyline(polyline);
 }

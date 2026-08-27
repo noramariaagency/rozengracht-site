@@ -3,7 +3,7 @@ name: Places verversen
 # Ververst src/data/places.json (locatie + openingstijden per ondernemer),
 # src/data/bereikbaarheid-places.json (parkeergarage + tramhaltes) en
 # src/data/bereikbaarheid-routes.json (wandel-/looproutes) via de Places-
-# en Directions API, en committeert het resultaat terug naar main. Draait NIET
+# en Routes API, en committeert het resultaat terug naar main. Draait NIET
 # automatisch bij elke push — alleen handmatig ("Run workflow") of op de
 # wekelijkse planning hieronder — zodat de gewone deploy-workflow nooit een
 # live Google-afhankelijkheid of extra kosten heeft.
