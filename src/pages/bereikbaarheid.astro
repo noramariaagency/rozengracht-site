@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BereikbaarheidKaart from '../components/BereikbaarheidKaart.astro';
 import ContentCard from '../components/ContentCard.astro';
 import bereikbaarheidPlekken from '../data/bereikbaarheid-places.json';
+import bereikbaarheidRoutes from '../data/bereikbaarheid-routes.json';
 import { getCollection, getEntry } from 'astro:content';
 import { nieuwsToItem, resolveFoto } from '../lib/items';
 import type { Lang } from '../lib/i18n';
@@ -72,38 +73,14 @@ const dynamischeOvHaltes = Object.entries(bereikbaarheidPlekken)
 
 const kaartItems = [...vastePois, ...dynamischeOvHaltes];
 
-// Wegpunten voor de twee route-lijnen — stuk voor stuk echte, via de Places
-// API opgehaalde plekken (zie scripts/fetch-places.mjs) i.p.v. een
-// handmatig geschat coördinaat, zodat de lijnen een paar keer buigen langs
-// de werkelijke straten i.p.v. één kunstmatig rechte diagonaal te zijn.
-// Ontbreekt een van de plekken (bv. vóór de eerste "Places
-// verversen"-run), dan wordt de bijbehorende route niet getekend in plaats
-// van een verzonnen lijn.
-function heeftLocatie(plek) {
-  return !!plek && plek.lat != null && plek.lng != null;
-}
-function naarPunt(plek) {
-  return { lat: plek.lat, lng: plek.lng };
-}
-
-const damPlek = bereikbaarheidPlekken['dam-amsterdam'];
-const raadhuisstraatPlek = bereikbaarheidPlekken['raadhuisstraat-amsterdam'];
-const westermarktPlek = bereikbaarheidPlekken['tram-westermarkt'];
-const rozengrachtStraatPlek = bereikbaarheidPlekken['rozengracht-straat'];
-const parkeergaragePlek = bereikbaarheidPlekken['parkeergarage-marnix'];
-
-// Wandelroute voor het "Lopend"-kaartje: Dam → Raadhuisstraat → Westermarkt
-// → Rozengracht, zoals de tekst bij het kaartje ook beschrijft.
-const walkRoute = [damPlek, raadhuisstraatPlek, westermarktPlek, rozengrachtStraatPlek].every(heeftLocatie)
-  ? [damPlek, raadhuisstraatPlek, westermarktPlek, rozengrachtStraatPlek].map(naarPunt)
-  : null;
-
-// Looproute voor het "Met de auto"-kaartje: Parkeergarage Marnix → begin
-// Rozengracht, zodat automobilisten meteen zien hoe ze vanaf de garage bij
-// de straat komen.
-const garageRoute = [parkeergaragePlek, rozengrachtStraatPlek].every(heeftLocatie)
-  ? [parkeergaragePlek, rozengrachtStraatPlek].map(naarPunt)
-  : null;
+// De twee route-lijnen komen kant-en-klaar uit de Directions API (zie
+// scripts/fetch-places.mjs, verversRoutes) — een echte, over-het-stratennet
+// lopende polyline i.p.v. een handmatige keten van los opgezochte plekken
+// (dat gaf alleen een paar rechte stukken dwars door blokken/grachten).
+// Ontbreekt een route (bv. vóór de eerste "Places verversen"-run), dan
+// wordt er niets getekend in plaats van een verzonnen lijn.
+const walkRoute = bereikbaarheidRoutes.lopend?.length > 1 ? bereikbaarheidRoutes.lopend : null;
+const garageRoute = bereikbaarheidRoutes.auto?.length > 1 ? bereikbaarheidRoutes.auto : null;
 
 // Bereikbaarheids-updates zijn gewoon nieuwsartikelen met categorie
 // "bereikbaarheid" (zie src/content/config.ts) — hier tonen we alleen de

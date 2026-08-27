@@ -2,18 +2,30 @@
 // op via de Places API (New) Text Search, en schrijft het resultaat naar
 // src/data/places.json. Ververst daarnaast ook een kleine vaste lijst
 // bereikbaarheids-POI's (parkeergarage, tramhaltes, Dam als startpunt van
-// de wandelroute, wegpunten voor de routelijnen) naar
-// src/data/bereikbaarheid-places.json, plus alle tram- en bushaltes binnen
-// 100m van de twee bekende Rozengracht-haltes via een Nearby Search — zelfde
-// API, zelfde reden om dit hier te doen i.p.v. in de gewone build (zie
-// hieronder). Dit script draait NIET tijdens de normale build (die blijft
-// snel en heeft geen live Google-afhankelijkheid) maar alleen via de
-// aparte "Places verversen" GitHub Action (handmatig of periodiek), zodat
-// de kosten voorspelbaar blijven en een gewone content-only build nooit
-// een externe API nodig heeft.
+// de wandelroute) naar src/data/bereikbaarheid-places.json, plus alle
+// tram- en bushaltes binnen 100m van de twee bekende Rozengracht-haltes via
+// een Nearby Search, en de twee route-lijnen (wandelroute Dam->Rozengracht,
+// looproute parkeergarage->Rozengracht) via de Directions API naar
+// src/data/bereikbaarheid-routes.json — zelfde soort API, zelfde reden om
+// dit hier te doen i.p.v. in de gewone build (zie hieronder).
+//
+// De routes komen bewust uit de Directions API i.p.v. een handmatige keten
+// van los opgezochte plekken: een paar named places op een rij zetten geeft
+// alleen een paar rechte stukken die dwars door blokken/grachten snijden
+// zodra de straat zelf bocht (precies wat er eerst gebeurde). De Directions
+// API kent het echte stratenpatroon en levert een polyline die wél de weg
+// volgt — nog steeds één keer opgehaald bij het verversen, dus geen live
+// Google-afhankelijkheid in de normale pageload.
+//
+// Dit script draait NIET tijdens de normale build (die blijft snel en
+// heeft geen live Google-afhankelijkheid) maar alleen via de aparte
+// "Places verversen" GitHub Action (handmatig of periodiek), zodat de
+// kosten voorspelbaar blijven en een gewone content-only build nooit een
+// externe API nodig heeft.
 //
 // Vereist: env var GOOGLE_PLACES_API_KEY (alleen server-side, nooit in de
-// client-bundel — zie de restricted key in Google Cloud Console).
+// client-bundel — zie de restricted key in Google Cloud Console). Moet
+// zowel de Places API (New) als de Directions API mogen aanroepen.
 
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -29,6 +41,7 @@ const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '..');
 const ONDERNEMERS_DIR = path.join(ROOT, 'src/content/ondernemers');
 const OUTPUT_PATH = path.join(ROOT, 'src/data/places.json');
 const BEREIKBAARHEID_OUTPUT_PATH = path.join(ROOT, 'src/data/bereikbaarheid-places.json');
+const BEREIKBAARHEID_ROUTES_OUTPUT_PATH = path.join(ROOT, 'src/data/bereikbaarheid-routes.json');
 
 // Hart van de Rozengracht — gebruikt als locationBias voor de
 // bereikbaarheid-POI's hieronder, zodat een naamgelijke plek elders in
@@ -45,21 +58,28 @@ const OV_HALTE_STRAAL = 100;
 // Google Maps) zodat de zoekopdracht zelf al zo precies mogelijk is; de
 // locationBias hierboven is de tweede vangrail.
 //
-// "dam-amsterdam", "raadhuisstraat-amsterdam" en "rozengracht-straat" zijn
-// geen bereikbaarheids-POI's met een eigen pin, maar wegpunten voor de
-// route-lijnen op de kaart (zie BereikbaarheidKaart.astro): de wandelroute
-// Dam -> Raadhuisstraat -> Westermarkt -> Rozengracht, en de korte
-// autoroute Parkeergarage -> Rozengracht. Stuk voor stuk echte, opgehaalde
-// punten i.p.v. een handmatig geschat coördinaat, zodat de lijn niet één
-// kunstmatig rechte diagonaal is maar een paar keer buigt langs de
-// werkelijke straten.
+// "dam-amsterdam" en "rozengracht-straat" zijn geen bereikbaarheids-POI's
+// met een eigen pin, maar start-/eindpunten voor de twee route-lijnen
+// hieronder (BEREIKBAARHEID_ROUTES) — de Directions API tekent de route
+// daartussen, dus hier is alleen het eind van de keten nodig, geen losse
+// tussenpunten meer.
 const BEREIKBAARHEID_POIS = [
   { key: 'parkeergarage-marnix', query: 'Q-Park Europarking, Marnixstraat 250, Amsterdam' },
   { key: 'tram-westermarkt', query: 'Tramhalte Westermarkt, Amsterdam' },
   { key: 'tram-marnixstraat', query: 'Tramhalte Marnixstraat/Rozengracht, Amsterdam' },
   { key: 'dam-amsterdam', query: 'Dam, Amsterdam' },
-  { key: 'raadhuisstraat-amsterdam', query: 'Raadhuisstraat, Amsterdam' },
   { key: 'rozengracht-straat', query: 'Rozengracht, Amsterdam' },
+];
+
+// Route-lijnen die via de Directions API (modus "walking" voor allebei —
+// ook de autoroute is een looproute van garage naar straat, geen
+// rijroute) opgehaald worden, met vanKey/naarKey wijzend naar de
+// hierboven opgehaalde punten. "auto" verwijst hier naar de filter-
+// categorie op de bereikbaarheidspagina, niet naar het vervoersmiddel van
+// de route zelf.
+const BEREIKBAARHEID_ROUTES = [
+  { key: 'lopend', vanKey: 'dam-amsterdam', naarKey: 'rozengracht-straat' },
+  { key: 'auto', vanKey: 'parkeergarage-marnix', naarKey: 'rozengracht-straat' },
 ];
 
 // Google's dag-index (0 = zondag ... 6 = zaterdag) naar onze eigen ma..zo-sleutels
@@ -133,6 +153,65 @@ async function zoekDichtbij(center, straal, types) {
   }
   const data = await res.json();
   return data.places ?? [];
+}
+
+// Decodeert Google's "encoded polyline"-formaat (zoals geretourneerd door
+// de Directions API) naar een gewone lijst {lat,lng}-punten. Standaard
+// algoritme (zie Google's polyline-documentatie) — geen library nodig voor
+// zoiets kleins en dit voorkomt weer een extra dependency in een script dat
+// toch al maar één keer per "Places verversen"-run draait.
+function decodeerPolyline(encoded) {
+  let index = 0;
+  let lat = 0;
+  let lng = 0;
+  const punten = [];
+  while (index < encoded.length) {
+    let shift = 0;
+    let result = 0;
+    let byte;
+    do {
+      byte = encoded.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+    lat += result & 1 ? ~(result >> 1) : result >> 1;
+
+    shift = 0;
+    result = 0;
+    do {
+      byte = encoded.charCodeAt(index++) - 63;
+      result |= (byte & 0x1f) << shift;
+      shift += 5;
+    } while (byte >= 0x20);
+    lng += result & 1 ? ~(result >> 1) : result >> 1;
+
+    punten.push({ lat: lat / 1e5, lng: lng / 1e5 });
+  }
+  return punten;
+}
+
+// Haalt de echte, over-het-stratennet lopende route tussen twee punten op
+// via de Directions API — in tegenstelling tot Places, retourneert deze
+// legacy API status/foutmeldingen altijd met HTTP 200 (de fout zit in het
+// "status"-veld, bv. "REQUEST_DENIED" of "ZERO_RESULTS"), dus die wordt
+// hier expliciet gecontroleerd i.p.v. alleen op res.ok te vertrouwen.
+async function haalRoute(van, naar, modus) {
+  const url = new URL('https://maps.googleapis.com/maps/api/directions/json');
+  url.searchParams.set('origin', `${van.lat},${van.lng}`);
+  url.searchParams.set('destination', `${naar.lat},${naar.lng}`);
+  url.searchParams.set('mode', modus);
+  url.searchParams.set('key', API_KEY);
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Directions API ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  }
+  const data = await res.json();
+  if (data.status !== 'OK') {
+    throw new Error(`Directions API status ${data.status}: ${data.error_message ?? '(geen foutmelding)'}`);
+  }
+  const polyline = data.routes?.[0]?.overview_polyline?.points;
+  if (!polyline) return null;
+  return decodeerPolyline(polyline);
 }
 
 async function verversOndernemers() {
@@ -295,11 +374,63 @@ async function verversBereikbaarheid() {
   console.log(
     `Bereikbaarheid: ${opgehaald} opgehaald, ${mislukt} mislukt, ${ovOpgehaald} tram/bushalte(s) binnen ${OV_HALTE_STRAAL}m gevonden.`
   );
+  return resultaat;
+}
+
+// Haalt de twee route-lijnen op (zie BEREIKBAARHEID_ROUTES hierboven) en
+// schrijft ze naar een apart bestand — andere vorm dan de POI's hierboven
+// (een lijst punten i.p.v. één placeId/lat/lng), dus een eigen bestand i.p.v.
+// erbij in bereikbaarheid-places.json. bereikbaarheidResultaat bevat de net
+// (in verversBereikbaarheid) opgehaalde/bestaande POI's, zodat van-/naarKey
+// altijd de meest actuele coördinaten gebruiken. Mislukt een route (bv. API
+// niet ingeschakeld, quota), dan blijft de vorige versie van die ene route
+// gewoon staan i.p.v. dat de hele kaart zonder routes komt te zitten.
+async function verversRoutes(bereikbaarheidResultaat) {
+  let bestaand = {};
+  try {
+    bestaand = JSON.parse(await readFile(BEREIKBAARHEID_ROUTES_OUTPUT_PATH, 'utf-8'));
+  } catch {
+    // nog geen bestand — start leeg
+  }
+
+  const resultaat = { ...bestaand };
+  let opgehaald = 0;
+  let mislukt = 0;
+
+  for (const route of BEREIKBAARHEID_ROUTES) {
+    const van = bereikbaarheidResultaat[route.vanKey];
+    const naar = bereikbaarheidResultaat[route.naarKey];
+    if (!van || van.lat == null || !naar || naar.lat == null) {
+      console.warn(`  route "${route.key}": van/naar-punt nog onbekend, overgeslagen`);
+      mislukt++;
+      continue;
+    }
+    try {
+      const punten = await haalRoute(van, naar, 'walking');
+      if (!punten || punten.length < 2) {
+        console.warn(`  route "${route.key}": geen bruikbare polyline in het antwoord`);
+        mislukt++;
+        continue;
+      }
+      resultaat[route.key] = punten;
+      opgehaald++;
+      console.log(`  ok: route "${route.key}" (${punten.length} punten)`);
+    } catch (err) {
+      console.warn(`  mislukt voor route "${route.key}": ${err.message}`);
+      mislukt++;
+    }
+    await new Promise((r) => setTimeout(r, 150));
+  }
+
+  await writeFile(BEREIKBAARHEID_ROUTES_OUTPUT_PATH, JSON.stringify(resultaat, null, 2) + '\n', 'utf-8');
+  console.log(`Routes: ${opgehaald} opgehaald, ${mislukt} mislukt.`);
+  return resultaat;
 }
 
 async function main() {
   await verversOndernemers();
-  await verversBereikbaarheid();
+  const bereikbaarheidResultaat = await verversBereikbaarheid();
+  await verversRoutes(bereikbaarheidResultaat);
 }
 
 main().catch((err) => {
