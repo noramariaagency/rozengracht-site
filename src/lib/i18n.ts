@@ -14,6 +14,13 @@ export type Lang = 'nl' | 'en';
  */
 export function kaalPad(pathname: string, base: string): string {
   let rest = pathname.startsWith(base) ? pathname.slice(base.length) : pathname.replace(/^\/+/, '');
+  // Na het aftrekken van de base blijft er een voorloop-slash over (bv.
+  // "/en/nieuws/" i.p.v. "en/nieuws/") — zonder deze normalisatie mist de
+  // "en"-check hieronder altijd (rest.startsWith('en/') is dan false terwijl
+  // de pagina wél op /en/ staat), waardoor de taalwissel-knop op elke
+  // Engelse pagina naar zichzelf terug bleef linken i.p.v. naar de
+  // Nederlandse versie.
+  rest = rest.replace(/^\/+/, '');
   if (rest === 'en' || rest.startsWith('en/')) {
     rest = rest.slice(2).replace(/^\/+/, '');
   }
