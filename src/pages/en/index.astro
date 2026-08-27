@@ -204,9 +204,13 @@ const kaartItems = alleOndernemers
           <div class="highlight-reel reveal-item">
             <span class="reel-label">In their own words</span>
             {citaten.length > 0 ? (
-              <div class="reel-quote" id="ondernemerQuote" data-naam={citaten[0].naam}>
-                <blockquote>{citaten[0].quote}</blockquote>
-                <div class="who">{citaten[0].naam}</div>
+              <div class="reel-quotes" id="ondernemerQuotes">
+                {citaten.slice(0, 2).map((citaat) => (
+                  <div class="reel-quote" data-naam={citaat.naam}>
+                    <blockquote>{citaat.quote}</blockquote>
+                    <div class="who">{citaat.naam}</div>
+                  </div>
+                ))}
               </div>
             ) : (
               <p class="placeholder-note light">No quotes from businesses collected yet.</p>
@@ -382,7 +386,9 @@ const kaartItems = alleOndernemers
     padding: 22px 26px;
   }
   .reel-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; display: block; }
+  .reel-quotes { display: flex; flex-direction: column; gap: 20px; }
   .reel-quote { display: flex; flex-direction: column; transition: opacity 0.25s ease; }
+  .reel-quotes .reel-quote + .reel-quote { padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.14); }
   .reel-quote blockquote { font-family: var(--font-heading); font-style: italic; font-weight: 400; font-size: 1.1rem; line-height: 1.45; color: #fbfaf7; margin: 0 0 10px; }
   .reel-quote blockquote::before { content: '\201C'; }
   .reel-quote blockquote::after { content: '\201D'; }
@@ -449,16 +455,32 @@ const kaartItems = alleOndernemers
 </style>
 
 <script is:inline>
-  var quoteEl = document.getElementById('ondernemerQuote');
+  // Aan het woord toont 2 citaten tegelijk. Server-side staan de eerste 2
+  // al vast in de HTML (zodat er ook zonder JS altijd iets staat) — dit
+  // script kiest daarna, als er meer dan 2 citaten zijn, willekeurig 2
+  // verschillende via een Fisher-Yates shuffle en vult daarmee de bestaande
+  // kaartjes (1 op 1 per index, geen kaartjes toevoegen/verwijderen).
+  var quotesWrap = document.getElementById('ondernemerQuotes');
   var quoteDataEl = document.getElementById('ondernemer-quotes');
-  if (quoteEl && quoteDataEl) {
+  if (quotesWrap && quoteDataEl) {
     var quotes = JSON.parse(quoteDataEl.textContent || '[]');
-    if (quotes.length > 1) {
-      var gekozen = quotes[Math.floor(Math.random() * quotes.length)];
-      var blockquote = quoteEl.querySelector('blockquote');
-      var who = quoteEl.querySelector('.who');
-      if (blockquote) blockquote.textContent = gekozen.quote;
-      if (who) who.textContent = gekozen.naam;
+    var blocks = quotesWrap.querySelectorAll('.reel-quote');
+    if (quotes.length > blocks.length) {
+      var shuffled = quotes.slice();
+      for (var i = shuffled.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = tmp;
+      }
+      blocks.forEach(function (block, idx) {
+        var gekozen = shuffled[idx];
+        if (!gekozen) return;
+        var blockquote = block.querySelector('blockquote');
+        var who = block.querySelector('.who');
+        if (blockquote) blockquote.textContent = gekozen.quote;
+        if (who) who.textContent = gekozen.naam;
+      });
     }
   }
 
