@@ -14,7 +14,7 @@ const { items } = Astro.props;
 // Referrer-beperkte publieke sleutel (alleen te gebruiken vanaf
 // derozengracht.com / www.derozengracht.com / noramariaagency.github.io) —
 // geen server-side geheim, vandaar hier direct in de client-code.
-const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--lN2KDmEQ';
+const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
 ---
 
 <div
@@ -90,7 +90,7 @@ const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--lN2KDmEQ';
   }
   window.initOndernemersKaart = initOndernemersKaart;
 </script>
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--lN2KDmEQ&callback=initOndernemersKaart&loading=async" async></script>
+<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ&callback=initOndernemersKaart&loading=async" async></script>
 
 <style>
   /* Verhuisd hierheen vanuit de ondernemers-overzichtspagina's — Astro's
