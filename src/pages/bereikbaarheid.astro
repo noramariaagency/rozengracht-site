@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BereikbaarheidKaart from '../components/BereikbaarheidKaart.astro';
+import bereikbaarheidPlekken from '../data/bereikbaarheid-places.json';
 import { actueleUpdates } from '../data/bereikbaarheid-updates';
 import type { Lang } from '../lib/i18n';
 
@@ -8,25 +10,49 @@ const lang: Lang = 'nl';
 const routes = [
   {
     titel: 'Lopend',
+    cat: 'lopend',
     icoon: '<path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" />',
     tekst: 'Vanaf de Dam: neem de Raadhuisstraat westwaarts. Na de Westerkerk en de Westermarkt loopt die direct over in de Rozengracht, ongeveer 10 minuten lopen.',
   },
   {
     titel: 'Met de fiets',
+    cat: 'fiets',
     icoon: '<circle cx="18.5" cy="17.5" r="3.5" /><circle cx="5.5" cy="17.5" r="3.5" /><circle cx="15" cy="5" r="1" /><path d="M12 17.5V14l-3-3 4-3 2 3h2" />',
     tekst: 'De Rozengracht heeft een eigen fietsstrook in beide richtingen en is goed verbonden met de Prinsengracht, die de straat kruist bij de Westermarkt.',
   },
   {
     titel: 'Met de auto',
+    cat: 'auto',
     icoon: '<rect width="18" height="18" x="3" y="3" rx="2" /><path d="M9 17V7h4a3 3 0 0 1 0 6H9" />',
     tekst: 'Parkeren aan de Rozengracht zelf is beperkt en betaald. Parkeergarage Marnix (Marnixstraat 250) is de dichtstbijzijnde garage.',
   },
   {
     titel: 'Met het OV',
+    cat: 'ov',
     icoon: '<path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><circle cx="16" cy="18" r="2" />',
     tekst: 'Tram 13 en 17 stoppen op de Rozengracht zelf, met haltes bij de Westermarkt en bij de Marnixstraat.',
   },
 ];
+
+// Vaste bereikbaarheids-POI's op de kaart hieronder — de "Lopend"- en
+// "Fiets"-kaartjes beschrijven een route, geen losse locatie, dus die
+// hebben bewust geen eigen pin (klikken erop toont gewoon weer alles).
+// Locatiedata komt uit src/data/bereikbaarheid-places.json, gevuld door
+// dezelfde "Places verversen" GitHub Action als de ondernemers-pins (zie
+// scripts/fetch-places.mjs) — een POI zonder bekende locatie wordt hier
+// overgeslagen (geen pin verzinnen).
+const poiConfig = [
+  { key: 'parkeergarage-marnix', naam: 'Parkeergarage Marnix', vervoerswijze: 'auto' },
+  { key: 'tram-westermarkt', naam: 'Tramhalte Westermarkt', vervoerswijze: 'ov' },
+  { key: 'tram-marnixstraat', naam: 'Tramhalte Marnixstraat', vervoerswijze: 'ov' },
+];
+const kaartItems = poiConfig
+  .map((poi) => {
+    const plek = bereikbaarheidPlekken[poi.key];
+    if (!plek || plek.lat == null || plek.lng == null) return null;
+    return { key: poi.key, naam: poi.naam, vervoerswijze: poi.vervoerswijze, lat: plek.lat, lng: plek.lng };
+  })
+  .filter((x) => x !== null);
 
 const updates = actueleUpdates();
 
@@ -38,6 +64,20 @@ function formatDatum(d: Date) {
   <span class="eyebrow">De straat</span>
   <h1>Bereikbaarheid</h1>
   <p class="intro">De Rozengracht loopt van oost naar west door de Jordaan en is vanuit alle richtingen goed te bereiken.</p>
+
+  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} />}
+
+  <div class="routes-grid" data-filters role="group" aria-label="Filter op vervoerswijze">
+    {routes.map((route) => (
+      <button type="button" class="route-card filter-btn" data-cat={route.cat} aria-pressed="false">
+        <span class="route-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={route.icoon} />
+        </span>
+        <h2>{route.titel}</h2>
+        <p>{route.tekst}</p>
+      </button>
+    ))}
+  </div>
 
   <section class="updates-section">
     <h2>Actuele updates</h2>
@@ -57,19 +97,26 @@ function formatDatum(d: Date) {
       <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
     )}
   </section>
-
-  <div class="routes-grid">
-    {routes.map((route) => (
-      <div class="route-card">
-        <div class="route-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={route.icoon} />
-        </div>
-        <h2>{route.titel}</h2>
-        <p>{route.tekst}</p>
-      </div>
-    ))}
-  </div>
 </BaseLayout>
+
+<script is:inline>
+  // is:inline i.p.v. een gehoiste module-script, zelfde reden als elders in
+  // deze codebase. Regelt alleen de visuele is-active status van de
+  // route-kaartjes zelf — het filteren van de pins gebeurt onafhankelijk in
+  // BereikbaarheidKaart.astro, die naar dezelfde [data-filters] klikken
+  // luistert.
+  var routeFilterBar = document.querySelector('.routes-grid[data-filters]');
+  routeFilterBar && routeFilterBar.addEventListener('click', (e) => {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    routeFilterBar.querySelectorAll('.filter-btn').forEach((b) => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
+  });
+</script>
 
 <style>
   .eyebrow {
@@ -90,10 +137,21 @@ function formatDatum(d: Date) {
     margin: var(--space-xl) 0 var(--space-lg);
   }
   .route-card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     padding: var(--space-md);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .route-card.is-active {
+    border-color: var(--green-deep);
+    box-shadow: inset 0 0 0 1px var(--green-deep);
   }
   .route-icon {
     width: 44px;

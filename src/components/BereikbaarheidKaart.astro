@@ -1,0 +1,145 @@
+---
+// Kaart met vaste bereikbaarheids-POI's (parkeergarage + tramhaltes) i.p.v.
+// ondernemerspins — apart component van OndernemersKaart.astro omdat de
+// databron en interactie anders zijn: geen link naar een detailpagina, wel
+// filteren per vervoerswijze via dezelfde route-kaartjes die al op de
+// bereikbaarheid-pagina stonden ("Lopend"/"Fiets" hebben geen eigen pin en
+// tonen bij een klik gewoon weer alles). Locatiedata komt uit
+// src/data/bereikbaarheid-places.json, gevuld door dezelfde "Places
+// verversen" GitHub Action als de ondernemers-pins (zie
+// scripts/fetch-places.mjs) — POI's zonder bekende locatie worden al vóór
+// dit component eruit gefilterd (geen pin verzinnen).
+export interface Props {
+  items: { key: string; naam: string; vervoerswijze: 'auto' | 'ov'; lat: number; lng: number }[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+
+// Zelfde publieke, referrer-beperkte sleutel als OndernemersKaart.astro.
+const MAPS_KEY = 'AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ';
+
+// Hergebruikt twee kleuren uit de al gevalideerde categorie-palet van de
+// ondernemerskaart (src/lib/categorieen.ts) — dat paar is daar al onder
+// colorblind-simulatie als onderscheidbaar bevonden, dus geen aparte
+// validatie nodig voor dit tweede, kleinere kleurenpaar. Elke pin krijgt
+// bovendien hetzelfde lijn-icoon als het bijpassende route-kaartje eronder,
+// zodat kleur nooit de enige drager van betekenis is.
+const KLEUREN: Record<string, string> = {
+  auto: '#D55E00',
+  ov: '#0072B2',
+};
+const ICONEN: Record<string, string> = {
+  auto: '<rect width="18" height="18" x="3" y="3" rx="2" /><path d="M9 17V7h4a3 3 0 0 1 0 6H9" />',
+  ov: '<path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><circle cx="16" cy="18" r="2" />',
+};
+function pinIconSvg(kleur: string, iconPath: string) {
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">` +
+    `<circle cx="15" cy="15" r="13" fill="${kleur}" stroke="#ffffff" stroke-width="2"/>` +
+    `<g transform="translate(7,7) scale(0.667)" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${iconPath}</g>` +
+    `</svg>`
+  );
+}
+const markerIcons: Record<string, string> = {};
+for (const [key, iconPath] of Object.entries(ICONEN)) {
+  markerIcons[key] = `data:image/svg+xml,${encodeURIComponent(pinIconSvg(KLEUREN[key], iconPath))}`;
+}
+---
+
+<div
+  id="bereikbaarheid-kaart"
+  class:list={['locatie-kaart', className]}
+  data-items={JSON.stringify(items)}
+  data-marker-icons={JSON.stringify(markerIcons)}
+>
+</div>
+
+<script is:inline>
+  // is:inline i.p.v. een gehoiste module-script — zelfde reden als elders
+  // in deze codebase (blijft ook werken in een file://-preview).
+  function initBereikbaarheidKaart() {
+    var el = document.getElementById('bereikbaarheid-kaart');
+    if (!el) return;
+    var items = JSON.parse(el.dataset.items || '[]');
+    if (items.length === 0) return;
+    var iconMap = JSON.parse(el.dataset.markerIcons || '{}');
+
+    var map = new google.maps.Map(el, {
+      center: { lat: 52.3735, lng: 4.8815 },
+      zoom: 15,
+    });
+
+    var bounds = new google.maps.LatLngBounds();
+    var infoWindow = new google.maps.InfoWindow();
+    var markers = [];
+
+    items.forEach(function (item) {
+      var positie = { lat: item.lat, lng: item.lng };
+      var iconUrl = iconMap[item.vervoerswijze];
+      var marker = new google.maps.Marker({
+        position: positie,
+        map: map,
+        title: item.naam,
+        icon: iconUrl
+          ? {
+              url: iconUrl,
+              scaledSize: new google.maps.Size(30, 30),
+              anchor: new google.maps.Point(15, 15),
+            }
+          : undefined,
+      });
+      marker.addListener('click', function () {
+        infoWindow.setContent('<strong>' + item.naam + '</strong>');
+        infoWindow.open(map, marker);
+      });
+      marker.vervoerswijze = item.vervoerswijze;
+      markers.push(marker);
+      bounds.extend(positie);
+    });
+
+    // Standaard alles tonen — pas bij een klik op een route-kaartje wordt
+    // er gefilterd.
+    map.fitBounds(bounds, 40);
+
+    // Reageert op dezelfde route-kaartjes eronder. "Lopend" en "Fiets"
+    // beschrijven een route, geen losse locatie — die knoppen tonen daarom
+    // gewoon weer alle bekende POI's, net als de andere twee doen voor hun
+    // eigen vervoerswijze.
+    var filterBar = document.querySelector('[data-filters]');
+    filterBar && filterBar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      var cat = btn.dataset.cat;
+      var toonAlles = cat === 'lopend' || cat === 'fiets';
+      var zichtbareBounds = new google.maps.LatLngBounds();
+      var heeftZichtbare = false;
+      markers.forEach(function (marker) {
+        var zichtbaar = toonAlles || marker.vervoerswijze === cat;
+        marker.setVisible(zichtbaar);
+        if (zichtbaar) {
+          zichtbareBounds.extend(marker.getPosition());
+          heeftZichtbare = true;
+        }
+      });
+      if (heeftZichtbare) map.fitBounds(zichtbareBounds, 40);
+    });
+  }
+  window.initBereikbaarheidKaart = initBereikbaarheidKaart;
+</script>
+<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ&callback=initBereikbaarheidKaart&loading=async" async></script>
+
+<style>
+  /* Zelfde opzet als .locatie-kaart in OndernemersKaart.astro, maar hier
+     lokaal gehouden i.p.v. gedeeld — Astro's scoped CSS matcht toch alleen
+     binnen hetzelfde bestand als de <style>, dus delen zou hier niets
+     schelen. */
+  .locatie-kaart {
+    position: relative;
+    aspect-ratio: 16/6;
+    min-height: 260px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    margin: var(--space-lg) 0 0;
+  }
+</style>

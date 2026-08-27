@@ -1,10 +1,14 @@
 // Haalt voor elke ondernemer met een huisnummer de locatie + openingstijden
 // op via de Places API (New) Text Search, en schrijft het resultaat naar
-// src/data/places.json. Dit script draait NIET tijdens de normale build
-// (die blijft snel en heeft geen live Google-afhankelijkheid) maar alleen
-// via de aparte "Places verversen" GitHub Action (handmatig of periodiek),
-// zodat de kosten voorspelbaar blijven en een gewone content-only build
-// nooit een externe API nodig heeft.
+// src/data/places.json. Ververst daarnaast ook een kleine vaste lijst
+// bereikbaarheids-POI's (parkeergarage + tramhaltes) naar
+// src/data/bereikbaarheid-places.json — zelfde API, zelfde reden om dit
+// hier te doen i.p.v. in de gewone build (zie hieronder). Dit script draait
+// NIET tijdens de normale build (die blijft snel en heeft geen live
+// Google-afhankelijkheid) maar alleen via de aparte "Places verversen"
+// GitHub Action (handmatig of periodiek), zodat de kosten voorspelbaar
+// blijven en een gewone content-only build nooit een externe API nodig
+// heeft.
 //
 // Vereist: env var GOOGLE_PLACES_API_KEY (alleen server-side, nooit in de
 // client-bundel — zie de restricted key in Google Cloud Console).
@@ -22,6 +26,23 @@ if (!API_KEY) {
 const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '..');
 const ONDERNEMERS_DIR = path.join(ROOT, 'src/content/ondernemers');
 const OUTPUT_PATH = path.join(ROOT, 'src/data/places.json');
+const BEREIKBAARHEID_OUTPUT_PATH = path.join(ROOT, 'src/data/bereikbaarheid-places.json');
+
+// Hart van de Rozengracht — gebruikt als locationBias voor de
+// bereikbaarheid-POI's hieronder, zodat een naamgelijke plek elders in
+// Amsterdam (bv. een andere Marnixstraat-tramhalte) niet per ongeluk wordt
+// gepakt.
+const ROZENGRACHT_CENTRUM = { latitude: 52.3735, longitude: 4.8815 };
+
+// Vaste, kleine lijst — geen ondernemer, dus los van de map hierboven.
+// Namen/adressen zijn vooraf handmatig geverifieerd (Q-Park-website +
+// Google Maps) zodat de zoekopdracht zelf al zo precies mogelijk is; de
+// locationBias hierboven is de tweede vangrail.
+const BEREIKBAARHEID_POIS = [
+  { key: 'parkeergarage-marnix', query: 'Q-Park Europarking, Marnixstraat 250, Amsterdam' },
+  { key: 'tram-westermarkt', query: 'Tramhalte Westermarkt, Amsterdam' },
+  { key: 'tram-marnixstraat', query: 'Tramhalte Marnixstraat/Rozengracht, Amsterdam' },
+];
 
 // Google's dag-index (0 = zondag ... 6 = zaterdag) naar onze eigen ma..zo-sleutels
 // (zelfde sleutels als het bestaande handmatige openingstijden-veld in
@@ -47,7 +68,11 @@ function periodesNaarUren(periods) {
   return Object.keys(perDag).length > 0 ? perDag : null;
 }
 
-async function zoekPlaats(query) {
+async function zoekPlaats(query, locationBias) {
+  const body = { textQuery: query, languageCode: 'nl' };
+  if (locationBias) {
+    body.locationBias = { circle: { center: locationBias, radius: 800 } };
+  }
   const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
     method: 'POST',
     headers: {
@@ -55,17 +80,17 @@ async function zoekPlaats(query) {
       'X-Goog-Api-Key': API_KEY,
       'X-Goog-FieldMask': 'places.id,places.location,places.regularOpeningHours,places.displayName',
     },
-    body: JSON.stringify({ textQuery: query, languageCode: 'nl' }),
+    body: JSON.stringify(body),
   });
   if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Places API ${res.status}: ${body.slice(0, 300)}`);
+    const body2 = await res.text();
+    throw new Error(`Places API ${res.status}: ${body2.slice(0, 300)}`);
   }
   const data = await res.json();
   return data.places?.[0] ?? null;
 }
 
-async function main() {
+async function verversOndernemers() {
   const slugs = await readdir(ONDERNEMERS_DIR, { withFileTypes: true });
   let bestaand = {};
   try {
@@ -124,8 +149,54 @@ async function main() {
 
   await writeFile(OUTPUT_PATH, JSON.stringify(resultaat, null, 2) + '\n', 'utf-8');
   console.log(
-    `\nKlaar: ${opgehaald} opgehaald, ${overgeslagenGeenAdres} overgeslagen (geen huisnummer), ${mislukt} mislukt.`
+    `\nOndernemers: ${opgehaald} opgehaald, ${overgeslagenGeenAdres} overgeslagen (geen huisnummer), ${mislukt} mislukt.`
   );
+}
+
+async function verversBereikbaarheid() {
+  let bestaand = {};
+  try {
+    bestaand = JSON.parse(await readFile(BEREIKBAARHEID_OUTPUT_PATH, 'utf-8'));
+  } catch {
+    // nog geen bestand — start leeg
+  }
+
+  const resultaat = { ...bestaand };
+  let opgehaald = 0;
+  let mislukt = 0;
+
+  for (const poi of BEREIKBAARHEID_POIS) {
+    try {
+      const plek = await zoekPlaats(poi.query, ROZENGRACHT_CENTRUM);
+      if (!plek) {
+        console.warn(`  geen resultaat voor "${poi.query}"`);
+        mislukt++;
+        continue;
+      }
+      resultaat[poi.key] = {
+        placeId: plek.id,
+        naamGevonden: plek.displayName?.text ?? null,
+        lat: plek.location?.latitude ?? null,
+        lng: plek.location?.longitude ?? null,
+        fetchedAt: new Date().toISOString(),
+      };
+      opgehaald++;
+      console.log(`  ok: ${poi.key} -> ${plek.displayName?.text ?? '(geen naam)'}`);
+    } catch (err) {
+      console.warn(`  mislukt voor "${poi.query}": ${err.message}`);
+      mislukt++;
+    }
+
+    await new Promise((r) => setTimeout(r, 150));
+  }
+
+  await writeFile(BEREIKBAARHEID_OUTPUT_PATH, JSON.stringify(resultaat, null, 2) + '\n', 'utf-8');
+  console.log(`Bereikbaarheid: ${opgehaald} opgehaald, ${mislukt} mislukt.`);
+}
+
+async function main() {
+  await verversOndernemers();
+  await verversBereikbaarheid();
 }
 
 main().catch((err) => {
