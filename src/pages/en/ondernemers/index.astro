@@ -54,6 +54,11 @@ const kaartItems = items
   .map((item) => {
     const plek = plekken[item.slug];
     if (!plek || plek.lat == null || plek.lng == null) return null;
+    // Sanity-check tegen een verkeerd gegokte Places-match (bv. een
+    // gelijknamige zaak in een andere stad) — buiten een ruime bounding
+    // box rond de Rozengracht negeren we de pin liever dan de hele kaart
+    // (via fitBounds) helemaal uit te laten zoomen voor iedereen.
+    if (plek.lat < 52.3 || plek.lat > 52.42 || plek.lng < 4.8 || plek.lng > 4.95) return null;
     return {
       slug: item.slug,
       naam: item.naam,
