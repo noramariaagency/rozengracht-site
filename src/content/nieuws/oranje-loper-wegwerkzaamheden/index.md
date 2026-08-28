@@ -3,6 +3,7 @@ titel_nl: "Wegwerkzaamheden Oranje Loper"
 titel_en: "Oranje Loper roadworks"
 datum: 2026-08-03
 categorie: bereikbaarheid
+foto: "./foto_01.jpg"
 tekst_nl: |
   Vanaf maandag 3 augustus 2026 lopen er wegwerkzaamheden rond de Rozengracht in het kader van de Oranje Loper-herinrichting. Een deel van de straat kan tijdelijk lastiger bereikbaar zijn — de gemeente meldt een einddatum zodra die bekend is.
 tekst_en: |
