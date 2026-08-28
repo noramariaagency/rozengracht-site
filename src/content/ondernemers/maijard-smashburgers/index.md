@@ -6,6 +6,7 @@ subcategorie: "Smashburgers"
 logo: "./logo.jpg"
 fotos:
   - "./foto_01.jpg"
+  - "./foto_02.jpg"
 status: "klaar"
 nieuw_sinds: 2022-09-30
 quote_nl: "We bakken elke burger nog steeds precies zo als op de openingsdag: recht voor je neus, geen shortcuts."
