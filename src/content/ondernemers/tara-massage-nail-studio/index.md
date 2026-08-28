@@ -8,6 +8,10 @@ meta_title_en: "TARA Massages & Nail Studio Rozengracht"
 meta_description_nl: "Tibetaanse Kunye massage en nagelbehandeling op Rozengracht 7 in Amsterdam. Geopend door Tsering en Tsundue in 2021. Dagelijks open vanaf 11:00."
 meta_description_en: "Tibetan Kunye massage and nail treatments at Rozengracht 7, Amsterdam. Founded by Tsering and Tsundue in 2021."
 status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
 tekst_nl: |
   Tsering en Tsundue brachten de Tibetaanse Kunye massage naar de Jordaan.
 
