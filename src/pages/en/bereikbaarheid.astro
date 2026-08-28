@@ -99,7 +99,7 @@ const laatsteUpdateItem = laatsteUpdateEntry
       laatsteUpdateEntry.data.gerelateerde_ondernemer
         ? await getEntry(laatsteUpdateEntry.data.gerelateerde_ondernemer)
         : null,
-      await resolveFoto(laatsteUpdateEntry.data.foto),
+      await resolveFoto(laatsteUpdateEntry.data.foto, 640, laatsteUpdateEntry.data.fotoFocus),
       lang
     )
   : null;

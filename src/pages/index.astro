@@ -22,7 +22,7 @@ const alleNieuwsRuw = (await getCollection('nieuws')).sort(
 const nieuwsItems = await Promise.all(
   alleNieuwsRuw.map(async (n) => {
     const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(n.data.foto);
+    const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
     return nieuwsToItem(n, ondernemer, foto, lang);
   })
 );
@@ -41,7 +41,7 @@ const alleEventsItems = await Promise.all(
     // Verplichte koppeling: elk event verwijst naar het nieuwsartikel met de
     // volledige uitleg, en het kaartje linkt daar ook naartoe (zie eventToItem).
     const nieuwsEntry = await getEntry(e.data.gerelateerd_nieuwsbericht);
-    const foto = await resolveFoto(e.data.foto);
+    const foto = await resolveFoto(e.data.foto, 640, e.data.fotoFocus);
     return { entry: e, item: eventToItem(e, nieuwsEntry, ondernemer, foto, lang) };
   })
 );

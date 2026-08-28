@@ -28,7 +28,7 @@ const ondernemer = data.gerelateerde_ondernemer
   : null;
 const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
 
-const foto = await resolveFoto(data.foto, 640);
+const foto = await resolveFoto(data.foto, 640, data.fotoFocus);
 
 const alleEvents = await getCollection('events');
 const gerelateerdEvent =

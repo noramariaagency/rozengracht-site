@@ -20,7 +20,14 @@ import type { Lang } from './i18n';
 // uitschrijven — gebruikt vóór nieuwsToItem/verhaalToItem/eventToItem.
 export async function resolveFoto(
   foto: unknown,
-  width = 640
+  width = 640,
+  // Optioneel focuspunt (bv. "center 80%"), rechtstreeks doorgezet als
+  // CSS object-position op de uitgesneden kaartfoto in ContentCard.astro.
+  // Alleen nodig wanneer de standaard centrale uitsnede het belangrijkste
+  // deel van de foto wegsnijdt (zie fotoFocus in content/config.ts) — een
+  // situatie die vaker voorkomt bij hoge/liggende bronfoto's die in een
+  // bredere kaartverhouding worden uitgesneden.
+  focus?: string | null
 ): Promise<FeedItem['image']> {
   if (!foto) return null;
   const geoptimaliseerd = await getImage({ src: foto as any, width });
@@ -28,6 +35,7 @@ export async function resolveFoto(
     src: geoptimaliseerd.src,
     width: geoptimaliseerd.attributes.width,
     height: geoptimaliseerd.attributes.height,
+    focus: focus ?? null,
   };
 }
 
@@ -46,7 +54,7 @@ export type FeedItem = {
   // (image-verwerking is async, dus dat gebeurt niet hier). Foto is bewust
   // optioneel op alle drie de soorten — zonder foto valt ContentCard terug
   // op een kleurvlak met icoon.
-  image: { src: string; width: number; height: number } | null;
+  image: { src: string; width: number; height: number; focus: string | null } | null;
 };
 
 const KIND_LABELS: Record<Lang, { nieuws: string; verhaal: string; event: string }> = {

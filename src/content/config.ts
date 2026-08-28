@@ -110,6 +110,11 @@ const nieuws = defineCollection({
       // Foto is optioneel, net als bij ondernemers — zonder foto valt de
       // kaart terug op een kleurvlak met icoon (zie ContentCard.astro).
       foto: image().optional(),
+      // Focuspunt voor de uitgesneden kaartfoto (object-position), bv.
+      // "center 80%" om meer van de onderkant te tonen — alleen nodig als de
+      // standaard centrale uitsnede (zie ContentCard.astro) het belangrijkste
+      // deel van de foto wegsnijdt.
+      fotoFocus: z.string().optional(),
     }),
 });
 
@@ -129,6 +134,11 @@ const verhalen = defineCollection({
       // verhalenoverzicht een tijdlijn-achtige structuur i.p.v. een kale grid.
       periode: z.string().optional(),
       foto: image().optional(),
+      // Focuspunt voor de uitgesneden kaartfoto (object-position), bv.
+      // "center 80%" om meer van de onderkant te tonen — alleen nodig als de
+      // standaard centrale uitsnede (zie ContentCard.astro) het belangrijkste
+      // deel van de foto wegsnijdt.
+      fotoFocus: z.string().optional(),
     }),
 });
 
@@ -154,6 +164,11 @@ const events = defineCollection({
       // twee plekken met detailinformatie over hetzelfde event.
       gerelateerd_nieuwsbericht: reference('nieuws'),
       foto: image().optional(),
+      // Focuspunt voor de uitgesneden kaartfoto (object-position), bv.
+      // "center 80%" om meer van de onderkant te tonen — alleen nodig als de
+      // standaard centrale uitsnede (zie ContentCard.astro) het belangrijkste
+      // deel van de foto wegsnijdt.
+      fotoFocus: z.string().optional(),
     }),
 });
 

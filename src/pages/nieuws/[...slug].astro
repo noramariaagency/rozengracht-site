@@ -34,7 +34,7 @@ const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
 // Bewust geen groot formaat opvragen: resolveFoto zou de bron anders
 // onnodig fors uitvergroten (vaag/korrelig) als de brontfoto zelf kleiner
 // is. 640 is ruim genoeg voor de art (max-width van .artikel-foto).
-const foto = await resolveFoto(data.foto, 640);
+const foto = await resolveFoto(data.foto, 640, data.fotoFocus);
 
 // Is er een event dat naar dit artikel verwijst? Elk event is verplicht aan
 // precies één nieuwsartikel gekoppeld (events.gerelateerd_nieuwsbericht,

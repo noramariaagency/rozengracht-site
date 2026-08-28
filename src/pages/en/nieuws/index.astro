@@ -16,7 +16,7 @@ const items = await Promise.all(
     const ondernemer = bericht.data.gerelateerde_ondernemer
       ? await getEntry(bericht.data.gerelateerde_ondernemer)
       : null;
-    const foto = await resolveFoto(bericht.data.foto);
+    const foto = await resolveFoto(bericht.data.foto, 640, bericht.data.fotoFocus);
     return nieuwsToItem(bericht, ondernemer, foto, lang);
   })
 );
