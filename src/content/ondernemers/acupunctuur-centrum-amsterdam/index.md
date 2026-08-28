@@ -10,6 +10,9 @@ openingstijden:
   do: "09:00-18:00"
   vr: "09:00-18:00"
   za: "13:00-17:00"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
 meta_title_nl: "Acupunctuur Centrum Amsterdam | Xiu Deng – Rozengracht"
 meta_title_en: "Acupunctuur Centrum Amsterdam | Xiu Deng – Rozengracht"
 meta_description_nl: "Xiu Deng, 3e generatie TCM-therapeut op Rozengracht 53 Amsterdam. Acupunctuur, cupping, tuina massage en Chinese kruiden voor uiteenlopende klachten."
