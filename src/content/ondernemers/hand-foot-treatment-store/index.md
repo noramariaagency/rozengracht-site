@@ -4,12 +4,17 @@ huisnummer: "77A"
 categorie: "gezondheid-wellness"
 subcategorie: "Nagelstudio & voetverzorging"
 website: "https://www.handandfoot.nl"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
+  - "./foto_04.jpg"
 interne_opmerking: >
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (handandfoot.nl, incl. de "about"-pagina met
-  het verhaal van eigenaar Angelique Piso). Geen foto's beschikbaar, aanvullen
-  zodra bekend.
+  het verhaal van eigenaar Angelique Piso). 4 foto's toegevoegd, alle afkomstig
+  van de eigen website handandfoot.nl (manicure, pedicure, productenschap).
 meta_title_nl: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_title_en: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_description_nl: "Hand & Foot Treatment Store op Rozengracht 77A in Amsterdam: de hand- en voetspa van Angelique Piso, met manicure, pedicure en eigen cosmetica."
