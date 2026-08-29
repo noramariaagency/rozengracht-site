@@ -4,13 +4,19 @@ huisnummer: "93A"
 categorie: "gezondheid-wellness"
 subcategorie: "Pilates- en bewegingsstudio"
 website: "https://www.kcmove.nl"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
+  - "./foto_04.jpg"
 interne_opmerking: >
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging Rozengracht
   plus eigen onderzoek (kcmove.nl, LinkedIn, EREPS-profiel, persstuk uit 2016). Eigenaar Margherita
   Bencini is bevestigd via meerdere bronnen; exacte openingstijden en het jaar waarin de studio aan
   de Rozengracht is gestart konden niet betrouwbaar worden bevestigd en zijn daarom weggelaten in
-  plaats van verzonnen. Geen foto's gevonden op Google Drive of elders, aanvullen zodra bekend.
+  plaats van verzonnen. 4 foto's toegevoegd, alle afkomstig van de eigen, professioneel
+  gefotografeerde website kcmove.nl (Reformer Pilates, Personal Training, HIIT).
 meta_title_nl: "K/C Move Studio | Pilates – Rozengracht Amsterdam"
 meta_title_en: "K/C Move Studio | Pilates Studio – Rozengracht Amsterdam"
 meta_description_nl: "K/C Move Studio van Margherita Bencini op Rozengracht 93A biedt Reformer Pilates, Barre en HIIT in Amsterdam, met een eigen methode: KinetiCode®."
