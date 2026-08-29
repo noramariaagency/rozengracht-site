@@ -4,7 +4,13 @@ huisnummer: "74-78"
 categorie: "winkels"
 subcategorie: "Meubels & interieur"
 website: "https://wulfwonen.nl"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
+  - "./foto_04.jpg"
+  - "./foto_05.jpg"
 interne_opmerking: >
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek. De zaak handelt zowel onder de naam "Wulf
@@ -13,8 +19,9 @@ interne_opmerking: >
   wulfwonen.nl (contactpersoon dennis@wulfwonen.nl komt hiermee overeen).
   Eigenaar Dennis Wulf bevestigd via LinkedIn. Geschiedenis (drie generaties,
   60+ jaar, 1.000 m²) komt uit de eigen "Over ons"-tekst van Wulf Wonen, gevonden
-  via een woonwinkel-directory die deze tekst overneemt. Geen foto's beschikbaar,
-  aanvullen zodra bekend.
+  via een woonwinkel-directory die deze tekst overneemt. 5 foto's toegevoegd
+  (showroom-interieur en portret via wulfwonen.nl, 3 productfoto's via Instagram
+  @wulfwonenamsterdam).
 meta_title_nl: "Wulf Meubelen | Interieur & meubels – Rozengracht"
 meta_title_en: "Wulf Meubelen | Furniture & Interiors – Rozengracht"
 meta_description_nl: "Wulf Meubelen (Wulf Wonen) op Rozengracht 74-78 in Amsterdam: drie generaties familiebedrijf, 1.000 m² banken, kasten, tafels en interieuradvies."
