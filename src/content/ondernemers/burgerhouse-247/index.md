@@ -4,13 +4,17 @@ huisnummer: "144"
 categorie: "eten-drinken"
 subcategorie: "Halal burgerzaak / bezorging"
 website: "https://www.247burgerhouseamsterdam.nl/"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
 interne_opmerking: >
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek op de website en contactpagina van de zaak. Gabril
   staat volgens de ledenadministratie geregistreerd als contactpersoon; verdere
-  persoonlijke achtergrond is niet gevonden en dus niet toegevoegd. Geen foto's
-  beschikbaar, aanvullen zodra bekend.
+  persoonlijke achtergrond is niet gevonden en dus niet toegevoegd. 2 foto's
+  toegevoegd via het bevestigde Instagram-account @24.7_burgerhouse (linkt naar
+  eigen website); dit account heeft momenteel maar 2 posts.
 meta_title_nl: "24/7 BurgerHouse | Halal burgers – Rozengracht Amsterdam"
 meta_title_en: "24/7 BurgerHouse | Halal Burgers – Rozengracht Amsterdam"
 meta_description_nl: "24/7 BurgerHouse op Rozengracht 144 in Amsterdam: 100% halal burgers, snacks en milkshakes, dagelijks open van 17:00 tot 05:00."
