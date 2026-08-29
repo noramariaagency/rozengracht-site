@@ -4,13 +4,20 @@ huisnummer: "228"
 categorie: "eten-drinken"
 subcategorie: "Japans restaurant & sake"
 website: "https://www.akitsu-amsterdam.com/"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
+  - "./foto_04.jpg"
+  - "./foto_05.jpg"
 interne_opmerking: >
   Aangemaakt op basis van de officiële BIZ-ledenlijst plus eigen onderzoek. Het in de
   briefing genoemde domein akitsuamsterdam.nl leverde bij controle totaal andere
   (niet-bijbehorende) inhoud op; in plaats daarvan is het wél werkende en inhoudelijk
-  kloppende akitsu-amsterdam.com gebruikt. Geen foto's beschikbaar in Drive of lokaal —
-  aanvullen zodra die er zijn.
+  kloppende akitsu-amsterdam.com gebruikt. 5 foto's toegevoegd, alle afkomstig van de eigen website
+  akitsu-amsterdam.com (het hoofdgerecht met rundvlees en mango, een sushi-doos, het interieur,
+  de gevel/het terras en een sake-proeverij).
 meta_title_nl: "Akitsu | Japans restaurant & sake – Rozengracht Amsterdam"
 meta_title_en: "Akitsu | Japanese Restaurant & Sake – Rozengracht Amsterdam"
 meta_description_nl: "Akitsu op Rozengracht 228, Amsterdam: al ruim dertig jaar sushi, sashimi en gegrilde gerechten met een eigen wijn- en sakekaart."
