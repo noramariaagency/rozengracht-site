@@ -3,13 +3,20 @@ naam: "Coffeeshop Flower Power"
 huisnummer: "139"
 categorie: "winkels"
 subcategorie: "Coffeeshop"
-status: "deels-klaar"
+status: "klaar"
+fotos:
+  - "./foto_01.jpg"
+  - "./foto_02.jpg"
+  - "./foto_03.jpg"
+  - "./foto_04.jpg"
 interne_opmerking: >
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (diverse coffeeshop-directories, geen eigen website
   gevonden). Geen naam van de eigenaar of het personeel kunnen achterhalen, dus die is
   bewust weggelaten. Openingstijd van de ochtend wisselt licht per bron (10:00-11:00) —
-  hier neutraal gehouden. Geen foto's beschikbaar, aanvullen zodra bekend.
+  hier neutraal gehouden. 4 foto's toegevoegd via twee bevestigde Instagram-accounts
+  (@coffeeshopflowerpower, adres in bio bevestigd, en @flowerpower.coffeeshop, adres
+  bevestigd via smokemenus.com).
 meta_title_nl: "Coffeeshop Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_title_en: "Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_description_nl: "Coffeeshop Flower Power aan de Rozengracht 139 in Amsterdam: een ouderwetse coffeeshop met pinballkast, open van 's ochtends vroeg tot diep in de nacht."
