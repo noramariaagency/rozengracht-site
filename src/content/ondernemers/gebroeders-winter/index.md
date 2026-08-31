@@ -13,6 +13,8 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Mijn opa begon in 1914 met sigaren en inkt — twee dingen die toen allebei onmisbaar waren voor wie iets te zeggen had."
+quote_en: "My grandfather started in 1914 with cigars and ink — two things that were both essential back then for anyone who had something to say."
 meta_title_nl: "Gebroeders Winter Schrijfwaren"
 meta_title_en: "Gebroeders Winter Stationery"
 meta_description_nl: "Gebroeders Winter op Rozengracht 62 bestaat al meer dan 110 jaar. Schrijfwaren, kantoorartikelen, cadeauverpakking en pakketservice – een klassieker in."

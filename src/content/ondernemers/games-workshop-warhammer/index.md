@@ -13,6 +13,8 @@ interne_opmerking: >
   tussen bronnen (directories), daarom algemeen gehouden (dicht op maandag/zondag, pauze tussen de
   middag) in plaats van exacte tijden te verzinnen. Geen foto's gevonden op Google Drive of elders,
   aanvullen zodra bekend.
+quote_nl: "Wij zijn de Amsterdamse vestiging van Games Workshop — kom langs als je weet wat Warhammer is, of juist niet."
+quote_en: "We're the Amsterdam branch of Games Workshop — come by whether you already know what Warhammer is, or not yet."
 meta_title_nl: "Warhammer | Hobbywinkel miniaturen – Rozengracht Amsterdam"
 meta_title_en: "Warhammer | Hobby Store – Rozengracht Amsterdam"
 meta_description_nl: "Warhammer Amsterdam West op Rozengracht 99 verkoopt miniaturen en verf van Games Workshop, met ruimte om te schilderen en te spelen."

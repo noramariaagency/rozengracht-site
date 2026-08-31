@@ -15,6 +15,8 @@ interne_opmerking: >
   Rozengracht plus eigen onderzoek (handandfoot.nl, incl. de "about"-pagina met
   het verhaal van eigenaar Angelique Piso). 4 foto's toegevoegd, alle afkomstig
   van de eigen website handandfoot.nl (manicure, pedicure, productenschap).
+quote_nl: "Ik zit al meer dan twintig jaar in de beautybranche, en sinds 2012 helemaal voor mezelf."
+quote_en: "I've been in the beauty business for more than twenty years, and fully on my own since 2012."
 meta_title_nl: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_title_en: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_description_nl: "Hand & Foot Treatment Store op Rozengracht 77A in Amsterdam: de hand- en voetspa van Angelique Piso, met manicure, pedicure en eigen cosmetica."

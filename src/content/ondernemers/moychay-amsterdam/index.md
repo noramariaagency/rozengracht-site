@@ -7,6 +7,8 @@ website: "https://togo.moychay.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.webp"
+quote_nl: "Ik nam mijn obsessie met Aziatische theecultuur mee naar Amsterdam en opende hier de eerste echte theecultuurclub van Nederland."
+quote_en: "I brought my obsession with Asian tea culture to Amsterdam and opened the Netherlands' first real tea culture club right here."
 meta_title_nl: "Moychay Amsterdam Thee"
 meta_title_en: "Moychay Amsterdam Tea"
 meta_description_nl: "Moychay op Rozengracht 92H is de eerste Aziatische theecultuurclub van Nederland. 250+ theesoorten, Gong Fu Cha-ceremonies en 3 themakamers in Amsterdam."

@@ -6,6 +6,8 @@ subcategorie: "Nagelstudio"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij zijn zeven dagen per week open, ook op zondag, voor wie snel een afspraak wil of gewoon binnenloopt."
+quote_en: "We're open seven days a week, Sundays included, for anyone who wants a quick appointment or just walks in."
 meta_title_nl: "MapPy Nails Nagelstudio"
 meta_title_en: "MapPy Nails Studio Amsterdam"
 meta_description_nl: "MapPy Nails op Rozengracht 75 Amsterdam is zeven dagen per week open. Manicure, pedicure, gel, acryl, nail art en behandelingen voor mannen. Walk-ins."

@@ -6,6 +6,8 @@ subcategorie: "Argentijns restaurant"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Vraag me niet hoe je je biefstuk wil, ik zie het aan je."
+quote_en: "Don't tell me how you like your steak — I can already tell."
 meta_title_nl: "Amigo Grill | Argentijns restaurant – Rozengracht Amsterdam"
 meta_title_en: "Amigo Grill | Argentine Restaurant – Rozengracht Amsterdam"
 meta_description_nl: "Argentijns steak restaurant op Rozengracht 5 in de Jordaan. Gegrild vlees, parrillada en persoonlijk wijnadvies van eigenaar Halim. Open 12:00–00:00."

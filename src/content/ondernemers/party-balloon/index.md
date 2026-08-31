@@ -7,6 +7,8 @@ website: "https://www.partyballoon.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij bestaan al meer dan 30 jaar en hebben twee winkels op de Rozengracht: een voor ballonnen, een voor de rest van het feest."
+quote_en: "We've been around for more than 30 years, with two shops on the Rozengracht: one for balloons, one for the rest of the party."
 meta_title_nl: "Party Balloon Feestwinkel"
 meta_title_en: "Party Balloon Shop Amsterdam"
 meta_description_nl: "Party Balloon heeft twee winkels op de Rozengracht (nr 23 & 65). Heliumballonnen, feestdecoraties en geboorteartikelen. Al meer dan 30 jaar in Amsterdam."

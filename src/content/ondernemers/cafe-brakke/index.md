@@ -7,6 +7,8 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 status: "klaar"
+quote_nl: "Bij ons weet het personeel wie de stamgasten zijn, en dat is precies hoe een bruin café hoort te zijn."
+quote_en: "Our staff know who the regulars are, and that's exactly how a proper Amsterdam brown café should feel."
 meta_title_nl: "Café Brakke | Bruin café – Rozengracht Amsterdam"
 meta_title_en: "Café Brakke | Brown café – Rozengracht Amsterdam"
 meta_description_nl: "Café Brakke op Rozengracht 16 Amsterdam. Klassiek bruin café met terras. Dagelijks open 9:00–21:00. Tel 020-3201657."

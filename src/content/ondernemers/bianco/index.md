@@ -7,6 +7,8 @@ website: "https://www.kapsalonbianco.com"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Ons team spreekt samen meer dan elf talen — er is hier bijna altijd iemand die jouw taal ook spreekt."
+quote_en: "Between us we speak more than eleven languages — there's almost always someone here who speaks yours too."
 meta_title_nl: "Bianco Kapsalon Rozengracht"
 meta_title_en: "Bianco Hair Salon Rozengracht"
 meta_description_nl: "Kapsalon Bianco op Rozengracht 196 Amsterdam. Team spreekt 11+ talen. Alle haartypes, dames en heren. Knippen, kleuren, draadepilatie. Dagelijks open."

@@ -7,6 +7,8 @@ website: "https://www.fjallraven.com/nl-nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Onze winkel hier is de grootste Fjällräven Brand Store ter wereld — drie verdiepingen, 500 vierkante meter."
+quote_en: "Our store here is the largest Fjällräven Brand Store in the world — three floors, 500 square metres."
 meta_title_nl: "Fjallraven Brand Store Amsterdam"
 meta_title_en: "Fjallraven Brand Store Amsterdam"
 meta_description_nl: "Fjällräven Brand Store op Rozengracht 219-225 Amsterdam. 500m², 3 verdiepingen, grootste Fjällräven-winkel ter wereld. Kånken, jassen, outdoorkleding."

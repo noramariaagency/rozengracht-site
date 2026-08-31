@@ -6,6 +6,8 @@ subcategorie: "Streetfood"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Mijn vader begon hier in 1978 met shoarma, toen bijna niemand in Amsterdam wist wat het was. Nu runnen mijn broer en ik de zaak."
+quote_en: "My father started here in 1978 with shoarma, when almost no one in Amsterdam knew what it was. Now my brother and I run the place."
 meta_title_nl: "Ben Cohen Streetfood Rozengracht"
 meta_title_en: "Ben Cohen Streetfood Rozengracht"
 meta_description_nl: "Ben Cohen Tel-Aviv Streetfood op Rozengracht 239 Amsterdam. Hummus, pita, lamstagine en geroosterde bloemkool. Familiebedrijf sinds 1978."

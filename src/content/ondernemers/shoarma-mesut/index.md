@@ -6,6 +6,8 @@ subcategorie: "Shoarma & kebab"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij zijn het Turkse eethuis dat Jordaanbewoners al jaren kennen voor shoarma, kebab en kapsalon."
+quote_en: "We're the Turkish eatery Jordaan locals have known for years for shoarma, kebab and kapsalon."
 meta_title_nl: "Shoarma Mesut | Turks eethuis halal – Rozengracht Amsterdam"
 meta_title_en: "Shoarma Mesut | Turkish halal eatery – Rozengracht Amsterdam"
 meta_description_nl: "Shoarma Mesut op Rozengracht 164 Amsterdam. Halal Turks eethuis met shoarma, kebab, falafel en kapsalon. Verse ingrediënten, eerlijke prijzen. Bezorging."

@@ -7,6 +7,8 @@ website: "https://www.bemestar.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Bem estar is Portugees voor welzijn, en dat is precies waar we hier op de Rozengracht mee bezig zijn."
+quote_en: "Bem estar is Portuguese for wellbeing — that's exactly what we work on here on the Rozengracht."
 meta_title_nl: "Bem Estar Laserontharing Rozengracht"
 meta_title_en: "Bem Estar Laser Rozengracht Amsterdam"
 meta_description_nl: "Bem Estar Rozengracht 232. Laserontharing, wax, facials, massages. Professionele huidkliniek."

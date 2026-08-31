@@ -11,6 +11,8 @@ interne_opmerking: >
   vestiging van de internationale bezorgketen; geen naam van een franchisenemer of
   vestigingsmanager gevonden, dus bewust niet opgenomen. Geen foto's beschikbaar,
   aanvullen zodra bekend.
+quote_nl: "Wij gaan om elf uur open en pas de volgende dag om vijf uur weer dicht."
+quote_en: "We open at eleven and don't close again until five the next day."
 meta_title_nl: "Domino's Pizza | Pizza bezorgen – Rozengracht Amsterdam"
 meta_title_en: "Domino's Pizza | Pizza Delivery – Rozengracht Amsterdam"
 meta_description_nl: "Domino's Pizza op Rozengracht 166 in Amsterdam: bezorging en afhalen, dagelijks open van 11:00 tot 05:00 's nachts."

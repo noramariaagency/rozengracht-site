@@ -11,6 +11,8 @@ interne_opmerking: >
   harde datum, dus nieuw_sinds bewust nog leeg. Ook nog geen foto's of
   openingstijden voor déze vestiging bekend. Bronnen: fashionunited.nl,
   zuid.nl (oprichtersverhaal), vastgoeddata.nl, retailtrends.nl.
+quote_nl: "Alles wat bij ons in de winkel ligt, hebben we zelf getest en gedragen — dat is niet zomaar een verkooppraatje."
+quote_en: "Everything on our shelves is something we've tested and worn ourselves — that's not just a sales line."
 meta_title_nl: "Behind the Pines | Outdoorwinkel – Rozengracht Amsterdam"
 meta_title_en: "Behind the Pines | Outdoor Store – Rozengracht Amsterdam"
 meta_description_nl: "Behind the Pines opent een tweede winkel aan de Rozengracht in Amsterdam: outdoor- en snowboardgear met persoonlijk advies, sinds 2017 ook op de Ceintuurbaan."

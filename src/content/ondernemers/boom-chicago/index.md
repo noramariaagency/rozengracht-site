@@ -15,6 +15,8 @@ interne_opmerking: >
   uitzending van februari 2026). Saskia Maas is zowel medeoprichter als opgegeven contactpersoon.
   Foto's zijn gedownload uit de bestaande Drive-map "Boom Chicago" (bron: boomchicago.nl, april
   2026) en overgezet naar echte JPEG's; status daarom op "klaar" gezet.
+quote_nl: "We spelen al meer dan dertig jaar improvisatietheater in het Engels, hier op de Rozengracht al sinds 2013."
+quote_en: "We've been doing English-language improv comedy for more than thirty years, right here on the Rozengracht since 2013."
 meta_title_nl: "Boom Chicago | Improvisatietheater – Rozengracht Amsterdam"
 meta_title_en: "Boom Chicago | Improv Comedy – Rozengracht Amsterdam"
 meta_description_nl: "Boom Chicago speelt sinds 1993 Engelstalig improvtheater in Amsterdam, sinds 2013 met drie zalen aan de Rozengracht. Alumni: Seth Meyers, Jason Sudeikis."

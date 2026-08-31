@@ -7,6 +7,8 @@ website: "https://www.sabai.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij importeren en exporteren handgemaakt textiel en woondecoratie van over de hele wereld."
+quote_en: "We import and export handmade textiles and home décor from all over the world."
 meta_title_nl: "Sabina Handicraft Store"
 meta_title_en: "Sabina Handicraft Store"
 meta_description_nl: "Sabina Handicraft Store op Rozengracht 183 Amsterdam. Handgemaakt textiel en woondecoratie uit de hele wereld. Import, export en retail. Tel 020 421 4483."

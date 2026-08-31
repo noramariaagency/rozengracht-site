@@ -10,6 +10,8 @@ fotos:
   - "./foto_03.jpg"
   - "./foto_04.jpg"
   - "./foto_05.jpg"
+quote_nl: "Mensen komen bij ons niet alleen voor groenten en fruit, maar voor de Iraanse en Midden-Oosterse producten die je hier wél vindt."
+quote_en: "People don't just come to us for fruit and veg, but for the Iranian and Middle Eastern products you can actually find here."
 meta_title_nl: "Roos Market Iraans"
 meta_title_en: "Roos Market Iranian"
 meta_description_nl: "Roos Market op Rozengracht 135 Amsterdam. Verse groenten, fruit en een uitgebreid aanbod aan Iraanse en Perzische specialiteiten. Gerund door twee zussen."

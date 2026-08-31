@@ -15,6 +15,8 @@ openingstijden:
 fotos:
   - "./foto_01.avif"
   - "./foto_02.avif"
+quote_nl: "Spang Makandra is Surinaams voor 'samen eten', en dat gebeurt hier al sinds 1978."
+quote_en: "Spang Makandra is Surinamese for 'eating together', and that's been happening here since 1978."
 meta_title_nl: "Spang Makandra Surinaams"
 meta_title_en: "Spang Makandra Surinamese"
 meta_description_nl: "Spang Makandra op Rozengracht 214 is al actief sinds 1978. Authentieke Surinaamse keuken: roti, saoto-soep, moksi meti en meer. Een klassieker in."

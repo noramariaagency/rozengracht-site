@@ -15,6 +15,8 @@ openingstijden:
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
+quote_nl: "Ons format bestond al in Leeds, Madrid en Praag voordat we op 9 januari 2024 hier openden."
+quote_en: "Our format already had a following in Leeds, Madrid and Prague before we opened here on 9 January 2024."
 meta_title_nl: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_title_en: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_description_nl: "TRIB3 op Rozengracht 88 Amsterdam biedt HIIT-workouts in 3 zones met hartslagtracking. 30 plekken per sessie. Eerste 2 lessen voor €20."

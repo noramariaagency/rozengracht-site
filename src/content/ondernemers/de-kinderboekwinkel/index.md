@@ -7,6 +7,8 @@ website: "https://kinderboekwinkel.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "In 1975 begonnen mijn ouders hier de oudste gespecialiseerde kinderboekwinkel van Nederland — de op één na oudste ter wereld, zeggen ze."
+quote_en: "My parents started the Netherlands' oldest specialist children's bookshop here in 1975 — the second-oldest in the world, they tell us."
 meta_title_nl: "De Kinderboekwinkel Oudste Rozengracht"
 meta_title_en: "De Kinderboekwinkel Oldest Rozengracht"
 meta_description_nl: "Sinds 1975 op de Rozengracht Amsterdam, sinds 2026 op nummer 101-103. De oudste gespecialiseerde kinderboekwinkel van Nederland, 7.000 titels, medewerkers die bijna alles hebben gelezen."

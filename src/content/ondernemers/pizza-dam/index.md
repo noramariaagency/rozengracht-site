@@ -5,6 +5,8 @@ categorie: "eten-drinken"
 subcategorie: "Pizzeria"
 fotos:
   - "./foto_01.jpg"
+quote_nl: "Wij zijn open van één uur 's middags tot half zes 's ochtends, elke dag — ook in het weekend."
+quote_en: "We're open from one in the afternoon until half past five the next morning, every day, weekends included."
 meta_title_nl: "Pizza Dam | Pizzeria open tot 05:30 – Rozengracht Amsterdam"
 meta_title_en: "Pizza Dam Pizzeria Rozengracht Amsterdam"
 meta_description_nl: "Pizza Dam op Rozengracht 35 Amsterdam. Dagelijks open 13:00–05:30. Vegan, vegetarisch, vlees en vis. Tel 020-2480504."

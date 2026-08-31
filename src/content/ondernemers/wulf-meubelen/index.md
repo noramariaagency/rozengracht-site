@@ -22,6 +22,8 @@ interne_opmerking: >
   via een woonwinkel-directory die deze tekst overneemt. 5 foto's toegevoegd
   (showroom-interieur en portret via wulfwonen.nl, 3 productfoto's via Instagram
   @wulfwonenamsterdam).
+quote_nl: "Ik ben de derde generatie Wulf die hier meubels verkoopt, al meer dan zestig jaar op dezelfde plek."
+quote_en: "I'm the third generation of Wulfs selling furniture here, on the same spot for more than sixty years."
 meta_title_nl: "Wulf Meubelen | Interieur & meubels – Rozengracht"
 meta_title_en: "Wulf Meubelen | Furniture & Interiors – Rozengracht"
 meta_description_nl: "Wulf Meubelen (Wulf Wonen) op Rozengracht 74-78 in Amsterdam: drie generaties familiebedrijf, 1.000 m² banken, kasten, tafels en interieuradvies."

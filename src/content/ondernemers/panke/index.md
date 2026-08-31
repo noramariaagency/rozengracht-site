@@ -8,6 +8,8 @@ interne_opmerking: >
   Huisnummer nog niet bevestigd door de ondernemer — adres bewust leeg
   gelaten i.p.v. verzonnen. Ook geen naam van de eigenaar of foto's
   beschikbaar. Aanvullen zodra bekend.
+quote_nl: "Bij ons staat geen uitgebreide kaart, wel elke dag een nieuwe ronde Griekse gerechten, zoals ze ook in Griekenland op tafel zouden staan."
+quote_en: "We don't have an extensive menu — just a fresh rotation of Greek dishes every day, the kind you'd actually find on a table in Greece."
 meta_title_nl: "Panke | Grieks dagrestaurant – Rozengracht Amsterdam"
 meta_title_en: "Panke | Greek Daily Restaurant – Rozengracht Amsterdam"
 meta_description_nl: "Panke serveert dagelijks wisselende Griekse gerechten aan de Rozengracht in Amsterdam: geen kaart, wel verse seizoensgerechten."

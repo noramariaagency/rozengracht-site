@@ -7,6 +7,8 @@ website: "https://dierendokters.com"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij zijn de oudste dierenkliniek van Nederland, al sinds 1929 — al ziet het pand er van binnen inmiddels heel anders uit."
+quote_en: "We're the oldest veterinary clinic in the Netherlands, since 1929 — though the inside looks very different these days."
 meta_title_nl: "Dierendokters Amsterdam"
 meta_title_en: "Dierendokters Veterinary Amsterdam"
 meta_description_nl: "DierenDokters Amsterdam op Rozengracht 226. Oudste dierenkliniek van Nederland, actief sinds 1929. Honden, katten, knaagdieren. 8,8/10 Google."

@@ -17,6 +17,8 @@ interne_opmerking: >
   hier neutraal gehouden. 4 foto's toegevoegd via twee bevestigde Instagram-accounts
   (@coffeeshopflowerpower, adres in bio bevestigd, en @flowerpower.coffeeshop, adres
   bevestigd via smokemenus.com).
+quote_nl: "Wij gaan vroeg open, voor wie een joint liever combineert met een cappuccino dan met een avondje uit."
+quote_en: "We open early, for anyone who'd rather pair a joint with a cappuccino than a night out."
 meta_title_nl: "Coffeeshop Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_title_en: "Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_description_nl: "Coffeeshop Flower Power aan de Rozengracht 139 in Amsterdam: een ouderwetse coffeeshop met pinballkast, open van 's ochtends vroeg tot diep in de nacht."

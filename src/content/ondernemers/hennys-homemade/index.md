@@ -15,6 +15,8 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Ik begon in 2018 met granola, jam en energyballs. Inmiddels koken en bakken we hier elke dag vers, als volledig biocafé."
+quote_en: "I started in 2018 with granola, jam and energy balls. These days we cook and bake fresh here every day as a full organic café."
 meta_title_nl: "Henny's Homemade Biologisch"
 meta_title_en: "Henny's Homemade | Organic bio café – Rozengracht Amsterdam"
 meta_description_nl: "Henny's Homemade Bio Food op Rozengracht 91 Amsterdam. Biologische koffie, 35 theevarianten, verse broodjes en huisgemaakte granola. Vegan en glutenvrij."

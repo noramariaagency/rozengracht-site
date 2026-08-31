@@ -7,6 +7,8 @@ website: "https://moeders.com/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Ik vroeg mijn eerste gasten in 1990 een bord, glas en bestek mee te nemen. Daar dekken we de tafels nog steeds mee."
+quote_en: "In 1990 I asked my first guests to bring a plate, glass and cutlery. We still set the tables with those today."
 meta_title_nl: "Moeders | Nederlands restaurant – Rozengracht Amsterdam"
 meta_title_en: "Moeders | Dutch restaurant – Rozengracht Amsterdam"
 meta_description_nl: "Rozengracht 251 Amsterdam. Klassieke Nederlandse keuken, 38 stoelen, muren vol met moederfoto's. Sinds 1990."

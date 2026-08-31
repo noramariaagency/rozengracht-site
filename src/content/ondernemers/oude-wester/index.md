@@ -6,6 +6,8 @@ subcategorie: "Bruin café"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij staan op de hoek waar de straat begint — een bruin café zoals je er in Amsterdam nog maar een handvol hebt."
+quote_en: "We're on the corner where the street begins — one of the handful of proper brown cafés Amsterdam has left."
 meta_title_nl: "Café de Oude Wester | Bruin café – Rozengracht Amsterdam"
 meta_title_en: "Café de Oude Wester | Brown café – Rozengracht Amsterdam"
 meta_description_nl: "de Oude Wester op Rozengracht 2 Amsterdam. Klassiek bruin café met terras. Nederlandse gerechten, pannenkoeken en bitterballen. Dagelijks open 10:00–22:00."

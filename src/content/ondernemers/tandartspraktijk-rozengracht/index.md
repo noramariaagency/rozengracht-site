@@ -8,6 +8,8 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 status: "klaar"
+quote_nl: "Wij staan bekend als de Leuke Tandarts — mensen komen van verder weg voor de persoonlijke aandacht."
+quote_en: "We're known as the 'Nice Dentist' — people travel from further away for the personal attention."
 meta_title_nl: "Leuke Tandarts | Tandartspraktijk – Rozengracht Amsterdam"
 meta_title_en: "Leuke Tandarts | Dental practice – Rozengracht Amsterdam"
 meta_description_nl: "Tandartspraktijk Rozengracht (Leuke Tandarts) op Rozengracht 68-70 Amsterdam. Persoonlijke tandheelkunde, ma-do 8:30-17:00. Spoednummer beschikbaar."

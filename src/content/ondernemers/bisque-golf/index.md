@@ -6,6 +6,8 @@ subcategorie: "Golfwinkel"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Amsterdam had gewoon een goede golfwinkel nodig, dus die hebben we in 2023 zelf maar geopend."
+quote_en: "Amsterdam just needed a proper golf shop, so in 2023 we opened one ourselves."
 meta_title_nl: "Bisque Golf Rozengracht"
 meta_title_en: "Bisque Golf Rozengracht"
 meta_description_nl: "Golfwinkel van Ido de Voos, Marc van Dodewaard en Cheng op Rozengracht 17 Amsterdam. Merken als Malbon, Local Rule en eigen lijn. Wo–zo open."

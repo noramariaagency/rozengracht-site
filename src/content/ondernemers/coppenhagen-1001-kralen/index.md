@@ -7,6 +7,8 @@ website: "https://coppenhagenbeads.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij zijn al vier generaties dezelfde familie, en nog steeds de oudste kralenwinkel van Nederland."
+quote_en: "We're four generations of the same family, and still the oldest bead shop in the Netherlands."
 meta_title_nl: "Coppenhagen Kralen Rozengracht"
 meta_title_en: "Coppenhagen Beads Rozengracht"
 meta_description_nl: "Coppenhagen 1001 Kralen op Rozengracht 54 is de oudste kralenwinkel van Nederland. Venetiaans glas, edelsteen, miyuki en sterling zilver – al 4 generaties."

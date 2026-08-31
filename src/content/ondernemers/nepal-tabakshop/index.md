@@ -12,6 +12,8 @@ interne_opmerking: >
   onderzocht maar niet bevestigd (dat restaurant zit in De Baarsjes, niet aan de
   Rozengracht) en daarom niet opgenomen. Geen naam van de eigenaar gevonden, geen
   eigen website, geen foto's beschikbaar — aanvullen zodra bekend.
+quote_nl: "Wij zijn precies wat de naam zegt: een tabakszaak, geen restaurant en geen supermarkt met grote pretenties."
+quote_en: "We're exactly what the name says: a tobacco shop, not a restaurant, not a supermarket with big ambitions."
 meta_title_nl: "Nepal Tabakshop | Tabakszaak – Rozengracht Amsterdam"
 meta_title_en: "Nepal Tabakshop | Tobacco Shop – Rozengracht Amsterdam"
 meta_description_nl: "Nepal Tabakshop op Rozengracht 158 in Amsterdam: sigaretten, drank en ansichtkaarten, sinds 2019 geregistreerd als RG158."

@@ -6,6 +6,8 @@ subcategorie: "Thais"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Bij ons staan maar twee tafels. De meeste bestellingen gaan gewoon mee naar huis."
+quote_en: "We only have two tables. Most orders just go home with you."
 meta_title_nl: "Tuk Tuk Thai | Thais eten & afhaal – Rozengracht Amsterdam"
 meta_title_en: "Tuk Tuk Thai | Thai food & takeaway – Rozengracht Amsterdam"
 meta_description_nl: "Tuk Tuk Thai op Rozengracht 22 Amsterdam. Authentieke Thaise gerechten, voornamelijk afhaal. Dagelijks open 12:00–21:00. Tel +31 20 626 5981."

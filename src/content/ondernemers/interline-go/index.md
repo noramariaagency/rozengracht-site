@@ -4,6 +4,8 @@ huisnummer: "51a"
 categorie: "eten-drinken"
 subcategorie: "Surinaamse keuken"
 fotos: []
+quote_nl: "Wij zijn het adres voor Surinaamse afhaalmaaltijden, ook als je een groter gezelschap moet voeden."
+quote_en: "We're the place for Surinamese takeaway, even when you need to feed a crowd."
 meta_title_nl: "INTERLINE & GO | Surinaams afhalen & catering – Rozengracht Amsterdam"
 meta_title_en: "INTERLINE & GO | Surinamese takeaway & catering – Rozengracht Amsterdam"
 meta_description_nl: "INTERLINE & GO op Rozengracht 51a Amsterdam. Surinaamse roti, wraps en vegetarische opties. Ook catering voor evenementen. Tel 020-6266012."

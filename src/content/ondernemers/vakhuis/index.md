@@ -6,6 +6,8 @@ subcategorie: "Borduurspecialist"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Ik borduur hier portretten, logo's en teksten op stof — een klein vak dat niet veel mensen meer doen."
+quote_en: "I embroider portraits, logos and text onto fabric here — a small craft not many people still practise."
 meta_title_nl: "Vakhuis | Borduurspecialist – Rozengracht Amsterdam"
 meta_title_en: "Vakhuis | Embroidery specialist – Rozengracht Amsterdam"
 meta_description_nl: "Vakhuis op Rozengracht 218 Amsterdam. Borduren op maat: portretten, logo's en teksten op stof. Op locatie borduren voor evenementen. Ma-vr 12-17:30."

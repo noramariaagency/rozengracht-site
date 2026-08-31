@@ -18,6 +18,8 @@ interne_opmerking: >
   kloppende akitsu-amsterdam.com gebruikt. 5 foto's toegevoegd, alle afkomstig van de eigen website
   akitsu-amsterdam.com (het hoofdgerecht met rundvlees en mango, een sushi-doos, het interieur,
   de gevel/het terras en een sake-proeverij).
+quote_nl: "Van buiten zie je alleen een smalle pui. Binnen zitten we er al zo lang dat mensen soms niet doorhebben hoe oud we eigenlijk zijn."
+quote_en: "From outside you just see a narrow front. Inside, we've been here so long people are often surprised how old we actually are."
 meta_title_nl: "Akitsu | Japans restaurant & sake – Rozengracht Amsterdam"
 meta_title_en: "Akitsu | Japanese Restaurant & Sake – Rozengracht Amsterdam"
 meta_description_nl: "Akitsu op Rozengracht 228, Amsterdam: al ruim dertig jaar sushi, sashimi en gegrilde gerechten met een eigen wijn- en sakekaart."

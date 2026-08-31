@@ -7,6 +7,8 @@ website: "https://de-rozengracht.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij repareren, stomen en strijken met de snelheid die een drukke winkelstraat nou eenmaal vraagt."
+quote_en: "We repair, dry-clean and press at the speed a busy shopping street actually needs."
 meta_title_nl: "Rozengracht Kledingreparatie"
 meta_title_en: "Rozengracht Clothing Repair"
 meta_description_nl: "De Rozengracht Kledingreparatie & Stomerij op Rozengracht 216. Meer dan 30 jaar ervaring. Spoedherstellingen binnen 1 uur. Stomen, innemen, trouwkleding."

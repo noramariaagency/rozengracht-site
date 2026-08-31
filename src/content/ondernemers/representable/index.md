@@ -7,6 +7,8 @@ website: "https://www.representable.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij openden in 2019 met één simpel idee: tafelgerei dat het verdient om gezien te worden."
+quote_en: "We opened in 2019 with one simple idea: tableware that deserves to be seen."
 meta_title_nl: "Representable Tafelgerei"
 meta_title_en: "Representable Tableware"
 meta_description_nl: "Représentable op Rozengracht 162 Amsterdam. 130m² showroom met servies, glaswerk, bestek en tafellinnen uit heel Europa. Te koop en te huur. Geopend 2019."

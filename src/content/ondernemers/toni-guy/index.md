@@ -14,6 +14,8 @@ interne_opmerking: >
   als Rozengracht 13h vermeld i.p.v. 13 — hier de ledenlijst gevolgd. Openingstijden
   variëren per bron en zijn daarom niet expliciet in de tekst opgenomen. Geen
   foto's beschikbaar, aanvullen zodra bekend.
+quote_nl: "Ik leid deze vestiging al ruim twintig jaar."
+quote_en: "I've been running this branch for more than twenty years now."
 meta_title_nl: "Toni & Guy | Kapper – Rozengracht Amsterdam"
 meta_title_en: "Toni & Guy | Hair Salon – Rozengracht Amsterdam"
 meta_description_nl: "Toni&Guy op Rozengracht 13 in Amsterdam: de lokale vestiging van de internationale kapketen, onder leiding van Naomi Achthoven-Sutcliffe."

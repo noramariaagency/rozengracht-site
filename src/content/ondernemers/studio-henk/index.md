@@ -7,6 +7,8 @@ website: "https://www.studio-henk.nl"
 fotos:
   - "./foto_01.jpg"
 status: "klaar"
+quote_nl: "Wij begonnen in 2013 met een tafel die we zelf bouwden van teruggewonnen hout. Nu staat onze flagshipstore in een pand waar ooit de Lucas Bols-distilleerderij zat."
+quote_en: "We started in 2013 with a table we built ourselves from reclaimed wood. Now our flagship store sits in a building that once housed the Lucas Bols distillery."
 meta_title_nl: "Studio HENK | Designmeubels op maat – Rozengracht Amsterdam"
 meta_title_en: "Studio HENK Design Furniture Rozengracht Amsterdam"
 meta_description_nl: "Studio HENK Rozengracht 204-210. 1000m² meubelsshowroom, B Corp-gecertificeerd."

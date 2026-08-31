@@ -11,6 +11,8 @@ interne_opmerking: >
   oudere bezorgplatforms (o.a. Yelp) staat hetzelfde adres ook nog geregistreerd onder de naam
   "Bienvenue" - onduidelijk of dit een eerdere naam is of een dubbele vermelding, dus bewust niet
   als feit gepresenteerd. Foto's aanvullen zodra bekend.
+quote_nl: "Op vrijdag, uitgerekend een van de drukste avonden in de Jordaan, zijn wij dicht. Zo hebben we het nou eenmaal georganiseerd."
+quote_en: "On Fridays — one of the busiest nights in the Jordaan — we're closed. That's just how we've organised it."
 meta_title_nl: "Cafetaria Super Star | Snackbar – Rozengracht Amsterdam"
 meta_title_en: "Cafetaria Super Star | Snack Bar – Rozengracht Amsterdam"
 meta_description_nl: "Cafetaria Super Star op Rozengracht 90H in Amsterdam: patat, döner en frituursnacks, open tot 03:00 - behalve op vrijdag."

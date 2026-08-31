@@ -13,6 +13,8 @@ interne_opmerking: >
   "Moheb", maar dit kon niet los bevestigd worden als eigenaarsnaam, dus in de
   tekst alleen als contactpersoon behandeld. Geen foto's beschikbaar,
   aanvullen zodra bekend.
+quote_nl: "Bij ons hoor je geen neonreclame, wel reggae — dat zegt eigenlijk alles."
+quote_en: "You won't hear neon signs here, but you will hear reggae — that pretty much says it all."
 meta_title_nl: "African Blackstar | Coffeeshop – Rozengracht Amsterdam"
 meta_title_en: "African Blackstar | Coffeeshop – Rozengracht Amsterdam"
 meta_description_nl: "African Blackstar op Rozengracht 1A: Black-owned coffeeshop met bar, rokersruimte en reggae, op loopafstand van het Anne Frank Huis in Amsterdam."

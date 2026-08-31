@@ -6,6 +6,8 @@ subcategorie: "Desembakkerij"
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
+quote_nl: "Al ruim tien jaar bakken we hier elke ochtend vers desembrood, met zo min mogelijk verspilling."
+quote_en: "We've been baking fresh sourdough here every morning for over ten years, with as little waste as possible."
 meta_title_nl: "Bbrood | Desembakkerij – Rozengracht Amsterdam"
 meta_title_en: "Bbrood | Sourdough bakery – Rozengracht Amsterdam"
 meta_description_nl: "Bbrood op Rozengracht 180-182 bakt dagvers desembrood. Waste-no-more aanpak: dagoud brood voor halve prijs. Open ma-za 7:30-17:00 in Amsterdam."

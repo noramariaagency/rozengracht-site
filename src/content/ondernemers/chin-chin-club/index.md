@@ -7,6 +7,8 @@ website: "https://chinchinclub.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Kom binnen zonder precies te weten waar de avond heengaat — dat werkt bij ons het beste."
+quote_en: "Walk in without knowing exactly where the night's headed — that's when it works best here."
 meta_title_nl: "Chin Chin Club Karaoke"
 meta_title_en: "Chin Chin Club Karaoke"
 meta_description_nl: "Chin Chin Club op Rozengracht 133 Amsterdam combineert Aziatische fusion, cocktailbar, karaoke en club. 750 gasten capaciteit. Open do/vr/za."

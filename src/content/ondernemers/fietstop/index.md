@@ -11,6 +11,8 @@ status: "klaar"
 interne_opmerking: >
   Aangemaakt op basis van de officiële BIZ-ledenlijst plus eigen onderzoek. Foto's stonden
   al klaar in de map en zijn ongewijzigd overgenomen.
+quote_nl: "Van een lekke band tot een elektrische ombouw, wij repareren het gewoon hier ter plekke voor de hele buurt."
+quote_en: "From a flat tyre to an electric conversion, we fix it right here on the spot for the whole neighbourhood."
 meta_title_nl: "Fietstop | Fietsenreparatie – Rozengracht Amsterdam"
 meta_title_en: "Fietstop | Bike Repair & Sales – Rozengracht Amsterdam"
 meta_description_nl: "Fietstop op Rozengracht 141 in Amsterdam repareert en verkoopt fietsen, van lekke band tot elektrische ombouw. Familiebedrijf met o.a. Cortina."

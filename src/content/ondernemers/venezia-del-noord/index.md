@@ -6,6 +6,8 @@ subcategorie: "Italiaans restaurant"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Wij staan op Rozengracht 1 — het allereerste adres van de straat, precies op de hoek waar de Jordaan begint."
+quote_en: "We're at Rozengracht 1 — the very first address on the street, right on the corner where the Jordaan begins."
 meta_title_nl: "Venezia del Noord Italiaans"
 meta_title_en: "Venezia del Noord Italian"
 meta_description_nl: "Venezia del Noord op Rozengracht 1 Amsterdam. Italiaanse pizza en pasta met glutenvrije opties. Betaalbaar, dagelijks geopend in de Jordaan."

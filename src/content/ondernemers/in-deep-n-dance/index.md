@@ -12,6 +12,8 @@ interne_opmerking: >
   Resident Advisor, 3voor12) om tekst toe te voegen aan een map die al een foto had maar nog geen
   index.md. Naamspelling "Dejan en Linda Milojkovic" overgenomen van de socials-pagina van de eigen
   website, die afwijkt van de spelling "Milokovic" uit de eerdere projectnotities.
+quote_nl: "Ik verkoop hier al sinds 1999 platen — mensen kennen me nog steeds als Dexon."
+quote_en: "I've been selling records here since 1999 — people still know me as Dexon."
 meta_title_nl: "In Deep 'N Dance | Platenzaak – Rozengracht Amsterdam"
 meta_title_en: "In Deep 'N Dance | Record shop – Rozengracht Amsterdam"
 meta_description_nl: "Platenzaak op Rozengracht 60 sinds 1999, gerund door Dejan (DJ Dexon) en Linda Milojkovic. Techno, house en meer, plus dj-Tuesday in de Melkweg."

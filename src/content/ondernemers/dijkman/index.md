@@ -7,6 +7,8 @@ website: "https://www.dijkmanmuziek.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
+quote_nl: "Sinds 1960 zitten wij hier, en het pand ademt inmiddels muziekinstrumenten."
+quote_en: "We've been here since 1960, and by now the building itself seems to breathe musical instruments."
 meta_title_nl: "Dijkman Muziek | Muziekinstrumenten – Rozengracht Amsterdam"
 meta_title_en: "Dijkman Muziek | Musical instruments – Rozengracht Amsterdam"
 meta_description_nl: "Dijkman Muziek op Rozengracht 107-115 Amsterdam. 800+ gitaren, 100+ keyboards, reparaties en inruil. Muziekwinkel in de Jordaan sinds 1960."

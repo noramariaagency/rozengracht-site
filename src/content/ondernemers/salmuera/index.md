@@ -7,6 +7,8 @@ website: "https://www.sal-amsterdam.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.png"
+quote_nl: "Wij openden in 2015 als de eerste mezcaleria van Nederland en bouwden sindsdien een collectie van meer dan 150 flessen op."
+quote_en: "We opened in 2015 as the Netherlands' first mezcaleria, and since then we've built a collection of more than 150 bottles."
 meta_title_nl: "Salmuera Argentijns"
 meta_title_en: "Salmuera Argentine"
 meta_description_nl: "Salmuera op Rozengracht 106 Amsterdam is de eerste mezcaleria van Nederland (2015). Argentijns asado, Peruaanse ceviche en 150+ mezcals aan de Rozengracht."

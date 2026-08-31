@@ -8,6 +8,8 @@ fotos:
   - "./foto_01.png"
   - "./foto_02.png"
 status: "klaar"
+quote_nl: "Wij zijn het oudste Thaise restaurant van Amsterdam, hier al sinds 2001."
+quote_en: "We're Amsterdam's oldest Thai restaurant, here since 2001."
 meta_title_nl: "Warie's Thai Food Thais"
 meta_title_en: "Warie's Thai Food Thai"
 meta_description_nl: "Warie's Thai Food op Rozengracht 235, het oudste Thaise restaurant van Amsterdam (2001). Verse Thaise keuken, open keuken. Reserveren aanbevolen."

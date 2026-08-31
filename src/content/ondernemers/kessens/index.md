@@ -11,6 +11,8 @@ status: "klaar"
 interne_opmerking: >
   Pagina aangemaakt op basis van de officiële BIZ-ondernemerslijst en eigen onderzoek (website,
   nieuwsartikelen) om tekst toe te voegen aan een map die al foto's had maar nog geen index.md.
+quote_nl: "Ik groeide op boven de kroketten van banketbakkerij Holtkamp. Eind 2014 opende ik samen met mijn vrouw Anna dit restaurant."
+quote_en: "I grew up above the kitchen of Holtkamp's famous pastry shop. At the end of 2014, my wife Anna and I opened this restaurant together."
 meta_title_nl: "Kessens | Restaurant & ontbijt – Rozengracht Amsterdam"
 meta_title_en: "Kessens | Breakfast & lunch – Rozengracht Amsterdam"
 meta_description_nl: "Kessens op Rozengracht 24: ontbijt, lunch en gebak van banketbakkerij Holtkamp, met een Scandinavisch tintje van Anna Holtkamp. Open vanaf 8:30."
