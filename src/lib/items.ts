@@ -57,9 +57,9 @@ export type FeedItem = {
   image: { src: string; width: number; height: number; focus: string | null } | null;
 };
 
-const KIND_LABELS: Record<Lang, { nieuws: string; verhaal: string; event: string }> = {
-  nl: { nieuws: 'Nieuws', verhaal: 'Verhaal', event: 'Event' },
-  en: { nieuws: 'News', verhaal: 'Story', event: 'Event' },
+const KIND_LABELS: Record<Lang, { nieuws: string; bereikbaarheid: string; verhaal: string; event: string }> = {
+  nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event' },
+  en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event' },
 };
 
 // timeZone: 'Europe/Amsterdam' expliciet meegeven bij elke datumweergave in
@@ -85,10 +85,15 @@ export function nieuwsToItem(
   image: FeedItem['image'] = null,
   lang: Lang = 'nl'
 ): FeedItem {
+  // Categorie "bereikbaarheid" krijgt een eigen label + accentkleur (ochre,
+  // zelfde toon als de bereikbaarheidsbalk) i.p.v. altijd "Nieuws"/rose —
+  // zodat het kaartje meteen laat zien wat voor bericht het is, in plaats
+  // van elk nieuwsbericht hetzelfde label te geven ongeacht de categorie.
+  const isBereikbaarheid = entry.data.categorie === 'bereikbaarheid';
   return {
     kind: 'nieuws',
-    kindLabel: KIND_LABELS[lang].nieuws,
-    accent: 'rose',
+    kindLabel: isBereikbaarheid ? KIND_LABELS[lang].bereikbaarheid : KIND_LABELS[lang].nieuws,
+    accent: isBereikbaarheid ? 'ochre' : 'rose',
     href: getRelativeLocaleUrl(lang, `nieuws/${entry.slug}/`),
     title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
     excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),

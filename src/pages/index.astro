@@ -30,9 +30,9 @@ const [featureNieuwsItem, ...restNieuwsItems] = nieuwsItems;
 const compactNieuwsItems = restNieuwsItems.slice(0, 3);
 
 // --- Events: nu een echte content-collection i.p.v. hardcoded voorbeelddata.
-// "Binnenkort" vs. "Terugblik" wordt afgeleid van de datum t.o.v. vandaag —
-// zelfde aanpak als de bereikbaarheidsupdates, dus nooit een handmatig vlag
-// dat kan gaan afwijken van de werkelijkheid. ---
+// Alleen de eerstvolgende, nog niet geweest events tellen mee — een
+// "Terugblik" doen we pas zodra we ook artikelen schrijven over oude events
+// (dan komt die weer terug, samen met een eigen sectie i.p.v. deze strip). ---
 const vandaag = new Date();
 const alleEventsRuw = await getCollection('events');
 const alleEventsItems = await Promise.all(
@@ -49,10 +49,12 @@ const binnenkortEvents = alleEventsItems
   .filter(({ entry }) => (entry.data.datum_tot ?? entry.data.datum) >= vandaag)
   .sort((a, b) => a.item.sortValue - b.item.sortValue)
   .map(({ item }) => item);
-const terugblikEvents = alleEventsItems
-  .filter(({ entry }) => (entry.data.datum_tot ?? entry.data.datum) < vandaag)
-  .sort((a, b) => b.item.sortValue - a.item.sortValue)
-  .map(({ item }) => item);
+// Datum + locatie samengevoegd tot één label — als aparte conditionals in de
+// markup geeft Astro een spatie tussen de twee blokken door ("19 september ,
+// Rozengracht" i.p.v. "19 september, Rozengracht"), dit voorkomt dat.
+const eersteEventMeta = binnenkortEvents[0]
+  ? [binnenkortEvents[0].dateLabel, binnenkortEvents[0].locationLabel].filter(Boolean).join(', ')
+  : '';
 
 // --- Wie kwam er laatst bij: alléén ondernemers met een bekende openingsdatum
 // (nieuw_sinds), meest recent eerst, en maximaal 5 — dit is bewust een korte
@@ -137,12 +139,48 @@ const kaartItems = alleOndernemers
   <section class="section" id="nieuws">
     <div class="container">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">In de straat</span>
-          <h2>Nieuws &amp; updates</h2>
-        </div>
-        <a class="see-all" href={getRelativeLocaleUrl(lang, 'nieuws')}>Alle artikelen &rarr;</a>
+        <h2>Nieuws &amp; updates</h2>
       </div>
+
+      <!-- Events zijn zeldzaam (meestal 0 of 1 tegelijk) — daarom geen eigen
+           sub-sectie met kop en witruimte meer, maar één compacte strip mét
+           fotootje, redactioneel bij het nieuws (rose-tint) i.p.v. de
+           site-brede utility-balk hierboven (ochre). Verschijnt alleen
+           zolang er een eerstvolgend event is; anders blijft deze strip
+           gewoon weg. Zijn er toevallig meerdere events tegelijk, dan tonen
+           we alleen de eerstvolgende met een tekstverwijzing naar de rest —
+           geen tweede strip erbij. -->
+      {binnenkortEvents.length > 0 && (
+        <a class="event-strip" href={binnenkortEvents[0].href}>
+          <div class="thumb">
+            {binnenkortEvents[0].image ? (
+              <img
+                src={binnenkortEvents[0].image.src}
+                width={binnenkortEvents[0].image.width}
+                height={binnenkortEvents[0].image.height}
+                alt=""
+                loading="lazy"
+                style={binnenkortEvents[0].image.focus ? `object-position: ${binnenkortEvents[0].image.focus}` : undefined}
+              />
+            ) : (
+              <div class="thumb-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4" /><path d="M16 3v4" /><path d="M3 10h18" /></svg>
+              </div>
+            )}
+          </div>
+          <div class="txt">
+            <span class="cat-inline">{binnenkortEvents[0].kindLabel}</span>
+            <strong>{binnenkortEvents[0].title}</strong>
+            {eersteEventMeta && <> &mdash; {eersteEventMeta}</>}
+            {binnenkortEvents.length > 1 && (
+              <span class="event-strip-more">
+                {' '}&middot; nog {binnenkortEvents.length - 1} {binnenkortEvents.length - 1 === 1 ? 'event' : 'events'}
+              </span>
+            )}
+          </div>
+          <span class="see-all">Meer info &rarr;</span>
+        </a>
+      )}
 
       <div class="news-grid">
         {featureNieuwsItem && (
@@ -156,30 +194,7 @@ const kaartItems = alleOndernemers
               <ContentCard item={item} variant="compact" />
             </div>
           ))}
-        </div>
-      </div>
-
-      <!-- Events: nu een echte content-collection (src/content/events) i.p.v.
-           hardcoded voorbeelddata — "Binnenkort" vs. "Terugblik" volgt
-           automatisch uit de datum t.o.v. vandaag. Zelfde <ContentCard />
-           als Nieuws hierboven, alleen met het groene event-accent. -->
-      <div class="sub-section" id="events">
-        <div class="sub-head">
-          <h3>Events</h3>
-        </div>
-        <div class="events-grid">
-          <div>
-            <div class="subhead">Binnenkort</div>
-            {binnenkortEvents.length > 0 ? binnenkortEvents.map((item) => (
-              <ContentCard item={item} variant="compact" />
-            )) : <p class="placeholder-note">Nog geen aankomende events gepland.</p>}
-          </div>
-          <div>
-            <div class="subhead">Terugblik</div>
-            {terugblikEvents.length > 0 ? terugblikEvents.map((item) => (
-              <ContentCard item={item} variant="compact" />
-            )) : <p class="placeholder-note">Nog geen eerdere events om op terug te blikken.</p>}
-          </div>
+          <a class="see-all see-all-under" href={getRelativeLocaleUrl(lang, 'nieuws')}>Alle artikelen &rarr;</a>
         </div>
       </div>
     </div>
@@ -326,17 +341,12 @@ const kaartItems = alleOndernemers
   }
   .banner-inner a { text-decoration: underline; text-underline-offset: 3px; font-weight: 500; color: #fff7ee; flex-shrink: 0; }
 
-  /* Section shell */
-  .section { position: relative; padding: 88px 0 12px; scroll-margin-top: var(--nav-height); }
-  #events, #ondernemers { scroll-margin-top: var(--nav-height); }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 44px;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+  /* Section shell — top-padding bewust krap (was 88px): de homepage-top
+     (nav + bereikbaarheidsbalk + hier) mag compact ogen, niet als een eigen
+     hero-vlak aanvoelen. */
+  .section { position: relative; padding: 40px 0 12px; scroll-margin-top: var(--nav-height); }
+  #ondernemers { scroll-margin-top: var(--nav-height); }
+  .section-head { margin-bottom: 20px; }
   .section-head h2 { font-size: 1.9rem; }
   .eyebrow {
     display: block;
@@ -356,6 +366,7 @@ const kaartItems = alleOndernemers
     white-space: nowrap;
     text-decoration: none;
   }
+  .see-all-under { align-self: flex-start; margin-top: 2px; }
   .placeholder-note {
     font-size: 0.78rem;
     color: var(--ink-soft);
@@ -382,18 +393,33 @@ const kaartItems = alleOndernemers
     .news-grid { grid-template-columns: 1fr; }
   }
 
-  /* Events: ook opgebouwd uit <ContentCard variant="compact" /> */
-  .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-  @media (max-width: 760px) {
-    .events-grid { grid-template-columns: 1fr; gap: 32px; }
+  /* Event-strip: compacte vervanger van de vroegere "Events"-sub-sectie —
+     zie de toelichting bij de markup hierboven. Rose-tint (redactioneel,
+     net als de categorie-labels) i.p.v. een volle utility-kleur, met een
+     eigen klein fotootje zodat een event zijn beeld niet kwijtraakt. */
+  .event-strip {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--rose-tint);
+    border: 1px solid #ecd4cd;
+    border-radius: 12px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    text-decoration: none;
+    color: inherit;
   }
-  .subhead {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--rose-deep);
-    font-weight: 700;
-    margin-bottom: 14px;
+  .event-strip .thumb { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 9px; overflow: hidden; background: var(--line); }
+  .event-strip .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .event-strip .thumb-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--green-deep), var(--green-black)); }
+  .event-strip .thumb-fallback svg { width: 45%; height: 45%; color: rgba(255, 255, 255, 0.55); }
+  .event-strip .txt { flex: 1; font-size: 0.88rem; min-width: 0; }
+  .event-strip .txt .cat-inline { color: var(--rose-deep); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 7px; }
+  .event-strip .txt strong { color: var(--green-black); }
+  .event-strip .event-strip-more { color: var(--ink-soft); }
+  .event-strip .see-all { flex-shrink: 0; }
+  @media (max-width: 560px) {
+    .event-strip { flex-wrap: wrap; }
   }
 
   /* Reveal-on-scroll: fade+lift, gestaggerd. cubic-bezier i.p.v. bare "ease"

@@ -26,6 +26,9 @@ const nieuwsItems = await Promise.all(
 const [featureNieuwsItem, ...restNieuwsItems] = nieuwsItems;
 const compactNieuwsItems = restNieuwsItems.slice(0, 3);
 
+// Events: only upcoming ones count towards this strip — a "past events"
+// look-back is something we'll add once we're also writing articles about
+// past events (together with its own section again, instead of this strip).
 const vandaag = new Date();
 const alleEventsRuw = await getCollection('events');
 const alleEventsItems = await Promise.all(
@@ -40,10 +43,12 @@ const binnenkortEvents = alleEventsItems
   .filter(({ entry }) => (entry.data.datum_tot ?? entry.data.datum) >= vandaag)
   .sort((a, b) => a.item.sortValue - b.item.sortValue)
   .map(({ item }) => item);
-const terugblikEvents = alleEventsItems
-  .filter(({ entry }) => (entry.data.datum_tot ?? entry.data.datum) < vandaag)
-  .sort((a, b) => b.item.sortValue - a.item.sortValue)
-  .map(({ item }) => item);
+// Date + location combined into one label — as separate conditionals in the
+// markup, Astro inserts a space between the two blocks ("19 September ,
+// Rozengracht" instead of "19 September, Rozengracht"); this avoids that.
+const eersteEventMeta = binnenkortEvents[0]
+  ? [binnenkortEvents[0].dateLabel, binnenkortEvents[0].locationLabel].filter(Boolean).join(', ')
+  : '';
 
 const categorieLabels = getCategorieLabels(lang);
 const alleOndernemers = await getCollection(
@@ -114,12 +119,48 @@ const kaartItems = alleOndernemers
   <section class="section" id="nieuws">
     <div class="container">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">On the street</span>
-          <h2>News &amp; updates</h2>
-        </div>
-        <a class="see-all" href={getRelativeLocaleUrl(lang, 'nieuws')}>All articles &rarr;</a>
+        <h2>News &amp; updates</h2>
       </div>
+
+      <!-- Events are rare (usually 0 or 1 at a time) — so no separate
+           sub-section with its own heading and whitespace any more, just one
+           compact strip with a small photo, editorial next to the news
+           (rose-tint) rather than the site-wide utility banner above
+           (ochre). Only shows up while there's an upcoming event; otherwise
+           this strip simply stays away. If there happen to be several events
+           at once, we only show the nearest one with a text reference to
+           the rest — no second strip. -->
+      {binnenkortEvents.length > 0 && (
+        <a class="event-strip" href={binnenkortEvents[0].href}>
+          <div class="thumb">
+            {binnenkortEvents[0].image ? (
+              <img
+                src={binnenkortEvents[0].image.src}
+                width={binnenkortEvents[0].image.width}
+                height={binnenkortEvents[0].image.height}
+                alt=""
+                loading="lazy"
+                style={binnenkortEvents[0].image.focus ? `object-position: ${binnenkortEvents[0].image.focus}` : undefined}
+              />
+            ) : (
+              <div class="thumb-fallback" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4" /><path d="M16 3v4" /><path d="M3 10h18" /></svg>
+              </div>
+            )}
+          </div>
+          <div class="txt">
+            <span class="cat-inline">{binnenkortEvents[0].kindLabel}</span>
+            <strong>{binnenkortEvents[0].title}</strong>
+            {eersteEventMeta && <> &mdash; {eersteEventMeta}</>}
+            {binnenkortEvents.length > 1 && (
+              <span class="event-strip-more">
+                {' '}&middot; {binnenkortEvents.length - 1} more {binnenkortEvents.length - 1 === 1 ? 'event' : 'events'}
+              </span>
+            )}
+          </div>
+          <span class="see-all">More info &rarr;</span>
+        </a>
+      )}
 
       <div class="news-grid">
         {featureNieuwsItem && (
@@ -133,26 +174,7 @@ const kaartItems = alleOndernemers
               <ContentCard item={item} variant="compact" />
             </div>
           ))}
-        </div>
-      </div>
-
-      <div class="sub-section" id="events">
-        <div class="sub-head">
-          <h3>Events</h3>
-        </div>
-        <div class="events-grid">
-          <div>
-            <div class="subhead">Coming up</div>
-            {binnenkortEvents.length > 0 ? binnenkortEvents.map((item) => (
-              <ContentCard item={item} variant="compact" />
-            )) : <p class="placeholder-note">No upcoming events planned yet.</p>}
-          </div>
-          <div>
-            <div class="subhead">Past events</div>
-            {terugblikEvents.length > 0 ? terugblikEvents.map((item) => (
-              <ContentCard item={item} variant="compact" />
-            )) : <p class="placeholder-note">No past events to look back on yet.</p>}
-          </div>
+          <a class="see-all see-all-under" href={getRelativeLocaleUrl(lang, 'nieuws')}>All articles &rarr;</a>
         </div>
       </div>
     </div>
@@ -281,16 +303,9 @@ const kaartItems = alleOndernemers
   }
   .banner-inner a { text-decoration: underline; text-underline-offset: 3px; font-weight: 500; color: #fff7ee; flex-shrink: 0; }
 
-  .section { position: relative; padding: 88px 0 12px; scroll-margin-top: var(--nav-height); }
-  #events, #ondernemers { scroll-margin-top: var(--nav-height); }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 44px;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+  .section { position: relative; padding: 40px 0 12px; scroll-margin-top: var(--nav-height); }
+  #ondernemers { scroll-margin-top: var(--nav-height); }
+  .section-head { margin-bottom: 20px; }
   .section-head h2 { font-size: 1.9rem; }
   .eyebrow {
     display: block;
@@ -310,6 +325,7 @@ const kaartItems = alleOndernemers
     white-space: nowrap;
     text-decoration: none;
   }
+  .see-all-under { align-self: flex-start; margin-top: 2px; }
   .placeholder-note {
     font-size: 0.78rem;
     color: var(--ink-soft);
@@ -335,17 +351,33 @@ const kaartItems = alleOndernemers
     .news-grid { grid-template-columns: 1fr; }
   }
 
-  .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-  @media (max-width: 760px) {
-    .events-grid { grid-template-columns: 1fr; gap: 32px; }
+  /* Event-strip: compact replacement for the old "Events" sub-section — see
+     the note by the markup above. Rose-tint (editorial, like the category
+     labels) instead of a full utility color, with its own small thumbnail so
+     an event doesn't lose its image. */
+  .event-strip {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--rose-tint);
+    border: 1px solid #ecd4cd;
+    border-radius: 12px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    text-decoration: none;
+    color: inherit;
   }
-  .subhead {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--rose-deep);
-    font-weight: 700;
-    margin-bottom: 14px;
+  .event-strip .thumb { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 9px; overflow: hidden; background: var(--line); }
+  .event-strip .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .event-strip .thumb-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--green-deep), var(--green-black)); }
+  .event-strip .thumb-fallback svg { width: 45%; height: 45%; color: rgba(255, 255, 255, 0.55); }
+  .event-strip .txt { flex: 1; font-size: 0.88rem; min-width: 0; }
+  .event-strip .txt .cat-inline { color: var(--rose-deep); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 7px; }
+  .event-strip .txt strong { color: var(--green-black); }
+  .event-strip .event-strip-more { color: var(--ink-soft); }
+  .event-strip .see-all { flex-shrink: 0; }
+  @media (max-width: 560px) {
+    .event-strip { flex-wrap: wrap; }
   }
 
   .reveal-item {
