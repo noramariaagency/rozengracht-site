@@ -17,12 +17,6 @@ const ruw = await getCollection(
   ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
 );
 
-function huisnummerSortValue(h) {
-  if (!h) return null;
-  const match = h.match(/\d+/);
-  return match ? parseInt(match[0], 10) : null;
-}
-
 const items = await Promise.all(
   ruw.map(async (o) => {
     // Foto is optioneel — een ondernemer zonder (goede) foto krijgt geen
@@ -37,7 +31,6 @@ const items = await Promise.all(
       slug: o.slug,
       naam: o.data.naam,
       huisnummer: o.data.huisnummer,
-      huisnummerSort: huisnummerSortValue(o.data.huisnummer),
       categorie: o.data.categorie,
       categorieLabel: categorieLabels[o.data.categorie] ?? o.data.categorie,
       foto: foto?.src ?? null,
@@ -45,15 +38,10 @@ const items = await Promise.all(
   })
 );
 
-// Ondernemers zonder (nog) bevestigd huisnummer kunnen niet op volgorde
-// gezet worden — die tonen we onderaan de lijst, in plaats van een
-// verzonnen huisnummer te sorteren alsof het een echte positie is.
-items.sort((a, b) => {
-  if (a.huisnummerSort === null && b.huisnummerSort === null) return 0;
-  if (a.huisnummerSort === null) return 1;
-  if (b.huisnummerSort === null) return -1;
-  return a.huisnummerSort - b.huisnummerSort;
-});
+// Alfabetisch op naam — makkelijker om een specifieke ondernemer terug te
+// vinden dan de oude sortering op huisnummer (die bovendien niet elke
+// ondernemer heeft, dus altijd een "geen adres"-staartje aan het eind gaf).
+items.sort((a, b) => a.naam.localeCompare(b.naam, 'nl', { sensitivity: 'base' }));
 
 // Alleen ondernemers met een bekende locatie (uit places.json, via de
 // Places API opgehaald) krijgen een pin — geen coordinaten verzinnen voor
@@ -80,10 +68,10 @@ const kaartItems = items
 
 const categorieen = Object.entries(categorieLabels);
 ---
-<BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op volgorde van huisnummer." lang={lang}>
+<BaseLayout title="Ondernemers" description="Alle ondernemers aan de Rozengracht in Amsterdam, op alfabetische volgorde." lang={lang}>
   <h1>Ondernemers op de Rozengracht</h1>
   <p style="color: var(--color-muted); max-width: 640px;">
-    {items.length} ondernemers, op volgorde van huisnummer: van de Westermarkt tot de Marnixstraat. Klik op een kaartje voor meer info.
+    {items.length} ondernemers, op alfabetische volgorde. Klik op een kaartje voor meer info.
   </p>
 
   <OndernemersKaart items={kaartItems} />

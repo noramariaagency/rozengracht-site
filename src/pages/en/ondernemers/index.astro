@@ -17,12 +17,6 @@ const ruw = await getCollection(
   ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
 );
 
-function huisnummerSortValue(h) {
-  if (!h) return null;
-  const match = h.match(/\d+/);
-  return match ? parseInt(match[0], 10) : null;
-}
-
 const items = await Promise.all(
   ruw.map(async (o) => {
     const foto = o.data.fotos[0]
@@ -32,7 +26,6 @@ const items = await Promise.all(
       slug: o.slug,
       naam: o.data.naam,
       huisnummer: o.data.huisnummer,
-      huisnummerSort: huisnummerSortValue(o.data.huisnummer),
       categorie: o.data.categorie,
       categorieLabel: categorieLabels[o.data.categorie] ?? o.data.categorie,
       foto: foto?.src ?? null,
@@ -40,12 +33,10 @@ const items = await Promise.all(
   })
 );
 
-items.sort((a, b) => {
-  if (a.huisnummerSort === null && b.huisnummerSort === null) return 0;
-  if (a.huisnummerSort === null) return 1;
-  if (b.huisnummerSort === null) return -1;
-  return a.huisnummerSort - b.huisnummerSort;
-});
+// Alphabetical by name — easier to find a specific business than the old
+// house-number sort (which not every business even has, so it always left
+// a "no address" tail at the end).
+items.sort((a, b) => a.naam.localeCompare(b.naam, 'en', { sensitivity: 'base' }));
 
 // Alleen ondernemers met een bekende locatie (uit places.json, via de
 // Places API opgehaald) krijgen een pin — geen coordinaten verzinnen voor
@@ -72,10 +63,10 @@ const kaartItems = items
 
 const categorieen = Object.entries(categorieLabels);
 ---
-<BaseLayout title="Businesses" description="All the businesses on the Rozengracht in Amsterdam, in order of house number." lang={lang}>
+<BaseLayout title="Businesses" description="All the businesses on the Rozengracht in Amsterdam, in alphabetical order." lang={lang}>
   <h1>Businesses on the Rozengracht</h1>
   <p style="color: var(--color-muted); max-width: 640px;">
-    {items.length} businesses, in order of house number: from the Westermarkt to the Marnixstraat. Click a card for more info.
+    {items.length} businesses, in alphabetical order. Click a card for more info.
   </p>
 
   <OndernemersKaart items={kaartItems} />
