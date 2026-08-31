@@ -93,7 +93,11 @@ const ondernemersStrip = ondernemersStripRuw
 // niet iedereen bij elk bezoek dezelfde ondernemer ziet uitgelicht. ---
 const citaten = alleOndernemers
   .filter((o) => o.data.quote_nl)
-  .map((o) => ({ naam: o.data.naam, quote: o.data.quote_nl }));
+  .map((o) => ({
+    naam: o.data.naam,
+    quote: o.data.quote_nl,
+    href: getRelativeLocaleUrl(lang, `ondernemers/${o.slug}`),
+  }));
 
 const categorieen = Object.entries(categorieLabels);
 // Kaart in de CTA-sectie hieronder: dezelfde ondernemers-locaties als
@@ -226,7 +230,6 @@ const kaartItems = alleOndernemers
             <h3>Wie kwam er laatst bij?</h3>
             <p class="sub-note">Nieuwe gezichten op de Rozengracht, zodra ze er zijn.</p>
           </div>
-          <a class="see-all" href={getRelativeLocaleUrl(lang, 'ondernemers')}>Alle ondernemers &rarr;</a>
         </div>
         <div class="ondernemers-layout">
           <!-- Geen reveal-on-scroll op deze kaartjes: het zijn horizontaal
@@ -265,10 +268,10 @@ const kaartItems = alleOndernemers
             {citaten.length > 0 ? (
               <div class="reel-quotes" id="ondernemerQuotes">
                 {citaten.slice(0, 2).map((citaat) => (
-                  <div class="reel-quote" data-naam={citaat.naam}>
+                  <a class="reel-quote" data-naam={citaat.naam} href={citaat.href}>
                     <blockquote>{citaat.quote}</blockquote>
                     <div class="who">{citaat.naam}</div>
-                  </div>
+                  </a>
                 ))}
               </div>
             ) : (
@@ -466,7 +469,15 @@ const kaartItems = alleOndernemers
   }
   .reel-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; display: block; }
   .reel-quotes { display: flex; flex-direction: column; gap: 20px; }
-  .reel-quote { display: flex; flex-direction: column; transition: opacity 0.25s ease; }
+  .reel-quote {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .reel-quote:hover .who { color: #fbfaf7; }
+  .reel-quote:hover blockquote { color: var(--rose); }
   .reel-quotes .reel-quote + .reel-quote { padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.14); }
   .reel-quote blockquote { font-family: var(--font-heading); font-style: italic; font-weight: 400; font-size: 1.1rem; line-height: 1.45; color: #fbfaf7; margin: 0 0 10px; }
   .reel-quote blockquote::before { content: '\201C'; }
@@ -571,6 +582,7 @@ const kaartItems = alleOndernemers
         var who = block.querySelector('.who');
         if (blockquote) blockquote.textContent = gekozen.quote;
         if (who) who.textContent = gekozen.naam;
+        if (gekozen.href) block.setAttribute('href', gekozen.href);
       });
     }
   }
