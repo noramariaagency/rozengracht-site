@@ -7,7 +7,7 @@ website: "https://antiektattooamsterdam.com"
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
-quote_nl: "Rembrandt woonde en stierf hier op nummer 184. Wij zitten er nu met de studio — dat besef ik me elke dag als ik de deur opendoe."
+quote_nl: "Rembrandt woonde en stierf hier op nummer 184. Wij zitten er nu met de studio, en dat besef ik me elke dag als ik de deur opendoe."
 quote_en: "Rembrandt lived and died right here at number 184. I think about that every time I unlock the door to the studio."
 meta_title_nl: "Antiek Tattoo Tattoostudio Rozengracht Amsterdam"
 meta_title_en: "Antiektattoo Studio Rozengracht Amsterdam"

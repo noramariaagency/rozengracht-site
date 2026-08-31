@@ -15,8 +15,8 @@ interne_opmerking: >
   persoonlijke achtergrond is niet gevonden en dus niet toegevoegd. 2 foto's
   toegevoegd via het bevestigde Instagram-account @24.7_burgerhouse (linkt naar
   eigen website); dit account heeft momenteel maar 2 posts.
-quote_nl: "Wij gaan om vijf uur 's middags open en pas om vijf uur de volgende ochtend weer dicht — vraag maar niet waarom."
-quote_en: "We open at five in the afternoon and don't close until five the next morning — don't ask me why."
+quote_nl: "Wij gaan om vijf uur 's middags open en pas om vijf uur de volgende ochtend weer dicht. Vraag maar niet waarom."
+quote_en: "We open at five in the afternoon and don't close until five the next morning. Don't ask me why."
 meta_title_nl: "24/7 BurgerHouse | Halal burgers – Rozengracht Amsterdam"
 meta_title_en: "24/7 BurgerHouse | Halal Burgers – Rozengracht Amsterdam"
 meta_description_nl: "24/7 BurgerHouse op Rozengracht 144 in Amsterdam: 100% halal burgers, snacks en milkshakes, dagelijks open van 17:00 tot 05:00."

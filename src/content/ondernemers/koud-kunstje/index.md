@@ -13,7 +13,7 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 quote_nl: "Bij ons koop je niet alleen handgemaakte sieraden en keramiek, je maakt ze hier ook zelf."
-quote_en: "Here you don't just buy handmade jewellery and ceramics — you can make them yourself too."
+quote_en: "Here you don't just buy handmade jewellery and ceramics. You can make them yourself too."
 meta_title_nl: "Koud Kunstje Workshops"
 meta_title_en: "Koud Kunstje Workshops"
 meta_description_nl: "Bij Koud Kunstje op de Rozengracht koop je handgemaakt of maak je het zelf. Workshops voor volwassenen en kinderen, kinderfeestjes vanaf €25 p.p."

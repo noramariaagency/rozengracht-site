@@ -8,7 +8,7 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 quote_nl: "Ik ben gediplomeerd vinoloog, dus ik verkoop geen wijn, ik adviseer 'm."
-quote_en: "I'm a certified wine expert, so I don't just sell wine here — I advise on it."
+quote_en: "I'm a certified wine expert, so I don't just sell wine here. I advise on it."
 meta_title_nl: "Alex Wijnen Wijnwinkel Rozengracht Amsterdam"
 meta_title_en: "Alex Wijnen Wine shop Rozengracht Amsterdam"
 meta_description_nl: "Alex Wijnen op Rozengracht 4 Amsterdam. Vinoloog Alexander Asjes. Europese wijnen, wijnproeverijen en cursussen. Di-vr 11-19, za 10:30-18."

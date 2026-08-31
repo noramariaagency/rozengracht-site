@@ -11,8 +11,8 @@ interne_opmerking: >
   harde datum, dus nieuw_sinds bewust nog leeg. Ook nog geen foto's of
   openingstijden voor déze vestiging bekend. Bronnen: fashionunited.nl,
   zuid.nl (oprichtersverhaal), vastgoeddata.nl, retailtrends.nl.
-quote_nl: "Alles wat bij ons in de winkel ligt, hebben we zelf getest en gedragen — dat is niet zomaar een verkooppraatje."
-quote_en: "Everything on our shelves is something we've tested and worn ourselves — that's not just a sales line."
+quote_nl: "Alles wat bij ons in de winkel ligt, hebben we zelf getest en gedragen. Dat is niet zomaar een verkooppraatje."
+quote_en: "Everything on our shelves is something we've tested and worn ourselves. That's not just a sales line."
 meta_title_nl: "Behind the Pines | Outdoorwinkel – Rozengracht Amsterdam"
 meta_title_en: "Behind the Pines | Outdoor Store – Rozengracht Amsterdam"
 meta_description_nl: "Behind the Pines opent een tweede winkel aan de Rozengracht in Amsterdam: outdoor- en snowboardgear met persoonlijk advies, sinds 2017 ook op de Ceintuurbaan."
@@ -32,9 +32,9 @@ tekst_en: |
 
   The three friends founded the shop in 2017, combining their experience in mountain sports and urban design into a carefully curated range of outdoor and snowboard gear from brands like Arc'teryx, Patagonia and Burton. Everything on the shelves is something they've tested and worn themselves.
 
-  They chose the Rozengracht deliberately: a lively street with a real neighbourhood feel and a mix of residents, business owners and visitors — exactly the kind of place Behind the Pines fits.
+  They chose the Rozengracht deliberately: a lively street with a real neighbourhood feel and a mix of residents, business owners and visitors: exactly the kind of place Behind the Pines fits.
 
-  At 34HS you'll find the same personal, honest advice that made the Ceintuurbaan store a destination: no sales pitch, just someone who actually knows how a jacket holds up on the slopes or a tent in the rain. No exact opening date yet — renovation of the building is still underway.
+  At 34HS you'll find the same personal, honest advice that made the Ceintuurbaan store a destination: no sales pitch, just someone who actually knows how a jacket holds up on the slopes or a tent in the rain. No exact opening date yet: renovation of the building is still underway.
 
   Stop by once the doors open, or follow Behind the Pines for the latest on the opening.
 ---

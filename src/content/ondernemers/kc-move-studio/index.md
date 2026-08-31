@@ -17,8 +17,8 @@ interne_opmerking: >
   de Rozengracht is gestart konden niet betrouwbaar worden bevestigd en zijn daarom weggelaten in
   plaats van verzonnen. 4 foto's toegevoegd, alle afkomstig van de eigen, professioneel
   gefotografeerde website kcmove.nl (Reformer Pilates, Personal Training, HIIT).
-quote_nl: "Bij mij is het meer dan een matje en een reformer — ik geef hier al jaren Pilates in Amsterdam."
-quote_en: "With me it's more than a mat and a reformer — I've been teaching Pilates in Amsterdam for years."
+quote_nl: "Bij mij is het meer dan een matje en een reformer. Ik geef hier al jaren Pilates in Amsterdam."
+quote_en: "With me it's more than a mat and a reformer. I've been teaching Pilates in Amsterdam for years."
 meta_title_nl: "K/C Move Studio | Pilates – Rozengracht Amsterdam"
 meta_title_en: "K/C Move Studio | Pilates Studio – Rozengracht Amsterdam"
 meta_description_nl: "K/C Move Studio van Margherita Bencini op Rozengracht 93A biedt Reformer Pilates, Barre en HIIT in Amsterdam, met een eigen methode: KinetiCode®."

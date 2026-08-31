@@ -9,8 +9,8 @@ interne_opmerking: >
   Adres bewust leeg gelaten tot dit met de ondernemer/Cléo bevestigd is. Bedrijf staat bij
   de KVK geregistreerd als "Snackbar Ma Baker Gebr. Hefny" (KVK 33187443), gerund door de
   broers Hefny. Geen werkende website gevonden; geen foto's beschikbaar in Drive of lokaal.
-quote_nl: "Wij zitten precies op de hoek waar de Rozengracht overgaat in de Marnixstraat — niemand in de buurt hoeft ons uit te leggen wie we zijn."
-quote_en: "We sit right on the corner where the Rozengracht turns into the Marnixstraat — nobody around here needs us explained to them."
+quote_nl: "Wij zitten precies op de hoek waar de Rozengracht overgaat in de Marnixstraat. Niemand in de buurt hoeft ons uit te leggen wie we zijn."
+quote_en: "We sit right on the corner where the Rozengracht turns into the Marnixstraat. Nobody around here needs us explained to them."
 meta_title_nl: "Ma Baker | Snackbar – Rozengracht Amsterdam"
 meta_title_en: "Ma Baker | Snack Bar – Rozengracht Amsterdam"
 meta_description_nl: "Ma Baker is een snackbar op de hoek van de Rozengracht en de Marnixstraat in Amsterdam, dagelijks open voor broodjes, falafel en frituursnacks."
