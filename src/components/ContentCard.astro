@@ -54,13 +54,11 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
   </a>
 ) : (
   <a class={`content-card compact accent-${item.accent}`} href={item.href}>
-    {item.dateBlock ? (
+    {item.dateBlock && (
       <div class="date-block">
         <div class="d">{item.dateBlock.day}</div>
         <div class="m">{item.dateBlock.month}</div>
       </div>
-    ) : (
-      <div class="kind-block" aria-hidden="true"></div>
     )}
     <div class="thumb">
       {item.image ? (
@@ -165,10 +163,6 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
   .accent-green .date-block { color: var(--green-deep); border: 1.5px solid var(--green-deep); }
   .content-card.compact .date-block .d { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; line-height: 1; }
   .content-card.compact .date-block .m { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
-  .content-card.compact .kind-block { flex: 0 0 6px; align-self: stretch; border-radius: 3px; }
-  .accent-rose .kind-block { background: var(--rose); }
-  .accent-ochre .kind-block { background: var(--ochre); }
-  .accent-green .kind-block { background: var(--green-deep); }
   /* Klein fotootje op elke compacte kaart — overal waar deze variant wordt
      gebruikt (homepage-sidekolom, bereikbaarheidspagina, ondernemer-detail,
      enz.), zodat de "balkjes" nooit meer helemaal fotoloos zijn zolang het
