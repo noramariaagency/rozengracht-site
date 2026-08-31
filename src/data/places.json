@@ -1209,13 +1209,6 @@
     },
     "fetchedAt": "2026-08-27T15:36:18.310Z"
   },
-  "velo-rozengracht": {
-    "placeId": "ChIJ61MksxcJxkcRguHqfUowc9I",
-    "lat": 52.3722461,
-    "lng": 4.876765,
-    "hoursByDay": null,
-    "fetchedAt": "2026-08-27T15:36:18.706Z"
-  },
   "velvet-music-amsterdam": {
     "placeId": "ChIJIYrsRtsJxkcRbkhaXDepBAw",
     "lat": 52.373707499999995,
