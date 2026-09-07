@@ -63,7 +63,8 @@ const meerNieuwsItems = await Promise.all(
     const berichtOndernemer = bericht.data.gerelateerde_ondernemer
       ? await getEntry(bericht.data.gerelateerde_ondernemer)
       : null;
-    return nieuwsToItem(bericht, berichtOndernemer, undefined, lang);
+    const berichtFoto = await resolveFoto(bericht.data.foto, 640, bericht.data.fotoFocus);
+    return nieuwsToItem(bericht, berichtOndernemer, berichtFoto, lang);
   })
 );
 ---
