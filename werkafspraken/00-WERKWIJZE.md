@@ -104,26 +104,31 @@ Het script controleert dat je werkmap schoon is, haalt `origin/main` op,
 rebaset jouw branch daarop, doet `npm run build` (faalt de build, dan stopt
 het en pusht het niets) en pusht dan `topic/<slug>`.
 
-### Pushen: let op
+### Pushen: eenmalig een token instellen
 
-De shell op de Mac heeft geen GitHub-inloggegevens (en `gh` staat er niet op).
-Ophalen werkt wel, pushen niet. Er zijn dus twee routes:
+De shell op de Mac heeft geen GitHub-inloggegevens, en al het verkeer daar
+loopt via een HTTPS-proxy zonder naamresolutie. SSH en `gh` vallen dus af;
+ophalen werkt wel, pushen niet. Eenmalig oplossen met een fijnmazig token:
 
-- **Zonder token (nu):** het script doet alles behalve pushen en laat zien
-  welke bestanden gewijzigd zijn. De laatste stap doe je in het gesprek via
-  de GitHub-koppeling. Werkt voor tekstbestanden, dus voor topic 01 tot en
-  met 07.
-- **Met token (nodig voor topic 08):** afbeeldingen kunnen niet via de
-  koppeling. Zet daarvoor eenmalig een fijnmazig GitHub-token in de repo:
+```bash
+cd ~/Documents/Claude/Projects/Rozengracht\ website/site
+./scripts/token-instellen.sh
+```
 
-  ```bash
-  git -C site remote set-url origin \
-    https://x-access-token:<TOKEN>@github.com/noramariaagency/rozengracht-site.git
-  ```
+Dat script vraagt het token zonder het te tonen, zet het in
+`.github-token` in de projectmap (buiten de git-repo, rechten 600) en
+koppelt het via `credential.helper` aan deze repo. Het token komt dus niet
+in je shell-historie, niet in een commit en niet in een chat. De instelling
+staat in `.git/config` in de projectmap en blijft dus bewaard voor volgende
+gesprekken.
 
-  Rechten: alleen deze repo, met Contents en Pull requests op lezen en
-  schrijven. Dit staat in `.git/config` in de projectmap, gaat dus nooit mee
-  in een commit, en blijft bewaard voor volgende gesprekken.
+Het token aanmaken op <https://github.com/settings/personal-access-tokens/new>:
+resource owner `noramariaagency`, alleen de repo `rozengracht-site`,
+en als rechten Contents op *Read and write* en Pull requests op
+*Read and write*. Verder niets.
+
+Zonder token kun je alleen tekstbestanden publiceren via de
+GitHub-koppeling in het gesprek; afbeeldingen (topic 08) lukken dan niet.
 
 Daarna, in het gesprek zelf: open een pull request naar `main` via de
 GitHub-koppeling. In de PR-beschrijving:

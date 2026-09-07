@@ -36,3 +36,11 @@ Astro 4, statische build, GitHub Pages via `.github/workflows/deploy.yml`.
 Een push naar `main` gaat dus live. De workflow `fetch-places.yml` commit
 zelf ook op `main`, dus `origin/main` beweegt ook zonder ons: altijd fetchen
 en rebasen voor je pusht.
+
+## Pushen
+
+De shell op de Mac kan alleen ophalen, niet pushen, tenzij het token is
+ingesteld: `./scripts/token-instellen.sh` (eenmalig, zie paragraaf 6 van
+`werkafspraken/00-WERKWIJZE.md`). Is dat niet gedaan, publiceer dan
+tekstbestanden via de GitHub-koppeling en meld dat afbeeldingen niet mee
+kunnen.

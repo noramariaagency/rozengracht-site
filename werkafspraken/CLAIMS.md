@@ -35,6 +35,13 @@ wijzigen. Formaat: `van → aan: wat, waarom`.
   ondernemers mogen naar het archief.
 - Review op de voorbeeldontwerpen per topic.
 
+## Eenmalige technische randvoorwaarde
+
+Pushen vanaf de Mac vereist een GitHub-token, zie paragraaf 6 van
+`00-WERKWIJZE.md` en `scripts/token-instellen.sh`. Zolang dat niet gedaan is,
+kunnen alleen tekstbestanden gepubliceerd worden via de GitHub-koppeling in
+het gesprek, en kan topic 08 geen foto's pushen.
+
 ## Logboek
 
 - **7 sep 2026** — Meeting bij Cléo: nieuwswebsite wordt blog/magazine.
