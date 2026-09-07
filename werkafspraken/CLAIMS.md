@@ -11,7 +11,7 @@ Cléo) → `klaar` (gemerged op main).
 |---|---|---|---|---|---|
 | 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | klaar | 7 sep 2026 | **moet als eerste, alleen** · PR #1, categorieschema (punt 4) bewust nog niet gedaan |
 | 02 | Categorieën en labels | `topic/02-categorieen` | in review | 7 sep 2026 | voorstel klaar, wacht op Cléo. Herlabelen van de velden gebeurt pas na goedkeuring |
-| 03 | Homepage als magazine | `topic/03-homepage-magazine` | kan starten | – | |
+| 03 | Homepage als magazine | `topic/03-homepage-magazine` | bezig | 7 sep 2026 | |
 | 04 | Blog, artikelen en events | `topic/04-blog-en-artikelen` | kan starten | – | |
 | 05 | Ondernemersoverzicht en kaart | `topic/05-ondernemers-en-kaart` | kan starten | – | |
 | 06 | Bereikbaarheid | `topic/06-bereikbaarheid` | kan starten | – | |
@@ -24,14 +24,12 @@ Cléo) → `klaar` (gemerged op main).
 Zet hier neer wat je nodig hebt van iemand anders, in plaats van het zelf te
 wijzigen. Formaat: `van → aan: wat, waarom`.
 
-- 01 → 03: in `src/lib/items.ts`, functie `verhaalToItem`, staat een
-  hardcoded link naar `verhalen/${entry.slug}/`. Dat pad bestaat nog wel (01
-  heeft er een redirectpagina van gemaakt naar `historie/${slug}/`), dus niets
-  is stuk, maar elke kaart/link die via dit item naar een verhaal wijst
-  (homepage, ondernemerspagina's, nieuwspagina) maakt daardoor een onnodige
-  extra sprong. Verander `verhalen/${entry.slug}/` in `historie/${entry.slug}/`
-  zodra je in `items.ts` werkt. `items.ts` staat niet in EIGENAARSCHAP.md bij
-  01, dus dit is bewust een verzoek en geen eigen wijziging.
+- ~~01 → 03: in `src/lib/items.ts`, functie `verhaalToItem`, staat een
+  hardcoded link naar `verhalen/${entry.slug}/`.~~ Opgelost door 03: nu
+  `historie/${entry.slug}/`.
+
+- 07 → 03 (BIZ-tekst): 03 zet een duidelijk gemarkeerde tijdelijke tekst in de
+  nieuwe BIZ-sectie op de homepage. Definitieve tekst volgt van 07.
 
 ## Wachtend op Cléo
 
