@@ -1,7 +1,7 @@
 ---
 naam: "Fabula Rosa"
 huisnummer: "15"
-categorie: "winkels"
+categorie: "cadeaus-tabak"
 subcategorie: "Spirituele winkel"
 fotos:
   - "./foto_01.jpg"

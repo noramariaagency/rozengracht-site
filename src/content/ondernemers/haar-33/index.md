@@ -1,7 +1,7 @@
 ---
 naam: "Haar 33"
 huisnummer: "33"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Kapsalon"
 quote_nl: "Ik knip hier al jaren dezelfde gezichten uit de buurt. Dat vertrouwen bouw je niet in een paar maanden op."
 quote_en: "I've been cutting the same neighbourhood faces here for years. You don't build that trust in a few months."

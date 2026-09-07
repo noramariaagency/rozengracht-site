@@ -1,7 +1,8 @@
 ---
 naam: "Effendy"
 huisnummer: "148"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
+tweede_label: "restaurants"
 subcategorie: "Turkse bakkerij & cafe"
 fotos:
   - "./foto_01.jpg"

@@ -1,7 +1,7 @@
 ---
 naam: "In Deep 'N Dance"
 huisnummer: "60"
-categorie: "winkels"
+categorie: "boeken-muziek"
 subcategorie: "Platenzaak (dance vinyl)"
 website: "http://www.indeepndance.net/"
 fotos:

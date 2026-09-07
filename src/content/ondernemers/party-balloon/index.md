@@ -1,7 +1,7 @@
 ---
 naam: "Party Balloon"
 huisnummer: "65"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Feestartikelen & ballonnen"
 website: "https://www.partyballoon.nl/"
 fotos:

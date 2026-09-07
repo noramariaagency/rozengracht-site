@@ -1,7 +1,7 @@
 ---
 naam: "Venezia del Noord"
 huisnummer: "1"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Italiaans restaurant"
 fotos:
   - "./foto_01.jpg"

@@ -1,7 +1,7 @@
 ---
 naam: "Calma Clinic"
 huisnummer: "42D"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Huid- en laserkliniek"
 website: "https://calmaclinic.nl/"
 fotos:

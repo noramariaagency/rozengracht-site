@@ -1,7 +1,7 @@
 ---
 naam: "MapPy Nails"
 huisnummer: "75"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Nagelstudio"
 fotos:
   - "./foto_01.jpg"

@@ -1,7 +1,7 @@
 ---
 naam: "SK Tabakzaak"
 huisnummer: "222"
-categorie: "winkels"
+categorie: "cadeaus-tabak"
 subcategorie: "Tabakszaak"
 status: "klaar"
 quote_nl: "Wij hebben een duidelijk aanbod voor wie weet wat hij wil, een van de laatste echte tabaksspeciaalzaken van de Jordaan."

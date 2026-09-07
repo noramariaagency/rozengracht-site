@@ -1,7 +1,8 @@
 ---
 naam: "Spang Makandra"
 huisnummer: "214"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "bakkers-snacks-togo"
 subcategorie: "Surinaamse keuken"
 website: "https://www.spangmakandra.nl/"
 openingstijden:

@@ -1,7 +1,7 @@
 ---
 naam: "Gebroeders Winter"
 huisnummer: "62"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Schrijfwaren & kantoorartikelen"
 openingstijden:
   ma: "09:00-18:00"

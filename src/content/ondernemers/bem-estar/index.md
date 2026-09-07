@@ -1,7 +1,7 @@
 ---
 naam: "Bem Estar"
 huisnummer: "234"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Esthetiekkliniek"
 website: "https://www.bemestar.nl/"
 fotos:

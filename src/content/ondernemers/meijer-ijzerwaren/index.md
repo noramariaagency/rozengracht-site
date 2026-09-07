@@ -1,7 +1,7 @@
 ---
 naam: "Meijer IJzerwaren"
 huisnummer: "142"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "IJzerwaren en gereedschap"
 website: "https://eshop.meijerijzerwaren.nl"
 fotos:

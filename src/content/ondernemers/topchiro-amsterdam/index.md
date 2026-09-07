@@ -1,7 +1,8 @@
 ---
 naam: "TOPCHIRO Amsterdam"
 huisnummer: "217"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
+tweede_label: "zorg"
 subcategorie: "Chiropractie"
 website: "https://topchiro.nl/chiropractor-amsterdam/"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "Fjallraven"
 huisnummer: "219-225"
-categorie: "winkels"
+categorie: "mode-sport"
 subcategorie: "Outdoorkleding & uitrusting"
 website: "https://www.fjallraven.com/nl-nl/"
 fotos:

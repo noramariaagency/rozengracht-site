@@ -1,6 +1,6 @@
 ---
 naam: "Ma Baker"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Snackbar"
 status: "deels-klaar"
 interne_opmerking: >

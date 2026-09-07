@@ -1,7 +1,7 @@
 ---
 naam: "Warie's Thai Food"
 huisnummer: "235"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Thais restaurant"
 website: "https://wariethaifood.nl"
 fotos:

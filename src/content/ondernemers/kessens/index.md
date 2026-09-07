@@ -1,7 +1,7 @@
 ---
 naam: "Kessens"
 huisnummer: "24"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Restaurant en ontbijtzaak"
 website: "http://www.kessensamsterdam.nl/"
 fotos:

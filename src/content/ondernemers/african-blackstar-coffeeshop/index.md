@@ -1,7 +1,7 @@
 ---
 naam: "African Blackstar Coffeeshop"
 huisnummer: "1A"
-categorie: "eten-drinken"
+categorie: "coffeeshop-speelhal"
 subcategorie: "Coffeeshop"
 status: "deels-klaar"
 interne_opmerking: >

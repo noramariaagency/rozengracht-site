@@ -1,7 +1,8 @@
 ---
 naam: "Chin Chin Club"
 huisnummer: "133"
-categorie: "eten-drinken"
+categorie: "uitgaan"
+tweede_label: "restaurants"
 subcategorie: "Restaurant, cocktailbar & nachtclub"
 website: "https://chinchinclub.nl"
 fotos:

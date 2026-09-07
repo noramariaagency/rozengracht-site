@@ -4,14 +4,14 @@
 // Vult altijd de volledige ouder (position: absolute, inset: 0) — de
 // aanroepende pagina bepaalt de vorm/aspect-ratio via een positioned
 // container.
-import { categorieIconen } from '../lib/categorieen';
+import { categorieIconen, standaardIcoon } from '../lib/categorieen';
 
 interface Props {
   categorie: string;
 }
 
 const { categorie } = Astro.props;
-const icoon = categorieIconen[categorie] ?? categorieIconen['diensten'];
+const icoon = categorieIconen[categorie] ?? standaardIcoon;
 ---
 <div class="foto-fallback" aria-hidden="true">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" set:html={icoon} />

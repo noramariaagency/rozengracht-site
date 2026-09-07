@@ -1,7 +1,7 @@
 ---
 naam: "Café Brakke"
 huisnummer: "16"
-categorie: "eten-drinken"
+categorie: "uitgaan"
 subcategorie: "Bruin café"
 fotos:
   - "./foto_01.jpg"

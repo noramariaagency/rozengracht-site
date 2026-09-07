@@ -1,7 +1,7 @@
 ---
 naam: "Cafetaria Super Star"
 huisnummer: "90H"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Snackbar / cafetaria"
 website: "https://www.snackbarcafetariasuperstar-amsterdam.nl/"
 status: "deels-klaar"

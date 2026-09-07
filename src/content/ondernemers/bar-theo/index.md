@@ -1,7 +1,8 @@
 ---
 naam: "Bar Theo"
 huisnummer: "160"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "uitgaan"
 subcategorie: "Veganistische bar"
 website: "https://www.bar-theo.nl"
 fotos:

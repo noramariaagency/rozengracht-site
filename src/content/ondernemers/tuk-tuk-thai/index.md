@@ -1,7 +1,8 @@
 ---
 naam: "Tuk Tuk Thai"
 huisnummer: "22"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "bakkers-snacks-togo"
 subcategorie: "Thais"
 fotos:
   - "./foto_01.jpg"

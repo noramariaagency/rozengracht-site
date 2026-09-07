@@ -1,7 +1,7 @@
 ---
 naam: "Pesca"
 huisnummer: "133"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Visrestaurant"
 website: "https://pesca.restaurant/"
 fotos:

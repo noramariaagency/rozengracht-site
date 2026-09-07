@@ -1,7 +1,7 @@
 ---
 naam: "Van der Linde"
 huisnummer: "36-38"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Kunstenaarsmaterialen"
 website: "https://vanderlindewebshop.com"
 fotos:

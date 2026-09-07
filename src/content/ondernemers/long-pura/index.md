@@ -1,7 +1,7 @@
 ---
 naam: "Long Pura"
 huisnummer: "46-48"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Indonesisch restaurant"
 website: "https://www.restaurant-longpura.com"
 fotos:

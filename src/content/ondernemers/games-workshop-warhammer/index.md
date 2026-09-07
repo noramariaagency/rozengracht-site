@@ -1,7 +1,7 @@
 ---
 naam: "Warhammer Amsterdam West"
 huisnummer: "99"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Hobbywinkel (miniaturen & tabletopspellen)"
 website: "https://www.games-workshop.com"
 status: "deels-klaar"

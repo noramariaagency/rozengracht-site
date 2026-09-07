@@ -1,7 +1,8 @@
 ---
 naam: "Döner Palace"
 huisnummer: "89"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "bakkers-snacks-togo"
 subcategorie: "Turks eethuis"
 quote_nl: "Wij houden de keuken open tot diep in de nacht, al jaren, onder twee namen: Döner Palace en Eethuis de Jordaan."
 quote_en: "We keep the kitchen open deep into the night, under two names for years now: Döner Palace and Eethuis de Jordaan."

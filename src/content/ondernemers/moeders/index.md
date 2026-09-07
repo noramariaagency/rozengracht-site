@@ -1,7 +1,7 @@
 ---
 naam: "Moeders"
 huisnummer: "251"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Nederlands restaurant"
 website: "https://moeders.com/"
 fotos:

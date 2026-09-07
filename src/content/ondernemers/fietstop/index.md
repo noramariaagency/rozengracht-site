@@ -1,7 +1,8 @@
 ---
 naam: "Fietstop"
 huisnummer: "141"
-categorie: "diensten"
+categorie: "vervoer"
+tweede_label: "reparatie"
 subcategorie: "Fietsenmaker & fietsenwinkel"
 website: "https://www.fietstop.com/"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "Hand & Foot Treatment Store"
 huisnummer: "77A"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Nagelstudio & voetverzorging"
 website: "https://www.handandfoot.nl"
 status: "klaar"

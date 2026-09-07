@@ -1,7 +1,7 @@
 ---
 naam: "Wulf Meubelen"
 huisnummer: "74-78"
-categorie: "winkels"
+categorie: "wonen"
 subcategorie: "Meubels & interieur"
 website: "https://wulfwonen.nl"
 status: "klaar"

@@ -1,7 +1,7 @@
 ---
 naam: "Wegewijs"
 huisnummer: "32"
-categorie: "winkels"
+categorie: "boodschappen"
 subcategorie: "Kaas en delicatessen"
 fotos:
   - "./foto_01.jpg"

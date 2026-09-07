@@ -1,7 +1,7 @@
 ---
 naam: "Mirínda"
 huisnummer: "150"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Marokkaans eetcafé"
 fotos:
   - "./foto_01.jpg"

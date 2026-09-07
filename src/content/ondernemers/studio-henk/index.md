@@ -1,7 +1,7 @@
 ---
 naam: "Studio HENK"
 huisnummer: "204-210"
-categorie: "winkels"
+categorie: "wonen"
 subcategorie: "Designmeubels"
 website: "https://www.studio-henk.nl"
 fotos:

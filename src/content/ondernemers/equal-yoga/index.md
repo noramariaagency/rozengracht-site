@@ -1,7 +1,7 @@
 ---
 naam: "Equal Yoga"
 huisnummer: "191"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
 subcategorie: "Yoga & Pilates"
 website: "https://www.equalyoga.com"
 logo: "./logo.png"

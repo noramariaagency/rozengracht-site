@@ -1,7 +1,7 @@
 ---
 naam: "Appels & Peren"
 huisnummer: "220B"
-categorie: "winkels"
+categorie: "boodschappen"
 subcategorie: "Ciderwinkel"
 website: "https://appelsenperen.amsterdam"
 fotos:

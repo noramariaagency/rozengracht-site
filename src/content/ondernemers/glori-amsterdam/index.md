@@ -1,7 +1,7 @@
 ---
 naam: "Glori Amsterdam"
 huisnummer: "194"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Restaurant"
 website: "https://gloriamsterdam.com"
 quote_nl: "Wij zijn met z'n tweeën: een chef uit Argentinië, een uit Italië. Samen maken we hier iets dat meer is dan de som der delen."

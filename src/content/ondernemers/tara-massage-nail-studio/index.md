@@ -1,7 +1,8 @@
 ---
 naam: "TARA Massages & Nail Studio"
 huisnummer: "7"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
+tweede_label: "sport-lichaam"
 subcategorie: "Massage & nagelstudio"
 quote_nl: "Wij brachten de Tibetaanse Kunye-massage naar de Jordaan."
 quote_en: "We brought Tibetan Kunye massage to the Jordaan."

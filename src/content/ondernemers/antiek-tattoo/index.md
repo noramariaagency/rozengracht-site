@@ -1,7 +1,7 @@
 ---
 naam: "Antiek Tattoo"
 huisnummer: "184"
-categorie: "cultuur-vrije-tijd"
+categorie: "haar-huid-nagels"
 subcategorie: "Tattoostudio & kunstgalerie"
 website: "https://antiektattooamsterdam.com"
 fotos:

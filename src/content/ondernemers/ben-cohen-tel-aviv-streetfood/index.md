@@ -1,7 +1,7 @@
 ---
 naam: "Ben Cohen Tel-Aviv Streetfood"
 huisnummer: "239"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Streetfood"
 fotos:
   - "./foto_01.jpg"

@@ -1,7 +1,7 @@
 ---
 naam: "Bisque Golf"
 huisnummer: "17"
-categorie: "winkels"
+categorie: "mode-sport"
 subcategorie: "Golfwinkel"
 fotos:
   - "./foto_01.jpg"

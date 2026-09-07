@@ -1,7 +1,7 @@
 ---
 naam: "Coffeeshop Flower Power"
 huisnummer: "139"
-categorie: "winkels"
+categorie: "coffeeshop-speelhal"
 subcategorie: "Coffeeshop"
 status: "klaar"
 fotos:

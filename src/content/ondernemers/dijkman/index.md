@@ -1,7 +1,7 @@
 ---
 naam: "Dijkman Muziek"
 huisnummer: "107-115"
-categorie: "winkels"
+categorie: "boeken-muziek"
 subcategorie: "Muziekinstrumenten"
 website: "https://www.dijkmanmuziek.nl"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "De Kinderboekwinkel"
 huisnummer: "101-103"
-categorie: "winkels"
+categorie: "boeken-muziek"
 subcategorie: "Kinderboekwinkel"
 website: "https://kinderboekwinkel.nl"
 fotos:

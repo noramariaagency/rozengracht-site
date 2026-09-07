@@ -1,7 +1,7 @@
 ---
 naam: "TRIB3"
 huisnummer: "88"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
 subcategorie: "Boutique HIIT fitness studio"
 website: "https://en.trib3.nl/"
 openingstijden:

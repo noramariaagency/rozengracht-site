@@ -1,7 +1,7 @@
 ---
 naam: "Coppenhagen 1001 Kralen"
 huisnummer: "54"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Kralen & sieradenbenodigdheden"
 website: "https://coppenhagenbeads.nl"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "Elmer Repairs"
 huisnummer: "214B"
-categorie: "diensten"
+categorie: "reparatie"
 subcategorie: "Reparatie & elektronica"
 website: "https://www.elmerrepairs.com"
 logo: "./logo.png"

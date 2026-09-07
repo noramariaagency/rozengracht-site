@@ -1,7 +1,8 @@
 ---
 naam: "Acupunctuur Centrum Amsterdam"
 huisnummer: "53"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
+tweede_label: "zorg"
 subcategorie: "Acupunctuur en Chinese geneeskunde"
 openingstijden:
   ma: "09:00-18:00"
