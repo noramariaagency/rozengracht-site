@@ -1,0 +1,1017 @@
+{
+  "categorieen": [
+    {
+      "sleutel": "restaurants",
+      "label_nl": "Restaurants & eetcafés",
+      "groep": "Eten & uitgaan"
+    },
+    {
+      "sleutel": "uitgaan",
+      "label_nl": "Uitgaan: bar, café, club & theater",
+      "groep": "Eten & uitgaan"
+    },
+    {
+      "sleutel": "bakkers-snacks-togo",
+      "label_nl": "Bakkers, snacks & to-go",
+      "groep": "Eten & uitgaan"
+    },
+    {
+      "sleutel": "boodschappen",
+      "label_nl": "Boodschappen & delicatessen",
+      "groep": "Eten & uitgaan"
+    },
+    {
+      "sleutel": "mode-sport",
+      "label_nl": "Mode & sport",
+      "groep": "Winkelen"
+    },
+    {
+      "sleutel": "wonen",
+      "label_nl": "Wonen & huishouden",
+      "groep": "Winkelen"
+    },
+    {
+      "sleutel": "hobby-klussen",
+      "label_nl": "Hobby, klussen & creatief",
+      "groep": "Winkelen"
+    },
+    {
+      "sleutel": "boeken-muziek",
+      "label_nl": "Boeken, muziek & platen",
+      "groep": "Winkelen"
+    },
+    {
+      "sleutel": "cadeaus-tabak",
+      "label_nl": "Cadeaus, tabak & gemak",
+      "groep": "Winkelen"
+    },
+    {
+      "sleutel": "haar-huid-nagels",
+      "label_nl": "Haar, huid & nagels",
+      "groep": "Verzorging & diensten"
+    },
+    {
+      "sleutel": "sport-lichaam",
+      "label_nl": "Sport, massage & lichaam",
+      "groep": "Verzorging & diensten"
+    },
+    {
+      "sleutel": "zorg",
+      "label_nl": "Zorg & apotheek",
+      "groep": "Verzorging & diensten"
+    },
+    {
+      "sleutel": "vervoer",
+      "label_nl": "Vervoer & fietsen",
+      "groep": "Verzorging & diensten"
+    },
+    {
+      "sleutel": "reparatie",
+      "label_nl": "Reparatie & stomerij",
+      "groep": "Verzorging & diensten"
+    },
+    {
+      "sleutel": "coffeeshop-speelhal",
+      "label_nl": "Coffeeshop & speelhal",
+      "groep": "Verzorging & diensten"
+    }
+  ],
+  "toewijzing": [
+    {
+      "slug": "burgerhouse-247",
+      "naam": "24/7 BurgerHouse",
+      "huisnummer": "144",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Halal burgerzaak / bezorging"
+    },
+    {
+      "slug": "acupunctuur-centrum-amsterdam",
+      "naam": "Acupunctuur Centrum Amsterdam",
+      "huisnummer": "53",
+      "categorie": "sport-lichaam",
+      "tweede_label": "zorg",
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Acupunctuur en Chinese geneeskunde"
+    },
+    {
+      "slug": "african-blackstar-coffeeshop",
+      "naam": "African Blackstar Coffeeshop",
+      "huisnummer": "1A",
+      "categorie": "coffeeshop-speelhal",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Coffeeshop"
+    },
+    {
+      "slug": "akitsu",
+      "naam": "Akitsu",
+      "huisnummer": "228",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Japans restaurant & sake"
+    },
+    {
+      "slug": "alex-wijnen",
+      "naam": "Alex Wijnen",
+      "huisnummer": "4",
+      "categorie": "boodschappen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Wijnwinkel"
+    },
+    {
+      "slug": "amigo-grill",
+      "naam": "Amigo Grill",
+      "huisnummer": "5",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Argentijns restaurant"
+    },
+    {
+      "slug": "amstel-bike",
+      "naam": "Amstel Bike",
+      "huisnummer": "146",
+      "categorie": "vervoer",
+      "tweede_label": null,
+      "huidige_categorie": "diensten",
+      "subcategorie": "Fietsverhuur & -verkoop"
+    },
+    {
+      "slug": "antiek-tattoo",
+      "naam": "Antiek Tattoo",
+      "huisnummer": "184",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "cultuur-vrije-tijd",
+      "subcategorie": "Tattoostudio & kunstgalerie"
+    },
+    {
+      "slug": "apotheek-benu-rozengracht",
+      "naam": "Apotheek BENU Rozengracht",
+      "huisnummer": "57",
+      "categorie": "zorg",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Apotheek"
+    },
+    {
+      "slug": "appels-peren",
+      "naam": "Appels & Peren",
+      "huisnummer": "220B",
+      "categorie": "boodschappen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Ciderwinkel"
+    },
+    {
+      "slug": "babylon-kadoshop",
+      "naam": "Babylon Kadoshop",
+      "huisnummer": "37",
+      "categorie": "cadeaus-tabak",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Cadeaus & sieraden"
+    },
+    {
+      "slug": "backstage",
+      "naam": "Backstage Make-up & Grime",
+      "huisnummer": "101-103",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Theatermake-up & grime"
+    },
+    {
+      "slug": "brandstof",
+      "naam": "Bar Brandstof",
+      "huisnummer": "357",
+      "categorie": "uitgaan",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Buurtcafé"
+    },
+    {
+      "slug": "bar-theo",
+      "naam": "Bar Theo",
+      "huisnummer": "160",
+      "categorie": "restaurants",
+      "tweede_label": "uitgaan",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Veganistische bar"
+    },
+    {
+      "slug": "bbrood",
+      "naam": "Bbrood",
+      "huisnummer": "180-182",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Desembakkerij"
+    },
+    {
+      "slug": "behind-the-pines",
+      "naam": "Behind the Pines",
+      "huisnummer": "34HS",
+      "categorie": "mode-sport",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Outdoor- en snowboardwinkel"
+    },
+    {
+      "slug": "bem-estar",
+      "naam": "Bem Estar",
+      "huisnummer": "234",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Esthetiekkliniek"
+    },
+    {
+      "slug": "ben-cohen-tel-aviv-streetfood",
+      "naam": "Ben Cohen Tel-Aviv Streetfood",
+      "huisnummer": "239",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Streetfood"
+    },
+    {
+      "slug": "bianco",
+      "naam": "Bianco",
+      "huisnummer": "196",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Kapsalon"
+    },
+    {
+      "slug": "bisque-golf",
+      "naam": "Bisque Golf",
+      "huisnummer": "17",
+      "categorie": "mode-sport",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Golfwinkel"
+    },
+    {
+      "slug": "blokker",
+      "naam": "Blokker",
+      "huisnummer": "8",
+      "categorie": "wonen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Huishoudelijke artikelen"
+    },
+    {
+      "slug": "boom-chicago",
+      "naam": "Boom Chicago",
+      "huisnummer": "117",
+      "categorie": "uitgaan",
+      "tweede_label": null,
+      "huidige_categorie": "cultuur-vrije-tijd",
+      "subcategorie": "Engelstalig improvisatietheater"
+    },
+    {
+      "slug": "broodje-mokum",
+      "naam": "Broodje Mokum",
+      "huisnummer": "26",
+      "categorie": "restaurants",
+      "tweede_label": "bakkers-snacks-togo",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Lunchroom"
+    },
+    {
+      "slug": "cafetaria-super-star",
+      "naam": "Cafetaria Super Star",
+      "huisnummer": "90H",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Snackbar / cafetaria"
+    },
+    {
+      "slug": "cafe-brakke",
+      "naam": "Café Brakke",
+      "huisnummer": "16",
+      "categorie": "uitgaan",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Bruin café"
+    },
+    {
+      "slug": "oude-wester",
+      "naam": "Café de Oude Wester",
+      "huisnummer": "2",
+      "categorie": "uitgaan",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Bruin café"
+    },
+    {
+      "slug": "calma-clinic",
+      "naam": "Calma Clinic",
+      "huisnummer": "42D",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Huid- en laserkliniek"
+    },
+    {
+      "slug": "cannibale-royale",
+      "naam": "Cannibale Royale",
+      "huisnummer": "114",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Brasserie"
+    },
+    {
+      "slug": "chamuyero",
+      "naam": "Chamuyero",
+      "huisnummer": "104H",
+      "categorie": "restaurants",
+      "tweede_label": "bakkers-snacks-togo",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Argentijnse deli"
+    },
+    {
+      "slug": "chin-chin-club",
+      "naam": "Chin Chin Club",
+      "huisnummer": "133",
+      "categorie": "uitgaan",
+      "tweede_label": "restaurants",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Restaurant, cocktailbar & nachtclub"
+    },
+    {
+      "slug": "coffeeshop-flower-power",
+      "naam": "Coffeeshop Flower Power",
+      "huisnummer": "139",
+      "categorie": "coffeeshop-speelhal",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Coffeeshop"
+    },
+    {
+      "slug": "coppenhagen-1001-kralen",
+      "naam": "Coppenhagen 1001 Kralen",
+      "huisnummer": "54",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Kralen & sieradenbenodigdheden"
+    },
+    {
+      "slug": "de-kinderboekwinkel",
+      "naam": "De Kinderboekwinkel",
+      "huisnummer": "101-103",
+      "categorie": "boeken-muziek",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Kinderboekwinkel"
+    },
+    {
+      "slug": "de-rozengracht-kledingreparatie",
+      "naam": "De Rozengracht Kledingreparatie & Stomerij",
+      "huisnummer": "216",
+      "categorie": "reparatie",
+      "tweede_label": null,
+      "huidige_categorie": "diensten",
+      "subcategorie": "Kledingreparatie & stomerij"
+    },
+    {
+      "slug": "dierendokters-amsterdam",
+      "naam": "DierenDokters Amsterdam",
+      "huisnummer": "226",
+      "categorie": "zorg",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Dierenkliniek"
+    },
+    {
+      "slug": "dijkman",
+      "naam": "Dijkman Muziek",
+      "huisnummer": "107-115",
+      "categorie": "boeken-muziek",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Muziekinstrumenten"
+    },
+    {
+      "slug": "dioniry-nails-beauty",
+      "naam": "Dioniry Nails & Beauty",
+      "huisnummer": "189",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Nagelstudio"
+    },
+    {
+      "slug": "dominos-pizza",
+      "naam": "Domino's Pizza",
+      "huisnummer": "166",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Pizzabezorging"
+    },
+    {
+      "slug": "doner-palace",
+      "naam": "Döner Palace",
+      "huisnummer": "89",
+      "categorie": "restaurants",
+      "tweede_label": "bakkers-snacks-togo",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Turks eethuis"
+    },
+    {
+      "slug": "easy-store",
+      "naam": "Easy Store",
+      "huisnummer": "14",
+      "categorie": "cadeaus-tabak",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Tabakszaak"
+    },
+    {
+      "slug": "effendy",
+      "naam": "Effendy",
+      "huisnummer": "148",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": "restaurants",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Turkse bakkerij & cafe"
+    },
+    {
+      "slug": "elmer-repairs",
+      "naam": "Elmer Repairs",
+      "huisnummer": "214B",
+      "categorie": "reparatie",
+      "tweede_label": null,
+      "huidige_categorie": "diensten",
+      "subcategorie": "Reparatie & elektronica"
+    },
+    {
+      "slug": "equal-yoga",
+      "naam": "Equal Yoga",
+      "huisnummer": "191",
+      "categorie": "sport-lichaam",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Yoga & Pilates"
+    },
+    {
+      "slug": "febo",
+      "naam": "FEBO",
+      "huisnummer": "137",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Automatiek"
+    },
+    {
+      "slug": "fabula-rosa",
+      "naam": "Fabula Rosa",
+      "huisnummer": "15",
+      "categorie": "cadeaus-tabak",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Spirituele winkel"
+    },
+    {
+      "slug": "fietstop",
+      "naam": "Fietstop",
+      "huisnummer": "141",
+      "categorie": "vervoer",
+      "tweede_label": "reparatie",
+      "huidige_categorie": "diensten",
+      "subcategorie": "Fietsenmaker & fietsenwinkel"
+    },
+    {
+      "slug": "fit-well",
+      "naam": "Fit Well Chinese Massage",
+      "huisnummer": "241",
+      "categorie": "sport-lichaam",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Massage"
+    },
+    {
+      "slug": "fjallraven",
+      "naam": "Fjallraven",
+      "huisnummer": "219-225",
+      "categorie": "mode-sport",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Outdoorkleding & uitrusting"
+    },
+    {
+      "slug": "gebroeders-winter",
+      "naam": "Gebroeders Winter",
+      "huisnummer": "62",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Schrijfwaren & kantoorartikelen"
+    },
+    {
+      "slug": "glori-amsterdam",
+      "naam": "Glori Amsterdam",
+      "huisnummer": "194",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Restaurant"
+    },
+    {
+      "slug": "haar-33",
+      "naam": "Haar 33",
+      "huisnummer": "33",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Kapsalon"
+    },
+    {
+      "slug": "hand-foot-treatment-store",
+      "naam": "Hand & Foot Treatment Store",
+      "huisnummer": "77A",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Nagelstudio & voetverzorging"
+    },
+    {
+      "slug": "hennys-homemade",
+      "naam": "Henny's Homemade",
+      "huisnummer": "91",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Biologisch café"
+    },
+    {
+      "slug": "interline-go",
+      "naam": "INTERLINE & GO",
+      "huisnummer": "51a",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Surinaamse keuken"
+    },
+    {
+      "slug": "in-deep-n-dance",
+      "naam": "In Deep 'N Dance",
+      "huisnummer": "60",
+      "categorie": "boeken-muziek",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Platenzaak (dance vinyl)"
+    },
+    {
+      "slug": "kc-move-studio",
+      "naam": "K/C Move Studio",
+      "huisnummer": "93A",
+      "categorie": "sport-lichaam",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Pilates- en bewegingsstudio"
+    },
+    {
+      "slug": "kessens",
+      "naam": "Kessens",
+      "huisnummer": "24",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Restaurant en ontbijtzaak"
+    },
+    {
+      "slug": "koud-kunstje",
+      "naam": "Koud Kunstje",
+      "huisnummer": "49E",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Handgemaakt & workshops"
+    },
+    {
+      "slug": "la-maison",
+      "naam": "La Maison",
+      "huisnummer": "215",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Kapsalon en schoonheidsspecialist"
+    },
+    {
+      "slug": "long-pura",
+      "naam": "Long Pura",
+      "huisnummer": "46-48",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Indonesisch restaurant"
+    },
+    {
+      "slug": "lucky-jack",
+      "naam": "Lucky Jack",
+      "huisnummer": "237",
+      "categorie": "coffeeshop-speelhal",
+      "tweede_label": null,
+      "huidige_categorie": "cultuur-vrije-tijd",
+      "subcategorie": "Speelhal"
+    },
+    {
+      "slug": "ma-baker",
+      "naam": "Ma Baker",
+      "huisnummer": "",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Snackbar"
+    },
+    {
+      "slug": "maijard-smashburgers",
+      "naam": "Maijard Smashburgers",
+      "huisnummer": "9",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Smashburgers"
+    },
+    {
+      "slug": "mappy-nails",
+      "naam": "MapPy Nails",
+      "huisnummer": "75",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Nagelstudio"
+    },
+    {
+      "slug": "meijer-ijzerwaren",
+      "naam": "Meijer IJzerwaren",
+      "huisnummer": "142",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "IJzerwaren en gereedschap"
+    },
+    {
+      "slug": "mirinda",
+      "naam": "Mirínda",
+      "huisnummer": "150",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Marokkaans eetcafé"
+    },
+    {
+      "slug": "moeders",
+      "naam": "Moeders",
+      "huisnummer": "251",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Nederlands restaurant"
+    },
+    {
+      "slug": "moychay-amsterdam",
+      "naam": "Moychay",
+      "huisnummer": "92H",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Theehuis en theecultuurclub"
+    },
+    {
+      "slug": "nature-skin-cosmetics",
+      "naam": "Nature Skin Cosmetics",
+      "huisnummer": "72H",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Natuurlijke & veganistische cosmetica"
+    },
+    {
+      "slug": "nepal-tabakshop",
+      "naam": "Nepal Tabakshop",
+      "huisnummer": "158",
+      "categorie": "cadeaus-tabak",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Tabak- en gemakswinkel"
+    },
+    {
+      "slug": "panke",
+      "naam": "Panke",
+      "huisnummer": "",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Grieks dagrestaurant"
+    },
+    {
+      "slug": "party-balloon",
+      "naam": "Party Balloon",
+      "huisnummer": "65",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Feestartikelen & ballonnen"
+    },
+    {
+      "slug": "pesca",
+      "naam": "Pesca",
+      "huisnummer": "133",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Visrestaurant"
+    },
+    {
+      "slug": "pizza-dam",
+      "naam": "Pizza Dam",
+      "huisnummer": "35",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Pizzeria"
+    },
+    {
+      "slug": "recover",
+      "naam": "Recover",
+      "huisnummer": "231",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Gezond café & bowls"
+    },
+    {
+      "slug": "representable",
+      "naam": "Représentable",
+      "huisnummer": "162",
+      "categorie": "wonen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Tafelgerei & interieur"
+    },
+    {
+      "slug": "sk-tabakzaak",
+      "naam": "SK Tabakzaak",
+      "huisnummer": "222",
+      "categorie": "cadeaus-tabak",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Tabakszaak"
+    },
+    {
+      "slug": "sabina-handicraft-store",
+      "naam": "Sabina Handicraft Store",
+      "huisnummer": "183",
+      "categorie": "wonen",
+      "tweede_label": "hobby-klussen",
+      "huidige_categorie": "winkels",
+      "subcategorie": "Handgemaakt textiel & woondecoratie"
+    },
+    {
+      "slug": "salmuera",
+      "naam": "Salmuera",
+      "huisnummer": "110",
+      "categorie": "restaurants",
+      "tweede_label": "uitgaan",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Argentijns restaurant & mezcaleria"
+    },
+    {
+      "slug": "scooterrent",
+      "naam": "Scooterrent",
+      "huisnummer": "31",
+      "categorie": "vervoer",
+      "tweede_label": null,
+      "huidige_categorie": "diensten",
+      "subcategorie": "Scooter- en fietsverhuur"
+    },
+    {
+      "slug": "shoarma-mesut",
+      "naam": "Shoarma Mesut",
+      "huisnummer": "164",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Shoarma & kebab"
+    },
+    {
+      "slug": "spang-makandra",
+      "naam": "Spang Makandra",
+      "huisnummer": "214",
+      "categorie": "restaurants",
+      "tweede_label": "bakkers-snacks-togo",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Surinaamse keuken"
+    },
+    {
+      "slug": "studio-henk",
+      "naam": "Studio HENK",
+      "huisnummer": "204-210",
+      "categorie": "wonen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Designmeubels"
+    },
+    {
+      "slug": "super-roos-market",
+      "naam": "Super Roos Market",
+      "huisnummer": "135",
+      "categorie": "boodschappen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Buurtsupermarkt"
+    },
+    {
+      "slug": "tara-massage-nail-studio",
+      "naam": "TARA Massages & Nail Studio",
+      "huisnummer": "7",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": "sport-lichaam",
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Massage & nagelstudio"
+    },
+    {
+      "slug": "topchiro-amsterdam",
+      "naam": "TOPCHIRO Amsterdam",
+      "huisnummer": "217",
+      "categorie": "sport-lichaam",
+      "tweede_label": "zorg",
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Chiropractie"
+    },
+    {
+      "slug": "trib3",
+      "naam": "TRIB3",
+      "huisnummer": "88",
+      "categorie": "sport-lichaam",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Boutique HIIT fitness studio"
+    },
+    {
+      "slug": "tandartspraktijk-rozengracht",
+      "naam": "Tandartspraktijk Rozengracht",
+      "huisnummer": "68-70",
+      "categorie": "zorg",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Tandarts"
+    },
+    {
+      "slug": "theatre-de-coiffure",
+      "naam": "Theatre de Coiffure",
+      "huisnummer": "11",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Kapper"
+    },
+    {
+      "slug": "toni-guy",
+      "naam": "Toni & Guy",
+      "huisnummer": "13",
+      "categorie": "haar-huid-nagels",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Kapper"
+    },
+    {
+      "slug": "tonton-shoarma-grillroom",
+      "naam": "Tonton Shoarma Grillroom",
+      "huisnummer": "137",
+      "categorie": "bakkers-snacks-togo",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Shoarma en grillroom"
+    },
+    {
+      "slug": "tuk-tuk-thai",
+      "naam": "Tuk Tuk Thai",
+      "huisnummer": "22",
+      "categorie": "restaurants",
+      "tweede_label": "bakkers-snacks-togo",
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Thais"
+    },
+    {
+      "slug": "ultimate-performance",
+      "naam": "Ultimate Performance",
+      "huisnummer": "207-F",
+      "categorie": "sport-lichaam",
+      "tweede_label": null,
+      "huidige_categorie": "gezondheid-wellness",
+      "subcategorie": "Personal training"
+    },
+    {
+      "slug": "urban-cacao",
+      "naam": "Urban Cacao",
+      "huisnummer": "200",
+      "categorie": "boodschappen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Chocolaterie"
+    },
+    {
+      "slug": "vakhuis",
+      "naam": "Vakhuis",
+      "huisnummer": "218",
+      "categorie": "hobby-klussen",
+      "tweede_label": "reparatie",
+      "huidige_categorie": "winkels",
+      "subcategorie": "Borduurspecialist"
+    },
+    {
+      "slug": "van-der-linde",
+      "naam": "Van der Linde",
+      "huisnummer": "36-38",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Kunstenaarsmaterialen"
+    },
+    {
+      "slug": "velvet-music-amsterdam",
+      "naam": "Velvet Music Amsterdam",
+      "huisnummer": "40",
+      "categorie": "boeken-muziek",
+      "tweede_label": null,
+      "huidige_categorie": "cultuur-vrije-tijd",
+      "subcategorie": "Platenwinkel"
+    },
+    {
+      "slug": "venezia-del-noord",
+      "naam": "Venezia del Noord",
+      "huisnummer": "1",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Italiaans restaurant"
+    },
+    {
+      "slug": "games-workshop-warhammer",
+      "naam": "Warhammer Amsterdam West",
+      "huisnummer": "99",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Hobbywinkel (miniaturen & tabletopspellen)"
+    },
+    {
+      "slug": "waries-thai-food",
+      "naam": "Warie's Thai Food",
+      "huisnummer": "235",
+      "categorie": "restaurants",
+      "tweede_label": null,
+      "huidige_categorie": "eten-drinken",
+      "subcategorie": "Thais restaurant"
+    },
+    {
+      "slug": "wasserette-quick-clean",
+      "naam": "Wasserette Quick & Clean",
+      "huisnummer": "59",
+      "categorie": "reparatie",
+      "tweede_label": null,
+      "huidige_categorie": "diensten",
+      "subcategorie": "Wasserette & stomerij"
+    },
+    {
+      "slug": "wegewijs",
+      "naam": "Wegewijs",
+      "huisnummer": "32",
+      "categorie": "boodschappen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Kaas en delicatessen"
+    },
+    {
+      "slug": "witbaard-feestartikelen",
+      "naam": "Witbaard Feestartikelen",
+      "huisnummer": "63",
+      "categorie": "hobby-klussen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Feestartikelen"
+    },
+    {
+      "slug": "wulf-meubelen",
+      "naam": "Wulf Meubelen",
+      "huisnummer": "74-78",
+      "categorie": "wonen",
+      "tweede_label": null,
+      "huidige_categorie": "winkels",
+      "subcategorie": "Meubels & interieur"
+    }
+  ]
+}
