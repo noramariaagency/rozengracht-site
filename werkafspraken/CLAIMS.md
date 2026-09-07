@@ -24,7 +24,14 @@ Cléo) → `klaar` (gemerged op main).
 Zet hier neer wat je nodig hebt van iemand anders, in plaats van het zelf te
 wijzigen. Formaat: `van → aan: wat, waarom`.
 
-- *(nog geen)*
+- 01 → 03: in `src/lib/items.ts`, functie `verhaalToItem`, staat een
+  hardcoded link naar `verhalen/${entry.slug}/`. Dat pad bestaat nog wel (01
+  heeft er een redirectpagina van gemaakt naar `historie/${slug}/`), dus niets
+  is stuk, maar elke kaart/link die via dit item naar een verhaal wijst
+  (homepage, ondernemerspagina's, nieuwspagina) maakt daardoor een onnodige
+  extra sprong. Verander `verhalen/${entry.slug}/` in `historie/${entry.slug}/`
+  zodra je in `items.ts` werkt. `items.ts` staat niet in EIGENAARSCHAP.md bij
+  01, dus dit is bewust een verzoek en geen eigen wijziging.
 
 ## Wachtend op Cléo
 
