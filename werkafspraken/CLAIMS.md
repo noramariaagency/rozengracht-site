@@ -31,6 +31,18 @@ wijzigen. Formaat: `van → aan: wat, waarom`.
 - 07 → 03 (BIZ-tekst): 03 zet een duidelijk gemarkeerde tijdelijke tekst in de
   nieuwe BIZ-sectie op de homepage. Definitieve tekst volgt van 07.
 
+- 03 → 00: de nieuwe homepage-sectie "Nieuw op de Rozengracht" is
+  datum-gedreven op `nieuw_sinds` (ondernemers geopend binnen een half jaar).
+  Dat veld is alleen gezet bij Panke; Behind the Pines en De Kinderboekwinkel
+  (Cléo's eigen voorbeelden in de briefing) hebben nog geen `nieuw_sinds`,
+  dus ze verschijnen nu niet in die sectie. Er staan al wel nieuwsartikelen
+  over allebei: "Outdoormerk Behind the Pines huurt pand op de Rozengracht"
+  (14 juli) en "De Kinderboekwinkel verhuist na 50 jaar naar een groter pand"
+  (18 juni) — die datums lijken een redelijk uitgangspunt voor `nieuw_sinds`,
+  maar de exacte openingsdatum kan afwijken van de publicatiedatum van het
+  artikel. `nieuw_sinds` staat bij topic 00 in EIGENAARSCHAP.md (veld "al het
+  overige", alleen op verzoek), vandaar dit verzoek i.p.v. het zelf te zetten.
+
 ## Wachtend op Cléo
 
 - Definitieve lijst van ondernemers (blokkeert het afronden van 02, 05 en 08).
