@@ -104,8 +104,29 @@ Het script controleert dat je werkmap schoon is, haalt `origin/main` op,
 rebaset jouw branch daarop, doet `npm run build` (faalt de build, dan stopt
 het en pusht het niets) en pusht dan `topic/<slug>`.
 
+### Pushen: let op
+
+De shell op de Mac heeft geen GitHub-inloggegevens (en `gh` staat er niet op).
+Ophalen werkt wel, pushen niet. Er zijn dus twee routes:
+
+- **Zonder token (nu):** het script doet alles behalve pushen en laat zien
+  welke bestanden gewijzigd zijn. De laatste stap doe je in het gesprek via
+  de GitHub-koppeling. Werkt voor tekstbestanden, dus voor topic 01 tot en
+  met 07.
+- **Met token (nodig voor topic 08):** afbeeldingen kunnen niet via de
+  koppeling. Zet daarvoor eenmalig een fijnmazig GitHub-token in de repo:
+
+  ```bash
+  git -C site remote set-url origin \
+    https://x-access-token:<TOKEN>@github.com/noramariaagency/rozengracht-site.git
+  ```
+
+  Rechten: alleen deze repo, met Contents en Pull requests op lezen en
+  schrijven. Dit staat in `.git/config` in de projectmap, gaat dus nooit mee
+  in een commit, en blijft bewaard voor volgende gesprekken.
+
 Daarna, in het gesprek zelf: open een pull request naar `main` via de
-GitHub-koppeling (`gh` staat niet op deze Mac). In de PR-beschrijving:
+GitHub-koppeling. In de PR-beschrijving:
 
 - wat er wijzigt, in mensentaal, per punt uit de briefing;
 - welke bestanden je hebt aangeraakt;

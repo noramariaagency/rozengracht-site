@@ -118,11 +118,30 @@ cmd_publiceer() {
   echo "  build oke"
 
   kop "5/5 Pushen"
-  $G push -u origin "$branch"
+  if $G push -u origin "$branch" 2>/dev/null; then
+    echo "  gepusht"
+  else
+    cat <<TXT
+
+  Pushen lukt niet: deze shell heeft geen GitHub-inloggegevens.
+  Dat is geen probleem, maar de laatste stap gaat dan via het gesprek.
+
+  Zeg in het gesprek: "push deze branch en open de PR via de
+  GitHub-koppeling". Deze bestanden zijn gewijzigd ten opzichte van main:
+
+TXT
+    $G diff --name-status "origin/main..$branch" | sed 's/^/    /'
+    cat <<TXT
+
+  Let op: via de koppeling gaan alleen tekstbestanden mee. Zitten er
+  afbeeldingen bij (topic 08), dan is een GitHub-token in deze repo nodig.
+  Zie werkafspraken/00-WERKWIJZE.md, paragraaf 6.
+TXT
+  fi
 
   kop "Klaar"
   cat <<TXT
-  Branch $branch staat op GitHub, main is niet aangeraakt.
+  Branch $branch is klaar om te publiceren, main is niet aangeraakt.
 
   Nu nog, in het gesprek zelf:
     1. Open een pull request van $branch naar main via de GitHub-koppeling.
