@@ -25,6 +25,41 @@ fi
 g()  { git -C "$SITE" "$@"; }
 gw() { git -C "$PAD" "$@"; }
 
+# node_modules kan net zo min gedeeld worden tussen macOS en de Linux-VM als
+# een worktree: npm installeert platformspecifieke binaries (rollup heeft een
+# aparte build per besturingssysteem en architectuur). Een gedeelde map betekent
+# dat de ene kant de build van de andere kant stukmaakt.
+#
+# Op macOS koppelen we door naar site/node_modules, want daar staat de install
+# die Claude Code zelf gebruikt. In Cowork gebruiken we een eigen Linux-install
+# in werk-cowork/.deps-linux/, eenmalig aangemaakt en daarna door alle
+# Cowork-worktrees hergebruikt. Links zijn relatief, nooit absoluut.
+koppel_node_modules() {
+  local pad="$1"
+  [ -e "$pad/node_modules" ] && { echo "  node_modules staat er al"; return 0; }
+
+  if [ "$(uname -s)" = "Darwin" ]; then
+    if [ -d "$SITE/node_modules" ]; then
+      ln -s ../../site/node_modules "$pad/node_modules"
+      echo "  node_modules doorgekoppeld vanuit site/"
+    else
+      echo "  let op: site/node_modules ontbreekt, doe 'npm ci' in $SITE"
+    fi
+    return 0
+  fi
+
+  local deps="$WERK/.deps-linux"
+  if [ ! -d "$deps/node_modules" ]; then
+    echo "  eenmalige Linux-install van node_modules (dit duurt even)..."
+    mkdir -p "$deps"
+    cp "$SITE/package.json" "$SITE/package-lock.json" "$deps/" || return 0
+    ( cd "$deps" && npm ci --silent ) || {
+      echo "  npm ci mislukte; doe 'npm ci' in $deps en probeer opnieuw"; return 0; }
+  fi
+  ln -s ../.deps-linux/node_modules "$pad/node_modules"
+  echo "  node_modules doorgekoppeld vanuit werk-cowork/.deps-linux/"
+}
+
 TOPICS="01-fundament 02-categorieen 03-homepage-magazine 04-blog-en-artikelen \
 05-ondernemers-en-kaart 06-bereikbaarheid 07-contact-biz-juridisch 08-fotografie"
 
@@ -75,15 +110,7 @@ TXT
     g worktree add -b "$branch" "$pad" main
   fi
 
-  if [ -d "$SITE/node_modules" ] && [ ! -e "$pad/node_modules" ]; then
-    # Relatief, niet absoluut: dezelfde map wordt gezien door macOS en door de
-    # shell van Claude, die andere absolute paden hebben. Een absolute link is
-    # aan een van de twee kanten altijd stuk.
-    ln -s ../../site/node_modules "$pad/node_modules"
-    echo "  node_modules doorgekoppeld vanuit site/"
-  else
-    echo "  let op: geen node_modules gevonden, doe 'npm ci' in $pad"
-  fi
+  koppel_node_modules "$pad"
 
   kop "Klaar"
   cat <<TXT

@@ -16,3 +16,6 @@ dist/
 
 # Nooit committen: het GitHub-token (hoort in de projectmap, niet hier)
 .github-token
+
+# Linux-install van node_modules voor de Cowork-kant (zie scripts/werkgesprek.sh)
+.deps-linux/
