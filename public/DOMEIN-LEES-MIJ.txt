@@ -1,0 +1,15 @@
+Hier stond public/CNAME met "www.derozengracht.com".
+
+Weggehaald op 7 september 2026. Reden: dat bestand zet in GitHub Pages een
+custom domain, waardoor GitHub bezoekers van
+noramariaagency.github.io/rozengracht-site/ doorstuurde naar
+www.derozengracht.com. Dat domein wijst nog niet naar deze site, dus je kwam
+op de oude "new website coming soon"-pagina terecht in plaats van op de
+nieuwe site. De testsite was daardoor niet te bekijken.
+
+Zodra het domein echt overgezet wordt naar deze site:
+1. Zet dit bestand terug om als public/CNAME met daarin: www.derozengracht.com
+2. Haal in astro.config.mjs de regel base: '/rozengracht-site' weg (of zet
+   hem op '/'), anders staat de hele site op een subpad dat niet bestaat.
+3. Zet de DNS van www.derozengracht.com naar GitHub Pages.
+Stap 1 en 2 horen bij elkaar: doe je maar een van de twee, dan is de site stuk.
