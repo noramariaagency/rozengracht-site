@@ -74,9 +74,26 @@
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
   --space-xl: 4rem;
+  /* Extra ruim, voor volle-breedte/magazine-secties (hero-beeld, de
+     donkergroene Ontdek-zone) — referentie beethovenstraat.nl, waar zulke
+     secties duidelijk meer lucht krijgen dan een gewoon contentblok. */
+  --space-2xl: 6rem;
 
   --radius: 10px;
   --max-width: 1180px;
+  /* Voor volle-breedte magazine-secties (groot hero-beeld, Ontdek-zone) die
+     bewust breder mogen ademen dan de leescontainer. */
+  --max-width-breed: 1440px;
+
+  /* Vaste beeldverhoudingen voor fotokaarten, zodat een grid met wisselende
+     foto's (topic 03 homepage, topic 05 ondernemerskaart) toch een strak
+     ritme houdt i.p.v. willekeurige hoogtes.
+     - feature: groot uitgelicht kaartje (bv. een "Uitgelicht"-sectie)
+     - standaard: reguliere kaart in een grid (ondernemers, artikelen)
+     - breed: horizontale kaart (bv. een korte hooglicht-strook) */
+  --card-ratio-feature: 3 / 2;
+  --card-ratio-standaard: 1 / 1;
+  --card-ratio-breed: 16 / 9;
 
   /* Fallback tot Nav.astro dit bij het laden vervangt door de echte,
      gemeten hoogte van de sticky header. */
