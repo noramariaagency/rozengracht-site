@@ -9,7 +9,7 @@ Cléo) → `klaar` (gemerged op main).
 
 | # | Topic | Branch | Status | Sinds | Opmerking |
 |---|---|---|---|---|---|
-| 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | bezig | 7 sep 2026 | **moet als eerste, alleen** |
+| 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | in review | 7 sep 2026 | **moet als eerste, alleen** · PR #1, categorieschema (punt 4) bewust nog niet gedaan |
 | 02 | Categorieën en labels | `topic/02-categorieen` | wacht op fundament | – | voorstel voor Cléo kan al wel geschreven worden |
 | 03 | Homepage als magazine | `topic/03-homepage-magazine` | wacht op fundament | – | |
 | 04 | Blog, artikelen en events | `topic/04-blog-en-artikelen` | wacht op fundament | – | |
