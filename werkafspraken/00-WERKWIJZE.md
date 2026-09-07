@@ -108,60 +108,50 @@ Harde regels hierbij:
 - Doe je bulkwijziging met een script dat gericht één veld aanpast, niet met
   een parse-en-herschrijf-de-hele-file-aanpak.
 
-## 6. Opleveren en publiceren
+## 6. Opleveren
+
+**Geen pull requests, geen goedkeuringsrondes.** Het echte domein
+(www.derozengracht.com) staat nog niet aan: `main` is nu een testomgeving die
+alleen wij bekijken. Een PR-gate daarbovenop kost alleen tijd en levert niets
+op. Dus:
 
 ```bash
-cd ~/Documents/Claude/Projects/Rozengracht\ website/werk/<slug>
-../../site/scripts/werkgesprek.sh publiceer <slug>
+cd ~/Documents/Claude/Projects/Rozengracht\ website
+./site/scripts/werkgesprek.sh oplever <topic>
 ```
 
-Het script controleert dat je werkmap schoon is, haalt `origin/main` op,
-rebaset jouw branch daarop, doet `npm run build` (faalt de build, dan stopt
-het en pusht het niets) en pusht dan `topic/<slug>`.
+Dat doet in één keer: rebasen op de laatste `main`, bouwen (faalt de build,
+dan stopt het en gaat er niets in), mergen naar `main`, pushen, en wachten tot
+de deploy klaar is.
 
-### Pushen: eenmalig een token instellen
+**En dan het belangrijkste: geef Nora een link en zeg waar ze moet kijken.**
+Niet "de PR staat klaar", niet "het is gemerged", maar:
 
-De shell op de Mac heeft geen GitHub-inloggegevens, en al het verkeer daar
-loopt via een HTTPS-proxy zonder naamresolutie. SSH en `gh` vallen dus af;
-ophalen werkt wel, pushen niet. Eenmalig oplossen met een fijnmazig token:
+> Klaar. Kijk hier: https://noramariaagency.github.io/rozengracht-site/ondernemers/
+> Onderaan de kaart staan de filters nu per groep. Klik op "Restaurants" en
+> je ziet dat Chin Chin Club ook meekomt.
 
-```bash
-cd ~/Documents/Claude/Projects/Rozengracht\ website/site
-./scripts/token-instellen.sh
-```
+Dus: de link, plus in gewone woorden welke pagina en waar op die pagina het
+verschil zit. Verandert er iets op meerdere pagina's, geef dan per pagina een
+link met een regel erbij. Wat er technisch onder water gebeurde, hoeft er niet
+bij, tenzij er iets stuk is of er een keuze gemaakt moet worden.
 
-Dat script vraagt het token zonder het te tonen, zet het in
-`.github-token` in de projectmap (buiten de git-repo, rechten 600) en
-koppelt het via `credential.helper` aan deze repo. Het token komt dus niet
-in je shell-historie, niet in een commit en niet in een chat. De instelling
-staat in `.git/config` in de projectmap en blijft dus bewaard voor volgende
-gesprekken.
+Zit het echte domein er wel op, dan gaat dit veranderen en komt er weer een
+reviewstap voor livegang. Tot die tijd niet.
 
-Het token aanmaken op <https://github.com/settings/personal-access-tokens/new>:
-resource owner `noramariaagency`, alleen de repo `rozengracht-site`,
-en als rechten Contents op *Read and write* en Pull requests op
-*Read and write*. Verder niets.
+## 6b. Eenmalig: het pushtoken
 
-Zonder token kun je alleen tekstbestanden publiceren via de
-GitHub-koppeling in het gesprek; afbeeldingen (topic 08) lukken dan niet.
-
-Daarna, in het gesprek zelf: open een pull request naar `main` via de
-GitHub-koppeling. In de PR-beschrijving:
-
-- wat er wijzigt, in mensentaal, per punt uit de briefing;
-- welke bestanden je hebt aangeraakt;
-- screenshots of een los voorbeeldontwerp voor Cléo;
-- wat er expliciet **niet** in zit.
-
-**Cléo reviewt op de PR, en pas na haar goedkeuring merget topic 00 naar
-`main`.** Alleen dan gaat het live (push naar `main` triggert de
-GitHub Pages-deploy). Zo publiceert een gesprek nooit het halve werk van een
-ander gesprek mee: jouw branch bevat immers alleen jouw commits bovenop een
-gemergede `main`.
+De shell op de Mac heeft geen GitHub-inloggegevens, en in Cowork loopt alles
+via een HTTPS-proxy zonder naamresolutie (SSH en `gh` vallen dus af). Eenmalig
+oplossen met `./site/scripts/token-instellen.sh`; dat script vraagt een
+fijnmazig token zonder het te tonen en zet het buiten de repo. Is dat al
+gedaan, dan hoef je hier niets meer mee.
 
 ## 7. Waar Cléo naar kijkt
 
-Per topic leveren we haar iets zichtbaars, geen code. Twee vormen:
+Per topic leveren we haar iets zichtbaars, geen code. Ze kijkt op de
+testsite (noramariaagency.github.io/rozengracht-site/), niet in GitHub. Twee
+vormen:
 
 - **Voorbeeldontwerp** voor de topics waar het uiterlijk verandert (01, 03,
   05, 06): een losse pagina of afbeelding die ze naast de huidige site kan

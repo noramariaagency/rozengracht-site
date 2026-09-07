@@ -42,12 +42,14 @@ Werkwijze per topic, steeds hetzelfde rondje:
      plaats van het te beschrijven.
   e. Bouw het uit in kleine commits met leesbare Nederlandse
      commitberichten.
-  f. ./site/scripts/werkgesprek.sh publiceer <topic>, en open dan de PR naar
-     main met: wat er wijzigt per punt uit de briefing, welke bestanden je
-     hebt aangeraakt, screenshots, en wat er expliciet niet in zit.
-  g. Zet jezelf in CLAIMS.md op 'in review'. Stop daar en vat samen wat er
-     klaar is. Merge nooit zelf naar main: dat doet het coördinatiegesprek na
-     goedkeuring van Cléo.
+  f. ./site/scripts/werkgesprek.sh oplever <topic>. Dat rebaset, bouwt,
+     merget naar main, pusht en wacht op de deploy. Geen pull request, geen
+     goedkeuringsronde: het echte domein staat nog niet aan, main is een
+     testomgeving.
+  g. Sluit af met een link naar de gewijzigde pagina('s) op
+     https://noramariaagency.github.io/rozengracht-site/ en zeg in gewone
+     woorden waar ik moet kijken en wat ik daar zie. Geen git-termen, geen
+     PR-verhaal. Zet jezelf in CLAIMS.md op 'klaar'.
 
 Regels waar je niet van afwijkt:
 

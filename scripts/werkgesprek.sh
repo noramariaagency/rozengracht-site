@@ -208,6 +208,56 @@ TXT
 TXT
 }
 
+# Alles in een keer: rebasen, bouwen, mergen naar main, pushen, wachten op de
+# deploy. Geen pull request en geen goedkeuringsronde: het echte domein staat
+# nog niet aan, dus main is een testomgeving die alleen wij bekijken.
+cmd_oplever() {
+  local slug="$1" branch="topic/$1" pad="$WERK/$1"
+  check_slug "$slug"
+  [ -d "$pad" ] || fout "geen werkmap $pad. Eerst: $0 start $slug"
+  PAD="$pad"
+
+  kop "1/6 Werkmap schoon?"
+  [ -z "$(gw status --porcelain)" ] || { gw status --short; fout "commit je wijzigingen eerst."; }
+  echo "  schoon"
+
+  kop "2/6 Rebasen op de laatste main"
+  gw fetch origin --prune
+  gw rebase origin/main || fout "rebase-conflict. Los het op in $pad en probeer opnieuw.
+       Raakt het conflict een bestand dat niet van jouw topic is, stem het dan
+       eerst af met het coordinatiegesprek (topic 00)."
+
+  local n; n=$(gw rev-list --count "origin/main..$branch")
+  [ "$n" -gt 0 ] || fout "geen commits op $branch bovenop main. Niets op te leveren."
+  echo "  $n commit(s) op te leveren"
+
+  kop "3/6 Build"
+  ( cd "$pad" && npm run build ) >/dev/null 2>&1 \
+    || { ( cd "$pad" && npm run build ) 2>&1 | tail -20; fout "de build faalt. Er gaat niets in."; }
+  echo "  build oke"
+
+  kop "4/6 Mergen naar main"
+  g fetch origin --quiet --prune
+  g checkout --quiet main && g merge --ff-only origin/main --quiet
+  g merge --no-ff "$branch" -m "Merge topic $slug" || fout "merge mislukte, main is niet gewijzigd."
+
+  kop "5/6 Pushen"
+  g push origin main || fout "push mislukte. Staat het token er? Zie scripts/token-instellen.sh"
+
+  kop "6/6 Wachten op de deploy"
+  echo "  GitHub bouwt en publiceert nu; dat duurt ongeveer een minuut."
+  sleep 75
+
+  kop "Klaar"
+  cat <<TXT
+  Te bekijken op: https://noramariaagency.github.io/rozengracht-site/
+
+  Controleer of de pagina die je hebt gewijzigd er goed op staat, en geef Nora
+  dan de directe link naar die pagina met een regel erbij over waar ze moet
+  kijken en wat ze daar ziet. Geen git-termen.
+TXT
+}
+
 cmd_opruimen() {
   local slug="$1" branch="topic/$1" pad="$WERK/$1"
   check_slug "$slug"
@@ -221,6 +271,7 @@ cmd_opruimen() {
 
 case "${1:-}" in
   start)     shift; cmd_start "${1:-}" ;;
+  oplever)   shift; cmd_oplever "${1:-}" ;;
   status)    cmd_status ;;
   publiceer) shift; cmd_publiceer "${1:-}" ;;
   opruimen)  shift; cmd_opruimen "${1:-}" ;;
@@ -229,7 +280,8 @@ werkgesprek.sh - een werkmap per gesprek
 
   $0 start <topic>       nieuwe branch + eigen werkmap in ../werk/<topic>/
   $0 status              wie werkt waaraan, hoe ver voor of achter op main
-  $0 publiceer <topic>   rebase op main, build, push eigen branch (main blijft ongemoeid)
+  $0 oplever <topic>     rebase, build, merge naar main, push, wacht op de deploy
+  $0 publiceer <topic>   alleen de eigen branch pushen (main blijft ongemoeid)
   $0 opruimen <topic>    werkmap en branch weg, alleen als alles in main zit
 
 Topics:$(printf '\n  %s' $TOPICS)

@@ -15,8 +15,13 @@ wijzigt:
 - **Nooit werken in `site/` zelf** en **nooit commiten op `main`.** Werk in
   je eigen worktree: `./scripts/werkgesprek.sh start <topic>` maakt hem aan
   in `../werk/<topic>/`.
-- Publiceren gaat via `./scripts/werkgesprek.sh publiceer <topic>` plus een
-  pull request. Alleen het coördinatiegesprek (topic 00) merget naar `main`.
+- Opleveren gaat via `./scripts/werkgesprek.sh oplever <topic>`: rebase,
+  build, merge naar `main`, push, wachten op de deploy. **Geen pull requests
+  en geen goedkeuringsrondes**: het echte domein staat nog niet aan, dus
+  `main` is een testomgeving.
+- **Sluit altijd af met een link en waar te kijken**, in gewone woorden. Dus
+  "kijk op .../ondernemers/, de filters staan nu per groep", niet "de PR is
+  gemerged". Git-termen horen niet in het antwoord.
 - Je merget nooit de branch van een ander topic mee.
 - In `src/content/ondernemers/*/index.md` geldt eigenaarschap **per veld**.
   Niet herformatteren, niet herordenen, geen bulk-opschoning.
