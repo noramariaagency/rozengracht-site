@@ -67,7 +67,10 @@ TXT
   fi
 
   if [ -d "$SITE/node_modules" ] && [ ! -e "$pad/node_modules" ]; then
-    ln -s "$SITE/node_modules" "$pad/node_modules"
+    # Relatief, niet absoluut: dezelfde map wordt gezien door macOS en door de
+    # shell van Claude, die andere absolute paden hebben. Een absolute link is
+    # aan een van de twee kanten altijd stuk.
+    ln -s ../../site/node_modules "$pad/node_modules"
     echo "  node_modules doorgekoppeld vanuit site/"
   else
     echo "  let op: geen node_modules gevonden, doe 'npm ci' in $pad"
