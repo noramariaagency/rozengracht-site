@@ -17,7 +17,7 @@ const TEKST: Record<Lang, {
   home: string;
   nieuws: string;
   ondernemers: string;
-  verhalen: string;
+  historie: string;
   bereikbaarheid: string;
   menu: string;
   taalWisselNaar: string;
@@ -30,7 +30,7 @@ const TEKST: Record<Lang, {
     home: 'Home',
     nieuws: 'Nieuws',
     ondernemers: 'Ondernemers',
-    verhalen: 'Verhalen',
+    historie: 'Historie',
     bereikbaarheid: 'Bereikbaarheid',
     menu: 'Menu',
     taalWisselNaar: 'View this page in English',
@@ -43,7 +43,7 @@ const TEKST: Record<Lang, {
     home: 'Home',
     nieuws: 'News',
     ondernemers: 'Businesses',
-    verhalen: 'Stories',
+    historie: 'History',
     bereikbaarheid: 'Getting there',
     menu: 'Menu',
     taalWisselNaar: 'Bekijk deze pagina in het Nederlands',
@@ -81,7 +81,7 @@ const tBanner = TEKST[andereTaal];
 const links = [
   { href: getRelativeLocaleUrl(lang, 'nieuws'), label: t.nieuws },
   { href: getRelativeLocaleUrl(lang, 'ondernemers'), label: t.ondernemers },
-  { href: getRelativeLocaleUrl(lang, 'verhalen'), label: t.verhalen },
+  { href: getRelativeLocaleUrl(lang, 'historie'), label: t.historie },
   { href: getRelativeLocaleUrl(lang, 'bereikbaarheid'), label: t.bereikbaarheid },
 ];
 ---
