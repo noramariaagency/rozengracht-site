@@ -1,7 +1,7 @@
 ---
 naam: "De Rozengracht Kledingreparatie & Stomerij"
 huisnummer: "216"
-categorie: "diensten"
+categorie: "reparatie"
 subcategorie: "Kledingreparatie & stomerij"
 website: "https://de-rozengracht.nl"
 fotos:

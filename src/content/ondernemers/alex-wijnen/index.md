@@ -1,7 +1,7 @@
 ---
 naam: "Alex Wijnen"
 huisnummer: "4"
-categorie: "winkels"
+categorie: "boodschappen"
 subcategorie: "Wijnwinkel"
 website: "https://www.alexwijnen.nl/"
 fotos:

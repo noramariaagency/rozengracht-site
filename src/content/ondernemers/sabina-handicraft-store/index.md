@@ -1,7 +1,8 @@
 ---
 naam: "Sabina Handicraft Store"
 huisnummer: "183"
-categorie: "winkels"
+categorie: "wonen"
+tweede_label: "hobby-klussen"
 subcategorie: "Handgemaakt textiel & woondecoratie"
 website: "https://www.sabai.nl"
 fotos:

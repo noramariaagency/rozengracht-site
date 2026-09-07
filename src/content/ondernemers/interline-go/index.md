@@ -1,7 +1,7 @@
 ---
 naam: "INTERLINE & GO"
 huisnummer: "51a"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Surinaamse keuken"
 fotos: []
 quote_nl: "Wij zijn het adres voor Surinaamse afhaalmaaltijden, ook als je een groter gezelschap moet voeden."

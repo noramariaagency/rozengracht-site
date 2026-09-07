@@ -1,7 +1,7 @@
 ---
 naam: "Apotheek BENU Rozengracht"
 huisnummer: "57"
-categorie: "gezondheid-wellness"
+categorie: "zorg"
 subcategorie: "Apotheek"
 website: "https://www.benu.nl/apotheek/rozengracht"
 quote_nl: "Wij zijn de apotheek van de buurt, niet zomaar een filiaal."

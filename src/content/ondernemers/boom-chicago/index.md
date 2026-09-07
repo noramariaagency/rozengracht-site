@@ -1,7 +1,7 @@
 ---
 naam: "Boom Chicago"
 huisnummer: "117"
-categorie: "cultuur-vrije-tijd"
+categorie: "uitgaan"
 subcategorie: "Engelstalig improvisatietheater"
 website: "https://boomchicago.nl"
 fotos:

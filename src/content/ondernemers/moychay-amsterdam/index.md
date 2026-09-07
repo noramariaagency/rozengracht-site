@@ -1,7 +1,7 @@
 ---
 naam: "Moychay"
 huisnummer: "92H"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Theehuis en theecultuurclub"
 website: "https://togo.moychay.nl"
 fotos:

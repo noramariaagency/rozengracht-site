@@ -1,7 +1,7 @@
 ---
 naam: "Blokker"
 huisnummer: "8"
-categorie: "winkels"
+categorie: "wonen"
 subcategorie: "Huishoudelijke artikelen"
 website: "https://www.blokker.nl/"
 fotos:

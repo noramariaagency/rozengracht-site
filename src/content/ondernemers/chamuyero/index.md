@@ -1,7 +1,8 @@
 ---
 naam: "Chamuyero"
 huisnummer: "104H"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "bakkers-snacks-togo"
 subcategorie: "Argentijnse deli"
 website: "https://www.chamuyero.nl/"
 openingstijden:

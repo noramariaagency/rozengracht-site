@@ -1,7 +1,7 @@
 ---
 naam: "Akitsu"
 huisnummer: "228"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Japans restaurant & sake"
 website: "https://www.akitsu-amsterdam.com/"
 status: "klaar"

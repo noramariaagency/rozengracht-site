@@ -1,7 +1,7 @@
 ---
 naam: "Tandartspraktijk Rozengracht"
 huisnummer: "68-70"
-categorie: "gezondheid-wellness"
+categorie: "zorg"
 subcategorie: "Tandarts"
 website: "https://leuketandarts.nl"
 fotos:

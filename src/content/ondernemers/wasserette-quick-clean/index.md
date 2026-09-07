@@ -1,7 +1,7 @@
 ---
 naam: "Wasserette Quick & Clean"
 huisnummer: "59"
-categorie: "diensten"
+categorie: "reparatie"
 subcategorie: "Wasserette & stomerij"
 status: "klaar"
 quote_nl: "Breng je was voor elf uur, dan is 'ie dezelfde dag nog klaar."

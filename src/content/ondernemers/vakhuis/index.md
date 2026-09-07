@@ -1,7 +1,8 @@
 ---
 naam: "Vakhuis"
 huisnummer: "218"
-categorie: "winkels"
+categorie: "hobby-klussen"
+tweede_label: "reparatie"
 subcategorie: "Borduurspecialist"
 fotos:
   - "./foto_01.jpg"

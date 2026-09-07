@@ -1,7 +1,7 @@
 ---
 naam: "Représentable"
 huisnummer: "162"
-categorie: "winkels"
+categorie: "wonen"
 subcategorie: "Tafelgerei & interieur"
 website: "https://www.representable.nl/"
 fotos:

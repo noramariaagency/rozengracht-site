@@ -1,7 +1,7 @@
 ---
 naam: "24/7 BurgerHouse"
 huisnummer: "144"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Halal burgerzaak / bezorging"
 website: "https://www.247burgerhouseamsterdam.nl/"
 status: "klaar"

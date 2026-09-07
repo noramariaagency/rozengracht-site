@@ -1,6 +1,6 @@
 ---
 naam: "Behind the Pines"
-categorie: "winkels"
+categorie: "mode-sport"
 subcategorie: "Outdoor- en snowboardwinkel"
 huisnummer: "34HS"
 status: "deels-klaar"

@@ -1,7 +1,7 @@
 ---
 naam: "Maijard Smashburgers"
 huisnummer: "9"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Smashburgers"
 logo: "./logo.jpg"
 fotos:

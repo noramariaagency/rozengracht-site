@@ -1,7 +1,7 @@
 ---
 naam: "Witbaard Feestartikelen"
 huisnummer: "63"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Feestartikelen"
 website: "https://www.witbaard.nl"
 openingstijden:

@@ -1,6 +1,6 @@
 ---
 naam: "Panke"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Grieks dagrestaurant"
 status: "deels-klaar"
 nieuw_sinds: 2026-05-01

@@ -1,7 +1,7 @@
 ---
 naam: "Velvet Music Amsterdam"
 huisnummer: "40"
-categorie: "cultuur-vrije-tijd"
+categorie: "boeken-muziek"
 subcategorie: "Platenwinkel"
 website: "https://www.velvetmusic.nl"
 logo: "./logo.jpg"

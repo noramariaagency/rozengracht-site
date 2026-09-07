@@ -1,7 +1,7 @@
 ---
 naam: "Recover"
 huisnummer: "231"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Gezond café & bowls"
 website: "https://www.recoverfood.nl/"
 fotos:

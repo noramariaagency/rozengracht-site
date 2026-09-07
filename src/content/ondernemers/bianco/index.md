@@ -1,7 +1,7 @@
 ---
 naam: "Bianco"
 huisnummer: "196"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Kapsalon"
 website: "https://www.kapsalonbianco.com"
 fotos:

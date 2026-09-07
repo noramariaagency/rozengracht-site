@@ -1,7 +1,7 @@
 ---
 naam: "Nature Skin Cosmetics"
 huisnummer: "72H"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Natuurlijke & veganistische cosmetica"
 website: "https://natureskins.nl"
 fotos:

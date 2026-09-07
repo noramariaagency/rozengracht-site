@@ -1,7 +1,7 @@
 ---
 naam: "Nepal Tabakshop"
 huisnummer: "158"
-categorie: "winkels"
+categorie: "cadeaus-tabak"
 subcategorie: "Tabak- en gemakswinkel"
 status: "deels-klaar"
 interne_opmerking: >

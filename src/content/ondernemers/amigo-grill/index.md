@@ -1,7 +1,7 @@
 ---
 naam: "Amigo Grill"
 huisnummer: "5"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Argentijns restaurant"
 fotos:
   - "./foto_01.jpg"

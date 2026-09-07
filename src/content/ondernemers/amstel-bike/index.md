@@ -1,7 +1,7 @@
 ---
 naam: "Amstel Bike"
 huisnummer: "146"
-categorie: "diensten"
+categorie: "vervoer"
 subcategorie: "Fietsverhuur & -verkoop"
 fotos: []
 quote_nl: "Lekke band, oude fiets, elektrische ombouw: bij ons kun je met alles terecht, en we repareren het gewoon ter plekke."

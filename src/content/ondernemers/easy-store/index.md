@@ -1,7 +1,7 @@
 ---
 naam: "Easy Store"
 huisnummer: "14"
-categorie: "winkels"
+categorie: "cadeaus-tabak"
 subcategorie: "Tabakszaak"
 status: "klaar"
 quote_nl: "Wij zijn al meer dan honderd jaar een echte tabaksspeciaalzaak, en dat runnen we nog steeds zoals een vakhandel hoort."

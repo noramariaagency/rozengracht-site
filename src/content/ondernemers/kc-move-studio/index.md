@@ -1,7 +1,7 @@
 ---
 naam: "K/C Move Studio"
 huisnummer: "93A"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
 subcategorie: "Pilates- en bewegingsstudio"
 website: "https://www.kcmove.nl"
 status: "klaar"

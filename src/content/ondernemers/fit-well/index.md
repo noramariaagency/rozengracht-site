@@ -1,7 +1,7 @@
 ---
 naam: "Fit Well Chinese Massage"
 huisnummer: "241"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
 subcategorie: "Massage"
 quote_nl: "Wij zijn zeven dagen per week open, van half elf 's ochtends tot half elf 's avonds."
 quote_en: "We're open seven days a week, from half past ten in the morning until half past ten at night."

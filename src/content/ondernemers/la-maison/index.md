@@ -1,7 +1,7 @@
 ---
 naam: "La Maison"
 huisnummer: "215"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Kapsalon en schoonheidsspecialist"
 website: "http://www.lamaison-amsterdam.nl/"
 fotos:

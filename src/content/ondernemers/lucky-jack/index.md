@@ -1,7 +1,7 @@
 ---
 naam: "Lucky Jack"
 huisnummer: "237"
-categorie: "cultuur-vrije-tijd"
+categorie: "coffeeshop-speelhal"
 subcategorie: "Speelhal"
 website: "https://luckyjack.nl"
 fotos:

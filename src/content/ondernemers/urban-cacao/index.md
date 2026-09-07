@@ -1,7 +1,7 @@
 ---
 naam: "Urban Cacao"
 huisnummer: "200"
-categorie: "winkels"
+categorie: "boodschappen"
 subcategorie: "Chocolaterie"
 website: "https://www.urbancacao.com"
 openingstijden:

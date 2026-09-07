@@ -1,7 +1,7 @@
 ---
 naam: "Café de Oude Wester"
 huisnummer: "2"
-categorie: "eten-drinken"
+categorie: "uitgaan"
 subcategorie: "Bruin café"
 fotos:
   - "./foto_01.jpg"

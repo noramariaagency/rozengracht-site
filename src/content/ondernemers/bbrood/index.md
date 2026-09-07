@@ -1,7 +1,7 @@
 ---
 naam: "Bbrood"
 huisnummer: "180-182"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Desembakkerij"
 fotos:
   - "./foto_01.webp"

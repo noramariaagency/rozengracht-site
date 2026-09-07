@@ -6,13 +6,47 @@ const ondernemers = defineCollection({
     z.object({
       // Verplicht
       naam: z.string(),
+      // Vijftien categorieen in drie groepen, zie src/lib/categorieen.ts en
+      // werkafspraken/voorstellen/categorieen.md. Een zaak die echt twee
+      // dingen is (restaurant dat ook to-go doet, winkel die ook repareert)
+      // krijgt daarnaast een tweede_label: die telt mee in het filter, maar
+      // de zaak wordt getoond onder zijn eerste categorie.
       categorie: z.enum([
-        'eten-drinken',
-        'winkels',
-        'gezondheid-wellness',
-        'diensten',
-        'cultuur-vrije-tijd',
+        'restaurants',
+        'bakkers-snacks-togo',
+        'uitgaan',
+        'boodschappen',
+        'hobby-klussen',
+        'wonen',
+        'cadeaus-tabak',
+        'boeken-muziek',
+        'mode-sport',
+        'haar-huid-nagels',
+        'sport-lichaam',
+        'zorg',
+        'vervoer',
+        'reparatie',
+        'coffeeshop-speelhal',
       ]),
+      tweede_label: z
+        .enum([
+        'restaurants',
+        'bakkers-snacks-togo',
+        'uitgaan',
+        'boodschappen',
+        'hobby-klussen',
+        'wonen',
+        'cadeaus-tabak',
+        'boeken-muziek',
+        'mode-sport',
+        'haar-huid-nagels',
+        'sport-lichaam',
+        'zorg',
+        'vervoer',
+        'reparatie',
+        'coffeeshop-speelhal',
+        ])
+        .optional(),
       tekst_nl: z.string(),
       tekst_en: z.string(),
       // Optioneel: niet elke ondernemer heeft al een bevestigd huisnummer

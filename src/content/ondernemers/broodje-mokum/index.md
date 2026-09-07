@@ -1,7 +1,8 @@
 ---
 naam: "Broodje Mokum"
 huisnummer: "26"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "bakkers-snacks-togo"
 subcategorie: "Lunchroom"
 fotos:
   - "./foto_01.jpg"

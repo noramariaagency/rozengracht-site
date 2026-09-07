@@ -1,7 +1,7 @@
 ---
 naam: "Theatre de Coiffure"
 huisnummer: "11"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Kapper"
 fotos:
   - "./foto_01.jpg"

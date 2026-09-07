@@ -1,7 +1,7 @@
 ---
 naam: "Scooterrent"
 huisnummer: "31"
-categorie: "diensten"
+categorie: "vervoer"
 subcategorie: "Scooter- en fietsverhuur"
 website: "https://www.scooterrent.nl"
 fotos:

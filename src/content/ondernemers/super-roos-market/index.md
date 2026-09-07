@@ -1,7 +1,7 @@
 ---
 naam: "Super Roos Market"
 huisnummer: "135"
-categorie: "winkels"
+categorie: "boodschappen"
 subcategorie: "Buurtsupermarkt"
 status: "klaar"
 fotos:

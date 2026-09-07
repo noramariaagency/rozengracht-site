@@ -6,7 +6,7 @@ import plekken from '../../../data/places.json';
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getCategorieLabels, categorieIconen } from '../../../lib/categorieen';
+import { getCategorieLabels, categorieIconen, categorieenPerGroep } from '../../../lib/categorieen';
 import type { Lang } from '../../../lib/i18n';
 
 const lang: Lang = 'en';
@@ -27,6 +27,7 @@ const items = await Promise.all(
       naam: o.data.naam,
       huisnummer: o.data.huisnummer,
       categorie: o.data.categorie,
+      tweedeLabel: o.data.tweede_label ?? null,
       categorieLabel: categorieLabels[o.data.categorie] ?? o.data.categorie,
       foto: foto?.src ?? null,
     };
@@ -54,6 +55,7 @@ const kaartItems = items
       slug: item.slug,
       naam: item.naam,
       categorie: item.categorie,
+      tweedeLabel: item.tweedeLabel,
       lat: plek.lat,
       lng: plek.lng,
       href: getRelativeLocaleUrl(lang, `ondernemers/${item.slug}/`),
@@ -61,7 +63,7 @@ const kaartItems = items
   })
   .filter((x) => x !== null);
 
-const categorieen = Object.entries(categorieLabels);
+const groepen = categorieenPerGroep(lang);
 ---
 <BaseLayout title="Businesses" description="All the businesses on the Rozengracht in Amsterdam, in alphabetical order." lang={lang}>
   <h1>Businesses on the Rozengracht</h1>
@@ -75,17 +77,24 @@ const categorieen = Object.entries(categorieLabels);
     <div class="zone-inner">
       <div class="filters" data-filters role="group" aria-label="Filter by category">
         <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">All</button>
-        {categorieen.map(([key, label]) => (
-          <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
-            <span>{label}</span>
-          </button>
+        {groepen.map((g) => (
+          <div class="filter-groep" data-groep={g.groep}>
+            <span class="filter-groep-label">{g.groepLabel}</span>
+            <div class="filter-groep-knoppen">
+              {g.categorieen.map(([key, label]) => (
+                <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 
       <div class="ondernemers-grid" data-grid>
         {items.map((item) => (
-          <a class="ondernemer-card" href={getRelativeLocaleUrl(lang, `ondernemers/${item.slug}/`)} data-cat={item.categorie}>
+          <a class="ondernemer-card" href={getRelativeLocaleUrl(lang, `ondernemers/${item.slug}/`)} data-cat={item.categorie} data-cat2={item.tweedeLabel ?? undefined}>
             <div class="photo-wrap">
               {item.foto ? (
                 <img class="photo" src={item.foto} alt={item.naam} width="360" height="360" loading="lazy" />
@@ -115,7 +124,7 @@ const categorieen = Object.entries(categorieLabels);
       btn.setAttribute('aria-pressed', 'true');
       var cat = btn.dataset.cat;
       document.querySelectorAll('.ondernemer-card').forEach((el) => {
-        var visible = cat === 'alle' || el.dataset.cat === cat;
+        var visible = cat === 'alle' || el.dataset.cat === cat || el.dataset.cat2 === cat;
         el.classList.toggle('is-filtered-out', !visible);
       });
     });
@@ -139,9 +148,31 @@ const categorieen = Object.entries(categorieLabels);
 
   .filters {
     display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
     margin: 0 0 var(--space-md);
+  }
+  /* Per groep een eigen rij met een klein kopje ervoor: een bezoeker kiest
+     eerst waarvoor hij komt (eten, winkelen, verzorging) en pas daarna hoe
+     specifiek. Vijftien chips op een hoop is geen filter maar een muur. */
+  .filter-groep {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem var(--space-xs);
+  }
+  .filter-groep-label {
+    flex: 0 0 100%;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(251, 250, 247, 0.62);
+  }
+  .filter-groep-knoppen {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
   }
   .filter-btn {
     display: flex;

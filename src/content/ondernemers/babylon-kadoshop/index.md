@@ -1,7 +1,7 @@
 ---
 naam: "Babylon Kadoshop"
 huisnummer: "37"
-categorie: "winkels"
+categorie: "cadeaus-tabak"
 subcategorie: "Cadeaus & sieraden"
 fotos:
   - "./foto_01.jpg"

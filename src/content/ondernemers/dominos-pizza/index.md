@@ -1,7 +1,7 @@
 ---
 naam: "Domino's Pizza"
 huisnummer: "166"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Pizzabezorging"
 website: "https://www.dominos.nl/winkel/nl-amsterdamrozengracht-30778"
 status: "deels-klaar"

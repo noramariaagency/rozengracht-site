@@ -1,7 +1,8 @@
 ---
 naam: "Salmuera"
 huisnummer: "110"
-categorie: "eten-drinken"
+categorie: "restaurants"
+tweede_label: "uitgaan"
 subcategorie: "Argentijns restaurant & mezcaleria"
 website: "https://www.sal-amsterdam.nl/"
 fotos:

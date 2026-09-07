@@ -1,7 +1,7 @@
 ---
 naam: "Ultimate Performance"
 huisnummer: "207-F"
-categorie: "gezondheid-wellness"
+categorie: "sport-lichaam"
 subcategorie: "Personal training"
 website: "https://ultimateperformance.com/nl/personal-trainer/amsterdam"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "Henny's Homemade"
 huisnummer: "91"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Biologisch café"
 website: "https://hennyshomemade.nl/"
 openingstijden:

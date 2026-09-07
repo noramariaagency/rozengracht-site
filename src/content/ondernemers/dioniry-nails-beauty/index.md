@@ -1,7 +1,7 @@
 ---
 naam: "Dioniry Nails & Beauty"
 huisnummer: "189"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Nagelstudio"
 website: "https://www.dionirynailsandbeauty.nl"
 fotos:

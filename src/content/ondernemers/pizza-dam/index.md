@@ -1,7 +1,7 @@
 ---
 naam: "Pizza Dam"
 huisnummer: "35"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Pizzeria"
 fotos:
   - "./foto_01.jpg"

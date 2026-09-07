@@ -1,7 +1,7 @@
 ---
 naam: "Toni & Guy"
 huisnummer: "13"
-categorie: "gezondheid-wellness"
+categorie: "haar-huid-nagels"
 subcategorie: "Kapper"
 website: "https://www.toniandguy.nl"
 status: "deels-klaar"

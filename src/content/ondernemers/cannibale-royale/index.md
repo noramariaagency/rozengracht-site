@@ -1,7 +1,7 @@
 ---
 naam: "Cannibale Royale"
 huisnummer: "114"
-categorie: "eten-drinken"
+categorie: "restaurants"
 subcategorie: "Brasserie"
 website: "https://cannibaleroyale.nl/"
 fotos:

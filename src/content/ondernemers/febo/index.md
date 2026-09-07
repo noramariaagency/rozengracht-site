@@ -1,7 +1,7 @@
 ---
 naam: "FEBO"
 huisnummer: "137"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Automatiek"
 website: "https://www.febo.nl"
 fotos:

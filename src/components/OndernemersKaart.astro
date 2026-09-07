@@ -9,7 +9,7 @@
 import { categorieIconen, categorieKleuren } from '../lib/categorieen';
 
 export interface Props {
-  items: { slug: string; naam: string; categorie: string; lat: number; lng: number; href: string }[];
+  items: { slug: string; naam: string; categorie: string; tweedeLabel?: string | null; lat: number; lng: number; href: string }[];
   // 'cta' = donkere call-to-action-sectie op de homepage (andere
   // beeldverhouding/rand dan het standaard gebruik op de
   // ondernemers-overzichtspagina's).
@@ -108,6 +108,7 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
         infoWindow.open(map, marker);
       });
       marker.categorie = item.categorie;
+      marker.tweedeLabel = item.tweedeLabel || null;
       markers.push(marker);
       bounds.extend(positie);
     });
@@ -126,7 +127,7 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
       var zichtbareBounds = new google.maps.LatLngBounds();
       var heeftZichtbare = false;
       markers.forEach(function (marker) {
-        var zichtbaar = cat === 'alle' || marker.categorie === cat;
+        var zichtbaar = cat === 'alle' || marker.categorie === cat || marker.tweedeLabel === cat;
         marker.setVisible(zichtbaar);
         if (zichtbaar) {
           zichtbareBounds.extend(marker.getPosition());

@@ -1,7 +1,7 @@
 ---
 naam: "Koud Kunstje"
 huisnummer: "49E"
-categorie: "winkels"
+categorie: "hobby-klussen"
 subcategorie: "Handgemaakt & workshops"
 openingstijden:
   di: "12:00-18:00"

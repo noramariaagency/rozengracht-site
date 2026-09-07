@@ -1,7 +1,7 @@
 ---
 naam: "DierenDokters Amsterdam"
 huisnummer: "226"
-categorie: "gezondheid-wellness"
+categorie: "zorg"
 subcategorie: "Dierenkliniek"
 website: "https://dierendokters.com"
 fotos:

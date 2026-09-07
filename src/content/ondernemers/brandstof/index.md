@@ -1,7 +1,7 @@
 ---
 naam: "Bar Brandstof"
 huisnummer: "357"
-categorie: "eten-drinken"
+categorie: "uitgaan"
 subcategorie: "Buurtcafé"
 website: "https://bar-brandstof.nl"
 fotos:

@@ -1,7 +1,7 @@
 ---
 naam: "Shoarma Mesut"
 huisnummer: "164"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Shoarma & kebab"
 fotos:
   - "./foto_01.jpg"

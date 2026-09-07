@@ -1,7 +1,7 @@
 ---
 naam: "Tonton Shoarma Grillroom"
 huisnummer: "137"
-categorie: "eten-drinken"
+categorie: "bakkers-snacks-togo"
 subcategorie: "Shoarma en grillroom"
 quote_nl: "Wij zijn een van die plekken die buurtbewoners niet meer hoeven uit te leggen."
 quote_en: "We're one of those places the locals don't need explained to them anymore."
