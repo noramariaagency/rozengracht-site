@@ -38,6 +38,21 @@ Dat script doet: `git fetch`, branch `topic/03-homepage-magazine` van
 `node_modules` door zodat je meteen kunt bouwen. Daarna werk je uitsluitend
 in die map.
 
+### Twee omgevingen, twee worktree-mappen
+
+De codetopics (01, 03, 05, 06) lopen in Claude Code op de Mac, de content- en
+beeldtopics (02, 04, 07, 08) en de coordinatie in Cowork. Worktrees kunnen
+niet gedeeld worden tussen die twee: git slaat absolute paden op in
+`.git/worktrees/<naam>/gitdir` en in `<worktree>/.git`, en macOS en de
+Linux-VM van Cowork zien andere absolute paden voor dezelfde map. Een worktree
+die op de ene kant is gemaakt, is op de andere kant stuk.
+
+Het script regelt dat zelf: op macOS komen de worktrees in `werk/`, in Cowork
+in `werk-cowork/`. Je hoeft er niets voor te doen, behalve dit: **repareer of
+prune nooit de worktrees van de andere kant.** Zie je in `git worktree list`
+een pad dat je niet kent, laat het staan. Om dezelfde reden moeten symlinks in
+een worktree relatief zijn, nooit absoluut.
+
 Lees dan in deze volgorde:
 `00-WERKWIJZE.md` (dit bestand) → je eigen `briefings/<nr>-<slug>.md` →
 `EIGENAARSCHAP.md` → `CLAIMS.md` (wat doen de anderen nu?).

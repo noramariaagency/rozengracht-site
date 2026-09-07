@@ -12,7 +12,16 @@
 set -euo pipefail
 
 SITE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-WERK="$(dirname "$SITE")/werk"
+# Worktrees kunnen niet gedeeld worden tussen macOS en de Linux-VM van Cowork:
+# git slaat in .git/worktrees/<naam>/gitdir en in <worktree>/.git absolute paden
+# op, en die twee omgevingen zien andere absolute paden voor dezelfde map. Elke
+# kant krijgt daarom zijn eigen worktree-map. Dat gaat automatisch, je hoeft
+# hier niets voor te doen.
+if [ "$(uname -s)" = "Darwin" ]; then
+  WERK="$(dirname "$SITE")/werk"          # macOS, o.a. Claude Code
+else
+  WERK="$(dirname "$SITE")/werk-cowork"   # Linux-VM van Cowork
+fi
 g()  { git -C "$SITE" "$@"; }
 gw() { git -C "$PAD" "$@"; }
 
