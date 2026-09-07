@@ -56,6 +56,19 @@
   --font-body: 'Public Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
 
+  /* Citaat-lettertype: apart van kop (Newsreader) en body (Public Sans),
+     specifiek voor ondernemer-quotes. Twee varianten klaargezet voor Cléo
+     (zie /voorbeeld-fundament/) — optie A is de voorlopige standaard tot zij
+     kiest; daarna kan --font-quote-b hier vervallen en de andere naar
+     --font-quote-a hernoemd worden, of andersom.
+     Optie A - Petrona: zacht, rond, warm — sluit aan bij de sage/roze
+     huisstijl zonder zelf op te vallen naast Newsreader.
+     Optie B - Piazzolla: kalligrafischer en expressiever, meer een
+     "handgeschreven citaat"-gevoel, met net iets meer karakter. */
+  --font-quote-a: 'Petrona', Georgia, 'Times New Roman', serif;
+  --font-quote-b: 'Piazzolla', Georgia, 'Times New Roman', serif;
+  --font-quote: var(--font-quote-a);
+
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -107,6 +120,14 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-md);
+}
+
+/* Voor citaatteksten (ondernemer-quotes, testimonials) — gebruikt
+   --font-quote i.p.v. de gewone body/heading-fonts. */
+.quote-tekst {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-weight: 500;
 }
 
 .tag {
