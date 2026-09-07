@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+# werkgesprek.sh - elk gesprek zijn eigen worktree en branch, zodat twee
+# gesprekken nooit in dezelfde bestanden werken.
+#
+#   ./scripts/werkgesprek.sh start 03-homepage-magazine
+#   ./scripts/werkgesprek.sh status
+#   ./scripts/werkgesprek.sh publiceer 03-homepage-magazine
+#   ./scripts/werkgesprek.sh opruimen 03-homepage-magazine
+#
+# Zie werkafspraken/00-WERKWIJZE.md.
+
+set -euo pipefail
+
+SITE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+WERK="$(dirname "$SITE")/werk"
+GIT="git -C $SITE"
+
+TOPICS="01-fundament 02-categorieen 03-homepage-magazine 04-blog-en-artikelen \
+05-ondernemers-en-kaart 06-bereikbaarheid 07-contact-biz-juridisch 08-fotografie"
+
+fout() { printf '\n  FOUT: %s\n\n' "$1" >&2; exit 1; }
+kop()  { printf '\n== %s ==\n' "$1"; }
+
+check_slug() {
+  local s="${1:-}"
+  [ -n "$s" ] || fout "geef een topic mee. Beschikbaar:$(printf '\n    %s' $TOPICS)"
+  for t in $TOPICS; do [ "$t" = "$s" ] && return 0; done
+  fout "onbekend topic '$s'. Beschikbaar:$(printf '\n    %s' $TOPICS)"
+}
+
+cmd_start() {
+  local slug="$1" branch="topic/$1" pad="$WERK/$1"
+  check_slug "$slug"
+
+  if [ -d "$pad" ]; then
+    kop "Werkmap bestaat al"
+    echo "  $pad"
+    echo "  Ga daar verder. Eerst even bijwerken: git -C '$pad' fetch origin"
+    exit 0
+  fi
+
+  kop "origin ophalen"
+  $GIT fetch origin --prune
+
+  kop "Branch en werkmap aanmaken"
+  mkdir -p "$WERK"
+  if $GIT show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "  branch $branch bestond al, hergebruikt"
+    $GIT worktree add "$pad" "$branch"
+  else
+    $GIT worktree add -b "$branch" "$pad" origin/main
+  fi
+
+  if [ -d "$SITE/node_modules" ] && [ ! -e "$pad/node_modules" ]; then
+    ln -s "$SITE/node_modules" "$pad/node_modules"
+    echo "  node_modules doorgekoppeld vanuit site/"
+  else
+    echo "  let op: geen node_modules gevonden, doe 'npm ci' in $pad"
+  fi
+
+  kop "Klaar"
+  cat <<TXT
+  Werkmap : $pad
+  Branch  : $branch  (van origin/main)
+
+  Lees nu, in deze volgorde:
+    werkafspraken/00-WERKWIJZE.md
+    werkafspraken/briefings/$slug.md
+    werkafspraken/EIGENAARSCHAP.md
+    werkafspraken/CLAIMS.md
+
+  Zet jezelf daarna in CLAIMS.md op 'bezig' en commit dat apart.
+  Werk uitsluitend in de werkmap hierboven, nooit in site/.
+TXT
+}
+
+cmd_status() {
+  kop "Worktrees"
+  $GIT worktree list
+  kop "Topic-branches tegenover origin/main"
+  $GIT fetch origin --quiet --prune || echo "  (fetch mislukt, cijfers kunnen verouderd zijn)"
+  $GIT for-each-ref --format='%(refname:short)' refs/heads/topic 2>/dev/null | while read -r b; do
+    set -- $($GIT rev-list --left-right --count "origin/main...$b")
+    printf '  %-34s %s commit(s) voor, %s achter\n' "$b" "$2" "$1"
+  done
+  [ -f "$SITE/werkafspraken/CLAIMS.md" ] && { kop "Claims"; sed -n '/^| #/,/^$/p' "$SITE/werkafspraken/CLAIMS.md"; }
+}
+
+cmd_publiceer() {
+  local slug="$1" branch="topic/$1" pad="$WERK/$1"
+  check_slug "$slug"
+  [ -d "$pad" ] || fout "geen werkmap $pad. Eerst: $0 start $slug"
+  local G="git -C $pad"
+
+  kop "1/5 Werkmap schoon?"
+  [ -z "$($G status --porcelain)" ] || {
+    $G status --short
+    fout "commit of stash je wijzigingen eerst; publiceren doet dat niet voor je."
+  }
+  echo "  schoon"
+
+  kop "2/5 Alleen eigen commits?"
+  local n; n=$($G rev-list --count "origin/main..$branch" 2>/dev/null || echo 0)
+  [ "$n" -gt 0 ] || fout "geen commits op $branch bovenop origin/main. Niets te publiceren."
+  echo "  $n commit(s):"
+  $G log --oneline "origin/main..$branch" | sed 's/^/    /'
+  echo
+  echo "  Controleer dat hier geen werk van een ander topic tussen staat."
+
+  kop "3/5 Rebasen op origin/main"
+  $G fetch origin --prune
+  $G rebase origin/main || fout "rebase-conflict. Los het op in $pad, dan opnieuw publiceren.
+       Raakt het conflict een bestand dat niet van jouw topic is, neem dan
+       eerst contact op via het coordinatiegesprek (topic 00)."
+
+  kop "4/5 Build"
+  ( cd "$pad" && npm run build ) || fout "de build faalt. Er wordt niets gepusht."
+  echo "  build oke"
+
+  kop "5/5 Pushen"
+  $G push -u origin "$branch"
+
+  kop "Klaar"
+  cat <<TXT
+  Branch $branch staat op GitHub, main is niet aangeraakt.
+
+  Nu nog, in het gesprek zelf:
+    1. Open een pull request van $branch naar main via de GitHub-koppeling.
+    2. Zet in de beschrijving: wat er wijzigt, welke bestanden, screenshots of
+       voorbeeldontwerp voor Cleo, en wat er expliciet niet in zit.
+    3. Zet jezelf in CLAIMS.md op 'in review'.
+
+  Cleo reviewt op de PR. Pas na haar goedkeuring merget topic 00 naar main,
+  en dan pas gaat het live.
+TXT
+}
+
+cmd_opruimen() {
+  local slug="$1" branch="topic/$1" pad="$WERK/$1"
+  check_slug "$slug"
+  $GIT fetch origin --quiet --prune
+  $GIT merge-base --is-ancestor "$branch" origin/main 2>/dev/null \
+    || fout "$branch zit nog niet in origin/main. Niet opruimen: er zou werk verdwijnen."
+  [ -d "$pad" ] && $GIT worktree remove "$pad"
+  $GIT branch -d "$branch"
+  echo "  $slug opgeruimd (zat volledig in main)."
+}
+
+case "${1:-}" in
+  start)     shift; cmd_start "${1:-}" ;;
+  status)    cmd_status ;;
+  publiceer) shift; cmd_publiceer "${1:-}" ;;
+  opruimen)  shift; cmd_opruimen "${1:-}" ;;
+  *) cat <<TXT
+werkgesprek.sh - een werkmap per gesprek
+
+  $0 start <topic>       nieuwe branch + eigen werkmap in ../werk/<topic>/
+  $0 status              wie werkt waaraan, hoe ver voor of achter op main
+  $0 publiceer <topic>   rebase op main, build, push eigen branch (main blijft ongemoeid)
+  $0 opruimen <topic>    werkmap en branch weg, alleen als alles in main zit
+
+Topics:$(printf '\n  %s' $TOPICS)
+
+Lees eerst werkafspraken/00-WERKWIJZE.md.
+TXT
+  ;;
+esac
