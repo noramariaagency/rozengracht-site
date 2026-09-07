@@ -40,7 +40,7 @@ export async function resolveFoto(
 }
 
 export type FeedItem = {
-  kind: 'nieuws' | 'verhaal' | 'event';
+  kind: 'nieuws' | 'verhaal' | 'event' | 'ondernemer';
   kindLabel: string;
   accent: 'rose' | 'ochre' | 'green';
   href: string;
@@ -57,9 +57,12 @@ export type FeedItem = {
   image: { src: string; width: number; height: number; focus: string | null } | null;
 };
 
-const KIND_LABELS: Record<Lang, { nieuws: string; bereikbaarheid: string; verhaal: string; event: string }> = {
-  nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event' },
-  en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event' },
+const KIND_LABELS: Record<
+  Lang,
+  { nieuws: string; bereikbaarheid: string; verhaal: string; event: string; ondernemer: string }
+> = {
+  nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event', ondernemer: 'Ondernemer' },
+  en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event', ondernemer: 'Business' },
 };
 
 // timeZone: 'Europe/Amsterdam' expliciet meegeven bij elke datumweergave in
@@ -120,11 +123,34 @@ export function verhaalToItem(
     kind: 'verhaal',
     kindLabel: KIND_LABELS[lang].verhaal,
     accent: 'ochre',
-    href: getRelativeLocaleUrl(lang, `verhalen/${entry.slug}/`),
+    href: getRelativeLocaleUrl(lang, `historie/${entry.slug}/`),
     title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
     excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
     dateLabel: entry.data.periode ?? null,
+    dateBlock: null,
+    sortValue: 0,
+    image,
+  };
+}
+
+export function ondernemerToItem(
+  entry: CollectionEntry<'ondernemers'>,
+  image: FeedItem['image'] = null,
+  lang: Lang = 'nl'
+): FeedItem {
+  // Voor de "Uitgelicht"-sectie op de homepage: een ondernemer door dezelfde
+  // <ContentCard /> laten renderen als nieuws/verhalen, zodat die sectie een
+  // mix van beide kan tonen zonder een aparte kaart-layout te bouwen.
+  return {
+    kind: 'ondernemer',
+    kindLabel: KIND_LABELS[lang].ondernemer,
+    accent: 'rose',
+    href: getRelativeLocaleUrl(lang, `ondernemers/${entry.slug}/`),
+    title: entry.data.naam,
+    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
+    locationLabel: entry.data.huisnummer ? `Rozengracht ${entry.data.huisnummer}` : null,
+    dateLabel: null,
     dateBlock: null,
     sortValue: 0,
     image,
