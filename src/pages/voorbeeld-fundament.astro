@@ -1,0 +1,191 @@
+---
+// Voorbeeldpagina voor Cléo (topic 01 - Fundament): toont de nieuwe tokens
+// in context, zodat ze naast de huidige site gelegd kan worden. Geen
+// onderdeel van de site-navigatie, alleen bereikbaar via de directe URL.
+// Niet vertaald (EN): dit is een intern werkdocument, geen publieke pagina.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FotoFallback from '../components/FotoFallback.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+
+const ondernemers = await getCollection('ondernemers');
+const metFoto = ondernemers.find((o) => o.data.fotos?.length > 0);
+const voorbeeldFoto = metFoto
+  ? await getImage({ src: metFoto.data.fotos[0], width: 320, height: 320 })
+  : null;
+---
+<BaseLayout title="Voorbeeld fundament" description="Werkdocument voor Cléo: de nieuwe huisstijl-tokens in context.">
+  <p class="werkdoc-label">Werkdocument voor Cléo &middot; niet gelinkt vanuit de site</p>
+  <h1>Fundament: de nieuwe tokens</h1>
+  <p class="intro">
+    Koppen, bodytekst, het citaat-lettertype (twee varianten), de zachtere
+    fotoplaceholder naast een echte foto, en de donkergroene sectie.
+  </p>
+
+  <section class="voorbeeld-blok">
+    <span class="eyebrow">Koppen &amp; bodytekst</span>
+    <h1>Dit is een H1 in Newsreader</h1>
+    <h2>Dit is een H2 in Newsreader</h2>
+    <h3>Dit is een H3 in Newsreader</h3>
+    <p>
+      Dit is gewone bodytekst in Public Sans. De Rozengracht is een van de
+      levendigste straten van de Jordaan, met ruim honderd ondernemers op een
+      steenworp afstand van elkaar &ndash; van bakkers tot boetiekjes, van
+      cafés tot galeries.
+    </p>
+  </section>
+
+  <section class="voorbeeld-blok">
+    <span class="eyebrow">Citaat-lettertype: twee varianten</span>
+    <p class="keuze-note">Kies er één &mdash; de andere vervalt dan uit <code>global.css</code>.</p>
+    <div class="quote-varianten">
+      <figure class="quote-kaart">
+        <figcaption>Optie A &mdash; Petrona</figcaption>
+        <blockquote class="quote-tekst" style="font-family: var(--font-quote-a);">
+          &ldquo;Deze straat voelt als een dorp binnen de stad. Iedereen kent
+          elkaar, en dat merk je in hoe we samenwerken.&rdquo;
+        </blockquote>
+        <div class="wie">Ondernemer, Rozengracht</div>
+      </figure>
+      <figure class="quote-kaart">
+        <figcaption>Optie B &mdash; Piazzolla</figcaption>
+        <blockquote class="quote-tekst" style="font-family: var(--font-quote-b);">
+          &ldquo;Deze straat voelt als een dorp binnen de stad. Iedereen kent
+          elkaar, en dat merk je in hoe we samenwerken.&rdquo;
+        </blockquote>
+        <div class="wie">Ondernemer, Rozengracht</div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="voorbeeld-blok">
+    <span class="eyebrow">Fotoplaceholder: voor en na</span>
+    <div class="foto-varianten">
+      <figure class="foto-kaart">
+        <div class="foto-frame">
+          {voorbeeldFoto ? (
+            <img src={voorbeeldFoto.src} width="320" height="320" alt="" />
+          ) : (
+            <p class="placeholder-note">Geen foto gevonden in de content.</p>
+          )}
+        </div>
+        <figcaption>Met echte foto</figcaption>
+      </figure>
+      <figure class="foto-kaart">
+        <div class="foto-frame">
+          <FotoFallback categorie="eten-drinken" />
+        </div>
+        <figcaption>Zonder foto &mdash; nieuwe, zachtere placeholder</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="voorbeeld-blok groen-vlak">
+    <span class="eyebrow">De donkergroene sectie</span>
+    <h2>Ontdek de Rozengracht</h2>
+    <p>
+      Dezelfde donkergroene achtergrond als de bestaande Ontdek-zone op de
+      homepage, met een kaartje erop om het contrast met kaart-achtergronden
+      te laten zien.
+    </p>
+    <div class="mini-kaart">
+      <strong>Voorbeeldkaartje</strong>
+      <span>Op de groene ondergrond blijft dit goed leesbaar.</span>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .werkdoc-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--ochre);
+    background: var(--rose-tint);
+    border-radius: 999px;
+    padding: 0.2rem 0.8rem;
+    margin-bottom: var(--space-sm);
+  }
+  .intro { color: var(--color-muted); max-width: 640px; }
+
+  .voorbeeld-blok {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+  }
+  .keuze-note { color: var(--color-muted); font-size: 0.9rem; margin-top: -0.5rem; }
+  .keuze-note code { background: var(--cream-card); border: 1px solid var(--line); border-radius: 4px; padding: 0.1rem 0.4rem; }
+
+  .quote-varianten, .foto-varianten {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+  }
+  @media (max-width: 640px) {
+    .quote-varianten, .foto-varianten { grid-template-columns: 1fr; }
+  }
+
+  .quote-kaart {
+    margin: 0;
+    padding: var(--space-lg);
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .quote-kaart figcaption {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: var(--space-sm);
+  }
+  .quote-kaart blockquote {
+    margin: 0 0 var(--space-sm);
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--green-black);
+  }
+  .quote-kaart .wie { color: var(--color-muted); font-size: 0.85rem; }
+
+  .foto-kaart { margin: 0; }
+  .foto-kaart figcaption { margin-top: var(--space-xs); font-size: 0.85rem; color: var(--color-muted); }
+  .foto-frame {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+  }
+  .foto-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .placeholder-note { padding: var(--space-md); color: var(--color-muted); font-size: 0.85rem; }
+
+  .groen-vlak {
+    background: var(--green-deep);
+    color: #fbfaf7;
+    padding: var(--space-lg);
+    border-radius: var(--radius);
+    border-top: none;
+  }
+  .groen-vlak .eyebrow { color: var(--rose); }
+  .groen-vlak h2 { color: #fbfaf7; }
+  .groen-vlak p { color: rgba(251, 250, 247, 0.85); max-width: 560px; }
+  .mini-kaart {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: var(--cream-card);
+    color: var(--ink);
+    border-radius: var(--radius);
+  }
+</style>
