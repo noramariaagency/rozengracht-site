@@ -65,8 +65,25 @@ door topic 01:
   ieder topic om in eigen bestanden te controleren in plaats van aan te nemen
   dat het al gedaan is.
 
+## Al gedaan op de kaart (dus niet opnieuw doen in topic 05)
+
+- Google's eigen bedrijfslabels en POI-icoontjes staan uit op de
+  ondernemerskaart. Ze trokken meer aandacht dan onze eigen pinnen en bleven
+  staan bij filteren.
+- Onze pinnen krijgen de naam van de ondernemer eronder zodra er 15 of minder
+  zichtbaar zijn (Google schuift labels niet uit elkaar, dus met alles aan
+  wordt het een kluwen). Drempel staat als LABEL_DREMPEL in
+  components/OndernemersKaart.astro.
+- Het filter werkt ook op het tweede label, voor de kaartjes en de pinnen.
+
+Wat op de kaart nog open staat voor topic 05: de kaart "gezelliger" maken, in
+een groene sectie linksboven op halve breedte met de filters ernaast.
+
 ## Logboek
 
+- **7 sep 2026** — Categorieen doorgevoerd en zichtbaar op de site, plus
+  kaartfixes na feedback van Nora. Tattoo blijft onder Haar, huid & nagels:
+  goedgekeurd.
 - **7 sep 2026** — Topic 01 gemerged op main (PR #1). Build onafhankelijk
   gecontroleerd in een losse clone: 280 pagina's, geen errors, oude
   /verhalen/-URL's redirecten naar /historie/. Cléo koos Petrona als
