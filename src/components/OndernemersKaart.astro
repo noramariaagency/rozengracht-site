@@ -78,7 +78,47 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
       center: { lat: 52.3735, lng: 4.8815 },
       zoom: 15,
       mapId: undefined,
+      // Google zet standaard zijn eigen bedrijfsnamen op de kaart (Pesca,
+      // Van Puffelen, willekeurige lunchtenten uit de buurt). Die trokken
+      // meer aandacht dan onze eigen pinnen, en ze bleven staan als je
+      // filterde: dan zag je vier gefilterde winkels tussen twintig
+      // Google-labels die er niets mee te maken hadden. Alle POI-labels en
+      // bedrijfsicoontjes dus uit; straatnamen, water en parken blijven,
+      // want daarop orienteer je je.
+      styles: [
+        { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+        { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
+        { featureType: 'transit', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+      ],
+      // Geen Google-POI's meer aanklikbaar: er valt niets meer op te
+      // klikken dat niet van ons is.
+      clickableIcons: false,
     });
+
+    // Bij hoeveel zichtbare pinnen zetten we de naam erbij? Met alles aan
+    // (ruim honderd pinnen op een straat) wordt dat een onleesbare kluwen,
+    // want Google schuift labels niet uit elkaar. Zodra je filtert blijven
+    // er zo weinig over dat de naam er juist bij hoort. Alleen bij
+    // Restaurants (22) blijft het uit; hover of klik geeft daar de naam.
+    var LABEL_DREMPEL = 15;
+
+    function labelVoor(naam) {
+      return {
+        text: naam,
+        className: 'kaart-pin-label',
+        color: '#14342a',
+        fontSize: '12px',
+        fontWeight: '600',
+      };
+    }
+
+    function werkLabelsBij() {
+      var zichtbaar = markers.filter(function (m) { return m.getVisible(); });
+      var aan = zichtbaar.length <= LABEL_DREMPEL;
+      markers.forEach(function (m) {
+        m.setLabel(aan && m.getVisible() ? labelVoor(m.ondernemerNaam) : null);
+      });
+    }
 
     var bounds = new google.maps.LatLngBounds();
     var infoWindow = new google.maps.InfoWindow();
@@ -96,6 +136,8 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
               url: iconUrl,
               scaledSize: new google.maps.Size(30, 30),
               anchor: new google.maps.Point(15, 15),
+              // Het label komt onder de cirkel te hangen i.p.v. er middenin.
+              labelOrigin: new google.maps.Point(15, 36),
             }
           : undefined,
       });
@@ -109,11 +151,13 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
       });
       marker.categorie = item.categorie;
       marker.tweedeLabel = item.tweedeLabel || null;
+      marker.ondernemerNaam = item.naam;
       markers.push(marker);
       bounds.extend(positie);
     });
 
     map.fitBounds(bounds, 40);
+    werkLabelsBij();
 
     // Reageert op dezelfde categorie-filterknoppen als de kaartjes-grid (of
     // de chips in de CTA-sectie op de homepage) eronder — apart luisterend
@@ -134,6 +178,7 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
           heeftZichtbare = true;
         }
       });
+      werkLabelsBij();
       if (heeftZichtbare) map.fitBounds(zichtbareBounds, 40);
     });
   }
@@ -162,5 +207,18 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
     aspect-ratio: 4/3;
     margin: 0;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  }
+</style>
+
+<style is:global>
+  /* Google zet dit label-div zelf in de kaart, buiten onze component-scope,
+     vandaar is:global. Witte gloed eromheen zodat de naam leesbaar blijft
+     boven straten, water en gebouwen, zonder een blok achtergrond dat de
+     kaart dichtsmeert. */
+  .kaart-pin-label {
+    text-shadow:
+      0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 6px #fff;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
   }
 </style>
