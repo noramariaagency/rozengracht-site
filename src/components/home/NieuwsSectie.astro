@@ -1,0 +1,93 @@
+---
+// De hoofdmoot van de homepage: dit is nu een blog-landing, geen
+// nieuwsoverzicht meer met ondernemers ernaast (punt 1 uit de briefing).
+// Eén grote featurekaart + een korte lijst ernaast, beide via de gedeelde
+// <ContentCard />.
+import ContentCard from '../ContentCard.astro';
+import EventHighlight from './EventHighlight.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { nieuwsToItem, resolveFoto } from '../../lib/items';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const alleNieuwsRuw = (await getCollection('nieuws')).sort(
+  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
+);
+const nieuwsItems = await Promise.all(
+  alleNieuwsRuw.map(async (n) => {
+    const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
+    const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
+    return nieuwsToItem(n, ondernemer, foto, lang);
+  })
+);
+const [featureNieuwsItem, ...restNieuwsItems] = nieuwsItems;
+const compactNieuwsItems = restNieuwsItems.slice(0, 3);
+
+const TEKST: Record<Lang, { titel: string; alle: string }> = {
+  nl: { titel: 'Nieuws & updates', alle: 'Alle artikelen' },
+  en: { titel: 'News & updates', alle: 'All articles' },
+};
+const t = TEKST[lang];
+---
+<section class="section" id="nieuws">
+  <div class="container">
+    <div class="section-head">
+      <h2>{t.titel}</h2>
+    </div>
+
+    <EventHighlight lang={lang} />
+
+    <div class="news-grid">
+      {featureNieuwsItem && (
+        <div class="reveal-item">
+          <ContentCard item={featureNieuwsItem} variant="feature" />
+        </div>
+      )}
+      <div class="side-col">
+        {compactNieuwsItems.map((item) => (
+          <div class="reveal-item">
+            <ContentCard item={item} variant="compact" />
+          </div>
+        ))}
+        <a class="see-all see-all-under" href={getRelativeLocaleUrl(lang, 'nieuws')}>{t.alle} &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section { position: relative; padding: 40px 0 56px; scroll-margin-top: var(--nav-height); }
+  .section-head { margin-bottom: 20px; }
+  .section-head h2 { font-size: 1.9rem; }
+  .see-all {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    border-bottom: 1px solid var(--rose);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .see-all-under { align-self: flex-start; margin-top: 2px; }
+
+  .news-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 36px; }
+  .news-grid .side-col { display: flex; flex-direction: column; gap: 20px; }
+  @media (max-width: 760px) {
+    .news-grid { grid-template-columns: 1fr; }
+  }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item { opacity: 1; transform: none; transition: none; }
+  }
+</style>
