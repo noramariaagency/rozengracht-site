@@ -9,7 +9,7 @@ Cléo) → `klaar` (gemerged op main).
 
 | # | Topic | Branch | Status | Sinds | Opmerking |
 |---|---|---|---|---|---|
-| 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | nog niet gestart | – | **moet als eerste, alleen** |
+| 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | in review | 7 sep 2026 | **moet als eerste, alleen** · PR #1, categorieschema (punt 4) bewust nog niet gedaan |
 | 02 | Categorieën en labels | `topic/02-categorieen` | wacht op fundament | – | voorstel voor Cléo kan al wel geschreven worden |
 | 03 | Homepage als magazine | `topic/03-homepage-magazine` | wacht op fundament | – | |
 | 04 | Blog, artikelen en events | `topic/04-blog-en-artikelen` | wacht op fundament | – | |
@@ -24,7 +24,14 @@ Cléo) → `klaar` (gemerged op main).
 Zet hier neer wat je nodig hebt van iemand anders, in plaats van het zelf te
 wijzigen. Formaat: `van → aan: wat, waarom`.
 
-- *(nog geen)*
+- 01 → 03: in `src/lib/items.ts`, functie `verhaalToItem`, staat een
+  hardcoded link naar `verhalen/${entry.slug}/`. Dat pad bestaat nog wel (01
+  heeft er een redirectpagina van gemaakt naar `historie/${slug}/`), dus niets
+  is stuk, maar elke kaart/link die via dit item naar een verhaal wijst
+  (homepage, ondernemerspagina's, nieuwspagina) maakt daardoor een onnodige
+  extra sprong. Verander `verhalen/${entry.slug}/` in `historie/${entry.slug}/`
+  zodra je in `items.ts` werkt. `items.ts` staat niet in EIGENAARSCHAP.md bij
+  01, dus dit is bewust een verzoek en geen eigen wijziging.
 
 ## Wachtend op Cléo
 

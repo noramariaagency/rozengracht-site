@@ -1,76 +1,33 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import OndernemerKaart from '../../components/OndernemerKaart.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { naarParagrafen, eersteAlinea } from '../../lib/tekst';
-import { bepaalLocatie } from '../../lib/locatie';
+// Doorverwijzing per verhaal: elke oude /verhalen/<slug>/-URL blijft bestaan
+// als kleine redirectpagina naar dezelfde <slug> onder /historie/. Zie
+// verhalen/index.astro voor waarom dit geen astro.config.mjs-redirect is.
+import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { Lang } from '../../lib/i18n';
-
-const lang: Lang = 'nl';
 
 export async function getStaticPaths() {
   const verhalen = await getCollection('verhalen');
   return verhalen.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry },
   }));
 }
 
-const { entry } = Astro.props;
-const { data } = entry;
-
-const ondernemer = data.gerelateerde_ondernemer
-  ? await getEntry(data.gerelateerde_ondernemer)
-  : null;
-const losseLocatie = ondernemer ? null : bepaalLocatie(data, null);
+const { slug } = Astro.params;
+const doel = getRelativeLocaleUrl('nl', `historie/${slug}/`);
 ---
-<BaseLayout title={data.titel_nl} description={eersteAlinea(data.tekst_nl, 155)} lang={lang}>
-  <article class="artikel">
-    <a class="back-link" href={getRelativeLocaleUrl(lang, 'verhalen')}>&larr; Alle verhalen</a>
-    <span class="eyebrow">Verhaal</span>
-    <h1>{data.titel_nl}</h1>
-
-    <div class="artikel-tekst" set:html={naarParagrafen(data.tekst_nl)} />
-
-    {ondernemer ? (
-      <OndernemerKaart ondernemer={ondernemer} label="Nu op deze plek" lang={lang} />
-    ) : losseLocatie && (
-      <p class="locatie-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>
-        {losseLocatie}
-      </p>
-    )}
-  </article>
-</BaseLayout>
-
-<style>
-  .artikel { max-width: 680px; }
-  .back-link {
-    display: inline-block;
-    color: var(--color-muted);
-    font-size: 0.9rem;
-    text-decoration: none;
-    margin-bottom: var(--space-md);
-  }
-  .back-link:hover { color: var(--green-deep); }
-  .eyebrow {
-    display: block;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--rose-deep);
-    font-weight: 600;
-    margin-bottom: var(--space-xs);
-  }
-  .artikel-tekst :global(p) { margin: 0 0 var(--space-sm) 0; line-height: 1.7; }
-  .locatie-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: var(--space-lg) 0 0;
-    color: var(--color-muted);
-    font-size: 0.9rem;
-  }
-  .locatie-badge svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--rose-deep); }
-</style>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${doel}`} />
+    <link rel="canonical" href={doel} />
+    <meta name="robots" content="noindex" />
+    <title>Verhalen is nu Historie</title>
+  </head>
+  <body>
+    <p>Dit verhaal staat nu onder <a href={doel}>Historie</a>.</p>
+    <script define:vars={{ doel }}>
+      window.location.replace(doel);
+    </script>
+  </body>
+</html>
