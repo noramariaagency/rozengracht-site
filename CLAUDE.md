@@ -24,6 +24,13 @@ wijzigt:
 ## Schrijfregels voor alle zichtbare tekst
 
 - Geen em-dash (—). En-dash (–) mag voor bereiken, zoals "10:00–18:00".
+- **Geen markdown in contentvelden.** `tekst_nl`, `tekst_en`, `quote_*` en
+  `meta_*` worden niet als markdown gerenderd: `naarParagrafen()` in
+  `src/lib/tekst.ts` splitst alleen op dubbele newlines en zet elke alinea in
+  een `<p>`. Schrijf je daar `**vet**`, dan staan die sterretjes letterlijk op
+  de site. Dus geen `**`, `*`, `_`, `` ` ``, `#`-koppen, `- `-bullets of
+  `[tekst](url)` in die velden. Wil je nadruk, schrijf de zin dan zo dat de
+  nadruk uit de woorden komt.
 - NL en EN, warme journalistieke toon, geen AI-clichés. Zie de skill
   `rozengracht-copywriter`.
 - Altijd foto's: interieur, mensen, producten. Geen exterieur.
