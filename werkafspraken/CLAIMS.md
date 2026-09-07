@@ -10,8 +10,8 @@ Cléo) → `klaar` (gemerged op main).
 | # | Topic | Branch | Status | Sinds | Opmerking |
 |---|---|---|---|---|---|
 | 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | klaar | 7 sep 2026 | **moet als eerste, alleen** · PR #1, categorieschema (punt 4) bewust nog niet gedaan |
-| 02 | Categorieën en labels | `topic/02-categorieen` | in review | 7 sep 2026 | voorstel klaar, wacht op Cléo. Herlabelen van de velden gebeurt pas na goedkeuring |
-| 03 | Homepage als magazine | `topic/03-homepage-magazine` | bezig | 7 sep 2026 | |
+| 02 | Categorieën en labels | `topic/02-categorieen` | klaar | 7 sep 2026 | 15 categorieen in 3 groepen, doorgevoerd op main |
+| 03 | Homepage als magazine | `topic/03-homepage-magazine` | bezig | 7 sep 2026 | rebase op nieuwe categorieen en op de "oplever i.p.v. PR"-werkwijze |
 | 04 | Blog, artikelen en events | `topic/04-blog-en-artikelen` | kan starten | – | |
 | 05 | Ondernemersoverzicht en kaart | `topic/05-ondernemers-en-kaart` | kan starten | – | |
 | 06 | Bereikbaarheid | `topic/06-bereikbaarheid` | kan starten | – | |
