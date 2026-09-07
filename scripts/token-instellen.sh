@@ -41,7 +41,12 @@ printf 'https://%s:%s@%s\n' "$USER_NAAM" "$TOKEN" "$HOST" > "$CRED"
 chmod 600 "$CRED"
 unset TOKEN
 
-git -C "$SITE" config credential.helper "store --file=$CRED"
+# Het pad wordt bij elk gebruik opnieuw uitgerekend vanuit de repo zelf. Dat
+# is nodig omdat dezelfde .git/config zowel door git op macOS als door de
+# shell van Claude wordt gelezen, en die twee zien andere absolute paden.
+# Werkt ook vanuit een worktree, want --git-common-dir wijst altijd naar site/.
+HELPER='!f() { git credential-store --file="$(git rev-parse --path-format=absolute --git-common-dir)/../../.github-token" "$@"; }; f'
+git -C "$SITE" config credential.helper "$HELPER"
 git -C "$SITE" config user.name  "Nora Maria Agency"
 git -C "$SITE" config user.email "info@noramaria.nl"
 
