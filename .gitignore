@@ -13,3 +13,6 @@ dist/
 /screenshot.cjs
 /verify_local.cjs
 /verify_local2.cjs
+
+# Nooit committen: het GitHub-token (hoort in de projectmap, niet hier)
+.github-token
