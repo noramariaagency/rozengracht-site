@@ -24,9 +24,14 @@ const icoon = categorieIconen[categorie] ?? categorieIconen['diensten'];
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--cream-card), var(--rose-tint));
-    color: var(--green-deep);
-    opacity: 0.55;
+    /* Zachter dan de vorige versie (volle --rose-tint + --green-deep op
+       0.55 opacity): dat vlak trok evenveel aandacht als een echte foto.
+       Nu bijna monochroom crème, icoon in de gedempte inkttint, lagere
+       opacity — een rustige achtergrond die wegvalt zodra er wél een foto
+       staat, in plaats van ermee te concurreren. */
+    background: linear-gradient(135deg, var(--cream), var(--cream-card));
+    color: var(--ink-soft);
+    opacity: 0.38;
   }
   .foto-fallback svg {
     width: 34%;
