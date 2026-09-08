@@ -6,8 +6,8 @@
 // en en/index.astro hetzelfde opbouwen zonder logica te dupliceren.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BereikbaarheidBar from '../components/home/BereikbaarheidBar.astro';
-import NieuwsSectie from '../components/home/NieuwsSectie.astro';
-import Uitgelicht from '../components/home/Uitgelicht.astro';
+import EventHighlight from '../components/home/EventHighlight.astro';
+import BlogWall from '../components/home/BlogWall.astro';
 import InstagramFeed from '../components/home/InstagramFeed.astro';
 import NieuwOpDeRozengracht from '../components/home/NieuwOpDeRozengracht.astro';
 import AanHetWoord from '../components/home/AanHetWoord.astro';
@@ -23,11 +23,15 @@ const lang: Lang = 'nl';
   <h1 class="visually-hidden">BIZ Ondernemersvereniging Rozengracht, Amsterdam</h1>
 
   <BereikbaarheidBar lang={lang} />
-  <NieuwsSectie lang={lang} />
-  <Uitgelicht lang={lang} />
+  <div class="container event-highlight-wrap">
+    <EventHighlight lang={lang} />
+  </div>
+  <!-- De blog wall zelf: geen kop, geen "Nieuws"/"Uitgelicht"-onderscheid.
+       De site is een blog, geen nieuwswebsite — zie BlogWall.astro. -->
+  <BlogWall lang={lang} />
 
   <!-- ZONE 2: ONTDEK — volledig donkergroen, inverse van de lichte
-       nieuws/magazine-zone hierboven. -->
+       blogzone hierboven. -->
   <section class="section ontdek-zone" id="ontdek">
     <div class="container">
       <div class="ontdek-intro">
@@ -49,6 +53,7 @@ const lang: Lang = 'nl';
 </BaseLayout>
 
 <style>
+  .event-highlight-wrap { padding-top: 32px; }
   .ontdek-zone { background: var(--green-deep); padding: 88px 0 92px; position: relative; z-index: 5; }
   .ontdek-zone h2, .ontdek-zone h3 { color: #fbfaf7; }
   .ontdek-intro { margin-bottom: 32px; }
@@ -61,7 +66,6 @@ const lang: Lang = 'nl';
     font-weight: 600;
     margin-bottom: 6px;
   }
-  .sub-section { margin-top: 76px; }
   .ondernemers-layout { margin-top: 76px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
   /* "Nieuw op de Rozengracht" verdwijnt volledig zodra er niets nieuws is
      (zie NieuwOpDeRozengracht.astro) — blijft dan alleen "Aan het woord"

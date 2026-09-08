@@ -4,8 +4,8 @@
 // src/components/home/ — zie dat bestand voor de toelichting.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BereikbaarheidBar from '../../components/home/BereikbaarheidBar.astro';
-import NieuwsSectie from '../../components/home/NieuwsSectie.astro';
-import Uitgelicht from '../../components/home/Uitgelicht.astro';
+import EventHighlight from '../../components/home/EventHighlight.astro';
+import BlogWall from '../../components/home/BlogWall.astro';
 import InstagramFeed from '../../components/home/InstagramFeed.astro';
 import NieuwOpDeRozengracht from '../../components/home/NieuwOpDeRozengracht.astro';
 import AanHetWoord from '../../components/home/AanHetWoord.astro';
@@ -19,8 +19,10 @@ const lang: Lang = 'en';
   <h1 class="visually-hidden">BIZ Ondernemersvereniging Rozengracht, Amsterdam</h1>
 
   <BereikbaarheidBar lang={lang} />
-  <NieuwsSectie lang={lang} />
-  <Uitgelicht lang={lang} />
+  <div class="container event-highlight-wrap">
+    <EventHighlight lang={lang} />
+  </div>
+  <BlogWall lang={lang} />
 
   <section class="section ontdek-zone" id="ontdek">
     <div class="container">
@@ -43,6 +45,7 @@ const lang: Lang = 'en';
 </BaseLayout>
 
 <style>
+  .event-highlight-wrap { padding-top: 32px; }
   .ontdek-zone { background: var(--green-deep); padding: 88px 0 92px; position: relative; z-index: 5; }
   .ontdek-zone h2, .ontdek-zone h3 { color: #fbfaf7; }
   .ontdek-intro { margin-bottom: 32px; }
