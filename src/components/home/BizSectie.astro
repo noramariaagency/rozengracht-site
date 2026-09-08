@@ -11,22 +11,27 @@ interface Props {
 }
 const { lang = 'nl' } = Astro.props;
 
-// Geen link naar een aparte pagina meer: dit moet als een op zichzelf staand,
-// prominent statement lezen (feedback na de eerste versie), geen teaser naar
-// "meer lezen". De tekst hieronder blijft een DRAFT van topic 03, geen
-// definitieve BIZ-tekst — die schrijft topic 07 (zie het verzoek in CLAIMS.md).
-const TEKST: Record<Lang, { eyebrow: string; titel: string; tekst: string }> = {
+// Geen link naar een aparte pagina meer: dit moet als een op zichzelf staand
+// statement lezen, geen teaser naar "meer lezen". De tekst is inhoudelijk
+// langer gemaakt na feedback (niet groter qua lettergrootte, groter qua
+// hoeveelheid tekst) — blijft een DRAFT van topic 03, geen definitieve
+// BIZ-tekst, die schrijft topic 07 (zie het verzoek in CLAIMS.md).
+const TEKST: Record<Lang, { eyebrow: string; titel: string; tekst: string[] }> = {
   nl: {
     eyebrow: 'De ondernemersvereniging',
     titel: 'De BIZ Rozengracht',
-    tekst:
-      'De Rozengracht heeft een eigen ondernemersvereniging: de BIZ Rozengracht. Ondernemers werken hierin samen aan een schone, veilige en levendige straat, van sfeerverlichting tot gezamenlijke evenementen.',
+    tekst: [
+      'De Rozengracht heeft een eigen ondernemersvereniging: de BIZ Rozengracht. Alle ondernemers aan de straat dragen bij aan een gezamenlijk budget, en dat geld gaat rechtstreeks terug de straat in: sfeerverlichting in de winter, extra schoonmaak, veiligheid en een aantrekkelijke uitstraling voor iedereen die hier winkelt, eet of werkt.',
+      'Het bestuur bestaat uit ondernemers van de straat zelf, die weten wat er van dag tot dag speelt. Samen organiseren ze evenementen zoals het jaarlijkse straatfeest, denken ze mee over de herinrichting van de openbare ruimte en vertegenwoordigen ze de belangen van de Rozengracht bij de gemeente. Nieuw op de straat? Dan hoor je er vanzelf bij.',
+    ],
   },
   en: {
     eyebrow: 'The business association',
     titel: 'BIZ Rozengracht',
-    tekst:
-      'The Rozengracht has its own business association: BIZ Rozengracht. Local businesses work together on a clean, safe and lively street, from festive lighting to shared events.',
+    tekst: [
+      'The Rozengracht has its own business association: BIZ Rozengracht. Every business on the street contributes to a shared budget, and that money goes straight back into the street: festive lighting in winter, extra cleaning, safety, and a welcoming look for everyone who shops, eats or works here.',
+      "The board is made up of business owners from the street itself, who know what's going on from day to day. Together they organise events such as the annual street festival, help shape the redesign of public space, and represent the Rozengracht's interests with the municipality. New to the street? Then you're automatically part of it.",
+    ],
   },
 };
 const t = TEKST[lang];
@@ -35,12 +40,12 @@ const t = TEKST[lang];
   <span class="eyebrow">{t.eyebrow}</span>
   <h2>{t.titel}</h2>
   <!-- DRAFT: definitieve tekst volgt van topic 07, zie CLAIMS.md -->
-  <p>{t.tekst}</p>
+  {t.tekst.map((alinea) => <p>{alinea}</p>)}
 </div>
 
 <style>
   .sub-section { margin-top: 76px; }
-  .biz-sectie { max-width: 760px; }
+  .biz-sectie { max-width: 700px; }
   .eyebrow {
     display: block;
     font-size: 0.85rem;
@@ -50,6 +55,7 @@ const t = TEKST[lang];
     font-weight: 600;
     margin-bottom: 10px;
   }
-  .biz-sectie h2 { font-size: 2.6rem; margin: 0 0 20px; color: #fbfaf7; }
-  .biz-sectie p { font-size: 1.2rem; line-height: 1.6; color: rgba(251, 250, 247, 0.88); margin: 0; }
+  .biz-sectie h2 { font-size: 2rem; margin: 0 0 20px; color: #fbfaf7; }
+  .biz-sectie p { font-size: 1.05rem; line-height: 1.65; color: rgba(251, 250, 247, 0.88); margin: 0 0 16px; }
+  .biz-sectie p:last-child { margin-bottom: 0; }
 </style>

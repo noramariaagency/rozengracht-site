@@ -1,11 +1,12 @@
 ---
-// "Read": the full archive of all blog articles (news, incl. getting-there
-// updates, and historie stories). Zie src/pages/lezen/index.astro (NL) voor
-// de toelichting — zelfde opbouw, Engelse tekst.
+// "Read": the full archive of all blog articles. Zie
+// src/pages/lezen/index.astro (NL) voor de toelichting — zelfde opbouw,
+// Engelse tekst.
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ContentCard from '../../../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../../lib/items';
+import { nieuwsToItem, themasVoorOndernemer, resolveFoto } from '../../../lib/items';
+import { categorieenPerGroep } from '../../../lib/categorieen';
 import type { FeedItem } from '../../../lib/items';
 import type { Lang } from '../../../lib/i18n';
 
@@ -14,68 +15,55 @@ const lang: Lang = 'en';
 const alleNieuwsRuw = (await getCollection('nieuws')).sort(
   (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
 );
-const nieuwsItems = await Promise.all(
+const wall = await Promise.all(
   alleNieuwsRuw.map(async (n) => {
     const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
     const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
-    return nieuwsToItem(n, ondernemer, foto, lang);
+    const item = nieuwsToItem(n, ondernemer, foto, lang);
+    const themas = themasVoorOndernemer(ondernemer);
+    if (n.data.categorie === 'bereikbaarheid') themas.push('bereikbaarheid');
+    return { item, themas };
   })
 );
 
-const alleVerhalenRuw = await getCollection('verhalen');
-const verhalenItems = await Promise.all(
-  alleVerhalenRuw.map(async (v) => {
-    const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(v.data.foto, 640, v.data.fotoFocus);
-    return verhaalToItem(v, ondernemer, foto, lang);
-  })
-);
-
-const wall: FeedItem[] = [];
-let verhaalIndex = 0;
-nieuwsItems.forEach((item, i) => {
-  wall.push(item);
-  const verwacht = verhalenItems.length === 0 ? 0 : Math.round(((i + 1) / nieuwsItems.length) * verhalenItems.length);
-  while (verhaalIndex < verwacht) {
-    wall.push(verhalenItems[verhaalIndex]);
-    verhaalIndex += 1;
-  }
-});
-wall.push(...verhalenItems.slice(verhaalIndex));
-
-function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
-  if (index === 0) return 'lg';
+function formaat(item: FeedItem): 'lg' | 'md' | 'sm' {
   if (item.rawLength > 500) return 'lg';
   if (item.rawLength > 200) return 'md';
   return 'sm';
 }
 
-function soort(item: FeedItem): 'nieuws' | 'bereikbaarheid' | 'historie' {
-  if (item.kind === 'verhaal') return 'historie';
-  return item.accent === 'ochre' ? 'bereikbaarheid' : 'nieuws';
-}
+const groepen = categorieenPerGroep(lang);
 
 const TEKST = {
   titel: 'Read',
-  intro: 'Every article about the Rozengracht, from news to history, in order of publication.',
-  filters: { alle: 'All', nieuws: 'News', bereikbaarheid: 'Getting there', historie: 'History' },
+  intro: 'Every article about the Rozengracht, in order of publication.',
+  alle: 'All',
+  bereikbaarheid: 'Getting there',
 };
 ---
 <BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang}>
   <h1>{TEKST.titel}</h1>
   <p class="intro">{TEKST.intro}</p>
 
-  <div class="filters" data-filters role="group" aria-label="Filter by type">
-    <button type="button" class="filter-btn is-active" data-soort="alle" aria-pressed="true">{TEKST.filters.alle}</button>
-    <button type="button" class="filter-btn" data-soort="nieuws" aria-pressed="false">{TEKST.filters.nieuws}</button>
-    <button type="button" class="filter-btn" data-soort="bereikbaarheid" aria-pressed="false">{TEKST.filters.bereikbaarheid}</button>
-    <button type="button" class="filter-btn" data-soort="historie" aria-pressed="false">{TEKST.filters.historie}</button>
+  <div class="filters" data-filters role="group" aria-label="Filter by category">
+    <button type="button" class="filter-btn is-active" data-thema="alle" aria-pressed="true">{TEKST.alle}</button>
+    <button type="button" class="filter-btn" data-thema="bereikbaarheid" aria-pressed="false">{TEKST.bereikbaarheid}</button>
+    {groepen.map((g) => (
+      <div class="filter-groep">
+        <span class="filter-groep-label">{g.groepLabel}</span>
+        <div class="filter-groep-knoppen">
+          {g.categorieen.map(([key, label]) => (
+            <button type="button" class="filter-btn" data-thema={key} aria-pressed="false">{label}</button>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 
   <div class="wall" data-wall>
-    {wall.map((item, i) => (
-      <div class={`wall-item wall-item-${formaat(item, i)}`} data-soort={soort(item)}>
-        <ContentCard item={item} variant="feature" size={formaat(item, i)} />
+    {wall.map(({ item, themas }) => (
+      <div class="wall-item" data-themas={themas.join(' ')}>
+        <ContentCard item={item} variant="feature" size={formaat(item)} />
       </div>
     ))}
   </div>
@@ -93,9 +81,10 @@ const TEKST = {
     });
     btn.classList.add('is-active');
     btn.setAttribute('aria-pressed', 'true');
-    var soort = btn.dataset.soort;
-    wallEl.querySelectorAll('[data-soort]').forEach((el) => {
-      el.style.display = soort === 'alle' || el.dataset.soort === soort ? '' : 'none';
+    var thema = btn.dataset.thema;
+    wallEl.querySelectorAll('[data-themas]').forEach((el) => {
+      var themas = (el.dataset.themas || '').split(' ');
+      el.style.display = thema === 'alle' || themas.indexOf(thema) !== -1 ? '' : 'none';
     });
   });
 </script>
@@ -103,7 +92,16 @@ const TEKST = {
 <style>
   .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
 
-  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--space-lg) 0; }
+  .filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem var(--space-xs); margin: var(--space-lg) 0; }
+  .filter-groep { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem var(--space-xs); flex: 0 0 100%; }
+  .filter-groep-label {
+    flex: 0 0 100%;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .filter-groep-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
   .filter-btn {
     font-size: 0.85rem;
     font-weight: 500;
@@ -119,20 +117,15 @@ const TEKST = {
   .filter-btn.is-active { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
 
   .wall {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-flow: dense;
-    align-items: start;
-    gap: 28px;
+    column-count: 3;
+    column-gap: 28px;
     margin-bottom: var(--space-xl);
   }
-  .wall-item-lg { grid-column: span 4; }
-  .wall-item-md { grid-column: span 3; }
-  .wall-item-sm { grid-column: span 2; }
+  .wall-item { break-inside: avoid; margin-bottom: 28px; }
   @media (max-width: 900px) {
-    .wall-item-lg, .wall-item-md, .wall-item-sm { grid-column: span 6; }
+    .wall { column-count: 2; }
   }
-  @media (min-width: 901px) and (max-width: 1150px) {
-    .wall-item-sm { grid-column: span 3; }
+  @media (max-width: 620px) {
+    .wall { column-count: 1; }
   }
 </style>

@@ -33,13 +33,13 @@ wijzigen. Formaat: `van → aan: wat, waarom`.
 
 - 03 → 01: `src/content/verhalen`-schema (config.ts, gesloten gebied) heeft
   geen publicatiedatum, alleen een vrije "periode"-tekst ("1913 tot nu").
-  De homepage is nu één "blog wall" die nieuws en historie-verhalen gemixed
-  toont, gesorteerd op publicatiedatum (zie BlogWall.astro) — zonder een
-  echt dateveld op verhalen kunnen die niet chronologisch meedraaien en
-  worden ze nu evenredig over de wall verdeeld i.p.v. op hun werkelijke
-  publicatiemoment. Verzoek: een `gepubliceerd: z.coerce.date().optional()`
-  op het verhalen-schema (naam vrij te kiezen), alleen voor sortering op de
-  wall, los van `periode` dat de historische periode blijft aanduiden.
+  Op verzoek van Nora staan historie-verhalen daarom nu even helemaal NIET
+  in de blog-wall/`/lezen/` (eerder probeerde 03 ze evenredig te verdelen
+  over de wall, maar dat gokt een volgorde die niet klopt) — zodra een
+  verhaal een echte publicatiedatum heeft, hoort het er gewoon tussen te
+  staan op die datum. Verzoek: een `gepubliceerd: z.coerce.date().optional()`
+  op het verhalen-schema (naam vrij te kiezen), los van `periode` dat de
+  historische periode blijft aanduiden.
 
 - 03 → 04: de homepage is nu een blog-wall die alleen bestaande content
   (nieuws + historie) toont, geen aparte "ondernemer"-kaarten meer. Cléo's
@@ -48,16 +48,16 @@ wijzigen. Formaat: `van → aan: wat, waarom`.
   `gerelateerde_ondernemer`), niet iets wat de code kan afdwingen. Vermoedelijk
   al bekend bij 04, hier voor de zekerheid genoemd.
 
-- 03 → 01/04: de nieuwe archiefpagina `/lezen/` (en `/en/lezen/`) filtert nu
-  op contentsoort (Nieuws / Bereikbaarheid / Historie), niet op de 15
-  ondernemer-categorieën zoals Nora liever had. Dat kan pas als nieuws en
-  verhalen zelf een categorie-veld krijgen (net als ondernemers), en zelfs
-  dan moet bestaande content dat veld nog ingevuld krijgen — vandaag heeft
-  maar 3 van de 7 nieuwsartikelen en 2 van de 9 verhalen een
-  `gerelateerde_ondernemer`, te weinig om een categorie betrouwbaar af te
-  leiden. Verzoek: overwegen om nieuws/verhalen ook een `categorie`-veld te
-  geven (topic 01, config.ts) zodra dat zinvol is, en dat veld dan invullen
-  bij nieuwe en bestaande content (topic 04).
+- 03 → 04: de archiefpagina `/lezen/` (en `/en/lezen/`) filtert nu op de 15
+  ondernemer-categorieën, zoals Nora vroeg: een artikel neemt de
+  categorie(ën) over van zijn gekoppelde ondernemer via
+  `gerelateerde_ondernemer` (inclusief het tweede label, dus multi kan).
+  Bereikbaarheid is geen ondernemer-categorie en blijft een eigen chip.
+  Dekking is nu wel nog dun: maar 3 van de 7 nieuwsartikelen hebben een
+  `gerelateerde_ondernemer`; de rest matcht geen enkele categorie-chip en is
+  alleen zichtbaar onder "Alles". Geen actie nodig in code, wel iets om aan
+  te denken bij het schrijven van nieuwe artikelen: een `gerelateerde_ondernemer`
+  invullen waar relevant maakt het artikel ook vindbaar op categorie.
 
 **Uitzondering op "gesloten gebied na topic 01":** Nora vroeg in het gesprek
 zelf direct om de "Nieuws"-link in de hoofdnavigatie te vervangen door
@@ -129,6 +129,22 @@ een groene sectie linksboven op halve breedte met de filters ernaast.
 
 ## Logboek
 
+- **7 sep 2026** — Topic 03, derde ronde na feedback van Nora op de tweede
+  ronde: de wall stond nog als een grid met wisselend brede vakken (2/3/4
+  van de 6 kolommen), waardoor een bereikbaarheid-artikel er soms uitzag als
+  een losse zijkolom naast een groot artikel i.p.v. gewoon "ertussen".
+  Vervangen door echte masonry (CSS columns, drie gelijke kolommen, de
+  foto's variëren in hoogte) — zelfde idee, andere techniek, dichter bij
+  beethovenstraat.nl. Titel en tekst staan nu ook onder de foto in plaats
+  van eroverheen met een donkere gradient. Excerpt-lengte omhoog (150 naar
+  280 tekens) zodat er echt wat te lezen staat op een kaartje. BIZ-tekst
+  inhoudelijk verdubbeld naar twee alinea's (dat bedoelde Nora met "groter",
+  niet een groter lettertype — dat is weer wat teruggezet). Categorie-filter
+  op `/lezen/` gebruikt nu echt de 15 ondernemer-categorieën (via
+  `gerelateerde_ondernemer`, multi kan) i.p.v. het voorlopige
+  Nieuws/Bereikbaarheid/Historie-onderscheid. Historie-verhalen staan er
+  voorlopig helemaal niet in (zie het verzoek aan topic 01 hieronder over
+  een publicatiedatum) i.p.v. ze te gokken tussen het nieuws door.
 - **7 sep 2026** — Topic 03, tweede ronde na feedback van Nora: de homepage
   had nog "Nieuws & updates"- en "Uitgelicht"-koppen; dat is nu één
   ongetitelde blog-wall direct onder de bereikbaarheidsbalk, met wisselende

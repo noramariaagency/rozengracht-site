@@ -62,6 +62,16 @@ export type FeedItem = {
   image: { src: string; width: number; height: number; focus: string | null } | null;
 };
 
+// Thema('s) van een artikel voor de filters op /lezen/: overgenomen van de
+// gekoppelde ondernemer (diens categorie, plus het tweede label als die er
+// is — "multi" mag dus, net als bij de kaart-filters). Geen ondernemer
+// gekoppeld, dan geen thema — het artikel blijft dan gewoon zichtbaar onder
+// "Alles", maar matcht geen specifieke categorie-chip.
+export function themasVoorOndernemer(ondernemer: CollectionEntry<'ondernemers'> | null): string[] {
+  if (!ondernemer) return [];
+  return [ondernemer.data.categorie, ondernemer.data.tweede_label].filter((x): x is string => Boolean(x));
+}
+
 const KIND_LABELS: Record<Lang, { nieuws: string; bereikbaarheid: string; verhaal: string; event: string }> = {
   nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event' },
   en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event' },
@@ -101,7 +111,7 @@ export function nieuwsToItem(
     accent: isBereikbaarheid ? 'ochre' : 'rose',
     href: getRelativeLocaleUrl(lang, `nieuws/${entry.slug}/`),
     title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
-    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
+    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 280),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
     dateLabel: langDateLabel(entry.data.datum, lang),
     // Geen dateBlock (het grote datumblokje) voor nieuws — dat is voorbehouden
@@ -128,7 +138,7 @@ export function verhaalToItem(
     accent: 'ochre',
     href: getRelativeLocaleUrl(lang, `historie/${entry.slug}/`),
     title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
-    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
+    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 280),
     locationLabel: bepaalLocatie(entry.data, ondernemer),
     dateLabel: entry.data.periode ?? null,
     dateBlock: null,
@@ -154,7 +164,7 @@ export function eventToItem(
     // schema), dus een klik op het kaartje gaat daar altijd direct naartoe.
     href: getRelativeLocaleUrl(lang, `nieuws/${nieuwsEntry.slug}/`),
     title: lang === 'en' ? entry.data.titel_en : entry.data.titel_nl,
-    excerpt: eersteAlinea(lang === 'en' ? nieuwsEntry.data.tekst_en : nieuwsEntry.data.tekst_nl, 150),
+    excerpt: eersteAlinea(lang === 'en' ? nieuwsEntry.data.tekst_en : nieuwsEntry.data.tekst_nl, 280),
     locationLabel: entry.data.locatie ?? bepaalLocatie(entry.data, ondernemer),
     dateLabel: langDateLabel(entry.data.datum, lang),
     dateBlock: dagMaand(entry.data.datum, lang),

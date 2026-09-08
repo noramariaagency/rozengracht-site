@@ -1,23 +1,27 @@
 ---
 // De homepage is een blog, geen nieuwswebsite: dit is de ene, ongetitelde
 // "wall" direct onder de bereikbaarheidsbalk en de event-highlight. Geen
-// aparte "Nieuws & updates"- of "Uitgelicht"-koppen meer (feedback: "we zijn
-// geen nieuws en updates website meer, ook niet uitgelicht, we zijn een
-// blog") — nieuws (incl. bereikbaarheid) en historie-verhalen staan hier
-// gemixed, gesorteerd op publicatiedatum, in wisselende kaartformaten naar
-// het voorbeeld van beethovenstraat.nl. Ondernemers komen hier niet als
-// eigen kaart in: die worden gedekt doordat blogartikelen naar ze verwijzen
-// (contentwerk van topic 04), niet doordat wij hun profiel in de wall
-// trekken.
+// aparte "Nieuws & updates"- of "Uitgelicht"-koppen meer, en geen aparte
+// kolom voor bereikbaarheid-artikelen: alles staat gewoon tussen elkaar in
+// de wand, op volgorde van publicatie.
+//
+// Historie-verhalen staan er nu bewust NIET in: die hebben geen
+// publicatiedatum in het schema (verzoek aan topic 01 staat in CLAIMS.md).
+// Zodra een verhaal die datum heeft, hoort het hier gewoon tussen te staan
+// op die datum — tot die tijd liever leeg dan een geraden volgorde.
+//
+// Layout: CSS columns (echte masonry, geen grid-met-spans) — elke kolom
+// gelijk breed, de foto's variëren in hoogte (zie ContentCard's size-prop),
+// dat geeft het ongelijke ritme van beethovenstraat.nl.
 import ContentCard from '../ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../lib/items';
+import { nieuwsToItem, resolveFoto } from '../../lib/items';
 import type { FeedItem } from '../../lib/items';
 import type { Lang } from '../../lib/i18n';
 
-// Cap op de homepage — geen eindeloze lijst hier, de volledige, filterbare
-// lijst staat op /lezen/.
+// Cap op de homepage — geen eindeloze lijst hier, de volledige lijst staat
+// op /lezen/.
 const AANTAL = 12;
 
 interface Props {
@@ -28,77 +32,33 @@ const { lang = 'nl' } = Astro.props;
 const alleNieuwsRuw = (await getCollection('nieuws')).sort(
   (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
 );
-const nieuwsItems = await Promise.all(
-  alleNieuwsRuw.map(async (n) => {
+const wall = await Promise.all(
+  alleNieuwsRuw.slice(0, AANTAL).map(async (n) => {
     const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
     const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
     return nieuwsToItem(n, ondernemer, foto, lang);
   })
 );
 
-// Historie-verhalen hebben geen publicatiedatum in het schema (alleen een
-// vrije "periode"-tekst als "1913 tot nu"), dus kunnen niet echt
-// chronologisch tussen het nieuws gesorteerd worden. Interim oplossing tot
-// dat veld er is (verzoek aan topic 01 staat in CLAIMS.md): om de vaste
-// paar nieuwsartikelen één verhaal ertussen zetten, in een stabiele
-// (niet-willekeurige) volgorde — zo komt elk verhaal een keer langs zonder
-// een fictieve publicatiedatum te verzinnen.
-const alleVerhalenRuw = await getCollection('verhalen');
-const verhalenItems = await Promise.all(
-  alleVerhalenRuw.map(async (v) => {
-    const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(v.data.foto, 640, v.data.fotoFocus);
-    return verhaalToItem(v, ondernemer, foto, lang);
-  })
-);
-
-// Evenredig verdelen over de hele wall i.p.v. een vaste "elke 4e"-interval:
-// bij bv. 8 nieuwsartikelen en 9 verhalen zou een vaste interval de helft
-// van de verhalen vooraan interleaven en de rest in één keer achteraan
-// dumpen. Op elk punt in de nieuws-reeks ligt hier vast hoeveel verhalen er
-// tot dan toe hadden moeten volgen (verhoudingsgewijs), en wordt het
-// verschil ingehaald.
-const wall: FeedItem[] = [];
-let verhaalIndex = 0;
-nieuwsItems.forEach((item, i) => {
-  wall.push(item);
-  const verwacht = verhalenItems.length === 0 ? 0 : Math.round(((i + 1) / nieuwsItems.length) * verhalenItems.length);
-  while (verhaalIndex < verwacht) {
-    wall.push(verhalenItems[verhaalIndex]);
-    verhaalIndex += 1;
-  }
-});
-// Restje voor de zekerheid (bv. als nieuwsItems leeg is) alsnog toevoegen
-// i.p.v. stilzwijgend laten vallen.
-wall.push(...verhalenItems.slice(verhaalIndex));
-
-// De homepage toont alleen de eerste AANTAL — "9 of 12 met een 'meer'"
-// i.p.v. de hele lijst hier al dumpen. Het volledige, filterbare archief
-// staat op /lezen/.
-const getoond = wall.slice(0, AANTAL);
+// Foto-formaat: hoe meer tekst het artikel echt heeft (rawLength, dus vóór
+// de tekens-afkap van excerpt), hoe groter/hoger de foto — dezelfde
+// gedachte als op beethovenstraat.nl.
+function formaat(item: FeedItem): 'lg' | 'md' | 'sm' {
+  if (item.rawLength > 500) return 'lg';
+  if (item.rawLength > 200) return 'md';
+  return 'sm';
+}
 
 const TEKST: Record<Lang, string> = {
   nl: 'Meer artikelen',
   en: 'More articles',
 };
-
-// Kaartformaat: hoe meer tekst het artikel echt heeft (rawLength, dus vóór
-// de ~150-tekens-afkap van excerpt), hoe groter het kaartje — dezelfde
-// gedachte als op beethovenstraat.nl, waar de kaartjes ook niet allemaal
-// even groot zijn. Het nieuwste artikel is altijd 'lg' als duidelijke
-// "lead"-positie bovenaan de wall.
-function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
-  if (index === 0) return 'lg';
-  if (item.rawLength > 500) return 'lg';
-  if (item.rawLength > 200) return 'md';
-  return 'sm';
-}
 ---
 <div class="container">
   <div class="blog-wall">
-    {getoond.map((item, i) => (
-      <div class={`wall-item wall-item-${formaat(item, i)} reveal-item`}>
-        <ContentCard item={item} variant="feature" size={formaat(item, i)} />
+    {wall.map((item) => (
+      <div class="wall-item reveal-item">
+        <ContentCard item={item} variant="feature" size={formaat(item)} />
       </div>
     ))}
   </div>
@@ -106,14 +66,24 @@ function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
 </div>
 
 <style>
+  /* Echte masonry via CSS columns i.p.v. een grid met wisselende spans: hier
+     bepaalt de eigen hoogte van elke kaart (foto-verhouding + tekstlengte)
+     waar hij in zijn kolom terechtkomt, precies het ritme van
+     beethovenstraat.nl, i.p.v. brede/smalle vakken die als een aparte
+     sidebar naast elkaar ogen. */
   .blog-wall {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-flow: dense;
-    align-items: start;
-    gap: 28px;
+    column-count: 3;
+    column-gap: 28px;
     padding: 32px 0 40px;
   }
+  .wall-item { break-inside: avoid; margin-bottom: 28px; }
+  @media (max-width: 900px) {
+    .blog-wall { column-count: 2; }
+  }
+  @media (max-width: 620px) {
+    .blog-wall { column-count: 1; }
+  }
+
   .meer-link {
     display: block;
     width: fit-content;
@@ -124,15 +94,6 @@ function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
     border-bottom: 1px solid var(--rose);
     padding-bottom: 2px;
     text-decoration: none;
-  }
-  .wall-item-lg { grid-column: span 4; }
-  .wall-item-md { grid-column: span 3; }
-  .wall-item-sm { grid-column: span 2; }
-  @media (max-width: 900px) {
-    .wall-item-lg, .wall-item-md, .wall-item-sm { grid-column: span 6; }
-  }
-  @media (min-width: 901px) and (max-width: 1150px) {
-    .wall-item-sm { grid-column: span 3; }
   }
 
   .reveal-item {

@@ -9,10 +9,11 @@ import type { FeedItem } from '../lib/items';
 interface Props {
   item: FeedItem;
   variant?: 'feature' | 'compact';
-  // Alleen voor variant="feature": kaartformaat voor de blog-wall op de
-  // homepage (zie home/BlogWall.astro), waar artikelen bewust een
-  // wisselend formaat krijgen (meer tekst -> groter kaartje) i.p.v. een
-  // uniform grid. Compact blijft altijd op één vast formaat.
+  // Alleen voor variant="feature": bepaalt de foto-verhouding op de blog-wall
+  // (zie home/BlogWall.astro en pages/lezen/) — de kolommen zelf zijn overal
+  // gelijk breed (masonry via CSS columns), maar de foto's variëren in
+  // hoogte, naar het voorbeeld van beethovenstraat.nl. Compact blijft altijd
+  // op één vast formaat.
   size?: 'lg' | 'md' | 'sm';
 }
 
@@ -44,12 +45,10 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={FALLBACK_ICOON[item.kind]} />
         </div>
       )}
-      <div class="foto-overlay">
-        <span class="cat">{item.kindLabel}</span>
-        <h3>{item.title}</h3>
-      </div>
     </div>
     <div class="body">
+      <span class="cat">{item.kindLabel}</span>
+      <h3>{item.title}</h3>
       {item.excerpt && <p class="excerpt">{item.excerpt}</p>}
       <div class="meta">
         {item.dateLabel && <span>{item.dateLabel}</span>}
@@ -127,7 +126,7 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
   .content-card.feature .foto-vlak img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
   /* Zachte, neutrale placeholder (zie FotoFallback.astro van topic 01) i.p.v.
      een fel accentkleur-vlak per soort — dat concurreerde te veel met echte
-     foto's ernaast. De accentkleur blijft wel op het .cat-label hierboven. */
+     foto's ernaast. De accentkleur blijft wel op het .cat-label hieronder. */
   .content-card.feature .foto-fallback {
     position: absolute;
     inset: 0;
@@ -137,44 +136,30 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
     background: linear-gradient(135deg, var(--cream), var(--cream-card));
   }
   .content-card.feature .foto-fallback svg { width: 30%; height: 30%; max-width: 56px; max-height: 56px; color: var(--ink-soft); opacity: 0.38; }
-  /* Donkere gradient onderin de foto, zodat de witte titel altijd leesbaar
-     blijft — ook boven op een lichte foto. */
-  .content-card.feature .foto-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(10, 18, 14, 0.82) 0%, rgba(10, 18, 14, 0.25) 60%, transparent 100%);
-  }
-  .content-card.feature .foto-overlay .cat { color: #fbfaf7; margin-bottom: 6px; }
-  .content-card.feature .foto-overlay h3 { color: #fff; font-size: var(--card-title-size, 1.3rem); line-height: 1.24; margin: 0; }
-  .content-card.feature .body { padding: 20px 22px 22px; }
-  .content-card.feature .excerpt { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
+  /* Titel en tekst staan ONDER de foto, niet erover heen (geen donkere
+     gradient + witte titel op de foto) — naar het voorbeeld van
+     beethovenstraat.nl, waar elke kaart gewoon een foto boven een
+     tekstblok is. */
+  .content-card.feature .body { padding: 18px 20px 22px; }
+  .content-card.feature .body h3 { font-size: var(--card-title-size, 1.2rem); line-height: 1.26; margin: 4px 0 10px; }
+  .content-card.feature .excerpt { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; margin: 0; }
   .content-card.feature .meta { font-size: 0.78rem; color: var(--ink-soft); margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
   .content-card.feature .meta .loc { font-weight: 600; }
 
-  /* Kaartformaat voor de blog-wall: drie maten, elk met een eigen
-     foto-verhouding en tekstomvang, zodat de wand niet als een uniform grid
-     oogt (zie beethovenstraat.nl). Meer tekst in het artikel -> groter
-     formaat, bepaald door de aanroepende wall-component. */
-  .content-card.feature.size-lg .foto-vlak { aspect-ratio: 16/9; }
-  .content-card.feature.size-lg .foto-overlay h3 { font-size: 1.7rem; }
-  .content-card.feature.size-lg .excerpt { font-size: 1rem; -webkit-line-clamp: 3; }
-  .content-card.feature.size-md .foto-vlak { aspect-ratio: 4/5; }
-  .content-card.feature.size-md .excerpt { -webkit-line-clamp: 3; }
-  .content-card.feature.size-sm .foto-vlak { aspect-ratio: 4/3; }
-  .content-card.feature.size-sm .foto-overlay h3 { font-size: 1.05rem; }
-  .content-card.feature.size-sm .body { padding: 14px 16px 16px; }
-  .content-card.feature.size-sm .excerpt { display: none; }
-  /* Excerpt afkappen op een vast aantal regels i.p.v. de volledige
-     ~150 tekens altijd te tonen: anders bepaalt de tekstlengte de
-     kaarthoogte net zo goed als het opgegeven formaat, en loopt de wand
-     alsnog uit de pas. */
+  /* Foto-verhouding varieert per kaart (bepaald door de aanroepende
+     wall-component, op basis van hoeveel tekst het artikel echt heeft) —
+     dat geeft de wand het ongelijke, "geplakte" ritme van beethovenstraat.nl
+     i.p.v. een uniform grid. De kolommen zelf zijn overal gelijk breed. */
+  .content-card.feature.size-lg .foto-vlak { aspect-ratio: 3/4; }
+  .content-card.feature.size-md .foto-vlak { aspect-ratio: 4/3; }
+  .content-card.feature.size-sm .foto-vlak { aspect-ratio: 1/1; }
+  /* Excerpt op een ruime regelbegrenzing i.p.v. de volledige tekst altijd
+     tonen: voorkomt dat één uitzonderlijk lang artikel de wand domineert,
+     maar laat verder gewoon de natuurlijke tekstlengte de kaarthoogte
+     bepalen (dat IS het masonry-ritme, geen bug om weg te poetsen). */
   .content-card.feature .excerpt {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

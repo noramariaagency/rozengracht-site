@@ -1,18 +1,23 @@
 ---
-// "Lezen": het volledige archief van alle blogartikelen (nieuws, incl.
-// bereikbaarheid, én historie-verhalen), met een filter — vervangt de oude
-// rol van de "Nieuws"-overzichtspagina nu de homepage zelf geen volledige
-// lijst meer toont (die is beperkt tot de eerste artikelen, zie
-// components/home/BlogWall.astro).
+// "Lezen": het volledige archief van alle blogartikelen — vervangt de oude
+// rol van de "Nieuws"-overzichtspagina nu de homepage zelf beperkt is tot de
+// laatste 12 (zie components/home/BlogWall.astro).
 //
-// Filter is nu op contentsoort (Nieuws / Bereikbaarheid / Historie) — dat is
-// betrouwbaar voor 100% van de content. Filteren op dezelfde 15 categorieen
-// als de ondernemers (zoals gevraagd) kan pas als nieuws/verhalen zelf een
-// categorie-veld krijgen; dat bestaat nu niet (verzoek staat in CLAIMS.md).
+// Historie-verhalen staan er nog niet in: geen publicatiedatum in het
+// schema (verzoek aan topic 01 staat in CLAIMS.md) — zodra dat er is, horen
+// ze hier gewoon tussen te staan.
+//
+// Filter op categorie, overgenomen van de gekoppelde ondernemer (diens
+// categorie + evt. tweede label, dus een artikel kan onder meerdere
+// categorieën vallen — zelfde principe als de kaart-filters). Een artikel
+// zonder gekoppelde ondernemer (bv. een algemene aankondiging) matcht geen
+// categorie-chip en blijft alleen onder "Alles" zichtbaar. Bereikbaarheid
+// is geen ondernemer-categorie, dus die blijft een aparte chip.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentCard from '../../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../lib/items';
+import { nieuwsToItem, themasVoorOndernemer, resolveFoto } from '../../lib/items';
+import { categorieenPerGroep } from '../../lib/categorieen';
 import type { FeedItem } from '../../lib/items';
 import type { Lang } from '../../lib/i18n';
 
@@ -21,72 +26,55 @@ const lang: Lang = 'nl';
 const alleNieuwsRuw = (await getCollection('nieuws')).sort(
   (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
 );
-const nieuwsItems = await Promise.all(
+const wall = await Promise.all(
   alleNieuwsRuw.map(async (n) => {
     const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
     const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
-    return nieuwsToItem(n, ondernemer, foto, lang);
+    const item = nieuwsToItem(n, ondernemer, foto, lang);
+    const themas = themasVoorOndernemer(ondernemer);
+    if (n.data.categorie === 'bereikbaarheid') themas.push('bereikbaarheid');
+    return { item, themas };
   })
 );
 
-const alleVerhalenRuw = await getCollection('verhalen');
-const verhalenItems = await Promise.all(
-  alleVerhalenRuw.map(async (v) => {
-    const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(v.data.foto, 640, v.data.fotoFocus);
-    return verhaalToItem(v, ondernemer, foto, lang);
-  })
-);
-
-// Zelfde evenredige interleaving als BlogWall.astro op de homepage — zie
-// daar voor de toelichting waarom (geen publicatiedatum op verhalen).
-const wall: FeedItem[] = [];
-let verhaalIndex = 0;
-nieuwsItems.forEach((item, i) => {
-  wall.push(item);
-  const verwacht = verhalenItems.length === 0 ? 0 : Math.round(((i + 1) / nieuwsItems.length) * verhalenItems.length);
-  while (verhaalIndex < verwacht) {
-    wall.push(verhalenItems[verhaalIndex]);
-    verhaalIndex += 1;
-  }
-});
-wall.push(...verhalenItems.slice(verhaalIndex));
-
-function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
-  if (index === 0) return 'lg';
+function formaat(item: FeedItem): 'lg' | 'md' | 'sm' {
   if (item.rawLength > 500) return 'lg';
   if (item.rawLength > 200) return 'md';
   return 'sm';
 }
 
-// Filtersoort: betrouwbaar af te leiden van kind/accent, zonder een
-// categorie-veld nodig te hebben dat nieuws/verhalen nu niet hebben.
-function soort(item: FeedItem): 'nieuws' | 'bereikbaarheid' | 'historie' {
-  if (item.kind === 'verhaal') return 'historie';
-  return item.accent === 'ochre' ? 'bereikbaarheid' : 'nieuws';
-}
+const groepen = categorieenPerGroep(lang);
 
 const TEKST = {
   titel: 'Lezen',
-  intro: 'Alle artikelen over de Rozengracht, van nieuws tot geschiedenis, op volgorde van publicatie.',
-  filters: { alle: 'Alles', nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', historie: 'Historie' },
+  intro: 'Alle artikelen over de Rozengracht, op volgorde van publicatie.',
+  alle: 'Alles',
+  bereikbaarheid: 'Bereikbaarheid',
 };
 ---
 <BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang}>
   <h1>{TEKST.titel}</h1>
   <p class="intro">{TEKST.intro}</p>
 
-  <div class="filters" data-filters role="group" aria-label="Filter op soort">
-    <button type="button" class="filter-btn is-active" data-soort="alle" aria-pressed="true">{TEKST.filters.alle}</button>
-    <button type="button" class="filter-btn" data-soort="nieuws" aria-pressed="false">{TEKST.filters.nieuws}</button>
-    <button type="button" class="filter-btn" data-soort="bereikbaarheid" aria-pressed="false">{TEKST.filters.bereikbaarheid}</button>
-    <button type="button" class="filter-btn" data-soort="historie" aria-pressed="false">{TEKST.filters.historie}</button>
+  <div class="filters" data-filters role="group" aria-label="Filter op categorie">
+    <button type="button" class="filter-btn is-active" data-thema="alle" aria-pressed="true">{TEKST.alle}</button>
+    <button type="button" class="filter-btn" data-thema="bereikbaarheid" aria-pressed="false">{TEKST.bereikbaarheid}</button>
+    {groepen.map((g) => (
+      <div class="filter-groep">
+        <span class="filter-groep-label">{g.groepLabel}</span>
+        <div class="filter-groep-knoppen">
+          {g.categorieen.map(([key, label]) => (
+            <button type="button" class="filter-btn" data-thema={key} aria-pressed="false">{label}</button>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 
   <div class="wall" data-wall>
-    {wall.map((item, i) => (
-      <div class={`wall-item wall-item-${formaat(item, i)}`} data-soort={soort(item)}>
-        <ContentCard item={item} variant="feature" size={formaat(item, i)} />
+    {wall.map(({ item, themas }) => (
+      <div class="wall-item" data-themas={themas.join(' ')}>
+        <ContentCard item={item} variant="feature" size={formaat(item)} />
       </div>
     ))}
   </div>
@@ -104,9 +92,10 @@ const TEKST = {
     });
     btn.classList.add('is-active');
     btn.setAttribute('aria-pressed', 'true');
-    var soort = btn.dataset.soort;
-    wallEl.querySelectorAll('[data-soort]').forEach((el) => {
-      el.style.display = soort === 'alle' || el.dataset.soort === soort ? '' : 'none';
+    var thema = btn.dataset.thema;
+    wallEl.querySelectorAll('[data-themas]').forEach((el) => {
+      var themas = (el.dataset.themas || '').split(' ');
+      el.style.display = thema === 'alle' || themas.indexOf(thema) !== -1 ? '' : 'none';
     });
   });
 </script>
@@ -114,7 +103,16 @@ const TEKST = {
 <style>
   .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
 
-  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--space-lg) 0; }
+  .filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem var(--space-xs); margin: var(--space-lg) 0; }
+  .filter-groep { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem var(--space-xs); flex: 0 0 100%; }
+  .filter-groep-label {
+    flex: 0 0 100%;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .filter-groep-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
   .filter-btn {
     font-size: 0.85rem;
     font-weight: 500;
@@ -129,21 +127,17 @@ const TEKST = {
   }
   .filter-btn.is-active { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
 
+  /* Echte masonry via CSS columns, zie ook home/BlogWall.astro. */
   .wall {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-flow: dense;
-    align-items: start;
-    gap: 28px;
+    column-count: 3;
+    column-gap: 28px;
     margin-bottom: var(--space-xl);
   }
-  .wall-item-lg { grid-column: span 4; }
-  .wall-item-md { grid-column: span 3; }
-  .wall-item-sm { grid-column: span 2; }
+  .wall-item { break-inside: avoid; margin-bottom: 28px; }
   @media (max-width: 900px) {
-    .wall-item-lg, .wall-item-md, .wall-item-sm { grid-column: span 6; }
+    .wall { column-count: 2; }
   }
-  @media (min-width: 901px) and (max-width: 1150px) {
-    .wall-item-sm { grid-column: span 3; }
+  @media (max-width: 620px) {
+    .wall { column-count: 1; }
   }
 </style>
