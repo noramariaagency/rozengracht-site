@@ -1,0 +1,138 @@
+---
+// "Read": the full archive of all blog articles (news, incl. getting-there
+// updates, and historie stories). Zie src/pages/lezen/index.astro (NL) voor
+// de toelichting — zelfde opbouw, Engelse tekst.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ContentCard from '../../../components/ContentCard.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../../lib/items';
+import type { FeedItem } from '../../../lib/items';
+import type { Lang } from '../../../lib/i18n';
+
+const lang: Lang = 'en';
+
+const alleNieuwsRuw = (await getCollection('nieuws')).sort(
+  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
+);
+const nieuwsItems = await Promise.all(
+  alleNieuwsRuw.map(async (n) => {
+    const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
+    const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
+    return nieuwsToItem(n, ondernemer, foto, lang);
+  })
+);
+
+const alleVerhalenRuw = await getCollection('verhalen');
+const verhalenItems = await Promise.all(
+  alleVerhalenRuw.map(async (v) => {
+    const ondernemer = v.data.gerelateerde_ondernemer ? await getEntry(v.data.gerelateerde_ondernemer) : null;
+    const foto = await resolveFoto(v.data.foto, 640, v.data.fotoFocus);
+    return verhaalToItem(v, ondernemer, foto, lang);
+  })
+);
+
+const wall: FeedItem[] = [];
+let verhaalIndex = 0;
+nieuwsItems.forEach((item, i) => {
+  wall.push(item);
+  const verwacht = verhalenItems.length === 0 ? 0 : Math.round(((i + 1) / nieuwsItems.length) * verhalenItems.length);
+  while (verhaalIndex < verwacht) {
+    wall.push(verhalenItems[verhaalIndex]);
+    verhaalIndex += 1;
+  }
+});
+wall.push(...verhalenItems.slice(verhaalIndex));
+
+function formaat(item: FeedItem, index: number): 'lg' | 'md' | 'sm' {
+  if (index === 0) return 'lg';
+  if (item.rawLength > 500) return 'lg';
+  if (item.rawLength > 200) return 'md';
+  return 'sm';
+}
+
+function soort(item: FeedItem): 'nieuws' | 'bereikbaarheid' | 'historie' {
+  if (item.kind === 'verhaal') return 'historie';
+  return item.accent === 'ochre' ? 'bereikbaarheid' : 'nieuws';
+}
+
+const TEKST = {
+  titel: 'Read',
+  intro: 'Every article about the Rozengracht, from news to history, in order of publication.',
+  filters: { alle: 'All', nieuws: 'News', bereikbaarheid: 'Getting there', historie: 'History' },
+};
+---
+<BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang}>
+  <h1>{TEKST.titel}</h1>
+  <p class="intro">{TEKST.intro}</p>
+
+  <div class="filters" data-filters role="group" aria-label="Filter by type">
+    <button type="button" class="filter-btn is-active" data-soort="alle" aria-pressed="true">{TEKST.filters.alle}</button>
+    <button type="button" class="filter-btn" data-soort="nieuws" aria-pressed="false">{TEKST.filters.nieuws}</button>
+    <button type="button" class="filter-btn" data-soort="bereikbaarheid" aria-pressed="false">{TEKST.filters.bereikbaarheid}</button>
+    <button type="button" class="filter-btn" data-soort="historie" aria-pressed="false">{TEKST.filters.historie}</button>
+  </div>
+
+  <div class="wall" data-wall>
+    {wall.map((item, i) => (
+      <div class={`wall-item wall-item-${formaat(item, i)}`} data-soort={soort(item)}>
+        <ContentCard item={item} variant="feature" size={formaat(item, i)} />
+      </div>
+    ))}
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  var filterBar = document.querySelector('[data-filters]');
+  var wallEl = document.querySelector('[data-wall]');
+  filterBar && wallEl && filterBar.addEventListener('click', (e) => {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterBar.querySelectorAll('.filter-btn').forEach((b) => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
+    var soort = btn.dataset.soort;
+    wallEl.querySelectorAll('[data-soort]').forEach((el) => {
+      el.style.display = soort === 'alle' || el.dataset.soort === soort ? '' : 'none';
+    });
+  });
+</script>
+
+<style>
+  .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: var(--space-lg) 0; }
+  .filter-btn {
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: 1px solid var(--color-border);
+    background: var(--cream-card);
+    padding: 7px 16px;
+    border-radius: 100px;
+    color: var(--color-text);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .filter-btn.is-active { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+
+  .wall {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-flow: dense;
+    align-items: start;
+    gap: 28px;
+    margin-bottom: var(--space-xl);
+  }
+  .wall-item-lg { grid-column: span 4; }
+  .wall-item-md { grid-column: span 3; }
+  .wall-item-sm { grid-column: span 2; }
+  @media (max-width: 900px) {
+    .wall-item-lg, .wall-item-md, .wall-item-sm { grid-column: span 6; }
+  }
+  @media (min-width: 901px) and (max-width: 1150px) {
+    .wall-item-sm { grid-column: span 3; }
+  }
+</style>
