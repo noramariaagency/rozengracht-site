@@ -60,7 +60,7 @@ const t = TEKST[lang];
     <div class="txt">
       <span class="cat-inline">{binnenkortEvents[0].kindLabel}</span>
       <strong>{binnenkortEvents[0].title}</strong>
-      {eersteEventMeta && <> &mdash; {eersteEventMeta}</>}
+      {eersteEventMeta && <> &middot; {eersteEventMeta}</>}
       {binnenkortEvents.length > 1 && <span class="event-strip-more"> &middot; {t.nog(binnenkortEvents.length - 1)}</span>}
     </div>
     <span class="see-all">{t.meer} &rarr;</span>

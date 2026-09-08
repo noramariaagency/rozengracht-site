@@ -6,7 +6,7 @@ import OndernemersKaart from '../OndernemersKaart.astro';
 import plekken from '../../data/places.json';
 import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getCategorieLabels } from '../../lib/categorieen';
+import { categorieenPerGroep } from '../../lib/categorieen';
 import type { Lang } from '../../lib/i18n';
 
 interface Props {
@@ -14,8 +14,11 @@ interface Props {
 }
 const { lang = 'nl' } = Astro.props;
 
-const categorieLabels = getCategorieLabels(lang);
-const categorieen = Object.entries(categorieLabels);
+// Per groep (niet een platte lijst van 15): zie ook /ondernemers, waar
+// dezelfde reden geldt ("vijftien chips op een hoop is geen filter maar een
+// muur"). categorieenPerGroep komt uit het gesloten categorieen.ts, dus hier
+// alleen hergebruikt, niet opnieuw uitgevonden.
+const groepen = categorieenPerGroep(lang);
 
 const alleOndernemers = await getCollection(
   'ondernemers',
@@ -53,8 +56,15 @@ const t = TEKST[lang];
     <h2>{t.titel}</h2>
     <div class="categories" data-filters role="group" aria-label="Filter op categorie">
       <button type="button" class="chip filter-btn is-active" data-cat="alle" aria-pressed="true">{t.alles}</button>
-      {categorieen.map(([key, label]) => (
-        <button type="button" class="chip filter-btn" data-cat={key} aria-pressed="false">{label}</button>
+      {groepen.map((g) => (
+        <div class="filter-groep">
+          <span class="filter-groep-label">{g.groepLabel}</span>
+          <div class="filter-groep-knoppen">
+            {g.categorieen.map(([key, label]) => (
+              <button type="button" class="chip filter-btn" data-cat={key} aria-pressed="false">{label}</button>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
     <a class="btn" href={getRelativeLocaleUrl(lang, 'ondernemers')}>{t.cta}</a>
@@ -94,7 +104,20 @@ const t = TEKST[lang];
     margin-bottom: 6px;
   }
   .cta-card h2 { font-size: 1.7rem; margin: 8px 0 16px; color: #fbfaf7; }
-  .categories { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 34px; }
+  .categories { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 34px; }
+  /* Per groep een eigen rij met een klein kopje ervoor, zelfde patroon als op
+     /ondernemers: een bezoeker kiest eerst waarvoor hij komt. Vijftien chips
+     op een hoop is geen filter meer maar een muur, zeker in deze smalle
+     kolom. */
+  .filter-groep { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem var(--space-xs); flex: 0 0 100%; }
+  .filter-groep-label {
+    flex: 0 0 100%;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(251, 250, 247, 0.62);
+  }
+  .filter-groep-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     font-size: 0.82rem;
     font-weight: 500;
