@@ -1,0 +1,111 @@
+---
+// Compacte highlight voor het eerstvolgende event, doorklikkend naar het
+// nieuwsartikel dat erbij hoort (een event heeft geen eigen pagina, zie
+// eventToItem in lib/items.ts). Toont niets als er geen aankomend event is —
+// dit is een highlight, geen "Events"-sectie met lege-staat-tekst.
+import { getCollection, getEntry } from 'astro:content';
+import { eventToItem, resolveFoto } from '../../lib/items';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const vandaag = new Date();
+const alleEventsRuw = await getCollection('events');
+const alleEventsItems = await Promise.all(
+  alleEventsRuw.map(async (e) => {
+    const ondernemer = e.data.gerelateerde_ondernemer ? await getEntry(e.data.gerelateerde_ondernemer) : null;
+    const nieuwsEntry = await getEntry(e.data.gerelateerd_nieuwsbericht);
+    const foto = await resolveFoto(e.data.foto, 640, e.data.fotoFocus);
+    return { entry: e, item: eventToItem(e, nieuwsEntry, ondernemer, foto, lang) };
+  })
+);
+const binnenkortEvents = alleEventsItems
+  .filter(({ entry }) => (entry.data.datum_tot ?? entry.data.datum) >= vandaag)
+  .sort((a, b) => a.item.sortValue - b.item.sortValue)
+  .map(({ item }) => item);
+
+// Datum + locatie samengevoegd tot één label — als aparte conditionals in de
+// markup geeft Astro een spatie tussen de twee blokken door, dit voorkomt dat.
+const eersteEventMeta = binnenkortEvents[0]
+  ? [binnenkortEvents[0].dateLabel, binnenkortEvents[0].locationLabel].filter(Boolean).join(', ')
+  : '';
+
+const TEKST: Record<Lang, { meer: string; nog: (n: number) => string }> = {
+  nl: { meer: 'Meer info', nog: (n) => `nog ${n} ${n === 1 ? 'event' : 'events'}` },
+  en: { meer: 'More info', nog: (n) => `${n} more ${n === 1 ? 'event' : 'events'}` },
+};
+const t = TEKST[lang];
+---
+{binnenkortEvents.length > 0 && (
+  <a class="event-strip" href={binnenkortEvents[0].href}>
+    <div class="thumb">
+      {binnenkortEvents[0].image ? (
+        <img
+          src={binnenkortEvents[0].image.src}
+          width={binnenkortEvents[0].image.width}
+          height={binnenkortEvents[0].image.height}
+          alt=""
+          loading="lazy"
+          style={binnenkortEvents[0].image.focus ? `object-position: ${binnenkortEvents[0].image.focus}` : undefined}
+        />
+      ) : (
+        <div class="thumb-fallback" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4" /><path d="M16 3v4" /><path d="M3 10h18" /></svg>
+        </div>
+      )}
+    </div>
+    <div class="txt">
+      <span class="cat-inline">{binnenkortEvents[0].kindLabel}</span>
+      <strong>{binnenkortEvents[0].title}</strong>
+      {eersteEventMeta && <> &middot; {eersteEventMeta}</>}
+      {binnenkortEvents.length > 1 && <span class="event-strip-more"> &middot; {t.nog(binnenkortEvents.length - 1)}</span>}
+    </div>
+    <span class="see-all">{t.meer} &rarr;</span>
+  </a>
+)}
+
+<style>
+  .event-strip {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--rose-tint);
+    border: 1px solid #ecd4cd;
+    border-radius: 12px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .event-strip .thumb { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 9px; overflow: hidden; background: var(--line); }
+  .event-strip .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .event-strip .thumb-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cream), var(--cream-card));
+  }
+  .event-strip .thumb-fallback svg { width: 45%; height: 45%; color: var(--ink-soft); opacity: 0.38; }
+  .event-strip .txt { flex: 1; font-size: 0.88rem; min-width: 0; }
+  .event-strip .txt .cat-inline { color: var(--rose-deep); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 7px; }
+  .event-strip .txt strong { color: var(--green-black); }
+  .event-strip .event-strip-more { color: var(--ink-soft); }
+  .event-strip .see-all {
+    flex-shrink: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    border-bottom: 1px solid var(--rose);
+    padding-bottom: 2px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  @media (max-width: 560px) {
+    .event-strip { flex-wrap: wrap; }
+  }
+</style>

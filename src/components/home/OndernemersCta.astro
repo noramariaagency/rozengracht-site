@@ -1,0 +1,160 @@
+---
+// Kaart-CTA: dezelfde ondernemers-locaties als op de ondernemers-
+// overzichtspagina (topic 05's <OndernemersKaart />), hier alleen als
+// doorklikker naar /ondernemers — geen ondernemerslijst op de homepage zelf.
+import OndernemersKaart from '../OndernemersKaart.astro';
+import plekken from '../../data/places.json';
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { categorieenPerGroep } from '../../lib/categorieen';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+// Per groep (niet een platte lijst van 15): zie ook /ondernemers, waar
+// dezelfde reden geldt ("vijftien chips op een hoop is geen filter maar een
+// muur"). categorieenPerGroep komt uit het gesloten categorieen.ts, dus hier
+// alleen hergebruikt, niet opnieuw uitgevonden.
+const groepen = categorieenPerGroep(lang);
+
+const alleOndernemers = await getCollection(
+  'ondernemers',
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+);
+const kaartItems = alleOndernemers
+  .map((o) => {
+    const plek = plekken[o.slug];
+    if (!plek || plek.lat == null || plek.lng == null) return null;
+    // Sanity-check tegen een verkeerd gegokte Places-match — buiten een ruime
+    // bounding box rond de Rozengracht negeren we de pin liever dan de hele
+    // kaart (via fitBounds) voor iedereen uit te laten zoomen.
+    if (plek.lat < 52.3 || plek.lat > 52.42 || plek.lng < 4.8 || plek.lng > 4.95) return null;
+    return {
+      slug: o.slug,
+      naam: o.data.naam,
+      categorie: o.data.categorie,
+      lat: plek.lat,
+      lng: plek.lng,
+      href: getRelativeLocaleUrl(lang, `ondernemers/${o.slug}/`),
+    };
+  })
+  .filter((x) => x !== null);
+
+const TEKST: Record<Lang, { eyebrow: string; titel: string; alles: string; cta: string }> = {
+  nl: { eyebrow: 'Alles op één plek', titel: 'Bekijk alle ondernemers op de kaart', alles: 'Alles', cta: 'Alle ondernemers bekijken' },
+  en: { eyebrow: 'Everything in one place', titel: 'See all businesses on the map', alles: 'All', cta: 'View all businesses' },
+};
+const t = TEKST[lang];
+---
+<div class="sub-section cta-card">
+  <OndernemersKaart items={kaartItems} variant="cta" class="reveal-item" />
+  <div class="cta-card-text reveal-item">
+    <span class="eyebrow">{t.eyebrow}</span>
+    <h2>{t.titel}</h2>
+    <div class="categories" data-filters role="group" aria-label="Filter op categorie">
+      <button type="button" class="chip filter-btn is-active" data-cat="alle" aria-pressed="true">{t.alles}</button>
+      {groepen.map((g) => (
+        <div class="filter-groep">
+          <span class="filter-groep-label">{g.groepLabel}</span>
+          <div class="filter-groep-knoppen">
+            {g.categorieen.map(([key, label]) => (
+              <button type="button" class="chip filter-btn" data-cat={key} aria-pressed="false">{label}</button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    <a class="btn" href={getRelativeLocaleUrl(lang, 'ondernemers')}>{t.cta}</a>
+  </div>
+</div>
+
+<script is:inline>
+  // Zet alleen de actieve-knop-styling om; het filteren van de kaart zelf
+  // gebeurt in OndernemersKaart.astro, die naar dezelfde [data-filters]
+  // .filter-btn clicks luistert.
+  var ctaFilterBar = document.querySelector('.cta-card [data-filters]');
+  ctaFilterBar && ctaFilterBar.addEventListener('click', (e) => {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    ctaFilterBar.querySelectorAll('.filter-btn').forEach((b) => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
+  });
+</script>
+
+<style>
+  .sub-section { margin-top: 76px; }
+  .cta-card { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 760px) {
+    .cta-card { grid-template-columns: 1fr; }
+  }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .cta-card h2 { font-size: 1.7rem; margin: 8px 0 16px; color: #fbfaf7; }
+  .categories { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 34px; }
+  /* Per groep een eigen rij met een klein kopje ervoor, zelfde patroon als op
+     /ondernemers: een bezoeker kiest eerst waarvoor hij komt. Vijftien chips
+     op een hoop is geen filter meer maar een muur, zeker in deze smalle
+     kolom. */
+  .filter-groep { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem var(--space-xs); flex: 0 0 100%; }
+  .filter-groep-label {
+    flex: 0 0 100%;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(251, 250, 247, 0.62);
+  }
+  .filter-groep-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 7px 15px;
+    border-radius: 100px;
+    color: #fbfaf7;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .chip.is-active {
+    background: #fbfaf7;
+    color: var(--green-deep);
+    border-color: #fbfaf7;
+  }
+  .btn {
+    display: inline-block;
+    background: #fbfaf7;
+    color: var(--green-black);
+    padding: 14px 30px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    text-decoration: none;
+  }
+  .btn:hover { background: #fff; opacity: 1; }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item { opacity: 1; transform: none; transition: none; }
+  }
+</style>

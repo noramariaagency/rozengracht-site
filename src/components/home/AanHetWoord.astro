@@ -1,0 +1,118 @@
+---
+// "Aan het woord": twee citaten van ondernemers, willekeurig gekozen per
+// bezoek (zie script onderaan). Citaten in het nieuwe Petrona-lettertype
+// van topic 01 (--font-quote, via de .quote-tekst-utility uit global.css).
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const alleOndernemers = await getCollection(
+  'ondernemers',
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+);
+const citaten = alleOndernemers
+  .filter((o) => o.data.quote_nl)
+  .map((o) => ({
+    naam: o.data.naam,
+    quote: lang === 'en' && o.data.quote_en ? o.data.quote_en : o.data.quote_nl,
+    href: getRelativeLocaleUrl(lang, `ondernemers/${o.slug}`),
+  }));
+
+const TEKST: Record<Lang, { label: string; leeg: string }> = {
+  nl: { label: 'Aan het woord', leeg: 'Nog geen citaten van ondernemers verzameld.' },
+  en: { label: 'In their words', leeg: 'No business quotes collected yet.' },
+};
+const t = TEKST[lang];
+---
+<div class="highlight-reel reveal-item">
+  <span class="reel-label">{t.label}</span>
+  {citaten.length > 0 ? (
+    <div class="reel-quotes" id="ondernemerQuotes">
+      {citaten.slice(0, 2).map((citaat) => (
+        <a class="reel-quote" data-naam={citaat.naam} href={citaat.href}>
+          <blockquote class="quote-tekst">{citaat.quote}</blockquote>
+          <div class="who">{citaat.naam}</div>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="placeholder-note light">{t.leeg}</p>
+  )}
+</div>
+<script type="application/json" id="ondernemer-quotes" set:html={JSON.stringify(citaten)} />
+
+<script is:inline>
+  // is:inline i.p.v. een gehoiste module-script, zelfde reden als elders in
+  // deze codebase (blijft ook werken in een file://-preview).
+  //
+  // Aan het woord toont 2 citaten tegelijk. Server-side staan de eerste 2 al
+  // vast in de HTML (zodat er ook zonder JS altijd iets staat) — dit script
+  // kiest daarna, als er meer dan 2 citaten zijn, willekeurig 2 verschillende
+  // via een Fisher-Yates shuffle en vult daarmee de bestaande kaartjes (1 op
+  // 1 per index, geen kaartjes toevoegen/verwijderen).
+  var quotesWrap = document.getElementById('ondernemerQuotes');
+  var quoteDataEl = document.getElementById('ondernemer-quotes');
+  if (quotesWrap && quoteDataEl) {
+    var quotes = JSON.parse(quoteDataEl.textContent || '[]');
+    var blocks = quotesWrap.querySelectorAll('.reel-quote');
+    if (quotes.length > blocks.length) {
+      var shuffled = quotes.slice();
+      for (var i = shuffled.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = tmp;
+      }
+      blocks.forEach(function (block, idx) {
+        var gekozen = shuffled[idx];
+        if (!gekozen) return;
+        var blockquote = block.querySelector('blockquote');
+        var who = block.querySelector('.who');
+        if (blockquote) blockquote.textContent = gekozen.quote;
+        if (who) who.textContent = gekozen.naam;
+        if (gekozen.href) block.setAttribute('href', gekozen.href);
+      });
+    }
+  }
+</script>
+
+<style>
+  .highlight-reel {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 22px 26px;
+  }
+  .reel-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; display: block; }
+  .reel-quotes { display: flex; flex-direction: column; gap: 20px; }
+  .reel-quote {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .reel-quote:hover .who { color: #fbfaf7; }
+  .reel-quote:hover blockquote { color: var(--rose); }
+  .reel-quotes .reel-quote + .reel-quote { padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .reel-quote blockquote { font-size: 1.15rem; line-height: 1.5; color: #fbfaf7; margin: 0 0 10px; }
+  .reel-quote blockquote::before { content: '\201C'; }
+  .reel-quote blockquote::after { content: '\201D'; }
+  .reel-quote .who { font-size: 0.85rem; color: rgba(251, 250, 247, 0.6); font-weight: 600; }
+
+  .placeholder-note.light { font-size: 0.78rem; font-style: italic; color: rgba(251, 250, 247, 0.6); margin: 14px 0 0; }
+
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item { opacity: 1; transform: none; transition: none; }
+  }
+</style>

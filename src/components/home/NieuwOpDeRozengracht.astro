@@ -1,0 +1,107 @@
+---
+// "Nieuw op de Rozengracht": ondernemers die er maximaal een half jaar
+// zitten (punt 2 uit de briefing). De grens is datum-gedreven vanaf
+// `nieuw_sinds` — geen handmatige knop die kan gaan verouderen. De sectie
+// verdwijnt volledig zodra er niets nieuws is: geen lege kop, geen
+// "nog geen nieuwe ondernemers"-tekst.
+import FotoFallback from '../FotoFallback.astro';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getCategorieLabels } from '../../lib/categorieen';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const HALF_JAAR_MS = 183 * 24 * 60 * 60 * 1000;
+const vandaag = new Date();
+const categorieLabels = getCategorieLabels(lang);
+
+const alleOndernemers = await getCollection(
+  'ondernemers',
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+);
+const nieuwRuw = await Promise.all(
+  alleOndernemers
+    .filter((o) => o.data.nieuw_sinds && vandaag.getTime() - o.data.nieuw_sinds.getTime() <= HALF_JAAR_MS)
+    .map(async (o) => {
+      const foto = o.data.fotos[0] ? await getImage({ src: o.data.fotos[0], width: 360, height: 360 }) : null;
+      return {
+        slug: o.slug,
+        naam: o.data.naam,
+        categorie: o.data.categorie,
+        categorieLabel: categorieLabels[o.data.categorie] ?? o.data.categorie,
+        foto: foto?.src ?? null,
+        nieuwSinds: o.data.nieuw_sinds,
+      };
+    })
+);
+const nieuw = nieuwRuw.sort((a, b) => b.nieuwSinds!.valueOf() - a.nieuwSinds!.valueOf());
+
+const TEKST: Record<Lang, { eyebrow: string; titel: string }> = {
+  nl: { eyebrow: 'Vers binnen', titel: 'Nieuw op de Rozengracht' },
+  en: { eyebrow: 'Fresh faces', titel: 'New on the Rozengracht' },
+};
+const t = TEKST[lang];
+---
+{nieuw.length > 0 && (
+  <div class="nieuw-op-de-rozengracht">
+    <div class="sub-head">
+      <div>
+        <span class="eyebrow">{t.eyebrow}</span>
+        <h3>{t.titel}</h3>
+      </div>
+    </div>
+    <div class="strip-scroll">
+      {nieuw.map((o) => (
+        <a class="maker-card" href={getRelativeLocaleUrl(lang, `ondernemers/${o.slug}`)}>
+          <div class="photo-wrap">
+            {o.foto ? (
+              <img class="photo" src={o.foto} alt={o.naam} width="360" height="360" loading="lazy" />
+            ) : (
+              <FotoFallback categorie={o.categorie} />
+            )}
+          </div>
+          <h4>{o.naam}</h4>
+          <div class="role">{o.categorieLabel}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .sub-head { margin-bottom: 26px; }
+  .sub-head h3 { font-size: 1.3rem; margin: 0; }
+  .eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rose);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  /* Geen reveal-on-scroll op deze kaartjes: het zijn horizontaal scrollende
+     items (overflow-x: auto), en de IntersectionObserver rekent horizontale
+     clipping door een scrollbare ancestor mee — kaartjes buiten de
+     horizontale scrollpositie kruisen het viewport dus nooit. */
+  .strip-scroll { display: flex; gap: 24px; overflow-x: auto; padding: 4px 4px 14px; scrollbar-width: thin; }
+  .maker-card { flex: 0 0 180px; text-decoration: none; color: inherit; display: block; }
+  .maker-card .photo-wrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .maker-card .photo { width: 100%; height: 100%; border-radius: 0; object-fit: cover; }
+  .maker-card .photo-wrap :global(.foto-fallback) { background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)); color: #fbfaf7; }
+  .maker-card h4 { font-size: 0.98rem; font-weight: 600; font-family: var(--font-heading); color: #fbfaf7; margin-bottom: 2px; }
+  .maker-card .role { font-size: 0.78rem; color: rgba(251, 250, 247, 0.62); margin-bottom: 8px; }
+</style>

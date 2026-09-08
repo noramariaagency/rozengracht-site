@@ -1,0 +1,60 @@
+---
+// Compacte highlight-balk bovenaan de homepage: alleen de headline over
+// bereikbaarheid, doorklikkend naar de bereikbaarheidspagina. Bewust geen
+// ticker met andere onderwerpen erdoorheen, en bewust niet dominant (punt 4
+// uit de briefing: "compact, niet dominant").
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Lang } from '../../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const TEKST: Record<Lang, { label: string; tekst: string; link: string }> = {
+  nl: {
+    label: 'Bereikbaarheid',
+    tekst: 'De Rozengracht is voor auto en fiets goed bereikbaar, met parkeergelegenheid in de directe omgeving.',
+    link: 'Bekijk bereikbaarheid',
+  },
+  en: {
+    label: 'Getting there',
+    tekst: 'The Rozengracht is easy to reach by car and bike, with parking nearby.',
+    link: 'Getting there',
+  },
+};
+const t = TEKST[lang];
+---
+<div class="banner">
+  <div class="container banner-inner">
+    <span class="tag-pill">{t.label}</span>
+    <span>{t.tekst}</span>
+    <a href={getRelativeLocaleUrl(lang, 'bereikbaarheid')}>{t.link} &rarr;</a>
+  </div>
+</div>
+
+<style>
+  .banner {
+    background: var(--ochre);
+    color: #fff7ee;
+    font-size: 0.9rem;
+  }
+  .banner-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 11px 0;
+  }
+  .tag-pill {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 3px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .banner-inner a { text-decoration: underline; text-underline-offset: 3px; font-weight: 500; color: #fff7ee; flex-shrink: 0; }
+</style>
