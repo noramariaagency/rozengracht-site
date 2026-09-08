@@ -40,7 +40,7 @@ export async function resolveFoto(
 }
 
 export type FeedItem = {
-  kind: 'nieuws' | 'verhaal' | 'event' | 'ondernemer';
+  kind: 'nieuws' | 'verhaal' | 'event';
   kindLabel: string;
   accent: 'rose' | 'ochre' | 'green';
   href: string;
@@ -50,6 +50,11 @@ export type FeedItem = {
   dateLabel: string | null;
   dateBlock: { day: string; month: string } | null;
   sortValue: number;
+  // Lengte van de volledige (ongeknipte) tekst — gebruikt door de blog-wall
+  // op de homepage om kaartformaat te bepalen (meer tekst, groter kaartje),
+  // los van `excerpt` die altijd op ~150 tekens is afgekapt en dus geen
+  // bruikbaar signaal meer geeft over hoe lang het artikel echt is.
+  rawLength: number;
   // Optioneel, al geoptimaliseerd via getImage() door de aanroepende pagina
   // (image-verwerking is async, dus dat gebeurt niet hier). Foto is bewust
   // optioneel op alle drie de soorten — zonder foto valt ContentCard terug
@@ -57,12 +62,9 @@ export type FeedItem = {
   image: { src: string; width: number; height: number; focus: string | null } | null;
 };
 
-const KIND_LABELS: Record<
-  Lang,
-  { nieuws: string; bereikbaarheid: string; verhaal: string; event: string; ondernemer: string }
-> = {
-  nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event', ondernemer: 'Ondernemer' },
-  en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event', ondernemer: 'Business' },
+const KIND_LABELS: Record<Lang, { nieuws: string; bereikbaarheid: string; verhaal: string; event: string }> = {
+  nl: { nieuws: 'Nieuws', bereikbaarheid: 'Bereikbaarheid', verhaal: 'Verhaal', event: 'Event' },
+  en: { nieuws: 'News', bereikbaarheid: 'Getting there', verhaal: 'Story', event: 'Event' },
 };
 
 // timeZone: 'Europe/Amsterdam' expliciet meegeven bij elke datumweergave in
@@ -107,6 +109,7 @@ export function nieuwsToItem(
     // publicatiedatum als kleine tekst (zie ContentCard.astro).
     dateBlock: null,
     sortValue: entry.data.datum.valueOf(),
+    rawLength: (lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl).length,
     image,
   };
 }
@@ -130,29 +133,7 @@ export function verhaalToItem(
     dateLabel: entry.data.periode ?? null,
     dateBlock: null,
     sortValue: 0,
-    image,
-  };
-}
-
-export function ondernemerToItem(
-  entry: CollectionEntry<'ondernemers'>,
-  image: FeedItem['image'] = null,
-  lang: Lang = 'nl'
-): FeedItem {
-  // Voor de "Uitgelicht"-sectie op de homepage: een ondernemer door dezelfde
-  // <ContentCard /> laten renderen als nieuws/verhalen, zodat die sectie een
-  // mix van beide kan tonen zonder een aparte kaart-layout te bouwen.
-  return {
-    kind: 'ondernemer',
-    kindLabel: KIND_LABELS[lang].ondernemer,
-    accent: 'rose',
-    href: getRelativeLocaleUrl(lang, `ondernemers/${entry.slug}/`),
-    title: entry.data.naam,
-    excerpt: eersteAlinea(lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl, 150),
-    locationLabel: entry.data.huisnummer ? `Rozengracht ${entry.data.huisnummer}` : null,
-    dateLabel: null,
-    dateBlock: null,
-    sortValue: 0,
+    rawLength: (lang === 'en' ? entry.data.tekst_en : entry.data.tekst_nl).length,
     image,
   };
 }
@@ -178,6 +159,7 @@ export function eventToItem(
     dateLabel: langDateLabel(entry.data.datum, lang),
     dateBlock: dagMaand(entry.data.datum, lang),
     sortValue: entry.data.datum.valueOf(),
+    rawLength: (lang === 'en' ? nieuwsEntry.data.tekst_en : nieuwsEntry.data.tekst_nl).length,
     image,
   };
 }

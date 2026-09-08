@@ -41,19 +41,19 @@ const nieuwRuw = await Promise.all(
 );
 const nieuw = nieuwRuw.sort((a, b) => b.nieuwSinds!.valueOf() - a.nieuwSinds!.valueOf());
 
-const TEKST: Record<Lang, { eyebrow: string; titel: string }> = {
-  nl: { eyebrow: 'Vers binnen', titel: 'Nieuw op de Rozengracht' },
-  en: { eyebrow: 'Fresh faces', titel: 'New on the Rozengracht' },
+// Geen eyebrow-regel erboven: "Nieuw op de Rozengracht" is de letterlijke
+// naam uit de ruwe notities, een uitgevonden eyebrow ("Vers binnen") stond
+// daar niet bij en is geschrapt na feedback dat hij niet uit de notities kwam.
+const TEKST: Record<Lang, { titel: string }> = {
+  nl: { titel: 'Nieuw op de Rozengracht' },
+  en: { titel: 'New on the Rozengracht' },
 };
 const t = TEKST[lang];
 ---
 {nieuw.length > 0 && (
   <div class="nieuw-op-de-rozengracht">
     <div class="sub-head">
-      <div>
-        <span class="eyebrow">{t.eyebrow}</span>
-        <h3>{t.titel}</h3>
-      </div>
+      <h3>{t.titel}</h3>
     </div>
     <div class="strip-scroll">
       {nieuw.map((o) => (
@@ -74,17 +74,14 @@ const t = TEKST[lang];
 )}
 
 <style>
+  /* color hier expliciet zetten: dit component staat op het donkergroene
+     deel, maar heeft (anders dan de pagina zelf) geen eigen ".ontdek-zone
+     h3"-regel om op te liften — Astro's scoped styles laten paginastijlen
+     nooit binnen een child-component doorwerken. Zonder deze regel viel de
+     kop terug op het globale, bijna zwarte h1/h2/h3-kleur uit global.css,
+     onleesbaar op donkergroen. */
   .sub-head { margin-bottom: 26px; }
-  .sub-head h3 { font-size: 1.3rem; margin: 0; }
-  .eyebrow {
-    display: block;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--rose);
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
+  .sub-head h3 { font-size: 1.3rem; margin: 0; color: #fbfaf7; }
 
   /* Geen reveal-on-scroll op deze kaartjes: het zijn horizontaal scrollende
      items (overflow-x: auto), en de IntersectionObserver rekent horizontale

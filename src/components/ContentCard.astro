@@ -9,9 +9,14 @@ import type { FeedItem } from '../lib/items';
 interface Props {
   item: FeedItem;
   variant?: 'feature' | 'compact';
+  // Alleen voor variant="feature": kaartformaat voor de blog-wall op de
+  // homepage (zie home/BlogWall.astro), waar artikelen bewust een
+  // wisselend formaat krijgen (meer tekst -> groter kaartje) i.p.v. een
+  // uniform grid. Compact blijft altijd op één vast formaat.
+  size?: 'lg' | 'md' | 'sm';
 }
 
-const { item, variant = 'compact' } = Astro.props;
+const { item, variant = 'compact', size = 'md' } = Astro.props;
 
 // Icoon voor het kleurvlak wanneer er (nog) geen foto is — één per soort,
 // zodat een fotoloze kaart nog steeds als "af" leest i.p.v. als een gat dat
@@ -20,11 +25,10 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
   nieuws: '<rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18" /><path d="M8 13h4" /><path d="M8 16.5h8" />',
   verhaal: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />',
   event: '<rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4" /><path d="M16 3v4" /><path d="M3 10h18" />',
-  ondernemer: '<path d="M3 21h18" /><path d="M5 21V8l7-4 7 4v13" /><path d="M9 21v-6h6v6" />',
 };
 ---
 {variant === 'feature' ? (
-  <a class={`content-card feature accent-${item.accent}`} href={item.href}>
+  <a class={`content-card feature size-${size} accent-${item.accent}`} href={item.href}>
     <div class="foto-vlak">
       {item.image ? (
         <img
@@ -150,6 +154,30 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
   .content-card.feature .excerpt { color: var(--ink-soft); font-size: 0.92rem; margin: 0; }
   .content-card.feature .meta { font-size: 0.78rem; color: var(--ink-soft); margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
   .content-card.feature .meta .loc { font-weight: 600; }
+
+  /* Kaartformaat voor de blog-wall: drie maten, elk met een eigen
+     foto-verhouding en tekstomvang, zodat de wand niet als een uniform grid
+     oogt (zie beethovenstraat.nl). Meer tekst in het artikel -> groter
+     formaat, bepaald door de aanroepende wall-component. */
+  .content-card.feature.size-lg .foto-vlak { aspect-ratio: 16/9; }
+  .content-card.feature.size-lg .foto-overlay h3 { font-size: 1.7rem; }
+  .content-card.feature.size-lg .excerpt { font-size: 1rem; -webkit-line-clamp: 3; }
+  .content-card.feature.size-md .foto-vlak { aspect-ratio: 4/5; }
+  .content-card.feature.size-md .excerpt { -webkit-line-clamp: 3; }
+  .content-card.feature.size-sm .foto-vlak { aspect-ratio: 4/3; }
+  .content-card.feature.size-sm .foto-overlay h3 { font-size: 1.05rem; }
+  .content-card.feature.size-sm .body { padding: 14px 16px 16px; }
+  .content-card.feature.size-sm .excerpt { display: none; }
+  /* Excerpt afkappen op een vast aantal regels i.p.v. de volledige
+     ~150 tekens altijd te tonen: anders bepaalt de tekstlengte de
+     kaarthoogte net zo goed als het opgegeven formaat, en loopt de wand
+     alsnog uit de pas. */
+  .content-card.feature .excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
   /* Compact: rij met datum-blokje, voor lijsten/sub-secties. */
   .content-card.compact { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }

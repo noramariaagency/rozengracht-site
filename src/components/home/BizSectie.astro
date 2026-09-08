@@ -4,7 +4,6 @@
 // topic 03, geen definitieve BIZ-tekst — die schrijft topic 07 (zie het
 // verzoek in CLAIMS.md). De plaatsing (hier, op het groene deel) is wel al
 // definitief.
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Lang } from '../../lib/i18n';
 
 interface Props {
@@ -12,20 +11,22 @@ interface Props {
 }
 const { lang = 'nl' } = Astro.props;
 
-const TEKST: Record<Lang, { eyebrow: string; titel: string; tekst: string; cta: string }> = {
+// Geen link naar een aparte pagina meer: dit moet als een op zichzelf staand,
+// prominent statement lezen (feedback na de eerste versie), geen teaser naar
+// "meer lezen". De tekst hieronder blijft een DRAFT van topic 03, geen
+// definitieve BIZ-tekst — die schrijft topic 07 (zie het verzoek in CLAIMS.md).
+const TEKST: Record<Lang, { eyebrow: string; titel: string; tekst: string }> = {
   nl: {
     eyebrow: 'De ondernemersvereniging',
     titel: 'De BIZ Rozengracht',
     tekst:
       'De Rozengracht heeft een eigen ondernemersvereniging: de BIZ Rozengracht. Ondernemers werken hierin samen aan een schone, veilige en levendige straat, van sfeerverlichting tot gezamenlijke evenementen.',
-    cta: 'Lees meer over de BIZ',
   },
   en: {
     eyebrow: 'The business association',
     titel: 'BIZ Rozengracht',
     tekst:
       'The Rozengracht has its own business association: BIZ Rozengracht. Local businesses work together on a clean, safe and lively street, from festive lighting to shared events.',
-    cta: 'More about the BIZ',
   },
 };
 const t = TEKST[lang];
@@ -35,32 +36,20 @@ const t = TEKST[lang];
   <h2>{t.titel}</h2>
   <!-- DRAFT: definitieve tekst volgt van topic 07, zie CLAIMS.md -->
   <p>{t.tekst}</p>
-  <a class="biz-link" href={getRelativeLocaleUrl(lang, 'over-ons')}>{t.cta} &rarr;</a>
 </div>
 
 <style>
   .sub-section { margin-top: 76px; }
-  .biz-sectie { max-width: 620px; }
+  .biz-sectie { max-width: 760px; }
   .eyebrow {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--rose);
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
-  .biz-sectie h2 { font-size: 1.7rem; margin: 8px 0 16px; color: #fbfaf7; }
-  .biz-sectie p { color: rgba(251, 250, 247, 0.85); }
-  .biz-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #fbfaf7;
-    border-bottom: 1px solid var(--rose);
-    padding-bottom: 2px;
-    text-decoration: none;
-  }
-  .biz-link:hover { color: var(--rose); }
+  .biz-sectie h2 { font-size: 2.6rem; margin: 0 0 20px; color: #fbfaf7; }
+  .biz-sectie p { font-size: 1.2rem; line-height: 1.6; color: rgba(251, 250, 247, 0.88); margin: 0; }
 </style>
