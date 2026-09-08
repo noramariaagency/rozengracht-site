@@ -129,6 +129,14 @@ een groene sectie linksboven op halve breedte met de filters ernaast.
 
 ## Logboek
 
+- **7 sep 2026** — Topic 03, vierde ronde (kleine bijstellingen): de
+  blog-wall en `/lezen/` zijn nu breder dan de standaard leescontainer, via
+  het al bestaande `--max-width-breed` (1440px) uit global.css — dat stond
+  al klaar sinds topic 01 voor precies dit soort magazine-secties, hier
+  voor het eerst gebruikt (geen wijziging aan global.css zelf nodig). De
+  blogkaartjes hebben geen kader en geen ronde hoeken meer: alleen foto +
+  tekst, geen los "doosje" erop (nieuwe `bordered`-prop op ContentCard,
+  standaard nog aan voor ander gebruik zoals de nieuwspagina van topic 04).
 - **7 sep 2026** — Topic 03, derde ronde na feedback van Nora op de tweede
   ronde: de wall stond nog als een grid met wisselend brede vakken (2/3/4
   van de 6 kolommen), waardoor een bereikbaarheid-artikel er soms uitzag als

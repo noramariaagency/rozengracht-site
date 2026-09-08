@@ -54,11 +54,11 @@ const TEKST: Record<Lang, string> = {
   en: 'More articles',
 };
 ---
-<div class="container">
+<div class="container container-breed">
   <div class="blog-wall">
     {wall.map((item) => (
       <div class="wall-item reveal-item">
-        <ContentCard item={item} variant="feature" size={formaat(item)} />
+        <ContentCard item={item} variant="feature" size={formaat(item)} bordered={false} />
       </div>
     ))}
   </div>
@@ -66,6 +66,13 @@ const TEKST: Record<Lang, string> = {
 </div>
 
 <style>
+  /* Breder dan de standaard leescontainer (1180px): dit is geen doorlopende
+     tekst maar een fotogrid, dat mag ademen. --max-width-breed staat al
+     klaar in global.css (topic 01, voor precies dit soort magazine-secties),
+     hier alleen verbruikt. De hogere specificiteit van Astro's scoped-class
+     wint automatisch van .container's eigen max-width. */
+  .container-breed { max-width: var(--max-width-breed); }
+
   /* Echte masonry via CSS columns i.p.v. een grid met wisselende spans: hier
      bepaalt de eigen hoogte van elke kaart (foto-verhouding + tekstlengte)
      waar hij in zijn kolom terechtkomt, precies het ritme van

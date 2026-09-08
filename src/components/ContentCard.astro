@@ -15,9 +15,14 @@ interface Props {
   // hoogte, naar het voorbeeld van beethovenstraat.nl. Compact blijft altijd
   // op één vast formaat.
   size?: 'lg' | 'md' | 'sm';
+  // Alleen voor variant="feature": kader (rand + ronde hoeken) rond de kaart.
+  // Standaard aan; de blog-wall en /lezen/ zetten 'm uit voor een strakkere,
+  // editoriale look zonder kaartjes-in-kaartjes-gevoel (feedback na de
+  // masonry-redesign).
+  bordered?: boolean;
 }
 
-const { item, variant = 'compact', size = 'md' } = Astro.props;
+const { item, variant = 'compact', size = 'md', bordered = true } = Astro.props;
 
 // Icoon voor het kleurvlak wanneer er (nog) geen foto is — één per soort,
 // zodat een fotoloze kaart nog steeds als "af" leest i.p.v. als een gat dat
@@ -29,7 +34,7 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
 };
 ---
 {variant === 'feature' ? (
-  <a class={`content-card feature size-${size} accent-${item.accent}`} href={item.href}>
+  <a class={`content-card feature size-${size} accent-${item.accent}${bordered ? '' : ' geen-kader'}`} href={item.href}>
     <div class="foto-vlak">
       {item.image ? (
         <img
@@ -111,6 +116,17 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
     border: 1px solid var(--line);
     border-radius: 16px;
     overflow: hidden;
+  }
+  /* Geen kader: alleen foto + tekst, geen rand of ronding — de kaart wordt
+     onderdeel van de pagina-achtergrond in plaats van een los "doosje" erop. */
+  .content-card.feature.geen-kader {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+  }
+  .content-card.feature.geen-kader .foto-vlak,
+  .content-card.feature.geen-kader .foto-vlak img {
+    border-radius: 0;
   }
   .content-card.feature .foto-vlak {
     position: relative;
