@@ -41,31 +41,35 @@ const TEKST = {
   bereikbaarheid: 'Getting there',
 };
 ---
-<BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang}>
-  <h1>{TEKST.titel}</h1>
-  <p class="intro">{TEKST.intro}</p>
+<BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang} fullBleed>
+  <div class="container kop-en-filters">
+    <h1>{TEKST.titel}</h1>
+    <p class="intro">{TEKST.intro}</p>
 
-  <div class="filters" data-filters role="group" aria-label="Filter by category">
-    <button type="button" class="filter-btn is-active" data-thema="alle" aria-pressed="true">{TEKST.alle}</button>
-    <button type="button" class="filter-btn" data-thema="bereikbaarheid" aria-pressed="false">{TEKST.bereikbaarheid}</button>
-    {groepen.map((g) => (
-      <div class="filter-groep">
-        <span class="filter-groep-label">{g.groepLabel}</span>
-        <div class="filter-groep-knoppen">
-          {g.categorieen.map(([key, label]) => (
-            <button type="button" class="filter-btn" data-thema={key} aria-pressed="false">{label}</button>
-          ))}
+    <div class="filters" data-filters role="group" aria-label="Filter by category">
+      <button type="button" class="filter-btn is-active" data-thema="alle" aria-pressed="true">{TEKST.alle}</button>
+      <button type="button" class="filter-btn" data-thema="bereikbaarheid" aria-pressed="false">{TEKST.bereikbaarheid}</button>
+      {groepen.map((g) => (
+        <div class="filter-groep">
+          <span class="filter-groep-label">{g.groepLabel}</span>
+          <div class="filter-groep-knoppen">
+            {g.categorieen.map(([key, label]) => (
+              <button type="button" class="filter-btn" data-thema={key} aria-pressed="false">{label}</button>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 
-  <div class="wall" data-wall>
-    {wall.map(({ item, themas }) => (
-      <div class="wall-item" data-themas={themas.join(' ')}>
-        <ContentCard item={item} variant="feature" size={formaat(item)} />
-      </div>
-    ))}
+  <div class="container container-breed">
+    <div class="wall" data-wall>
+      {wall.map(({ item, themas }) => (
+        <div class="wall-item" data-themas={themas.join(' ')}>
+          <ContentCard item={item} variant="feature" size={formaat(item)} bordered={false} />
+        </div>
+      ))}
+    </div>
   </div>
 </BaseLayout>
 
@@ -90,6 +94,9 @@ const TEKST = {
 </script>
 
 <style>
+  .kop-en-filters { padding-top: 2.5rem; }
+  .container-breed { max-width: var(--max-width-breed); padding-bottom: 2.5rem; }
+
   .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
 
   .filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem var(--space-xs); margin: var(--space-lg) 0; }
