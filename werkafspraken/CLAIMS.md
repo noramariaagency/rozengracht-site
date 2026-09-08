@@ -11,7 +11,7 @@ Cléo) → `klaar` (gemerged op main).
 |---|---|---|---|---|---|
 | 01 | Fundament: huisstijl, navigatie en datamodel | `topic/01-fundament` | klaar | 7 sep 2026 | **moet als eerste, alleen** · PR #1, categorieschema (punt 4) bewust nog niet gedaan |
 | 02 | Categorieën en labels | `topic/02-categorieen` | klaar | 7 sep 2026 | 15 categorieen in 3 groepen, doorgevoerd op main |
-| 03 | Homepage als magazine | `topic/03-homepage-magazine` | bezig | 7 sep 2026 | rebase op nieuwe categorieen en op de "oplever i.p.v. PR"-werkwijze |
+| 03 | Homepage als magazine | `topic/03-homepage-magazine` | klaar | 7 sep 2026 | opgeleverd via oplever, geen PR meer |
 | 04 | Blog, artikelen en events | `topic/04-blog-en-artikelen` | kan starten | – | |
 | 05 | Ondernemersoverzicht en kaart | `topic/05-ondernemers-en-kaart` | kan starten | – | |
 | 06 | Bereikbaarheid | `topic/06-bereikbaarheid` | kan starten | – | |
@@ -91,6 +91,12 @@ een groene sectie linksboven op halve breedte met de filters ernaast.
 
 ## Logboek
 
+- **7 sep 2026** — Topic 03 opgeleverd op main via `oplever` (geen PR meer,
+  zie de nieuwe werkwijze). Onderweg gerebaset op de 15-categorieen-omzetting
+  van topic 02: de homepage-filterchips in de kaart-CTA stonden nog plat (15
+  op een rij), nu net als op /ondernemers per groep met een kopje erboven.
+  Ook een `&mdash;`-entity in de event-highlight vervangen door `&middot;`,
+  zelfde fix als eerder al op de oude homepage was toegepast.
 - **7 sep 2026** — Categorieen doorgevoerd en zichtbaar op de site, plus
   kaartfixes na feedback van Nora. Tattoo blijft onder Haar, huid & nagels:
   goedgekeurd.
