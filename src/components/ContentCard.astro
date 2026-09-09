@@ -126,6 +126,16 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
     border: none;
     border-radius: 14px;
     overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 160ms ease, transform 160ms ease;
+  }
+  .content-card.feature.geen-kader:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .content-card.feature.geen-kader { transition: none; }
+    .content-card.feature.geen-kader:hover { transform: none; }
   }
   .content-card.feature .foto-vlak {
     position: relative;

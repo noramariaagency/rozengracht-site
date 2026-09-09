@@ -22,9 +22,17 @@
   /* Iets frisser/witter dan de originele #f3f6f1 uit de brief, op
      verzoek — nog altijd een fractie warm i.p.v. klinisch wit, zodat het
      bij de rest van de (warme) huisstijl blijft passen. */
-  --cream: #fafbf8;
+  /* De pagina-achtergrond was bijna wit (#fafbf8), waardoor witte kaartjes
+     erop verdwenen: geen zichtbaar kaartje meer, alleen tekst op een vlak.
+     Nu duidelijk warmer en dieper, zodat een wit kaartje eruit springt zonder
+     dat er een randje om hoeft. Vergelijkbaar met wat beethovenstraat.nl doet
+     met een lichte ondergrond en witte kaarten erop. */
+  --cream: #f1ece2;
   --cream-card: #ffffff;
   --line: #e3dbcf;
+  /* Zachte schaduw voor kaarten: geeft ze diepte zonder een lijn eromheen. */
+  --card-shadow: 0 1px 2px rgba(20, 52, 42, 0.05), 0 8px 20px -6px rgba(20, 52, 42, 0.12);
+  --card-shadow-hover: 0 2px 4px rgba(20, 52, 42, 0.07), 0 14px 30px -8px rgba(20, 52, 42, 0.18);
   --ink: #20302a;
   --ink-soft: #5b6b63;
   --rose-tint: #f4e6e2; /* lichte afleiding van --rose, voor pil-achtergronden (tags/badges) */
@@ -53,14 +61,14 @@
      ontwikkelen) + Public Sans (de overheids-/publieke-sectorfont van USWDS)
      is een minder voor de hand liggend, maar voor een nieuws-/achtergronden-
      site juist heel toepasselijk duo. */
-  --font-body: 'Public Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'Public Sans Variable', 'Public Sans', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Newsreader Variable', 'Newsreader', Georgia, 'Times New Roman', serif;
 
   /* Citaat-lettertype: apart van kop (Newsreader) en body (Public Sans),
      specifiek voor ondernemer-quotes. Petrona: zacht, rond, warm — sluit aan
      bij de sage/roze huisstijl zonder zelf op te vallen naast Newsreader.
      Gekozen door Cléo op 7 sep 2026 (uit twee voorgelegde varianten). */
-  --font-quote: 'Petrona', Georgia, 'Times New Roman', serif;
+  --font-quote: 'Petrona Variable', 'Petrona', Georgia, 'Times New Roman', serif;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
