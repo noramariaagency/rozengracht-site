@@ -1,0 +1,118 @@
+---
+// Cookiemelding. De site zet zelf geen trackingcookies en heeft geen
+// statistieken: het enige dat we opslaan is de keuze die je hier maakt, in
+// localStorage, in je eigen browser. Waar het wel om gaat zijn de externe
+// onderdelen die pas laden als je ja zegt: de Google-kaart op de
+// ondernemers- en bereikbaarheidspagina, en de Instagram-feed (via Behold)
+// op de homepage. Zonder toestemming worden die niet opgevraagd, dus gaat er
+// ook geen IP-adres van de bezoeker naar die partijen.
+//
+// Bewust geen "alles accepteren" als enige knop: weigeren moet even makkelijk
+// zijn als accepteren, anders is de keuze geen keuze.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = 'nl' } = Astro.props;
+
+const TEKST = {
+  nl: {
+    titel: 'Externe onderdelen',
+    tekst:
+      'Deze site gebruikt geen trackingcookies en houdt geen statistieken bij. Wel staan er onderdelen op van anderen: de kaart van Google en de Instagram-feed. Die laden we alleen als je dat goed vindt, want daarbij gaat je IP-adres naar die partijen.',
+    meer: 'Meer hierover',
+    ja: 'Externe onderdelen toestaan',
+    nee: 'Liever niet',
+  },
+  en: {
+    titel: 'Third-party content',
+    tekst:
+      'This site uses no tracking cookies and keeps no statistics. It does include content from others: the Google map and the Instagram feed. We only load those if you agree, because doing so sends your IP address to those companies.',
+    meer: 'More about this',
+    ja: 'Allow third-party content',
+    nee: 'No thanks',
+  },
+} as const;
+const t = TEKST[lang];
+const cookiesHref = getRelativeLocaleUrl(lang, 'cookies/');
+---
+<div id="cookiebanner" class="cookiebanner" hidden role="dialog" aria-modal="false" aria-labelledby="cookiebanner-titel">
+  <div class="cb-inner">
+    <div class="cb-tekst">
+      <strong id="cookiebanner-titel">{t.titel}</strong>
+      <p>{t.tekst} <a href={cookiesHref}>{t.meer}</a>.</p>
+    </div>
+    <div class="cb-knoppen">
+      <button type="button" class="cb-btn cb-btn-nee" data-consent="noodzakelijk">{t.nee}</button>
+      <button type="button" class="cb-btn cb-btn-ja" data-consent="alles">{t.ja}</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('cookiebanner');
+    if (!banner || !window.rgCookieConsent) return;
+    if (!window.rgCookieConsent.get()) banner.hidden = false;
+    banner.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      var keuze = btn.dataset.consent;
+      window.rgCookieConsent.set(keuze);
+      banner.hidden = true;
+      // Componenten die op toestemming wachten (kaarten, Instagram) luisteren
+      // hiernaar en laden zichzelf alsnog, zonder dat de pagina hoeft te
+      // verversen.
+      document.dispatchEvent(new CustomEvent('rg-consent', { detail: keuze }));
+    });
+  })();
+</script>
+
+<style>
+  .cookiebanner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 60;
+    background: var(--green-deep, #14342a);
+    color: #fbfaf7;
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
+  .cb-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    justify-content: space-between;
+  }
+  .cb-tekst { flex: 1 1 420px; min-width: 0; }
+  .cb-tekst strong { display: block; margin-bottom: 4px; }
+  .cb-tekst p { margin: 0; font-size: 0.92rem; line-height: 1.5; color: rgba(251, 250, 247, 0.88); }
+  .cb-tekst a { color: #fbfaf7; text-decoration: underline; }
+  .cb-knoppen { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cb-btn {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    touch-action: manipulation;
+    border: 1px solid rgba(251, 250, 247, 0.5);
+    background: transparent;
+    color: #fbfaf7;
+  }
+  .cb-btn-ja { background: #fbfaf7; color: var(--green-deep, #14342a); border-color: #fbfaf7; }
+  .cb-btn:hover { opacity: 0.88; }
+  @media (max-width: 560px) {
+    .cb-knoppen { width: 100%; }
+    .cb-btn { flex: 1 1 auto; text-align: center; }
+  }
+</style>

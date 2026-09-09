@@ -2,6 +2,7 @@
 // Live Instagram-feed via Behold (feed b5MxJrsKqRkOGMp7FFo0) — de widget
 // zelf (indeling, aantal kolommen, etc.) staat ingesteld in het
 // Behold-dashboard.
+import ExternToestemming from '../ExternToestemming.astro';
 import type { Lang } from '../../lib/i18n';
 
 interface Props {
@@ -15,7 +16,9 @@ const TEKST: Record<Lang, string> = {
 };
 const t = TEKST[lang];
 ---
-<div class="insta-feed">
+<ExternToestemming />
+
+<div class="insta-feed" id="insta-feed">
   <a class="insta-volg-link" href="https://www.instagram.com/derozengracht.amsterdam/" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
     {t}
@@ -23,15 +26,21 @@ const t = TEKST[lang];
   <behold-widget feed-id="b5MxJrsKqRkOGMp7FFo0"></behold-widget>
 </div>
 
-<script type="module" is:inline>
-  // Los script i.p.v. een <script src> tag, zodat het ook in een
-  // file://-preview (dubbelklik-openen) zou laden i.p.v. stil te falen.
-  (() => {
-    const d = document, s = d.createElement('script');
-    s.type = 'module';
-    s.src = 'https://w.behold.so/widget.js';
-    d.head.append(s);
-  })();
+<script is:inline>
+  // De feed loopt via Behold (w.behold.so), dat de Instagram-berichten
+  // ophaalt en als widget aanbiedt. Pas laden na toestemming: anders gaat het
+  // IP-adres van de bezoeker al naar Behold voordat iemand iets kon kiezen.
+  window.rgExternLaden({
+    houderId: 'insta-feed',
+    uitleg: 'De Instagram-berichten komen via Behold. Als je ze laadt, gaat je IP-adres daarheen.',
+    knop: 'Instagram laden',
+    laad: function () {
+      var s = document.createElement('script');
+      s.type = 'module';
+      s.src = 'https://w.behold.so/widget.js';
+      document.head.append(s);
+    },
+  });
 </script>
 
 <style>

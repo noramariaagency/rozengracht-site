@@ -1,9 +1,95 @@
 ---
+// English version of the cookie policy. Same facts as the Dutch page.
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const privacy = getRelativeLocaleUrl('en', 'privacy/');
+const bijgewerkt = '9 September 2026';
 ---
-<BaseLayout title="Cookies" lang="en">
-  <h1>Cookie policy</h1>
-  <p style="color: var(--color-muted); max-width: 640px;">
-    [PLACEHOLDER: legal text still to be written in phase 4.]
-  </p>
+<BaseLayout title="Cookie policy" description="Which cookies this site uses, and which it does not." lang="en">
+  <div class="tekstpagina">
+    <h1>Cookie policy</h1>
+    <p class="lead">
+      This site sets no cookies of its own and keeps no statistics. The only
+      thing we store is the choice you make in the notice at the bottom.
+    </p>
+
+    <h2>What we store</h2>
+    <table>
+      <thead>
+        <tr><th>Name</th><th>What it does</th><th>How long</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>rg-cookie-consent</code></td>
+          <td>
+            Remembers whether you want third-party content (the map, the
+            Instagram feed) to load, so we do not ask every time.
+          </td>
+          <td>Until you remove it yourself</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Strictly speaking this is not a cookie but something stored in your own
+      browser (localStorage). In practice it comes to the same thing: it sits on
+      your device and we cannot reach it.
+    </p>
+
+    <h2>Third-party content that may set cookies</h2>
+    <p>
+      If you say yes to third-party content, those companies may set cookies of
+      their own. We have no control over that and cannot see into it.
+    </p>
+    <ul>
+      <li><strong>Google Maps</strong> for the map on the businesses page and the getting there page.</li>
+      <li>
+        <strong>Behold</strong> for the Instagram posts on the home page, and
+        with that possibly <strong>Meta</strong>, the company behind Instagram.
+      </li>
+    </ul>
+    <p>
+      Without your yes this does not happen: that content is simply not
+      requested. See the <a href={privacy}>privacy statement</a> for what does
+      and does not happen in that case.
+    </p>
+
+    <h2>Changing your mind</h2>
+    <p>
+      Your choice sits in your own browser, so that is where you remove it. In
+      most browsers this is under settings, at "delete site data" or "clear
+      browsing data" for this site. After that the notice appears again and you
+      can choose differently.
+    </p>
+
+    <h2>Not yet in order</h2>
+    <p>
+      The site's fonts currently come from Google Fonts, and those load before
+      you can choose anything. That is not how it should be and it will change:
+      the fonts will move to our own server. It is stated here because
+      mentioning it is more honest than pretending nothing goes to Google.
+    </p>
+
+    <p class="bijgewerkt">Last updated: {bijgewerkt}.</p>
+  </div>
 </BaseLayout>
+
+<style>
+  .tekstpagina { max-width: 680px; }
+  .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
+  .tekstpagina h2 { margin-top: 2.2rem; }
+  .tekstpagina ul { padding-left: 1.2rem; }
+  .tekstpagina li { margin-bottom: 0.5rem; line-height: 1.6; }
+  .tekstpagina p { line-height: 1.65; }
+  .tekstpagina table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.94rem; }
+  .tekstpagina th, .tekstpagina td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--color-border); }
+  .tekstpagina th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+  .tekstpagina code { font-size: 0.9em; background: var(--cream-card); padding: 2px 6px; border-radius: 5px; }
+  .bijgewerkt { margin-top: 2.5rem; font-size: 0.9rem; color: var(--color-muted); }
+  @media (max-width: 560px) {
+    .tekstpagina table, .tekstpagina thead, .tekstpagina tbody, .tekstpagina tr, .tekstpagina th, .tekstpagina td { display: block; }
+    .tekstpagina thead { display: none; }
+    .tekstpagina td { border: none; padding: 4px 0; }
+    .tekstpagina tr { border-bottom: 1px solid var(--color-border); padding-bottom: 12px; margin-bottom: 12px; }
+  }
+</style>

@@ -1,9 +1,123 @@
 ---
+// Feitelijke privacyverklaring: beschrijft precies wat deze site doet en niet
+// meer dan dat. Geen overgenomen standaardtekst met bepalingen die hier niet
+// van toepassing zijn, want dan staat er iets op de site dat niet klopt.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const cookies = getRelativeLocaleUrl('nl', 'cookies/');
+const contact = getRelativeLocaleUrl('nl', 'contact/');
+const bijgewerkt = '9 september 2026';
 ---
-<BaseLayout title="Privacy" lang="nl">
-  <h1>Privacyverklaring</h1>
-  <p style="color: var(--color-muted); max-width: 640px;">
-    [PLACEHOLDER: juridische tekst nog te schrijven in fase 4.]
-  </p>
+<BaseLayout title="Privacyverklaring" description="Wat deze site wel en niet met je gegevens doet." lang="nl">
+  <div class="tekstpagina">
+    <h1>Privacyverklaring</h1>
+    <p class="lead">
+      Kort gezegd: deze site verzamelt zelf niets over je. Geen account, geen
+      formulier, geen statistieken, geen advertenties. Hieronder staat precies
+      wat er wel gebeurt.
+    </p>
+
+    <h2>Wie zijn wij</h2>
+    <p>
+      Deze site is van BIZ Ondernemersvereniging Rozengracht in Amsterdam. Heb
+      je een vraag over deze verklaring of over je gegevens, mail dan naar
+      <a href="mailto:info@derozengracht.com">info@derozengracht.com</a>. Zie
+      ook de <a href={contact}>contactpagina</a>.
+    </p>
+
+    <h2>Wat we niet doen</h2>
+    <ul>
+      <li>Geen bezoekersstatistieken. Er staat geen Google Analytics of een andere meetdienst op de site.</li>
+      <li>Geen advertenties en geen profielen van bezoekers.</li>
+      <li>Geen contactformulier, dus ook geen formuliergegevens die ergens blijven staan.</li>
+      <li>Geen nieuwsbrief en geen mailinglijst.</li>
+      <li>Geen inloggen of accounts.</li>
+    </ul>
+
+    <h2>Wat er wel gebeurt</h2>
+    <h3>Onderdelen van anderen</h3>
+    <p>
+      Op sommige pagina's staan onderdelen die van een ander bedrijf komen. Zo
+      een onderdeel kan niet laden zonder je IP-adres te zien, want dat is hoe
+      internet werkt. Daarom laden we ze niet zomaar: je krijgt eerst een vlak
+      met een knop, en pas als jij die aanzet gaat er iets naar die partij.
+      Dat geldt voor:
+    </p>
+    <ul>
+      <li>
+        <strong>De kaart van Google</strong> op de ondernemerspagina en de
+        bereikbaarheidspagina. Laad je die, dan gaan je IP-adres en gegevens
+        over je browser naar Google, en kan Google cookies plaatsen. Google is
+        een Amerikaans bedrijf.
+      </li>
+      <li>
+        <strong>De Instagram-berichten</strong> op de homepage. Die lopen via
+        Behold, dat de berichten van ons Instagram-account ophaalt en als
+        widget aanbiedt. Laad je die, dan gaan je IP-adres en browsergegevens
+        naar Behold en mogelijk naar Meta, het bedrijf achter Instagram.
+      </li>
+    </ul>
+    <p>
+      Zeg je nee, of kies je niets, dan wordt er niets van die partijen
+      opgevraagd. Wat je wel te zien krijgt: een adres, een routebeschrijving
+      in tekst, en een link naar ons Instagram-account die je zelf kunt
+      aanklikken.
+    </p>
+
+    <h3>Lettertypen</h3>
+    <p>
+      De lettertypen van de site komen op dit moment van Google Fonts. Dat
+      betekent dat je IP-adres bij het openen van een pagina naar Google gaat,
+      voordat je iets kunt kiezen. Dat willen we niet zo houden: de bedoeling
+      is de lettertypen op onze eigen server te zetten, zodat er niets meer
+      naar Google gaat. Zolang dat nog niet is gebeurd, staat het hier, want
+      het is eerlijker om het te melden dan het weg te laten.
+    </p>
+
+    <h3>De keuze die we onthouden</h3>
+    <p>
+      Kies je in de melding onderaan of externe onderdelen mogen laden, dan
+      slaan we die keuze op in je eigen browser, zodat we het niet elke keer
+      opnieuw vragen. Dat blijft op je eigen apparaat en komt niet bij ons
+      terecht. Zie het <a href={cookies}>cookiebeleid</a> voor wat er precies
+      wordt opgeslagen en hoe je het weghaalt.
+    </p>
+
+    <h3>De site zelf</h3>
+    <p>
+      De site staat op GitHub Pages en bestaat uit vaste pagina's zonder
+      database. Zoals elke webserver ziet die server bij het opvragen van een
+      pagina wel je IP-adres. GitHub is een Amerikaans bedrijf en onderdeel van
+      Microsoft.
+    </p>
+
+    <h2>Je rechten</h2>
+    <p>
+      Omdat we zelf geen gegevens over bezoekers bewaren, is er bij ons ook
+      niets van je op te vragen, te wijzigen of te laten verwijderen. Ben je
+      ondernemer aan de Rozengracht en staat er informatie over jouw zaak op de
+      site die je aangepast of weggehaald wil hebben, mail dan naar
+      <a href="mailto:info@derozengracht.com">info@derozengracht.com</a>. Wil
+      je weten wat Google of Meta met je gegevens doen, dan staat dat in hun
+      eigen privacyverklaring.
+    </p>
+    <p>
+      Kom je er met ons niet uit, dan kun je een klacht indienen bij de
+      Autoriteit Persoonsgegevens.
+    </p>
+
+    <p class="bijgewerkt">Laatst bijgewerkt: {bijgewerkt}.</p>
+  </div>
 </BaseLayout>
+
+<style>
+  .tekstpagina { max-width: 680px; }
+  .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
+  .tekstpagina h2 { margin-top: 2.2rem; }
+  .tekstpagina h3 { margin-top: 1.6rem; font-size: 1.05rem; }
+  .tekstpagina ul { padding-left: 1.2rem; }
+  .tekstpagina li { margin-bottom: 0.5rem; line-height: 1.6; }
+  .tekstpagina p { line-height: 1.65; }
+  .bijgewerkt { margin-top: 2.5rem; font-size: 0.9rem; color: var(--color-muted); }
+</style>
