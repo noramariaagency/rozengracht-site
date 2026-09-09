@@ -5,23 +5,40 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ContentCard from '../../../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
-import { nieuwsToItem, themasVoorOndernemer, resolveFoto } from '../../../lib/items';
+import { nieuwsToItem, verhaalToItem, themasVoorOndernemer, resolveFoto } from '../../../lib/items';
 import { categorieenPerGroep } from '../../../lib/categorieen';
 import type { FeedItem } from '../../../lib/items';
 import type { Lang } from '../../../lib/i18n';
 
 const lang: Lang = 'en';
 
-const alleNieuwsRuw = (await getCollection('nieuws')).sort(
-  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
-);
+// Nieuws en gepubliceerde historie-verhalen door elkaar, op datum. Een
+// verhaal zonder `gepubliceerd` blijft hier weg en is alleen via Historie te
+// vinden; we gokken geen plek in de tijdlijn.
+const bronnen: { datum: Date; soort: 'nieuws' | 'verhaal'; entry: any }[] = [
+  ...(await getCollection('nieuws')).map((entry) => ({
+    datum: entry.data.datum,
+    soort: 'nieuws' as const,
+    entry,
+  })),
+  ...(await getCollection('verhalen'))
+    .filter((entry) => entry.data.gepubliceerd)
+    .map((entry) => ({ datum: entry.data.gepubliceerd!, soort: 'verhaal' as const, entry })),
+];
+bronnen.sort((a, b) => b.datum.valueOf() - a.datum.valueOf());
+
 const wall = await Promise.all(
-  alleNieuwsRuw.map(async (n) => {
-    const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
-    const item = nieuwsToItem(n, ondernemer, foto, lang);
+  bronnen.map(async (bron) => {
+    const data = bron.entry.data;
+    const ondernemer = data.gerelateerde_ondernemer ? await getEntry(data.gerelateerde_ondernemer) : null;
+    const foto = await resolveFoto(data.foto, 640, data.fotoFocus);
+    const item =
+      bron.soort === 'nieuws'
+        ? nieuwsToItem(bron.entry, ondernemer, foto, lang)
+        : verhaalToItem(bron.entry, ondernemer, foto, lang);
     const themas = themasVoorOndernemer(ondernemer);
-    if (n.data.categorie === 'bereikbaarheid') themas.push('bereikbaarheid');
+    if (bron.soort === 'nieuws' && data.categorie === 'bereikbaarheid') themas.push('bereikbaarheid');
+    if (bron.soort === 'verhaal') themas.push('historie');
     return { item, themas };
   })
 );

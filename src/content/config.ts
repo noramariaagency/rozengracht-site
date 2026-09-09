@@ -170,7 +170,15 @@ const verhalen = defineCollection({
       locatie: z.string().optional(),
       // Korte periode-aanduiding (bv. "1658–1669", "1913–nu") — geeft het
       // verhalenoverzicht een tijdlijn-achtige structuur i.p.v. een kale grid.
+      // Dit is de HISTORISCHE periode waar het verhaal over gaat, niet de
+      // datum waarop wij het publiceerden.
       periode: z.string().optional(),
+      // Wanneer wij dit verhaal publiceerden. Optioneel, en dat is de kern
+      // van de afspraak: heeft een verhaal deze datum, dan staat het gewoon
+      // tussen de artikelen op de homepage en op /lezen/, op die datum.
+      // Heeft het hem niet, dan blijft het alleen via Historie te vinden en
+      // gokken we geen plek in de tijdlijn.
+      gepubliceerd: z.coerce.date().optional(),
       foto: image().optional(),
       // Focuspunt voor de uitgesneden kaartfoto (object-position), bv.
       // "center 80%" om meer van de onderkant te tonen — alleen nodig als de

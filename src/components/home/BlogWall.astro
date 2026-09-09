@@ -5,10 +5,10 @@
 // kolom voor bereikbaarheid-artikelen: alles staat gewoon tussen elkaar in
 // de wand, op volgorde van publicatie.
 //
-// Historie-verhalen staan er nu bewust NIET in: die hebben geen
-// publicatiedatum in het schema (verzoek aan topic 01 staat in CLAIMS.md).
-// Zodra een verhaal die datum heeft, hoort het hier gewoon tussen te staan
-// op die datum — tot die tijd liever leeg dan een geraden volgorde.
+// Historie-verhalen lopen mee zodra ze een publicatiedatum hebben (het veld
+// `gepubliceerd`): dan staan ze gewoon tussen de artikelen op die datum.
+// Heeft een verhaal die datum niet, dan blijft het hier weg en is het via
+// Historie in het menu te vinden. We gokken geen plek in de tijdlijn.
 //
 // Layout: CSS columns (echte masonry, geen grid-met-spans) — elke kolom
 // gelijk breed, de foto's variëren in hoogte (zie ContentCard's size-prop),
@@ -16,7 +16,7 @@
 import ContentCard from '../ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { nieuwsToItem, resolveFoto } from '../../lib/items';
+import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../lib/items';
 import type { FeedItem } from '../../lib/items';
 import type { Lang } from '../../lib/i18n';
 
@@ -29,14 +29,31 @@ interface Props {
 }
 const { lang = 'nl' } = Astro.props;
 
-const alleNieuwsRuw = (await getCollection('nieuws')).sort(
-  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
-);
+// Nieuws en gepubliceerde historie-verhalen door elkaar, op datum. Eerst
+// samenvoegen en sorteren, dan pas afkappen op AANTAL: anders zou een oud
+// nieuwsbericht een recenter verhaal van de homepage duwen.
+type Bron =
+  | { soort: 'nieuws'; datum: Date; entry: Awaited<ReturnType<typeof getCollection<'nieuws'>>>[number] }
+  | { soort: 'verhaal'; datum: Date; entry: Awaited<ReturnType<typeof getCollection<'verhalen'>>>[number] };
+
+const bronnen: Bron[] = [
+  ...(await getCollection('nieuws')).map(
+    (entry) => ({ soort: 'nieuws', datum: entry.data.datum, entry }) as Bron
+  ),
+  ...(await getCollection('verhalen'))
+    .filter((entry) => entry.data.gepubliceerd)
+    .map((entry) => ({ soort: 'verhaal', datum: entry.data.gepubliceerd!, entry }) as Bron),
+];
+bronnen.sort((a, b) => b.datum.valueOf() - a.datum.valueOf());
+
 const wall = await Promise.all(
-  alleNieuwsRuw.slice(0, AANTAL).map(async (n) => {
-    const ondernemer = n.data.gerelateerde_ondernemer ? await getEntry(n.data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(n.data.foto, 640, n.data.fotoFocus);
-    return nieuwsToItem(n, ondernemer, foto, lang);
+  bronnen.slice(0, AANTAL).map(async (bron) => {
+    const data = bron.entry.data as any;
+    const ondernemer = data.gerelateerde_ondernemer ? await getEntry(data.gerelateerde_ondernemer) : null;
+    const foto = await resolveFoto(data.foto, 640, data.fotoFocus);
+    return bron.soort === 'nieuws'
+      ? nieuwsToItem(bron.entry as any, ondernemer, foto, lang)
+      : verhaalToItem(bron.entry as any, ondernemer, foto, lang);
   })
 );
 
@@ -54,7 +71,7 @@ const TEKST: Record<Lang, string> = {
   en: 'More articles',
 };
 ---
-<div class="container container-breed">
+<div class="container">
   <div class="blog-wall">
     {wall.map((item) => (
       <div class="wall-item reveal-item">
@@ -66,12 +83,9 @@ const TEKST: Record<Lang, string> = {
 </div>
 
 <style>
-  /* Breder dan de standaard leescontainer (1180px): dit is geen doorlopende
-     tekst maar een fotogrid, dat mag ademen. --max-width-breed staat al
-     klaar in global.css (topic 01, voor precies dit soort magazine-secties),
-     hier alleen verbruikt. De hogere specificiteit van Astro's scoped-class
-     wint automatisch van .container's eigen max-width. */
-  .container-breed { max-width: var(--max-width-breed); }
+  /* Gewoon de sitebreedte, niet breder. Het extra brede magazine-formaat
+     werkte niet: de wand liep buiten de rest van de site en dat viel uit de
+     toon met de koppen en de nav erboven. */
 
   /* Echte masonry via CSS columns i.p.v. een grid met wisselende spans: hier
      bepaalt de eigen hoogte van elke kaart (foto-verhouding + tekstlengte)
