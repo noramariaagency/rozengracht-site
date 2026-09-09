@@ -52,7 +52,12 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
 
 <div
   id="ondernemers-kaart"
-  class:list={['locatie-kaart', variant === 'cta' && 'locatie-kaart--cta', className]}
+  class:list={[
+    'locatie-kaart',
+    variant === 'cta' && 'locatie-kaart--cta',
+    variant === 'zone' && 'locatie-kaart--zone',
+    className,
+  ]}
   data-items={JSON.stringify(items)}
   data-maps-key={MAPS_KEY}
   data-marker-icons={JSON.stringify(markerIconsPerCategorie)}
