@@ -71,25 +71,34 @@ const groepen = categorieenPerGroep(lang);
     {items.length} businesses, in alphabetical order. Click a card for more info.
   </p>
 
-  <OndernemersKaart items={kaartItems} />
 
   <section class="ondernemers-zone">
     <div class="zone-inner">
-      <div class="filters" data-filters role="group" aria-label="Filter by category">
-        <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">All</button>
-        {groepen.map((g) => (
-          <div class="filter-groep" data-groep={g.groep}>
-            <span class="filter-groep-label">{g.groepLabel}</span>
-            <div class="filter-groep-knoppen">
-              {g.categorieen.map(([key, label]) => (
-                <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
-                  <span>{label}</span>
-                </button>
-              ))}
-            </div>
+      <!-- Kaart en filters naast elkaar: de kaart linksboven op halve breedte,
+           de filters ernaast, en de eerste ondernemerskaartjes er direct
+           onder. Zo zie je meteen waar de straat ligt EN waarop je kunt
+           filteren, in plaats van een brede kaartstrook die eerst de hele
+           pagina in beslag nam. -->
+      <div class="zone-top">
+        <div class="zone-kaart">
+          {kaartItems.length > 0 && <OndernemersKaart items={kaartItems} variant="zone" />}
+        </div>
+        <div class="filters" data-filters role="group" aria-label="Filter by category">
+          <button class="filter-btn is-active" data-cat="alle" type="button" aria-pressed="true">All</button>
+          {groepen.map((g) => (
+            <div class="filter-groep" data-groep={g.groep}>
+              <span class="filter-groep-label">{g.groepLabel}</span>
+              <div class="filter-groep-knoppen">
+                {g.categorieen.map(([key, label]) => (
+                  <button class="filter-btn" data-cat={key} type="button" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={categorieIconen[key]} />
+                    <span>{label}</span>
+                  </button>
+                ))}
+              </div>
           </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <div class="ondernemers-grid" data-grid>
@@ -102,7 +111,7 @@ const groepen = categorieenPerGroep(lang);
                 <FotoFallback categorie={item.categorie} />
               )}
               {item.huisnummer && <span class="huisnr-badge">{item.huisnummer}</span>}
-            </div>
+              </div>
             <h2>{item.naam}</h2>
             <div class="role">{item.categorieLabel}</div>
           </a>
@@ -146,12 +155,27 @@ const groepen = categorieenPerGroep(lang);
     padding: 0 var(--space-md);
   }
 
+  /* Kaart links op halve breedte, filters ernaast. Onder 900px stapelen ze,
+     want naast elkaar wordt allebei te smal om iets aan te hebben. */
+  .zone-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    align-items: stretch;
+    margin-bottom: var(--space-lg);
+  }
+  .zone-kaart { min-width: 0; }
+  @media (max-width: 900px) {
+    .zone-top { grid-template-columns: 1fr; }
+  }
+
   .filters {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
-    margin: 0 0 var(--space-md);
+    margin: 0;
+    align-content: start;
   }
   /* Per groep een eigen rij met een klein kopje ervoor: een bezoeker kiest
      eerst waarvoor hij komt (eten, winkelen, verzorging) en pas daarna hoe
