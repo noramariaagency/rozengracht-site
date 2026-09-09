@@ -117,16 +117,15 @@ const FALLBACK_ICOON: Record<FeedItem['kind'], string> = {
     border-radius: 16px;
     overflow: hidden;
   }
-  /* Geen kader: alleen foto + tekst, geen rand of ronding — de kaart wordt
-     onderdeel van de pagina-achtergrond in plaats van een los "doosje" erop. */
+  /* Geen kader, maar wel een kaart: witte achtergrond zonder randje. Op de
+     crèmekleurige pagina-achtergrond leest dat als een kaartje zonder dat er
+     een lijntje om hoeft, wat op een wand van tientallen kaarten een raster
+     van randjes zou opleveren. */
   .content-card.feature.geen-kader {
-    background: transparent;
+    background: #ffffff;
     border: none;
-    border-radius: 0;
-  }
-  .content-card.feature.geen-kader .foto-vlak,
-  .content-card.feature.geen-kader .foto-vlak img {
-    border-radius: 0;
+    border-radius: 14px;
+    overflow: hidden;
   }
   .content-card.feature .foto-vlak {
     position: relative;

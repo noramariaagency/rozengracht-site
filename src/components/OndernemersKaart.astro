@@ -97,10 +97,11 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
 
     // Bij hoeveel zichtbare pinnen zetten we de naam erbij? Met alles aan
     // (ruim honderd pinnen op een straat) wordt dat een onleesbare kluwen,
-    // want Google schuift labels niet uit elkaar. Zodra je filtert blijven
-    // er zo weinig over dat de naam er juist bij hoort. Alleen bij
-    // Restaurants (22) blijft het uit; hover of klik geeft daar de naam.
-    var LABEL_DREMPEL = 15;
+    // want Google schuift labels niet uit elkaar. Op verzoek van Nora staat
+    // de drempel op 25, zodat ook de grootste categorie (Restaurants, 22
+    // zaken) namen krijgt: daar overlappen ze soms, en dat is bewust
+    // geaccepteerd boven geen namen hebben.
+    var LABEL_DREMPEL = 25;
 
     function labelVoor(naam) {
       return {
