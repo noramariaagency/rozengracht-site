@@ -38,6 +38,16 @@ Dat script doet: `git fetch`, branch `topic/03-homepage-magazine` van
 `node_modules` door zodat je meteen kunt bouwen. Daarna werk je uitsluitend
 in die map.
 
+### Pakketten: gaat automatisch
+
+Komt er in een gesprek een pakket bij (zoals de lettertypen), dan ontbreekt
+dat aan de andere kant en faalt daar de build op een import die niemand fout
+heeft getypt. `start` en `oplever` controleren daarom zelf of alles uit
+`package.json` aanwezig is en installeren wat ontbreekt, aan de juiste kant:
+op de Mac in `site/`, in Cowork in `werk-cowork/.deps-linux/`. Draai `npm`
+nooit handmatig aan de andere kant dan waar je zit; npm installeert
+platformspecifieke binaries en dan breekt de ene kant de build van de andere.
+
 ### Twee omgevingen, twee worktree-mappen
 
 De codetopics (01, 03, 05, 06) lopen in Claude Code op de Mac, de content- en
