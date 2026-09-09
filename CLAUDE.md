@@ -15,6 +15,11 @@ wijzigt:
 - **Nooit werken in `site/` zelf** en **nooit commiten op `main`.** Werk in
   je eigen worktree: `./scripts/werkgesprek.sh start <topic>` maakt hem aan
   in `../werk/<topic>/`.
+- **Nooit zelf `npm install` in `site/` draaien vanaf de Cowork-kant**, en
+  omgekeerd niet in `werk-cowork/.deps-linux/` vanaf de Mac: npm installeert
+  platformspecifieke binaries, dus dan breekt de ene kant de build van de
+  andere. `start` en `oplever` controleren zelf of er pakketten ontbreken en
+  installeren die aan de juiste kant, dus je hoeft hier niets voor te doen.
 - Opleveren gaat via `./scripts/werkgesprek.sh oplever <topic>`: rebase,
   build, merge naar `main`, push, wachten op de deploy. **Geen pull requests
   en geen goedkeuringsrondes**: het echte domein staat nog niet aan, dus

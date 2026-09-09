@@ -34,6 +34,49 @@ gw() { git -C "$PAD" "$@"; }
 # die Claude Code zelf gebruikt. In Cowork gebruiken we een eigen Linux-install
 # in werk-cowork/.deps-linux/, eenmalig aangemaakt en daarna door alle
 # Cowork-worktrees hergebruikt. Links zijn relatief, nooit absoluut.
+# Zijn alle pakketten uit package.json er ook echt? Zo niet: installeren, aan
+# de juiste kant. Dit is nodig omdat een pakket dat in een gesprek bijkomt
+# (bijvoorbeeld de lettertypen) aan de andere kant nog ontbreekt, en de build
+# daar dan faalt op een import die niemand fout heeft getypt. Niemand hoeft
+# hier iets voor te doen: start en oplever draaien dit zelf.
+#
+# LET OP: nooit npm draaien in site/ vanaf de Cowork-kant. npm installeert
+# platformspecifieke binaries, en dan maakt de ene kant de build van de andere
+# kant stuk. Vandaar de splitsing.
+deps_map() {
+  if [ "$(uname -s)" = "Darwin" ]; then echo "$SITE"; else echo "$WERK/.deps-linux"; fi
+}
+
+check_deps() {
+  local map; map="$(deps_map)"
+  [ -f "$SITE/package.json" ] || return 0
+
+  # Op de Cowork-kant eerst package.json/lock gelijktrekken met de repo, want
+  # daar staat de bron van de afhankelijkheden.
+  if [ "$(uname -s)" != "Darwin" ] && [ -d "$map" ]; then
+    cp "$SITE/package.json" "$SITE/package-lock.json" "$map/" 2>/dev/null || true
+  fi
+
+  local ontbreekt=""
+  while read -r naam; do
+    [ -z "$naam" ] && continue
+    [ -d "$map/node_modules/$naam" ] || ontbreekt="$ontbreekt $naam"
+  done <<< "$(node -e "
+    const p=require('$SITE/package.json');
+    console.log(Object.keys({...(p.dependencies||{}), ...(p.devDependencies||{})}).join('\n'));
+  " 2>/dev/null)"
+
+  [ -z "$ontbreekt" ] && return 0
+
+  kop "Pakketten installeren"
+  echo "  ontbreekt:$ontbreekt"
+  echo "  in: $map"
+  mkdir -p "$map"
+  ( cd "$map" && npm install --silent ) \
+    && echo "  klaar" \
+    || echo "  npm install mislukte; doe 'npm install' in $map en probeer opnieuw"
+}
+
 koppel_node_modules() {
   local pad="$1"
   [ -e "$pad/node_modules" ] && { echo "  node_modules staat er al"; return 0; }
@@ -112,6 +155,7 @@ TXT
   fi
 
   koppel_node_modules "$pad"
+  check_deps
 
   kop "Klaar"
   cat <<TXT
@@ -231,6 +275,8 @@ cmd_oplever() {
   local n; n=$(gw rev-list --count "origin/main..$branch")
   [ "$n" -gt 0 ] || fout "geen commits op $branch bovenop main. Niets op te leveren."
   echo "  $n commit(s) op te leveren"
+
+  check_deps
 
   kop "3/6 Build"
   ( cd "$pad" && npm run build ) >/dev/null 2>&1 \
