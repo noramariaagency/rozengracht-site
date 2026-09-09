@@ -15,7 +15,7 @@ const { lang = 'nl' } = Astro.props;
 const TEKST: Record<Lang, {
   skip: string;
   home: string;
-  lezen: string;
+  ontdek: string;
   ondernemers: string;
   historie: string;
   bereikbaarheid: string;
@@ -28,7 +28,7 @@ const TEKST: Record<Lang, {
   nl: {
     skip: 'Direct naar de inhoud',
     home: 'Home',
-    lezen: 'Lezen',
+    ontdek: 'Ontdek',
     ondernemers: 'Ondernemers',
     historie: 'Historie',
     bereikbaarheid: 'Bereikbaarheid',
@@ -41,7 +41,7 @@ const TEKST: Record<Lang, {
   en: {
     skip: 'Skip to content',
     home: 'Home',
-    lezen: 'Read',
+    ontdek: 'Discover',
     ondernemers: 'Businesses',
     historie: 'History',
     bereikbaarheid: 'Getting there',
@@ -79,7 +79,7 @@ const taalWisselHref = getRelativeLocaleUrl(andereTaal, restPad);
 const tBanner = TEKST[andereTaal];
 
 const links = [
-  { href: getRelativeLocaleUrl(lang, 'lezen'), label: t.lezen },
+  { href: getRelativeLocaleUrl(lang, 'ontdek'), label: t.ontdek },
   { href: getRelativeLocaleUrl(lang, 'ondernemers'), label: t.ondernemers },
   { href: getRelativeLocaleUrl(lang, 'historie'), label: t.historie },
   { href: getRelativeLocaleUrl(lang, 'bereikbaarheid'), label: t.bereikbaarheid },
