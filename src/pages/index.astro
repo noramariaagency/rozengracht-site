@@ -34,12 +34,16 @@ const lang: Lang = 'nl';
        blogzone hierboven. -->
   <section class="section ontdek-zone" id="ontdek">
     <div class="container">
+      <!-- Geen grote kop "Ontdek" meer: Ontdek is nu het menu-item naar de
+           artikelenpagina, en twee verschillende dingen met dezelfde naam is
+           verwarrend. Het kleine kopje blijft, dat leidt de zone genoeg in. -->
       <div class="ontdek-intro">
         <span class="eyebrow">Andere kant van de straat</span>
-        <h2>Ontdek</h2>
       </div>
 
       <InstagramFeed lang={lang} />
+      <!-- De BIZ-sectie staat op verzoek direct onder de Instagram-widget. -->
+      <BizSectie lang={lang} />
 
       <div class="ondernemers-layout" id="ondernemers">
         <NieuwOpDeRozengracht lang={lang} />
@@ -47,7 +51,6 @@ const lang: Lang = 'nl';
       </div>
 
       <OndernemersCta lang={lang} />
-      <BizSectie lang={lang} />
     </div>
   </section>
 </BaseLayout>

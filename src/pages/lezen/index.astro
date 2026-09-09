@@ -1,170 +1,25 @@
 ---
-// "Lezen": het volledige archief van alle blogartikelen — vervangt de oude
-// rol van de "Nieuws"-overzichtspagina nu de homepage zelf beperkt is tot de
-// laatste 12 (zie components/home/BlogWall.astro).
-//
-// Historie-verhalen lopen mee zodra ze een publicatiedatum hebben; zie het
-// schema (verzoek aan topic 01 staat in CLAIMS.md) — zodra dat er is, horen
-// ze hier gewoon tussen te staan.
-//
-// Filter op categorie, overgenomen van de gekoppelde ondernemer (diens
-// categorie + evt. tweede label, dus een artikel kan onder meerdere
-// categorieën vallen — zelfde principe als de kaart-filters). Een artikel
-// zonder gekoppelde ondernemer (bv. een algemene aankondiging) matcht geen
-// categorie-chip en blijft alleen onder "Alles" zichtbaar. Bereikbaarheid
-// is geen ondernemer-categorie, dus die blijft een aparte chip.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContentCard from '../../components/ContentCard.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { nieuwsToItem, verhaalToItem, themasVoorOndernemer, resolveFoto } from '../../lib/items';
-import { categorieenPerGroep } from '../../lib/categorieen';
-import type { FeedItem } from '../../lib/items';
-import type { Lang } from '../../lib/i18n';
+// "Lezen" heet nu "Ontdek" — deze pagina bestaat alleen nog om bezoekers en
+// zoekmachines die de oude URL hebben (bladwijzer, oud zoekresultaat) door te
+// sturen. Losse statische pagina i.p.v. een astro.config.mjs-redirect: dat
+// werkt hetzelfde op een static build en config.mjs is gedeeld gebied.
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-const lang: Lang = 'nl';
-
-// Nieuws en gepubliceerde historie-verhalen door elkaar, op datum. Een
-// verhaal zonder `gepubliceerd` blijft hier weg en is alleen via Historie te
-// vinden; we gokken geen plek in de tijdlijn.
-const bronnen: { datum: Date; soort: 'nieuws' | 'verhaal'; entry: any }[] = [
-  ...(await getCollection('nieuws')).map((entry) => ({
-    datum: entry.data.datum,
-    soort: 'nieuws' as const,
-    entry,
-  })),
-  ...(await getCollection('verhalen'))
-    .filter((entry) => entry.data.gepubliceerd)
-    .map((entry) => ({ datum: entry.data.gepubliceerd!, soort: 'verhaal' as const, entry })),
-];
-bronnen.sort((a, b) => b.datum.valueOf() - a.datum.valueOf());
-
-const wall = await Promise.all(
-  bronnen.map(async (bron) => {
-    const data = bron.entry.data;
-    const ondernemer = data.gerelateerde_ondernemer ? await getEntry(data.gerelateerde_ondernemer) : null;
-    const foto = await resolveFoto(data.foto, 640, data.fotoFocus);
-    const item =
-      bron.soort === 'nieuws'
-        ? nieuwsToItem(bron.entry, ondernemer, foto, lang)
-        : verhaalToItem(bron.entry, ondernemer, foto, lang);
-    const themas = themasVoorOndernemer(ondernemer);
-    if (bron.soort === 'nieuws' && data.categorie === 'bereikbaarheid') themas.push('bereikbaarheid');
-    if (bron.soort === 'verhaal') themas.push('historie');
-    return { item, themas };
-  })
-);
-
-function formaat(item: FeedItem): 'lg' | 'md' | 'sm' {
-  if (item.rawLength > 500) return 'lg';
-  if (item.rawLength > 200) return 'md';
-  return 'sm';
-}
-
-const groepen = categorieenPerGroep(lang);
-
-const TEKST = {
-  titel: 'Lezen',
-  intro: 'Alle artikelen over de Rozengracht, op volgorde van publicatie.',
-  alle: 'Alles',
-  bereikbaarheid: 'Bereikbaarheid',
-};
+const doel = getRelativeLocaleUrl('nl', 'ontdek/');
 ---
-<BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang} fullBleed>
-  <div class="container kop-en-filters">
-    <h1>{TEKST.titel}</h1>
-    <p class="intro">{TEKST.intro}</p>
-
-    <div class="filters" data-filters role="group" aria-label="Filter op categorie">
-      <button type="button" class="filter-btn is-active" data-thema="alle" aria-pressed="true">{TEKST.alle}</button>
-      <button type="button" class="filter-btn" data-thema="bereikbaarheid" aria-pressed="false">{TEKST.bereikbaarheid}</button>
-      {groepen.map((g) => (
-        <div class="filter-groep">
-          <span class="filter-groep-label">{g.groepLabel}</span>
-          <div class="filter-groep-knoppen">
-            {g.categorieen.map(([key, label]) => (
-              <button type="button" class="filter-btn" data-thema={key} aria-pressed="false">{label}</button>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-
-  <div class="container container-breed">
-    <div class="wall" data-wall>
-      {wall.map(({ item, themas }) => (
-        <div class="wall-item" data-themas={themas.join(' ')}>
-          <ContentCard item={item} variant="feature" size={formaat(item)} bordered={false} />
-        </div>
-      ))}
-    </div>
-  </div>
-</BaseLayout>
-
-<script is:inline>
-  var filterBar = document.querySelector('[data-filters]');
-  var wallEl = document.querySelector('[data-wall]');
-  filterBar && wallEl && filterBar.addEventListener('click', (e) => {
-    var btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    filterBar.querySelectorAll('.filter-btn').forEach((b) => {
-      b.classList.remove('is-active');
-      b.setAttribute('aria-pressed', 'false');
-    });
-    btn.classList.add('is-active');
-    btn.setAttribute('aria-pressed', 'true');
-    var thema = btn.dataset.thema;
-    wallEl.querySelectorAll('[data-themas]').forEach((el) => {
-      var themas = (el.dataset.themas || '').split(' ');
-      el.style.display = thema === 'alle' || themas.indexOf(thema) !== -1 ? '' : 'none';
-    });
-  });
-</script>
-
-<style>
-  /* fullBleed op BaseLayout laat de standaard container/padding weg (nodig
-     om de wall hieronder breder te kunnen maken), dus die padding hier zelf
-     terugzetten voor de kop en filters. */
-  .kop-en-filters { padding-top: 2.5rem; }
-  .container-breed { max-width: var(--max-width-breed); padding-bottom: 2.5rem; }
-
-  .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
-
-  .filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem var(--space-xs); margin: var(--space-lg) 0; }
-  .filter-groep { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem var(--space-xs); flex: 0 0 100%; }
-  .filter-groep-label {
-    flex: 0 0 100%;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .filter-groep-knoppen { display: flex; flex-wrap: wrap; gap: 8px; }
-  .filter-btn {
-    font-size: 0.85rem;
-    font-weight: 500;
-    font-family: var(--font-body);
-    border: 1px solid var(--color-border);
-    background: var(--cream-card);
-    padding: 7px 16px;
-    border-radius: 100px;
-    color: var(--color-text);
-    cursor: pointer;
-    touch-action: manipulation;
-  }
-  .filter-btn.is-active { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
-
-  /* Echte masonry via CSS columns, zie ook home/BlogWall.astro. */
-  .wall {
-    column-count: 3;
-    column-gap: 28px;
-    margin-bottom: var(--space-xl);
-  }
-  .wall-item { break-inside: avoid; margin-bottom: 28px; }
-  @media (max-width: 900px) {
-    .wall { column-count: 2; }
-  }
-  @media (max-width: 620px) {
-    .wall { column-count: 1; }
-  }
-</style>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${doel}`} />
+    <link rel="canonical" href={doel} />
+    <meta name="robots" content="noindex" />
+    <title>Lezen is nu Ontdek</title>
+  </head>
+  <body>
+    <p>Deze pagina heet nu <a href={doel}>Ontdek</a>.</p>
+    <script define:vars={{ doel }}>
+      window.location.replace(doel);
+    </script>
+  </body>
+</html>
