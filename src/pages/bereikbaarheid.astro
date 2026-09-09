@@ -104,32 +104,38 @@ const laatsteUpdateItem = laatsteUpdateEntry
     )
   : null;
 ---
-<BaseLayout title="Bereikbaarheid" description="Hoe je de Rozengracht in Amsterdam bereikt: lopend, fietsend, met de auto of het OV, plus actuele updates over werkzaamheden en evenementen." lang={lang}>
-  <span class="eyebrow">De straat</span>
-  <h1>Bereikbaarheid</h1>
-  <p class="intro">De Rozengracht loopt van oost naar west door de Jordaan en is vanuit alle richtingen goed te bereiken.</p>
+<BaseLayout fullBleed title="Bereikbaarheid" description="Hoe je de Rozengracht in Amsterdam bereikt: lopend, fietsend, met de auto of het OV, plus actuele updates over werkzaamheden en evenementen." lang={lang}>
+  <section class="bereik-zone">
+    <div class="zone-inner">
+      <span class="eyebrow">De straat</span>
+      <h1>Bereikbaarheid</h1>
+      <p class="intro">De Rozengracht loopt van oost naar west door de Jordaan en is vanuit alle richtingen goed te bereiken.</p>
 
-  <section class="updates-section">
-    {laatsteUpdateItem ? (
-      <ContentCard item={laatsteUpdateItem} variant="compact" />
-    ) : (
-      <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
-    )}
+      <section class="updates-section">
+        {laatsteUpdateItem ? (
+          <ContentCard item={laatsteUpdateItem} variant="compact" />
+        ) : (
+          <p class="geen-updates">Geen bijzonderheden op dit moment: de Rozengracht is normaal bereikbaar.</p>
+        )}
+      </section>
+
+      <!-- Tegels boven de kaart, en compacter dan eerst: zo begint de kaart
+           net binnen het beeld in plaats van eronder te verdwijnen. -->
+      <div class="routes-grid" data-filters role="group" aria-label="Filter op vervoerswijze">
+        {routes.map((route) => (
+          <button type="button" class="route-card filter-btn" data-cat={route.cat} aria-pressed="false">
+            <span class="route-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={route.icoon} />
+            </span>
+            <h2>{route.titel}</h2>
+            <p>{route.tekst}</p>
+          </button>
+        ))}
+      </div>
+
+      {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} routes={{ lopend: walkRoute, auto: garageRoute }} />}
+    </div>
   </section>
-
-  {kaartItems.length > 0 && <BereikbaarheidKaart items={kaartItems} routes={{ lopend: walkRoute, auto: garageRoute }} />}
-
-  <div class="routes-grid" data-filters role="group" aria-label="Filter op vervoerswijze">
-    {routes.map((route) => (
-      <button type="button" class="route-card filter-btn" data-cat={route.cat} aria-pressed="false">
-        <span class="route-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={route.icoon} />
-        </span>
-        <h2>{route.titel}</h2>
-        <p>{route.tekst}</p>
-      </button>
-    ))}
-  </div>
 </BaseLayout>
 
 <script is:inline>
@@ -152,61 +158,114 @@ const laatsteUpdateItem = laatsteUpdateEntry
 </script>
 
 <style>
+  /* Donkergroene pagina op verzoek: de bereikbaarheidspagina is de plek waar
+     mensen komen kijken of ze er wel kunnen komen, en die mag zich
+     onderscheiden van de rest van de site. Loopt van rand tot rand, vandaar
+     fullBleed op de layout en de 100vw-truc hieronder. */
+  .bereik-zone {
+    background: var(--green-deep);
+    color: #fbfaf7;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: var(--space-lg) 0 var(--space-xl);
+    min-height: 100vh;
+  }
+  .zone-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+  .bereik-zone :global(h1) { color: #fbfaf7; }
   .eyebrow {
     display: block;
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--rose-deep);
+    color: var(--rose);
     font-weight: 600;
     margin-bottom: 6px;
   }
-  .intro { color: var(--color-muted); max-width: 560px; margin-top: var(--space-xs); }
+  .intro { color: rgba(251, 250, 247, 0.78); max-width: 560px; margin-top: var(--space-xs); }
 
+  /* Compacter dan eerst (icoon naast de tekst i.p.v. erboven, minder padding)
+     zodat alle vier de tegels op een rij passen en de kaart eronder nog
+     binnen het beeld begint. */
   .routes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--space-md);
-    margin: var(--space-xl) 0 var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-lg) 0 var(--space-md);
   }
+  /* Dat het knoppen zijn moest duidelijker: ze hebben nu een eigen vlak met
+     rand, een chevron die bij hover meebeweegt, en een duidelijk andere
+     ingedrukte staat (wit vlak, donkere tekst). */
   .route-card {
-    display: block;
+    position: relative;
+    display: grid;
+    grid-template-columns: 34px 1fr 14px;
+    align-items: start;
+    gap: 12px;
     width: 100%;
     text-align: left;
     font: inherit;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    padding: var(--space-md);
+    color: #fbfaf7;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 12px;
+    padding: 14px 14px 14px 12px;
     cursor: pointer;
     touch-action: manipulation;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
   }
+  .route-card:hover { background: rgba(255, 255, 255, 0.13); border-color: rgba(255, 255, 255, 0.45); }
+  .route-card:hover .route-chevron { transform: translateX(3px); }
+  .route-card:focus-visible { outline: 2px solid #fbfaf7; outline-offset: 2px; }
   .route-card.is-active {
-    border-color: var(--green-deep);
-    box-shadow: inset 0 0 0 1px var(--green-deep);
-  }
-  .route-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--rose-tint);
+    background: #fbfaf7;
+    border-color: #fbfaf7;
     color: var(--green-deep);
+  }
+  .route-card.is-active .route-icon { background: var(--green-deep); color: #fbfaf7; }
+  .route-card.is-active p { color: rgba(20, 52, 42, 0.75); }
+
+  .route-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    color: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--space-sm);
+    flex: none;
   }
-  .route-icon svg { width: 22px; height: 22px; }
-  .route-card h2 { font-size: 1.05rem; margin-bottom: 6px; }
-  .route-card p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+  .route-icon svg { width: 18px; height: 18px; }
+  .route-card h2 { font-size: 0.98rem; margin: 2px 0 4px; color: inherit; }
+  .route-card p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: rgba(251, 250, 247, 0.72);
+    margin: 0;
+    /* Twee regels, de rest staat in de kaart eronder: anders duwen deze
+       tegels de kaart weer uit het beeld. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .route-chevron { align-self: center; opacity: 0.7; transition: transform 0.15s ease; }
+  .route-chevron svg { width: 14px; height: 14px; display: block; }
 
-  .updates-section { margin-top: var(--space-lg); }
+  .updates-section { margin-top: var(--space-md); }
   .geen-updates {
-    color: var(--ink-soft);
-    background: var(--color-surface);
-    border: 1px dashed var(--color-border);
+    color: rgba(251, 250, 247, 0.78);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px dashed rgba(255, 255, 255, 0.3);
     border-radius: var(--radius);
     padding: var(--space-md);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .route-card, .route-chevron { transition: none; }
   }
 </style>
