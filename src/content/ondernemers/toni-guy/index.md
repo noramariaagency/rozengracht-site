@@ -4,8 +4,10 @@ huisnummer: "13"
 categorie: "haar-huid-nagels"
 subcategorie: "Kapper"
 website: "https://www.toniandguy.nl"
-status: "deels-klaar"
+status: "vertrokken"
 interne_opmerking: >
+  Nr. 13HS staat als "Leeg (Voorheen Toni & Guy)" op de ondernemerslijst van Cleo (8 sep 2026).
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (Treatwell, haar.expert, Your Little Black Book,
   KVK-gegevens via Drimble). Dit is een vestiging van de internationale kapketen

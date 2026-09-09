@@ -1,5 +1,6 @@
 ---
 naam: "Ma Baker"
+huisnummer: "343"
 categorie: "bakkers-snacks-togo"
 subcategorie: "Snackbar"
 status: "deels-klaar"

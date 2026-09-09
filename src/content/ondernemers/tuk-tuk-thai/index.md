@@ -13,7 +13,9 @@ meta_title_nl: "Tuk Tuk Thai | Thais eten & afhaal – Rozengracht Amsterdam"
 meta_title_en: "Tuk Tuk Thai | Thai food & takeaway – Rozengracht Amsterdam"
 meta_description_nl: "Tuk Tuk Thai op Rozengracht 22 Amsterdam. Authentieke Thaise gerechten, voornamelijk afhaal. Dagelijks open 12:00–21:00. Tel +31 20 626 5981."
 meta_description_en: "Tuk Tuk Thai at Rozengracht 22 Amsterdam. Authentic Thai dishes, mostly takeaway. Open daily 12:00–21:00. Phone +31 20 626 5981."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 22 staat Dong Son op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Tuk Tuk Thai op Rozengracht 22 is opgezet door een Nederlands-Thais koppel en draait bijna volledig op afhaal. Binnen zijn twee tafels. De meeste bestellingen gaan mee naar huis.
 

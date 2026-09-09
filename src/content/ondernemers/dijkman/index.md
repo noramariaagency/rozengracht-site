@@ -1,6 +1,6 @@
 ---
 naam: "Dijkman Muziek"
-huisnummer: "107-115"
+huisnummer: "115"
 categorie: "boeken-muziek"
 subcategorie: "Muziekinstrumenten"
 website: "https://www.dijkmanmuziek.nl"

@@ -13,7 +13,7 @@ const { lang = 'nl' } = Astro.props;
 
 const alleOndernemers = await getCollection(
   'ondernemers',
-  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse' && data.status !== 'vertrokken'
 );
 const citaten = alleOndernemers
   .filter((o) => o.data.quote_nl)

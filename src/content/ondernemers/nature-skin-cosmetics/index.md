@@ -11,7 +11,9 @@ meta_title_nl: "Nature Skin Cosmetica"
 meta_title_en: "Nature Skin Cosmetics"
 meta_description_nl: "Nature Skins op Rozengracht 72H. 100% natuurlijke, veganistische cosmetica en huidverzorgingsbehandelingen. Opgericht door Charlotte van Gammeren. Di-za."
 meta_description_en: "Nature Skins at Rozengracht 72H. 100% natural, vegan cosmetics and skincare treatments. Founded by Charlotte van Gammeren."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 72 staat Sabai Thai Welness op de ondernemerslijst van Cleo (8 sep 2026).
 quote_nl: "Als je het niet kunt eten, smeer het dan ook niet op je huid."
 quote_en: "If you can't eat it, don't put it on your skin."
 tekst_nl: |

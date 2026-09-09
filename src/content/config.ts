@@ -98,7 +98,11 @@ const ondernemers = defineCollection({
 
       // Intern (niet tonen op de site)
       status: z
-        .enum(['klaar', 'deels-klaar', 'nog-te-doen', 'geen-interesse', 'overslaan'])
+        // 'vertrokken' = zit niet meer op de Rozengracht. De pagina blijft in de
+        // repo staan (tekst en foto's dus bewaard), maar verdwijnt uit het
+        // overzicht, de kaart, de homepage en krijgt geen eigen pagina meer.
+        // Zo is terugzetten een wijziging van deze ene regel.
+        .enum(['klaar', 'deels-klaar', 'nog-te-doen', 'geen-interesse', 'overslaan', 'vertrokken'])
         .default('deels-klaar'),
       laatst_gecontroleerd: z.coerce.date().optional(),
       interne_opmerking: z.string().optional(),

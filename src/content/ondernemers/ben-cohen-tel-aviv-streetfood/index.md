@@ -12,7 +12,9 @@ meta_title_nl: "Ben Cohen Streetfood Rozengracht"
 meta_title_en: "Ben Cohen Streetfood Rozengracht"
 meta_description_nl: "Ben Cohen Tel-Aviv Streetfood op Rozengracht 239 Amsterdam. Hummus, pita, lamstagine en geroosterde bloemkool. Familiebedrijf sinds 1978."
 meta_description_en: "Ben Cohen Tel-Aviv Streetfood at Rozengracht 239 Amsterdam. Hummus, pita, lamb tajine, and roasted cauliflower. Family business since 1978."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 239 staat Bahn Mi Ba My op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Ben Cohen begon in 1978 op de Rozengracht met shoarma, toen bijna niemand in Amsterdam wist wat het was. Nu runnen zijn zonen Dalien en Allon het restaurant op nummer 239, en het heet Ben Cohen Tel-Aviv Streetfood.
 
