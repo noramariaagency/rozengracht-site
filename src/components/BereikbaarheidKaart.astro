@@ -11,6 +11,8 @@
 // verversen" GitHub Action als de ondernemers-pins (zie
 // scripts/fetch-places.mjs) — POI's zonder bekende locatie worden al vóór
 // dit component eruit gefilterd (geen pin verzinnen).
+import ExternToestemming from './ExternToestemming.astro';
+
 export interface Props {
   items: { key: string; naam: string; vervoerswijze: 'auto' | 'ov'; lat: number; lng: number }[];
   // Eén route-lijn per filter-categorie die er een heeft. Puntenlijst i.p.v.
@@ -77,6 +79,7 @@ const ROUTE_KLEUREN: Record<string, string> = {
   auto: KLEUREN.auto,
 };
 ---
+<ExternToestemming />
 
 <div
   id="bereikbaarheid-kaart"
@@ -213,7 +216,6 @@ const ROUTE_KLEUREN: Record<string, string> = {
   }
   window.initBereikbaarheidKaart = initBereikbaarheidKaart;
 </script>
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ&callback=initBereikbaarheidKaart&loading=async" async></script>
 
 <style>
   /* Zelfde opzet als .locatie-kaart in OndernemersKaart.astro, maar hier
@@ -230,3 +232,20 @@ const ROUTE_KLEUREN: Record<string, string> = {
     margin: var(--space-lg) 0 0;
   }
 </style>
+
+<script is:inline define:vars={{ houderId: 'bereikbaarheid-kaart' }}>
+  // Het Maps-script wordt hier pas ingeladen, en alleen na toestemming.
+  window.rgExternLaden({
+    houderId: houderId,
+    uitleg: 'De kaart komt van Google. Als je hem laadt, gaat je IP-adres naar Google.',
+    knop: 'Kaart laden',
+    laad: function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src =
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ' +
+        '&callback=initBereikbaarheidKaart&loading=async';
+      document.head.append(s);
+    },
+  });
+</script>

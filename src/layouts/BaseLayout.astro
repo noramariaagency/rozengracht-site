@@ -1,5 +1,6 @@
 ---
 import Nav from '../components/Nav.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import Footer from '../components/Footer.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { kaalPad, type Lang } from '../lib/i18n';
@@ -65,7 +66,6 @@ const enHref = getRelativeLocaleUrl('en', restPad);
          plek in de layout plus een simpele opslaghelper voor de
          toestemmingsstatus, zodat 07 niet ook nog BaseLayout.astro hoeft
          aan te raken. -->
-    <div id="cookiebanner-root"></div>
     <script is:inline>
       window.rgCookieConsent = {
         sleutel: 'rg-cookie-consent',
@@ -81,7 +81,15 @@ const enHref = getRelativeLocaleUrl('en', restPad);
             localStorage.setItem(this.sleutel, waarde);
           } catch (e) {}
         },
+        // Mogen externe onderdelen (Google-kaart, Instagram-feed) geladen
+        // worden? Alleen als de bezoeker daar expliciet ja op heeft gezegd.
+        // Geen antwoord betekent nee: liever een kaart die de bezoeker zelf
+        // aanzet dan een IP-adres dat al weg is voor iemand iets kon kiezen.
+        magExtern() {
+          return this.get() === 'alles';
+        },
       };
     </script>
+    <div id="cookiebanner-root"><CookieBanner lang={lang} /></div>
   </body>
 </html>

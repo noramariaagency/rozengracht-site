@@ -7,6 +7,7 @@
 // de "Places verversen" GitHub Action wordt gevuld — ondernemers zonder
 // bekende locatie worden hier gewoon overgeslagen (geen pin verzinnen).
 import { categorieIconen, categorieKleuren } from '../lib/categorieen';
+import ExternToestemming from './ExternToestemming.astro';
 
 export interface Props {
   items: { slug: string; naam: string; categorie: string; tweedeLabel?: string | null; lat: number; lng: number; href: string }[];
@@ -47,6 +48,7 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
   markerIconsPerCategorie[cat] = `data:image/svg+xml,${encodeURIComponent(pinIconSvg(kleur, iconPath))}`;
 }
 ---
+<ExternToestemming />
 
 <div
   id="ondernemers-kaart"
@@ -185,7 +187,6 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
   }
   window.initOndernemersKaart = initOndernemersKaart;
 </script>
-<script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ&callback=initOndernemersKaart&loading=async" async></script>
 
 <style>
   /* Verhuisd hierheen vanuit de ondernemers-overzichtspagina's — Astro's
@@ -223,3 +224,20 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
     letter-spacing: 0.01em;
   }
 </style>
+
+<script is:inline define:vars={{ houderId: 'ondernemers-kaart' }}>
+  // Het Maps-script wordt hier pas ingeladen, en alleen na toestemming.
+  window.rgExternLaden({
+    houderId: houderId,
+    uitleg: 'De kaart komt van Google. Als je hem laadt, gaat je IP-adres naar Google.',
+    knop: 'Kaart laden',
+    laad: function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src =
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ91Qc-ndwZUT2VVnHXbT3V--IN2KDmEQ' +
+        '&callback=initOndernemersKaart&loading=async';
+      document.head.append(s);
+    },
+  });
+</script>

@@ -1,18 +1,117 @@
 ---
+// Geen formulier: op verzoek een mailtolink. Een formulier vraagt om een
+// verwerker en om gegevens die ergens blijven staan, en een mailtje werkt
+// hier net zo goed. Ook geen "word lid": een BIZ werkt niet met
+// lidmaatschap, alle ondernemers in het gebied doen automatisch mee.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const MAIL = 'info@derozengracht.com';
+const STRAATMANAGER = { naam: 'Moheb Alecozy', telefoon: '0652556066', telefoonLink: '+31652556066' };
+const overOns = getRelativeLocaleUrl('nl', 'over-ons/');
 ---
-<BaseLayout title="Contact / word lid" lang="nl">
-  <h1>Contact &amp; word lid</h1>
-  <div class="card" style="max-width: 480px;">
-    <p style="color: var(--color-muted);">
-      [PLACEHOLDER: formulier wordt in fase 6 gekoppeld aan een vormverwerker zonder eigen backend
-      (bijv. Cloudflare Forms/Formspree). Onderstaande velden tonen alleen de structuur.]
+<BaseLayout title="Contact" description="Contact met de BIZ Ondernemersvereniging Rozengracht: mail, straatmanager en waar je iets kunt melden." lang="nl">
+  <div class="tekstpagina">
+    <h1>Contact</h1>
+    <p class="lead">
+      Vraag over de straat, een melding, of ben je nieuw op de Rozengracht?
+      Mail ons, dan komt het bij de juiste persoon terecht.
     </p>
-    <form>
-      <label>Naam<br /><input type="text" disabled /></label><br /><br />
-      <label>E-mail<br /><input type="email" disabled /></label><br /><br />
-      <label>Bericht<br /><textarea disabled></textarea></label><br /><br />
-      <button type="button" disabled>Versturen</button>
-    </form>
+
+    <div class="contactblok">
+      <div class="contactkaart">
+        <span class="label">Mail</span>
+        <a class="groot" href={`mailto:${MAIL}`}>{MAIL}</a>
+        <p>
+          De gewone ingang voor alles: vragen, meldingen, ideeën, en
+          aanmeldingen van nieuwe ondernemers.
+        </p>
+      </div>
+
+      <div class="contactkaart">
+        <span class="label">Straatmanager</span>
+        <span class="groot">{STRAATMANAGER.naam}</span>
+        <p>
+          Voor wat er in de straat zelf gebeurt. Bereikbaar op
+          <a href={`tel:${STRAATMANAGER.telefoonLink}`}>{STRAATMANAGER.telefoon}</a>.
+        </p>
+      </div>
+    </div>
+
+    <h2>Nieuw op de Rozengracht?</h2>
+    <p>
+      Stuur dan even een mailtje naar <a href={`mailto:${MAIL}`}>{MAIL}</a>. Dan
+      weten we dat je er bent, zetten we je zaak op deze site en loop je niets
+      mis van wat er in de straat speelt. Je hoeft je nergens voor aan te
+      melden en er komt geen contributie bij: als ondernemer in dit gebied doe
+      je automatisch mee. Zie <a href={overOns}>over de BIZ</a>.
+    </p>
+
+    <h2>Waar kan ik wat melden?</h2>
+    <p>
+      Kort gezegd: gaat het over de straat als geheel, mail ons. Gaat het over
+      iets waar de gemeente over gaat, dan kan dat het snelst rechtstreeks bij
+      de gemeente.
+    </p>
+    <ul>
+      <li>
+        <strong>Bij ons</strong>, via <a href={`mailto:${MAIL}`}>{MAIL}</a>:
+        overlast of rommel die met de straat te maken heeft, iets dat op deze
+        site niet klopt, ideeën voor de straat, of iets waar je gewoon niet
+        goed weet bij wie het hoort. Weten wij het ook niet, dan zoeken we het
+        uit.
+      </li>
+      <li>
+        <strong>Bij de gemeente Amsterdam</strong>: kapotte straatverlichting,
+        losliggende stoeptegels, afval dat niet is opgehaald, en de
+        werkzaamheden aan de straat. Dat gaat via de gemeente zelf, telefonisch
+        via 14 020 of via het meldingenformulier op amsterdam.nl. Meld het
+        vooral ook bij ons als het langer duurt: dan kunnen wij er namens de
+        hele straat achteraan.
+      </li>
+      <li>
+        <strong>Bij 112</strong>: spoed. Geen spoed maar wel politie nodig:
+        0900-8844.
+      </li>
+    </ul>
+
+    <h2>Waarom geen formulier</h2>
+    <p>
+      Een formulier op een site betekent dat je gegevens langs een andere
+      partij gaan en daar blijven staan. Een mailtje komt direct bij ons aan,
+      en jij houdt zelf wat je hebt gestuurd. Zie ook de
+      <a href={getRelativeLocaleUrl('nl', 'privacy/')}>privacyverklaring</a>.
+    </p>
   </div>
 </BaseLayout>
+
+<style>
+  .tekstpagina { max-width: 680px; }
+  .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
+  .tekstpagina h2 { margin-top: 2.2rem; }
+  .tekstpagina ul { padding-left: 1.2rem; }
+  .tekstpagina li { margin-bottom: 0.7rem; line-height: 1.6; }
+  .tekstpagina p { line-height: 1.65; }
+
+  .contactblok {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: var(--space-lg) 0;
+  }
+  .contactkaart {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .contactkaart .label {
+    display: block;
+    font-size: 0.74rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .contactkaart .groot { display: block; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+  .contactkaart p { margin: 0; font-size: 0.94rem; color: var(--ink-soft); }
+</style>

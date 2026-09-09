@@ -1,0 +1,71 @@
+---
+// Geen markup, alleen het gedeelde script en de opmaak voor het
+// toestemmingsvlak dat externe onderdelen vervangt. Wordt eenmalig
+// meegeladen door elk component dat een externe partij nodig heeft.
+---
+<script is:inline>
+  // Externe onderdelen (Google-kaart, Instagram) pas laden als de bezoeker
+  // daar ja op heeft gezegd. Zolang dat niet zo is: een vlak met een knop, en
+  // klikken laadt het alleen voor dit bezoek zonder de bredere keuze te
+  // maken. Zo staat er nooit iets van een derde partij op de pagina voordat
+  // iemand dat wilde.
+  window.rgExternLaden = window.rgExternLaden || function (opties) {
+    var houder = document.getElementById(opties.houderId);
+    if (!houder) return;
+    var geladen = false;
+    function laad() {
+      if (geladen) return;
+      geladen = true;
+      var placeholder = houder.querySelector('[data-extern-placeholder]');
+      if (placeholder) placeholder.remove();
+      opties.laad();
+    }
+    if (window.rgCookieConsent && window.rgCookieConsent.magExtern()) {
+      laad();
+      return;
+    }
+    var vlak = document.createElement('div');
+    vlak.setAttribute('data-extern-placeholder', '');
+    vlak.className = 'extern-placeholder';
+    vlak.innerHTML =
+      '<p>' + opties.uitleg + '</p><button type="button">' + opties.knop + '</button>';
+    vlak.querySelector('button').addEventListener('click', laad);
+    houder.append(vlak);
+    document.addEventListener('rg-consent', function (e) {
+      if (e.detail === 'alles') laad();
+    });
+  };
+</script>
+
+<style is:global>
+  /* Het vlak dat in de plaats komt van een extern onderdeel zolang er geen
+     toestemming is. Zelfde maat als het onderdeel zelf, zodat de pagina niet
+     verspringt zodra het wel laadt. */
+  .extern-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px;
+    text-align: center;
+    background: var(--cream-card, #f4f1ea);
+    color: var(--ink-soft, #4a5550);
+    border-radius: inherit;
+  }
+  .extern-placeholder p { margin: 0; max-width: 42ch; font-size: 0.95rem; line-height: 1.5; }
+  .extern-placeholder button {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--green-deep, #14342a);
+    background: var(--green-deep, #14342a);
+    color: #fbfaf7;
+    cursor: pointer;
+  }
+  .insta-feed { position: relative; min-height: 260px; }
+</style>

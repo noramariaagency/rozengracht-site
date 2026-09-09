@@ -1,9 +1,116 @@
 ---
+// English version of the privacy statement. Same facts as the Dutch page.
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const cookies = getRelativeLocaleUrl('en', 'cookies/');
+const contact = getRelativeLocaleUrl('en', 'contact/');
+const bijgewerkt = '9 September 2026';
 ---
-<BaseLayout title="Privacy" lang="en">
-  <h1>Privacy statement</h1>
-  <p style="color: var(--color-muted); max-width: 640px;">
-    [PLACEHOLDER: legal text still to be written in phase 4.]
-  </p>
+<BaseLayout title="Privacy statement" description="What this site does and does not do with your data." lang="en">
+  <div class="tekstpagina">
+    <h1>Privacy statement</h1>
+    <p class="lead">
+      In short: this site collects nothing about you. No account, no form, no
+      statistics, no advertising. Below is exactly what does happen.
+    </p>
+
+    <h2>Who we are</h2>
+    <p>
+      This site belongs to BIZ Ondernemersvereniging Rozengracht in Amsterdam.
+      For questions about this statement or about your data, email
+      <a href="mailto:info@derozengracht.com">info@derozengracht.com</a>. See
+      also the <a href={contact}>contact page</a>.
+    </p>
+
+    <h2>What we do not do</h2>
+    <ul>
+      <li>No visitor statistics. There is no Google Analytics or any other analytics service on this site.</li>
+      <li>No advertising and no visitor profiles.</li>
+      <li>No contact form, so no form data sitting somewhere.</li>
+      <li>No newsletter and no mailing list.</li>
+      <li>No logins or accounts.</li>
+    </ul>
+
+    <h2>What does happen</h2>
+    <h3>Content from other companies</h3>
+    <p>
+      Some pages include content that comes from another company. Such content
+      cannot load without seeing your IP address, because that is how the
+      internet works. So we do not load it automatically: you first get a panel
+      with a button, and only when you switch it on does anything go to that
+      company. This applies to:
+    </p>
+    <ul>
+      <li>
+        <strong>The Google map</strong> on the businesses page and the getting
+        there page. If you load it, your IP address and details about your
+        browser go to Google, and Google may place cookies. Google is a US
+        company.
+      </li>
+      <li>
+        <strong>The Instagram posts</strong> on the home page. These run
+        through Behold, which fetches the posts from our Instagram account and
+        offers them as a widget. If you load it, your IP address and browser
+        details go to Behold and possibly to Meta, the company behind
+        Instagram.
+      </li>
+    </ul>
+    <p>
+      If you say no, or choose nothing at all, none of that content is
+      requested. What you do get: an address, a route description in words, and
+      a link to our Instagram account that you can click yourself.
+    </p>
+
+    <h3>Fonts</h3>
+    <p>
+      The site's fonts currently come from Google Fonts. That means your IP
+      address goes to Google when a page opens, before you can choose anything.
+      We do not want to keep it that way: the plan is to host the fonts on our
+      own server so nothing goes to Google. Until that is done, it is stated
+      here, because mentioning it is more honest than leaving it out.
+    </p>
+
+    <h3>The choice we remember</h3>
+    <p>
+      If you use the notice at the bottom to decide whether third-party content
+      may load, we store that choice in your own browser so we do not have to
+      ask every time. It stays on your device and does not reach us. See the
+      <a href={cookies}>cookie policy</a> for exactly what is stored and how to
+      remove it.
+    </p>
+
+    <h3>The site itself</h3>
+    <p>
+      The site runs on GitHub Pages and consists of fixed pages with no
+      database. Like any web server, that server does see your IP address when
+      a page is requested. GitHub is a US company and part of Microsoft.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Because we keep no visitor data ourselves, there is nothing of yours with
+      us to request, correct or delete. If you run a business on the Rozengracht
+      and information about it on this site needs changing or removing, email
+      <a href="mailto:info@derozengracht.com">info@derozengracht.com</a>. For
+      what Google or Meta do with your data, see their own privacy statements.
+    </p>
+    <p>
+      If we cannot resolve something together, you can file a complaint with
+      the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).
+    </p>
+
+    <p class="bijgewerkt">Last updated: {bijgewerkt}.</p>
+  </div>
 </BaseLayout>
+
+<style>
+  .tekstpagina { max-width: 680px; }
+  .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
+  .tekstpagina h2 { margin-top: 2.2rem; }
+  .tekstpagina h3 { margin-top: 1.6rem; font-size: 1.05rem; }
+  .tekstpagina ul { padding-left: 1.2rem; }
+  .tekstpagina li { margin-bottom: 0.5rem; line-height: 1.6; }
+  .tekstpagina p { line-height: 1.65; }
+  .bijgewerkt { margin-top: 2.5rem; font-size: 0.9rem; color: var(--color-muted); }
+</style>

@@ -1,9 +1,102 @@
 ---
+// Cookiebeleid. Bewust kort en concreet: deze site zet zelf geen cookies, dus
+// een lange standaardtekst met categorieen als "marketingcookies" zou hier
+// alleen dingen beweren die niet gebeuren.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const privacy = getRelativeLocaleUrl('nl', 'privacy/');
+const bijgewerkt = '9 september 2026';
 ---
-<BaseLayout title="Cookies" lang="nl">
-  <h1>Cookiebeleid</h1>
-  <p style="color: var(--color-muted); max-width: 640px;">
-    [PLACEHOLDER: juridische tekst nog te schrijven in fase 4.]
-  </p>
+<BaseLayout title="Cookiebeleid" description="Welke cookies deze site gebruikt, en welke niet." lang="nl">
+  <div class="tekstpagina">
+    <h1>Cookiebeleid</h1>
+    <p class="lead">
+      Deze site zet zelf geen cookies en houdt geen statistieken bij. Het
+      enige dat we opslaan is de keuze die je maakt in de melding onderaan.
+    </p>
+
+    <h2>Wat we opslaan</h2>
+    <table>
+      <thead>
+        <tr><th>Naam</th><th>Wat het doet</th><th>Hoe lang</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>rg-cookie-consent</code></td>
+          <td>
+            Onthoudt of je externe onderdelen (de kaart, de Instagram-feed)
+            wilt laden, zodat we het niet elke keer opnieuw vragen.
+          </td>
+          <td>Tot je het zelf weghaalt</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Strikt genomen is dit geen cookie maar iets wat in je eigen browser wordt
+      opgeslagen (localStorage). Praktisch komt het op hetzelfde neer: het
+      staat op jouw apparaat en wij kunnen er niet bij.
+    </p>
+
+    <h2>Externe onderdelen die cookies kunnen plaatsen</h2>
+    <p>
+      Zeg je ja tegen externe onderdelen, dan kunnen die partijen zelf cookies
+      plaatsen. Wij hebben daar geen invloed op en kunnen er niet in kijken.
+    </p>
+    <ul>
+      <li>
+        <strong>Google Maps</strong> voor de kaart op de ondernemerspagina en
+        de bereikbaarheidspagina.
+      </li>
+      <li>
+        <strong>Behold</strong> voor de Instagram-berichten op de homepage, en
+        daarmee mogelijk ook <strong>Meta</strong>, het bedrijf achter
+        Instagram.
+      </li>
+    </ul>
+    <p>
+      Zonder jouw ja gebeurt dit niet: die onderdelen worden dan niet
+      opgevraagd. Zie de <a href={privacy}>privacyverklaring</a> voor wat er
+      dan wel en niet gebeurt.
+    </p>
+
+    <h2>Van gedachten veranderen</h2>
+    <p>
+      Je keuze staat in je eigen browser, dus die haal je daar ook weg. In de
+      meeste browsers gaat dat via de instellingen bij "sitegegevens
+      verwijderen" of "browsegegevens wissen" voor deze site. Daarna krijg je
+      de melding gewoon opnieuw en kun je iets anders kiezen.
+    </p>
+
+    <h2>Nog niet in orde</h2>
+    <p>
+      De lettertypen van de site komen op dit moment van Google Fonts, en die
+      laden voordat je iets kunt kiezen. Dat hoort niet zo en gaat veranderen:
+      de lettertypen komen op onze eigen server te staan. Het staat hier omdat
+      het eerlijker is om het te melden dan te doen alsof er niets naar Google
+      gaat.
+    </p>
+
+    <p class="bijgewerkt">Laatst bijgewerkt: {bijgewerkt}.</p>
+  </div>
 </BaseLayout>
+
+<style>
+  .tekstpagina { max-width: 680px; }
+  .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
+  .tekstpagina h2 { margin-top: 2.2rem; }
+  .tekstpagina ul { padding-left: 1.2rem; }
+  .tekstpagina li { margin-bottom: 0.5rem; line-height: 1.6; }
+  .tekstpagina p { line-height: 1.65; }
+  .tekstpagina table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.94rem; }
+  .tekstpagina th, .tekstpagina td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--color-border); }
+  .tekstpagina th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+  .tekstpagina code { font-size: 0.9em; background: var(--cream-card); padding: 2px 6px; border-radius: 5px; }
+  .bijgewerkt { margin-top: 2.5rem; font-size: 0.9rem; color: var(--color-muted); }
+  @media (max-width: 560px) {
+    .tekstpagina table, .tekstpagina thead, .tekstpagina tbody, .tekstpagina tr, .tekstpagina th, .tekstpagina td { display: block; }
+    .tekstpagina thead { display: none; }
+    .tekstpagina td { border: none; padding: 4px 0; }
+    .tekstpagina tr { border-bottom: 1px solid var(--color-border); padding-bottom: 12px; margin-bottom: 12px; }
+  }
+</style>
