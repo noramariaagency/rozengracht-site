@@ -67,6 +67,10 @@ const lang: Lang = 'en';
 
 <script is:inline>
   // Scroll reveal: gestaggerde fade+lift zodra content in beeld komt.
+  // Pas hier de animatie aanzetten: de CSS houdt alles zichtbaar tot deze
+  // klasse er staat, zodat een pagina nooit leeg blijft als dit script om
+  // welke reden dan ook niet aan bod komt.
+  document.documentElement.classList.add('reveal-aan');
   var revealItems = document.querySelectorAll('.reveal-item');
   var revealObserver = new IntersectionObserver(
     (entries) => {
@@ -88,4 +92,11 @@ const lang: Lang = 'en';
     seenParents.set(parent, idx + 1);
     revealObserver.observe(el);
   });
+
+  // Vangnet: mocht de observer niet afgaan (te korte pagina, rare
+  // viewport-situatie, iets in de browser), dan staat na een seconde alles
+  // alsnog zichtbaar. Liever een animatie die overslaat dan lege vlakken.
+  setTimeout(function () {
+    revealItems.forEach(function (el) { el.classList.add('is-visible'); });
+  }, 1000);
 </script>
