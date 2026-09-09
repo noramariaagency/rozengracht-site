@@ -10,7 +10,9 @@ meta_title_nl: "Glori Amsterdam Restaurant"
 meta_title_en: "Glori Amsterdam Restaurant"
 meta_description_nl: "Glori Amsterdam op Rozengracht 194. Argentijnse, Spaanse en Italiaanse keuken. Wisselende kunsttentoonstellingen. Wo-za diner, zo pasta-lunch."
 meta_description_en: "Glori Amsterdam at Rozengracht 194. Argentine, Spanish, and Italian cuisine. Changing art exhibitions. Wed–Sat dinner, Sun pasta lunch."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Nr. 194 komt niet voor op de ondernemerslijst van Cleo (8 sep 2026). Door Nora bevestigd als vertrokken.
 tekst_nl: |
   Glori Amsterdam op Rozengracht 194 is het restaurant van twee chefs die allebei van ver kwamen: een uit Argentinië, een uit Italië. Samen maken ze op de Rozengracht iets dat meer is dan de som der delen.
 

@@ -21,7 +21,9 @@ meta_title_nl: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_title_en: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_description_nl: "TRIB3 op Rozengracht 88 Amsterdam biedt HIIT-workouts in 3 zones met hartslagtracking. 30 plekken per sessie. Eerste 2 lessen voor €20."
 meta_description_en: "TRIB3 at Rozengracht 88 Amsterdam offers HIIT workouts across 3 zones with live heart rate tracking. 30 spots per session. First 2 sessions for €20."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 88 staat Rush op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   TRIB3 opende op 9 januari 2024 aan de Rozengracht 88. Het bedrijf bracht daarmee een format mee dat in steden als Leeds, Madrid en Praag al een vaste aanhang had opgebouwd.
 

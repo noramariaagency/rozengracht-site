@@ -18,6 +18,7 @@ Cléo) → `klaar` (gemerged op main).
 | 07 | Contact, de BIZ en juridisch | `topic/07-contact-biz-juridisch` | kan starten | – | |
 | 08 | Fotografie en beeldpijplijn | `topic/08-fotografie` | kan starten | – | Drive/Lightroom-inventarisatie kan al wel |
 | 00 | Coördinatie en release | `main` | bezig | 7 sep 2026 | opzet gemaakt |
+| 00b | Ondernemerslijst doorvoeren | `topic/00-ondernemerslijst` | klaar | 8 sep 2026 | definitieve lijst van Cleo doorgevoerd: 18 vertrokken, 15 nieuw, 2 geen interesse, naam- en adrescorrecties |
 
 ## Openstaande verzoeken aan een ander topic
 
@@ -83,7 +84,9 @@ kaartcomponent), niet omdat topic 03 ze blijvend claimt.
 
 ## Wachtend op Cléo
 
-- Definitieve lijst van ondernemers (blokkeert het afronden van 02, 05 en 08).
+- ~~Definitieve lijst van ondernemers (blokkeert het afronden van 02, 05 en 08).~~
+  **Binnen op 8 september 2026** en doorgevoerd door topic 00b, zie het logboek
+  hieronder. 02, 05 en 08 kunnen hierop verder.
 - Goedkeuring categorieschema (blokkeert de implementatie in 01 en de
   herlabeling in 02).
 - Foto's op de Drive: welke mappen horen bij welke ondernemer, en welke oude
@@ -128,6 +131,59 @@ Wat op de kaart nog open staat voor topic 05: de kaart "gezelliger" maken, in
 een groene sectie linksboven op halve breedte met de filters ernaast.
 
 ## Logboek
+
+- **8 sep 2026** — De definitieve ondernemerslijst van Cleo is doorgevoerd
+  (topic 00b, op verzoek van Nora). Wat er is gebeurd:
+  - **18 ondernemers op `status: vertrokken`.** Nieuwe statuswaarde in
+    `config.ts`: de zaak verdwijnt uit het overzicht, de kaart, de homepage en
+    krijgt geen eigen pagina meer, maar tekst en foto's blijven in de repo
+    staan. Terugzetten is dus één regel. Vertrokken: Toni & Guy (13),
+    Wegewijs (32), Koud Kunstje (49), Apotheek Benu (57), Gebroeders Winter
+    (62), Recover (231), Amigo Grill (5), Tuk Tuk Thai (22), Interline & Go
+    (51), Witbaard (63), Nature Skin (72), TRIB3 (88), Henny's Homemade (91),
+    Ton Ton Shoarma (137), Glori Amsterdam (194), Urban Cacao (200), Spang
+    Makandra (214) en Ben Cohen (239).
+  - **15 nieuwe ondernemerspagina's**, geschreven met de skill
+    `rozengracht-copywriter`: Uno Mas (5), Sneakerdistrict (21), Dong Son (22),
+    Mokum Vintage (25), Café de Gouden Florijn (28, in verbouwing), Scoops &
+    Bubbles (51), Supermarkt Jordaan (56), PTA Multistore (63), Haku Specialty
+    Coffee (69), Sabai Thai Wellness (72), Rush (88), Grillroom Hilal (154),
+    Bakkerij Wolf (200), Eethuis Ali Baba (214) en Bánh Mì Bà Mỹ (239). Alle
+    vijftien staan op `deels-klaar`: geen foto's en geen citaat.
+  - **Twee naamswijzigingen**: Tandartspraktijk Rozengracht heet nu
+    Mondzorggilde (68-70) en Panke heet nu Fanke (91, huisnummer bevestigd).
+    Beide mappen zijn hernoemd, dus de URL is mee veranderd. Bij Fanke bleek
+    de oude beschrijving ook feitelijk fout (geen Grieks dagrestaurant maar een
+    Griekse deli met koffiebar); die tekst is herschreven.
+  - **Adrescorrecties** volgens de lijst: Backstage van 101-103 naar 107,
+    Dijkman van 107-115 naar 115, Studio HENK naar 202-210, Ma Baker heeft nu
+    huisnummer 343.
+  - **Twee op `geen-interesse`**: DierenDokters (226) en Fit Well (241). Alleen
+    wat op de laatste lijst als geen interesse staat, telt; oudere tabbladen
+    niet. Deze status haalt nu ook de eigen pagina weg, niet alleen de
+    vermelding in het overzicht.
+  - **Citaten weggehaald** bij alle nieuwe pagina's en bij Fanke en
+    Mondzorggilde. Die quotes waren door ons opgeschreven op basis van online
+    bronnen, niet uitgesproken door de ondernemer. Ophalen bij de ondernemer
+    zelf, dan kunnen ze terug.
+  - **Archief**: van alle 18 vertrekkers plus de hernoemde tandartspraktijk
+    staat een volledig dossier in Drive, in "Website Rozengracht /
+    Archief ondernemers 2026-09-08", met de complete pagina-inhoud, de
+    fotonamen en de laatst bekende contactgegevens. Pas daarna is er iets van
+    de site gehaald.
+  - **Nog te bevestigen bij Cleo**: Behind the Pines (34) staat niet op de
+    lijst maar blijft op verzoek van Nora staan, Sneakerdistrict (21) staat op
+    de nieuwe lijst als actief terwijl een ouder tabblad "GESLOTEN FAILLIET"
+    zegt, en bij Mondzorggilde staat het veld `website` nog op
+    leuketandarts.nl.
+
+  Uitzonderingen op het eigenaarschap, met instemming van Nora: dit topic
+  raakte `src/content/config.ts` (topic 01, één statuswaarde erbij),
+  `src/pages/ondernemers/[...slug].astro` en de Engelse variant (topic 05, een
+  filter in `getStaticPaths`), `src/pages/ondernemers/index.astro` en de
+  Engelse variant plus de drie homepage-componenten van topic 03 (één
+  filterregel uitgebreid) en `scripts/werkgesprek.sh` (topic 00, een negende
+  topic toegevoegd). In al die bestanden is niets anders gewijzigd.
 
 - **7 sep 2026** — Topic 03, vierde ronde (kleine bijstellingen): de
   blog-wall en `/lezen/` zijn nu breder dan de standaard leescontainer, via

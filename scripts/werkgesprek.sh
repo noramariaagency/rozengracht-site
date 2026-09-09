@@ -61,7 +61,8 @@ koppel_node_modules() {
 }
 
 TOPICS="01-fundament 02-categorieen 03-homepage-magazine 04-blog-en-artikelen \
-05-ondernemers-en-kaart 06-bereikbaarheid 07-contact-biz-juridisch 08-fotografie"
+05-ondernemers-en-kaart 06-bereikbaarheid 07-contact-biz-juridisch 08-fotografie \
+00-ondernemerslijst"
 
 fout() { printf '\n  FOUT: %s\n\n' "$1" >&2; exit 1; }
 kop()  { printf '\n== %s ==\n' "$1"; }

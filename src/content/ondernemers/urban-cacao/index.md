@@ -15,7 +15,9 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 200 staat Bakkerij Wolf op de ondernemerslijst van Cleo (8 sep 2026).
 quote_nl: "Wij werken met origin chocolade van meer dan 40 herkomsten, bonen die je kunt herleiden tot een specifieke regio."
 quote_en: "We work with origin chocolate from more than 40 origins, beans you can trace back to a specific region."
 meta_title_nl: "Urban Cacao Chocolate"

@@ -1,6 +1,6 @@
 ---
 naam: "Backstage Make-up & Grime"
-huisnummer: "101-103"
+huisnummer: "107"
 categorie: "hobby-klussen"
 subcategorie: "Theatermake-up & grime"
 website: "https://www.back-stage.nl/"

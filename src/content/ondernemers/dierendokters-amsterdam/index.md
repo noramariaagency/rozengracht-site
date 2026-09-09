@@ -13,7 +13,9 @@ meta_title_nl: "Dierendokters Amsterdam"
 meta_title_en: "Dierendokters Veterinary Amsterdam"
 meta_description_nl: "DierenDokters Amsterdam op Rozengracht 226. Oudste dierenkliniek van Nederland, actief sinds 1929. Honden, katten, knaagdieren. 8,8/10 Google."
 meta_description_en: "DierenDokters Amsterdam at Rozengracht 226. Oldest veterinary clinic in the Netherlands, since 1929. Dogs, cats, rodents. 8.8/10 Google. Tel 020-6238596."
-status: "klaar"
+status: "geen-interesse"
+interne_opmerking: >
+  Staat als "Dierendokters Amsterdam geen interesse" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   DierenDokters Amsterdam op Rozengracht 226 is de oudste dierenkliniek van Nederland. Veterinaire geneeskunde wordt er al gepraktiseerd sinds 1929, in een monumentaal pand dat in 2006 van binnen volledig werd gemoderniseerd.
 

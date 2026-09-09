@@ -15,7 +15,18 @@ const lang: Lang = 'en';
 const categorieLabels = getCategorieLabels(lang);
 
 export async function getStaticPaths() {
-  const ondernemers = await getCollection('ondernemers');
+  // Geen eigen pagina voor wie niet (meer) op de site hoort te staan:
+  // 'vertrokken' = zit niet meer op de Rozengracht, 'geen-interesse' = wil
+  // niet op de site, 'overslaan' = voorlopig niet meenemen. Dit is dezelfde
+  // set die ook uit het overzicht, de kaart en de homepage wordt gefilterd.
+  // Het bronbestand blijft staan, dus terugzetten is een wijziging van die
+  // ene statusregel.
+  const ondernemers = (await getCollection('ondernemers')).filter(
+    ({ data }) =>
+      data.status !== 'vertrokken' &&
+      data.status !== 'geen-interesse' &&
+      data.status !== 'overslaan',
+  );
   return ondernemers.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

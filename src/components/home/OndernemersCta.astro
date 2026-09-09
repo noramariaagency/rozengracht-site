@@ -22,7 +22,7 @@ const groepen = categorieenPerGroep(lang);
 
 const alleOndernemers = await getCollection(
   'ondernemers',
-  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse' && data.status !== 'vertrokken'
 );
 const kaartItems = alleOndernemers
   .map((o) => {

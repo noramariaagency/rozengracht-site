@@ -21,7 +21,9 @@ meta_title_nl: "Henny's Homemade Biologisch"
 meta_title_en: "Henny's Homemade | Organic bio café – Rozengracht Amsterdam"
 meta_description_nl: "Henny's Homemade Bio Food op Rozengracht 91 Amsterdam. Biologische koffie, 35 theevarianten, verse broodjes en huisgemaakte granola. Vegan en glutenvrij."
 meta_description_en: "Henny's Homemade Bio Food at Rozengracht 91 Amsterdam. Organic coffee, 35 teas, fresh sandwiches, and homemade granola. Vegan and gluten-free options."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 91 staat Fanke op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Henny begon in 2018 op de Rozengracht 91 met biologische granola, jam en energyballs. Daarna groeide het rustig door naar een volledig biocafé dat elke dag van verse ingrediënten kookt en bakt.
 

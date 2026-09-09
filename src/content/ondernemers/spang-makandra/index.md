@@ -22,7 +22,9 @@ meta_title_nl: "Spang Makandra Surinaams"
 meta_title_en: "Spang Makandra Surinamese"
 meta_description_nl: "Spang Makandra op Rozengracht 214 is al actief sinds 1978. Authentieke Surinaamse keuken: roti, saoto-soep, moksi meti en meer. Een klassieker in."
 meta_description_en: "Spang Makandra at Rozengracht 214 has been serving authentic Surinamese food since 1978. Roti, saoto soup, moksi meti, and more. An Amsterdam classic."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Staat niet op de ondernemerslijst van Cleo (8 sep 2026); op nr. 214 staat Eethuis Ali Baba. Door Nora bevestigd.
 tekst_nl: |
   Spang Makandra is Surinaams voor "samen eten", en dat is precies wat er al gebeurt op de Rozengracht 214 since 1978.
 

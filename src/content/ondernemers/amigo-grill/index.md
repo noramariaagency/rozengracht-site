@@ -12,7 +12,9 @@ meta_title_nl: "Amigo Grill | Argentijns restaurant – Rozengracht Amsterdam"
 meta_title_en: "Amigo Grill | Argentine Restaurant – Rozengracht Amsterdam"
 meta_description_nl: "Argentijns steak restaurant op Rozengracht 5 in de Jordaan. Gegrild vlees, parrillada en persoonlijk wijnadvies van eigenaar Halim. Open 12:00–00:00."
 meta_description_en: "Argentine steakhouse at Rozengracht 5 in Amsterdam's Jordaan. Charcoal-grilled meats, parrillada, and personal wine advice from owner Halim."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Op nr. 5 staat Uno Mas op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Halim weet precies hoe jij je biefstuk wil hebben.
 

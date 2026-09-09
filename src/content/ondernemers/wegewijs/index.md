@@ -6,7 +6,9 @@ subcategorie: "Kaas en delicatessen"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Nr. 32 staat als "Leeg (Voorheen Wegewijs)" op de ondernemerslijst van Cleo (8 sep 2026).
 meta_title_nl: "Wegewijs | Kaashandel & delicatessen – Rozengracht Amsterdam"
 meta_title_en: "Wegewijs | Cheese Shop & Deli – Rozengracht Amsterdam"
 meta_description_nl: "Fa. H. Wegewijs op Rozengracht 32 Amsterdam, kaashandel en delicatessen sinds 1912."

@@ -9,7 +9,9 @@ meta_title_nl: "Fit Well Chinese Massage"
 meta_title_en: "Fit Well Massage Amsterdam"
 meta_description_nl: "Fit Well Chinese Massage op Rozengracht 241 Amsterdam. Traditionele Chinese massage, ontspanning en oliemassage. Dagelijks open 10:30–22:30."
 meta_description_en: "Fit Well Chinese Massage at Rozengracht 241 Amsterdam. Traditional Chinese massage, relaxation, and oil massage. Open daily 10:30–22:30."
-status: "klaar"
+status: "geen-interesse"
+interne_opmerking: >
+  Staat als "Massagesalon Fit Well geen interesse in promotie" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Fit Well Chinese Massage op de Rozengracht 241 is zeven dagen per week open, van 10:30 tot 22:30, voor wie midden op de dag of laat op de avond een massagebehandeling wil.
 

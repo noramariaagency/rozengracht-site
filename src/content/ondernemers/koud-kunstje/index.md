@@ -18,7 +18,9 @@ meta_title_nl: "Koud Kunstje Workshops"
 meta_title_en: "Koud Kunstje Workshops"
 meta_description_nl: "Bij Koud Kunstje op de Rozengracht koop je handgemaakt of maak je het zelf. Workshops voor volwassenen en kinderen, kinderfeestjes vanaf €25 p.p."
 meta_description_en: "At Koud Kunstje on the Rozengracht you buy handmade or make it yourself. Workshops for adults and kids, children's parties from €25 per person."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Nr. 49 staat als "In verbouwing (Voorheen DVision)" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Bij Koud Kunstje op de Rozengracht 49E kun je niet alleen handgemaakte sieraden, keramiek en kaarsen kopen, je maakt ze er ook zelf.
 

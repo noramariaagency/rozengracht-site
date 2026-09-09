@@ -14,7 +14,7 @@ const categorieLabels = getCategorieLabels(lang);
 
 const ruw = await getCollection(
   'ondernemers',
-  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse'
+  ({ data }) => data.status !== 'overslaan' && data.status !== 'geen-interesse' && data.status !== 'vertrokken'
 );
 
 const items = await Promise.all(

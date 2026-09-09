@@ -10,7 +10,9 @@ meta_title_nl: "BENU Apotheek Rozengracht | Apotheek – Amsterdam Jordaan"
 meta_title_en: "BENU Apotheek Rozengracht | Pharmacy – Amsterdam Jordaan"
 meta_description_nl: "BENU Apotheek Rozengracht op Rozengracht 57 Amsterdam. Receptmedicijnen, vrij verkrijgbare middelen en farmaceutisch advies. Open ma-vr 8:30-17:30."
 meta_description_en: "BENU Apotheek Rozengracht at Rozengracht 57 Amsterdam. Prescription medication, over-the-counter products, and pharmaceutical advice."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Nr. 57 staat als "Apotheek Benu GESLOTEN" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   BENU Apotheek Rozengracht is de buurtapotheek voor de Jordaan en omgeving, op nummer 57 van de Rozengracht.
 

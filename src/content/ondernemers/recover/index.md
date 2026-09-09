@@ -13,7 +13,9 @@ meta_title_nl: "Recover | Gezond café & bowls – Rozengracht Amsterdam"
 meta_title_en: "Recover | Healthy café & bowls – Rozengracht Amsterdam"
 meta_description_nl: "Recover op Rozengracht 231 Amsterdam. Bowls, smoothies, salades, koffie en matcha. Vegan opties. Werkplek-vriendelijk. Bezorging via Uber Eats."
 meta_description_en: "Recover at Rozengracht 231 Amsterdam. Bowls, smoothies, salads, coffee, and matcha. Vegan options. Remote-worker friendly. Delivery via Uber Eats."
-status: "klaar"
+status: "vertrokken"
+interne_opmerking: >
+  Nr. 229, 231 en 233 staan alle drie als "Leeg [Voorheen Velo/Recover]" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Recover op Rozengracht 231 is een gezond café waar je terecht kunt voor bowls, salades, smoothies, koffie en matcha.
 
