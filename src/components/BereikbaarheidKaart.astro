@@ -106,6 +106,14 @@ const ROUTE_KLEUREN: Record<string, string> = {
     var map = new google.maps.Map(el, {
       center: { lat: 52.3735, lng: 4.8815 },
       zoom: 15,
+      // Zelfde als op de ondernemerskaart: Google's eigen zaken- en
+      // transit-labels uit, zodat alleen onze eigen pinnen namen dragen.
+      styles: [
+        { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+        { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
+        { featureType: 'transit', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+      ],
+      clickableIcons: false,
     });
 
     var infoWindow = new google.maps.InfoWindow();
@@ -123,8 +131,22 @@ const ROUTE_KLEUREN: Record<string, string> = {
               url: iconInfo.url,
               scaledSize: new google.maps.Size(iconInfo.size, iconInfo.size),
               anchor: new google.maps.Point(iconInfo.size / 2, iconInfo.size / 2),
+              labelOrigin: new google.maps.Point(iconInfo.size / 2, iconInfo.size + 4),
             }
           : undefined,
+        // Naam naast de pin, net als op de ondernemerskaart. Haltes zonder
+        // eigen naam ("Tram-/bushalte") krijgen er geen: dat zijn er een
+        // paar naast elkaar en die tekst voegt niets toe.
+        label:
+          item.naam && item.naam !== 'Tram-/bushalte'
+            ? {
+                text: item.naam,
+                className: 'kaart-pin-label',
+                color: '#14342a',
+                fontSize: '12px',
+                fontWeight: '600',
+              }
+            : null,
       });
       marker.addListener('click', function () {
         infoWindow.setContent('<strong>' + item.naam + '</strong>');
