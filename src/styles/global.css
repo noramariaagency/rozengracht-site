@@ -22,13 +22,14 @@
   /* Iets frisser/witter dan de originele #f3f6f1 uit de brief, op
      verzoek — nog altijd een fractie warm i.p.v. klinisch wit, zodat het
      bij de rest van de (warme) huisstijl blijft passen. */
-  /* Pagina-achtergrond: exact de kleur van beethovenstraat.nl, opgemeten in
-     de browser (body = #f6f6f6). Stond eerder op #fafbf8, wat zo dicht bij
-     wit lag dat de witte kaartjes erop verdwenen. Een neutraal grijs in
-     plaats van een warme creme, dus de kaartjes leunen voor hun contrast op
-     de zachte schaduw (zie --card-shadow) en op de foto's die tot de rand
-     doorlopen, net als daar. */
-  --cream: #f6f6f6;
+  /* Pagina-achtergrond: dezelfde lichtheid als beethovenstraat.nl, maar warm
+     in plaats van neutraal grijs. Hun body is opgemeten in de browser op
+     #f6f6f6 (L* 96.9); deze kleur zit op L* 96.8, dus het contrast met de
+     witte kaartjes is gelijk, terwijl de tint bij de rose en oker uit de
+     huisstijl blijft passen in plaats van er koel naast te staan. Omgerekend
+     via Lab i.p.v. op het oog gekozen. Stond eerder op #fafbf8, wat zo dicht
+     bij wit lag dat de witte kaartjes erop verdwenen. */
+  --cream: #fbf5ee;
   --cream-card: #ffffff;
   --line: #e3dbcf;
   /* Zachte schaduw voor kaarten: geeft ze diepte zonder een lijn eromheen. */
