@@ -148,13 +148,18 @@ const t = TEKST[lang];
   }
   .btn:hover { background: #fff; opacity: 1; }
 
-  .reveal-item {
+  /* Verschijn-animatie, maar alleen als het script op de pagina daadwerkelijk
+     draait: dat zet html.reveal-aan. Zonder die klasse is alles gewoon
+     zichtbaar. Eerst stond opacity: 0 er onvoorwaardelijk op, en toen het
+     scroll-script niet aan bod kwam bleef de hele wand leeg: een onzichtbare
+     pagina is een veel groter probleem dan een ontbrekende animatie. */
+  :global(html.reveal-aan) .reveal-item {
     opacity: 0;
     transform: translateY(22px);
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+  :global(html.reveal-aan) .reveal-item.is-visible { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
-    .reveal-item { opacity: 1; transform: none; transition: none; }
+    :global(html.reveal-aan) .reveal-item { opacity: 1; transform: none; transition: none; }
   }
 </style>
