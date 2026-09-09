@@ -53,7 +53,7 @@ const vastePois = poiConfig
   .map((poi) => {
     const plek = bereikbaarheidPlekken[poi.key];
     if (!plek || plek.lat == null || plek.lng == null) return null;
-    return { key: poi.key, naam: poi.naam, vervoerswijze: poi.vervoerswijze, lat: plek.lat, lng: plek.lng };
+    return { key: poi.key, naam: poi.naam, vervoerswijze: poi.vervoerswijze, lat: plek.lat, lng: plek.lng, label: true };
   })
   .filter((x) => x !== null);
 

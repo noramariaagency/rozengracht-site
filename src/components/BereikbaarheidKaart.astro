@@ -134,11 +134,12 @@ const ROUTE_KLEUREN: Record<string, string> = {
               labelOrigin: new google.maps.Point(iconInfo.size / 2, iconInfo.size + 4),
             }
           : undefined,
-        // Naam naast de pin, net als op de ondernemerskaart. Haltes zonder
-        // eigen naam ("Tram-/bushalte") krijgen er geen: dat zijn er een
-        // paar naast elkaar en die tekst voegt niets toe.
+        // Naam naast de pin, net als op de ondernemerskaart, maar alleen bij
+        // de drie vaste plekken (garage en de twee tramhaltes). De overige
+        // haltes staan er vlak naast en hun namen uit Google lopen dan door
+        // elkaar heen zonder iets toe te voegen.
         label:
-          item.naam && item.naam !== 'Tram-/bushalte'
+          item.label && item.naam
             ? {
                 text: item.naam,
                 className: 'kaart-pin-label',
