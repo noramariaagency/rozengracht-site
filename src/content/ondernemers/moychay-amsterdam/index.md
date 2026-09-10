@@ -7,13 +7,13 @@ website: "https://togo.moychay.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.webp"
-quote_nl: "Ik nam mijn obsessie met Aziatische theecultuur mee naar Amsterdam en opende hier de eerste echte theecultuurclub van Nederland."
-quote_en: "I brought my obsession with Asian tea culture to Amsterdam and opened the Netherlands' first real tea culture club right here."
 meta_title_nl: "Moychay Amsterdam Thee"
 meta_title_en: "Moychay Amsterdam Tea"
 meta_description_nl: "Moychay op Rozengracht 92H is de eerste Aziatische theecultuurclub van Nederland. 250+ theesoorten, Gong Fu Cha-ceremonies en 3 themakamers in Amsterdam."
 meta_description_en: "Moychay at Rozengracht 92H is the Netherlands' first Asian tea culture club. 250+ teas, Gong Fu Cha ceremonies, and 3 themed rooms in Amsterdam's Jordaan."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Sergey Shevelev bracht zijn obsessie met Aziatische theeculuur naar Amsterdam en opende aan de Rozengracht 92H de eerste echte theecultuurclub van Nederland: Moychay.
 

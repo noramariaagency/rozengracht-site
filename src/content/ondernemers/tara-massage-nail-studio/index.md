@@ -4,13 +4,13 @@ huisnummer: "7"
 categorie: "haar-huid-nagels"
 tweede_label: "sport-lichaam"
 subcategorie: "Massage & nagelstudio"
-quote_nl: "Wij brachten de Tibetaanse Kunye-massage naar de Jordaan."
-quote_en: "We brought Tibetan Kunye massage to the Jordaan."
 meta_title_nl: "TARA Massages & Nail Studio Rozengracht"
 meta_title_en: "TARA Massages & Nail Studio Rozengracht"
 meta_description_nl: "Tibetaanse Kunye massage en nagelbehandeling op Rozengracht 7 in Amsterdam. Geopend door Tsering en Tsundue in 2021. Dagelijks open vanaf 11:00."
 meta_description_en: "Tibetan Kunye massage and nail treatments at Rozengracht 7, Amsterdam. Founded by Tsering and Tsundue in 2021."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"

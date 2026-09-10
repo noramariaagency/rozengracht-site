@@ -7,14 +7,15 @@ website: "https://bar-brandstof.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ons menu verandert elk kwartaal mee met het seizoen. Buurtcafé zijn we, maar niet met een vaste kaart."
-quote_en: "Our menu changes every quarter with the season. We're a neighbourhood bar, just not one with a fixed menu."
 meta_title_nl: "Brandstof Buurtcafe Rozengracht"
 meta_title_en: "Brandstof Cafe Rozengracht Amsterdam"
 meta_description_nl: "Bar Brandstof op de hoek Rozengracht/Marnixstraat 357 Amsterdam. Seizoensmenu, Fuel Burger, huisgemaakte granola. Tijdelijk gesloten – heropening 2027."
 meta_description_en: "Bar Brandstof at Rozengracht/Marnixstraat 357 Amsterdam. Seasonal menu, Fuel Burger, house-made granola. Temporarily closed – reopening 2027."
 status: "klaar"
-interne_opmerking: "Tijdelijk gesloten vanwege werkzaamheden aan Rozengracht/Marnixstraat. Heropening verwacht in 2027 (bron: website heeft ook SSL-fout, onbereikbaar april 2026)."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
+  Tijdelijk gesloten vanwege werkzaamheden aan Rozengracht/Marnixstraat. Heropening verwacht in 2027 (bron: website heeft ook SSL-fout, onbereikbaar april 2026).
 tekst_nl: |
   Bar Brandstof op de hoek van de Rozengracht en de Marnixstraat (nr. 357) is een van de vertrouwde plekken van de wijk voor ontbijt, lunch en avondeten, met een menu dat elk kwartaal mee verandert met het seizoen.
 

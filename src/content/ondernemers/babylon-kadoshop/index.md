@@ -6,13 +6,13 @@ subcategorie: "Cadeaus & sieraden"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ik loop niemand achterna als ze rondkijken. Neem gerust de tijd, ik neem 'm ook."
-quote_en: "I don't follow anyone around while they browse. Take your time, I take mine too."
 meta_title_nl: "Babylon Kadoshop Rozengracht"
 meta_title_en: "Babylon Kadoshop | Gifts & Jewellery – Rozengracht Amsterdam"
 meta_description_nl: "Cadeauwinkel en sieradenwinkel op Rozengracht 37 Amsterdam. Echte stenen, sterling zilver, souvenirs en woonaccessoires. Dagelijks open 10:00–18:30."
 meta_description_en: "Gift shop and jewellery store at Rozengracht 37 Amsterdam. Real gemstones, sterling silver, souvenirs, and home accessories. Open daily 10:00–18:30."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Bij Babylon Kadoshop op Rozengracht 37 kun je terecht voor sieraden met echte stenen en sterling zilver, Amsterdam-souvenirs en woonaccessoires. De winkel werkt ook als groothandel en heeft daardoor een ruim en wisselend aanbod. Klanten omschrijven de eigenaar als geduldig en vriendelijk: iemand die de tijd neemt en je niet achternaloopt als je rondkijkt.
 

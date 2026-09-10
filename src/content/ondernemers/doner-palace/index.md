@@ -4,13 +4,13 @@ huisnummer: "89"
 categorie: "restaurants"
 tweede_label: "bakkers-snacks-togo"
 subcategorie: "Turks eethuis"
-quote_nl: "Wij houden de keuken open tot diep in de nacht, al jaren, onder twee namen: Döner Palace en Eethuis de Jordaan."
-quote_en: "We keep the kitchen open deep into the night, under two names for years now: Döner Palace and Eethuis de Jordaan."
 meta_title_nl: "Döner Palace | Turks eethuis – Rozengracht Amsterdam"
 meta_title_en: "Döner Palace | Turkish eatery – Rozengracht Amsterdam"
 meta_description_nl: "Döner Palace (Eethuis de Jordaan) op Rozengracht 89 Amsterdam. Döner kebab, lahmacun, baklava en meer."
 meta_description_en: "Döner Palace (Eethuis de Jordaan) at Rozengracht 89 Amsterdam. Döner kebab, lahmacun, baklava and more. Open until 02:30. Generous portions, honest prices."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Döner Palace, ook bekend als Eethuis de Jordaan, serveert al jaren Turkse en Griekse keuken op de Rozengracht 89, en houdt de keuken open tot diep in de nacht.
 

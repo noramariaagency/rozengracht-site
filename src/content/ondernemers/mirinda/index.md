@@ -6,13 +6,13 @@ subcategorie: "Marokkaans eetcafé"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Onze specialiteit is msemmen, een traditioneel Marokkaans flatbread, zoet of hartig. Wij zitten in een van de bogen naast de Fatih Moskee."
-quote_en: "Our specialty is msemmen, a traditional Moroccan flatbread, sweet or savoury. We're tucked into one of the arches next to the Fatih Mosque."
 meta_title_nl: "Mirinda Marokkaans Amsterdam"
 meta_title_en: "Mirinda Moroccan Amsterdam"
 meta_description_nl: "Mirínda op Rozengracht 146 Amsterdam. Marokkaans eetcafé met verse msemmen, ontbijt en terras. Bezorging via Thuisbezorgd en Uber Eats."
 meta_description_en: "Mirínda at Rozengracht 146 Amsterdam. Moroccan snack café with fresh msemmen, breakfast, and terrace. Delivery via Thuisbezorgd and Uber Eats."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Mirínda zit op Rozengracht 146 in een van de bogen naast de Fatih Moskee, een klein Marokkaans eetcafé waar de specialiteit msemmen is: een traditioneel Marokkaans flatbread dat zowel zoet als hartig wordt geserveerd.
 

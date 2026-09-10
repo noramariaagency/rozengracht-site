@@ -15,14 +15,14 @@ openingstijden:
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
-quote_nl: "Ons format bestond al in Leeds, Madrid en Praag voordat we op 9 januari 2024 hier openden."
-quote_en: "Our format already had a following in Leeds, Madrid and Prague before we opened here on 9 January 2024."
 meta_title_nl: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_title_en: "TRIB3 Rozengracht | Boutique HIIT fitness studio – Amsterdam"
 meta_description_nl: "TRIB3 op Rozengracht 88 Amsterdam biedt HIIT-workouts in 3 zones met hartslagtracking. 30 plekken per sessie. Eerste 2 lessen voor €20."
 meta_description_en: "TRIB3 at Rozengracht 88 Amsterdam offers HIIT workouts across 3 zones with live heart rate tracking. 30 spots per session. First 2 sessions for €20."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Op nr. 88 staat Rush op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   TRIB3 opende op 9 januari 2024 aan de Rozengracht 88. Het bedrijf bracht daarmee een format mee dat in steden als Leeds, Madrid en Praag al een vaste aanhang had opgebouwd.

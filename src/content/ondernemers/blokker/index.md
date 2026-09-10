@@ -7,13 +7,13 @@ website: "https://www.blokker.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij zitten meteen aan het begin van de straat, en dat is geen toeval: iedereen heeft vroeg of laat iets voor thuis nodig."
-quote_en: "We're right at the start of the street, and that's no accident: everyone needs something for the house sooner or later."
 meta_title_nl: "Blokker | Huishoudelijke artikelen – Rozengracht Amsterdam"
 meta_title_en: "Blokker | Household goods – Rozengracht Amsterdam"
 meta_description_nl: "Blokker op Rozengracht 8 Amsterdam. Keukenspullen, schoonmaakartikelen, klein elektrisch en meer. Bekende Nederlandse winkelketen voor het huishouden."
 meta_description_en: "Blokker at Rozengracht 8 Amsterdam. Kitchenware, cleaning products, small appliances, and more. Well-known Dutch household goods chain."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Blokker staat op Rozengracht 8, meteen aan het begin van de straat, voordat je de Jordaan in duikt, en dat is geen toeval. Wie hier woont of langs loopt, heeft vroeg of laat iets voor thuis nodig.
 

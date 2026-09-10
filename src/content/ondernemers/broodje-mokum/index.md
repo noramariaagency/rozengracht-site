@@ -7,13 +7,13 @@ subcategorie: "Lunchroom"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Broodje kroket, erwtensoep, filet américain: al meer dan 40 jaar hetzelfde soort lunch dat Amsterdam groot maakte."
-quote_en: "Kroket sandwiches, pea soup, filet américain: more than 40 years of the same kind of lunch that made Amsterdam what it is."
 meta_title_nl: "Broodje Mokum Amsterdam"
 meta_title_en: "Broodje Mokum Amsterdam"
 meta_description_nl: "Broodje Mokum op Rozengracht 26 Amsterdam. Klassieke Amsterdamse lunch: kroket, erwtensoep, filet américain, hindoestaanse kip. Al 40+ jaar open. Ma-za."
 meta_description_en: "Broodje Mokum at Rozengracht 26 Amsterdam. Classic Amsterdam lunch: kroket, pea soup, filet américain, Hindustani chicken. Open 40+ years. Mon–Sat."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Broodje Mokum zit al meer dan 40 jaar op Rozengracht 26 en serveert het soort lunches dat Amsterdam groot maakte: broodje kroket, erwtensoep met roggebrood en katenspek, filet américain, de Jordaanse bal, hindoestaanse kip.
 

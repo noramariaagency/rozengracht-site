@@ -7,13 +7,13 @@ website: "https://www.dionirynailsandbeauty.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij zijn open van maandag tot en met zondag, met avondopening op vrijdag en zaterdag. Kom wanneer het jou uitkomt."
-quote_en: "We're open every day of the week, with evening hours on Fridays and Saturdays. Come whenever suits you."
 meta_title_nl: "Dioniry Nails & Beauty | Nagelstudio – Rozengracht Amsterdam"
 meta_title_en: "Dioniry Nails & Beauty | Nail salon – Rozengracht Amsterdam"
 meta_description_nl: "Dioniry Nails & Beauty op Rozengracht 189 Amsterdam. Acryl, gel, BIAB, shellac, manicure, pedicure, wimpers en waxing. Open 7 dagen, ook 's avonds."
 meta_description_en: "Dioniry Nails & Beauty at Rozengracht 189 Amsterdam. Acrylic, gel, BIAB, shellac, manicure, pedicure, lashes, and waxing. Open 7 days, evenings available."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Dioniry Nails & Beauty op de Rozengracht 189 is een beautysalon die de volledige breedte van nagelverzorging en beauty-behandelingen aanbiedt. Het is open maandag tot en met zondag, met avondopeningstijden op vrijdag en zaterdag.
 

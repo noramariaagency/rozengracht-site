@@ -6,6 +6,8 @@ subcategorie: "Kapper"
 website: "https://www.toniandguy.nl"
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 13HS staat als "Leeg (Voorheen Toni & Guy)" op de ondernemerslijst van Cleo (8 sep 2026).
 
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
@@ -16,8 +18,6 @@ interne_opmerking: >
   als Rozengracht 13h vermeld i.p.v. 13 — hier de ledenlijst gevolgd. Openingstijden
   variëren per bron en zijn daarom niet expliciet in de tekst opgenomen. Geen
   foto's beschikbaar, aanvullen zodra bekend.
-quote_nl: "Ik leid deze vestiging al ruim twintig jaar."
-quote_en: "I've been running this branch for more than twenty years now."
 meta_title_nl: "Toni & Guy | Kapper – Rozengracht Amsterdam"
 meta_title_en: "Toni & Guy | Hair Salon – Rozengracht Amsterdam"
 meta_description_nl: "Toni&Guy op Rozengracht 13 in Amsterdam: de lokale vestiging van de internationale kapketen, onder leiding van Naomi Achthoven-Sutcliffe."

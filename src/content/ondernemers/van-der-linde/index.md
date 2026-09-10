@@ -13,8 +13,8 @@ meta_title_en: "Van der Linde Art Supplies"
 meta_description_nl: "Van der Linde op Rozengracht 36-38 Amsterdam. Kunstenaarsmaterialen en grafische benodigdheden. 65.000+ artikelen. Inlijstatelier aanwezig. Sinds 1898."
 meta_description_en: "Van der Linde at Rozengracht 36-38 Amsterdam. Artists' materials and graphic supplies. 65,000+ items. Framing atelier on site. Est. 1898."
 status: "klaar"
-quote_nl: "Andere winkels op deze straat komen en gaan. Wij staan er al sinds 1898. Dat is geen toeval."
-quote_en: "Other shops on this street come and go. We've been here since 1898. That's no coincidence."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Van der Linde bestaat al sinds 1898 en zit al die tijd aan de Rozengracht, op nummer 36-38, in het hart van de Jordaan.
 

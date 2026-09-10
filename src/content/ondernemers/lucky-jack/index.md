@@ -7,13 +7,13 @@ website: "https://luckyjack.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij zitten hier al sinds 1947, zeven dagen per week open."
-quote_en: "We've been here since 1947, open seven days a week."
-meta_title_nl: "Lucky Jack | Speelhal sinds 1947 – Rozengracht Amsterdam"
-meta_title_en: "Lucky Jack | Gaming hall since 1947 – Rozengracht Amsterdam"
+meta_title_nl: "Lucky Jack | Speelhal – Rozengracht Amsterdam"
+meta_title_en: "Lucky Jack | Gaming hall – Rozengracht Amsterdam"
 meta_description_nl: "Lucky Jack speelhal op Rozengracht 237 Amsterdam. Slotmachines en elektronische roulette. Vrije toegang. Dagelijks open. Vanaf 21 jaar."
 meta_description_en: "Lucky Jack gaming hall at Rozengracht 237 Amsterdam. Slot machines and electronic roulette. Free entry. Open daily. Age 21+."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Lucky Jack heeft sinds 1947 een vestiging in Amsterdam en zit op de Rozengracht 237 met een speelhal die zeven dagen per week open is.
 

@@ -9,6 +9,7 @@ import { nieuwsToItem, verhaalToItem, themasVoorOndernemer, resolveFoto } from '
 import { categorieenPerGroep } from '../../../lib/categorieen';
 import type { FeedItem } from '../../../lib/items';
 import type { Lang } from '../../../lib/i18n';
+import { alleenGepubliceerd } from '../../../lib/publicatie';
 
 const lang: Lang = 'en';
 
@@ -16,7 +17,8 @@ const lang: Lang = 'en';
 // verhaal zonder `gepubliceerd` blijft hier weg en is alleen via Historie te
 // vinden; we gokken geen plek in de tijdlijn.
 const bronnen: { datum: Date; soort: 'nieuws' | 'verhaal'; entry: any }[] = [
-  ...(await getCollection('nieuws')).map((entry) => ({
+  // Vooruit geschreven artikelen laten we hier weg, zie src/lib/publicatie.ts.
+  ...alleenGepubliceerd(await getCollection('nieuws')).map((entry) => ({
     datum: entry.data.datum,
     soort: 'nieuws' as const,
     entry,

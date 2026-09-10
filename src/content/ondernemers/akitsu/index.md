@@ -12,14 +12,14 @@ fotos:
   - "./foto_04.jpg"
   - "./foto_05.jpg"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Aangemaakt op basis van de officiële BIZ-ledenlijst plus eigen onderzoek. Het in de
   briefing genoemde domein akitsuamsterdam.nl leverde bij controle totaal andere
   (niet-bijbehorende) inhoud op; in plaats daarvan is het wél werkende en inhoudelijk
   kloppende akitsu-amsterdam.com gebruikt. 5 foto's toegevoegd, alle afkomstig van de eigen website
   akitsu-amsterdam.com (het hoofdgerecht met rundvlees en mango, een sushi-doos, het interieur,
   de gevel/het terras en een sake-proeverij).
-quote_nl: "Van buiten zie je alleen een smalle pui. Binnen zitten we er al zo lang dat mensen soms niet doorhebben hoe oud we eigenlijk zijn."
-quote_en: "From outside you just see a narrow front. Inside, we've been here so long people are often surprised how old we actually are."
 meta_title_nl: "Akitsu | Japans restaurant & sake – Rozengracht Amsterdam"
 meta_title_en: "Akitsu | Japanese Restaurant & Sake – Rozengracht Amsterdam"
 meta_description_nl: "Akitsu op Rozengracht 228, Amsterdam: al ruim dertig jaar sushi, sashimi en gegrilde gerechten met een eigen wijn- en sakekaart."

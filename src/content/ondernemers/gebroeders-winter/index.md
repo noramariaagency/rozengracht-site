@@ -13,14 +13,14 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Mijn opa begon in 1914 met sigaren en inkt, twee dingen die toen allebei onmisbaar waren voor wie iets te zeggen had."
-quote_en: "My grandfather started in 1914 with cigars and ink, two things that were both essential back then for anyone who had something to say."
 meta_title_nl: "Gebroeders Winter Schrijfwaren"
 meta_title_en: "Gebroeders Winter Stationery"
 meta_description_nl: "Gebroeders Winter op Rozengracht 62 bestaat al meer dan 110 jaar. Schrijfwaren, kantoorartikelen, cadeauverpakking en pakketservice – een klassieker in."
 meta_description_en: "Gebroeders Winter at Rozengracht 62 has been an Amsterdam institution since 1914. Stationery, office supplies, gift wrapping, and parcel service: 110+."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 62 staat als "LEEG (Voorheen Gebroeders Winter)" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Jan Winter begon in 1914 op de Rozengracht met sigaren en inkt: twee producten die destijds allebei onmisbaar waren voor wie iets te zeggen had.

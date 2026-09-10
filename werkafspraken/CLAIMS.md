@@ -162,6 +162,45 @@ een groene sectie linksboven op halve breedte met de filters ernaast.
 
 ## Logboek
 
+- **10 sep 2026** — Drie dingen, op verzoek van Nora.
+  - **Alle citaten van de site af.** 196 velden op 98 ondernemerspagina's. Reden:
+    commit `622b54c` zegt in zijn eigen boodschap dat de quotes zijn opgesteld
+    op basis van de profieltekst en geen citaten van de ondernemers zijn. Ze
+    stonden wel tussen aanhalingstekens met naam erbij, op de site van de
+    vereniging van diezelfde ondernemers. De sectie "Aan het woord" op de
+    homepage valt netjes terug op "Nog geen citaten verzameld". Nieuwe citaten
+    komen van de ondernemers zelf: Nora en Cleo zetten per ondernemer klaar
+    wat we hebben in een Drive-map die met hen gedeeld wordt, zodat ze het zelf
+    kunnen bijwerken.
+  - **Vier feitelijke fouten gerepareerd** die bij het nalopen van de quotes
+    boven kwamen: Meijer IJzerwaren zei 44 jaar terwijl hun eigen site bijna
+    vijftig jaar zegt, MapPy Nails zei zeven dagen open terwijl Google en hun
+    boekingspagina zondag gesloten geven, Party Balloon zei twee winkels op de
+    Rozengracht terwijl het nr. 65 plus een vestiging in Amstelveen is, en
+    Pizza Dam noemde 13:00 als openingstijd terwijl Google 12:00 geeft. Ook de
+    meta-titel van Lucky Jack ("Speelhal sinds 1947") gecorrigeerd: 1947 geldt
+    voor het bedrijf, niet voor dit pand.
+  - **Negen blogartikelen van Cleo opgenomen**, met NL en EN. Vijf staan meteen
+    online (Behind the Pines opent, sporten aan de Rozengracht, Fanke, lunchen,
+    werkzaamheden laatste fase). Vier hebben bewust een datum in de toekomst en
+    verschijnen op hun eigen moment: Aziatisch eten (25 sep), ADE (14 okt),
+    vijf jaar TOPCHIRO (3 nov) en Moederdag bij Moeders (3 mei 2027).
+  - Daarvoor is er een **publicatiedatumfilter**: `src/lib/publicatie.ts` (nieuw)
+    houdt artikelen met een datum in de toekomst uit de blog-wall, /ontdek/, de
+    bereikbaarheidspagina en het nieuws bij een ondernemer. De detailpagina
+    wordt wel gebouwd, zodat een concept op de echte pagina na te kijken is.
+    Let op: de site is een statische build, dus een artikel verschijnt bij de
+    eerstvolgende build na zijn datum. De workflow "Places verversen" commit
+    dagelijks op main, dus in de praktijk binnen een dag.
+
+  Uitzonderingen op het eigenaarschap, met instemming van Nora: dit topic raakte
+  `src/components/home/BlogWall.astro` en `src/pages/ontdek/**` (topic 03),
+  `src/pages/bereikbaarheid.astro` en de Engelse variant (topic 06),
+  `src/pages/ondernemers/[...slug].astro` en de Engelse variant (topic 05) en de
+  ondernemersvelden `quote_*`, `tekst_*` en `meta_*` (topic 00). In al die
+  bestanden is alleen de publicatiefilter toegevoegd of het genoemde veld
+  gewijzigd.
+
 - **8 sep 2026** — De definitieve ondernemerslijst van Cleo is doorgevoerd
   (topic 00b, op verzoek van Nora). Wat er is gebeurd:
   - **18 ondernemers op `status: vertrokken`.** Nieuwe statuswaarde in

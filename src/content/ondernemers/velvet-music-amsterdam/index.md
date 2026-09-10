@@ -8,9 +8,10 @@ logo: "./logo.jpg"
 fotos:
   - "./foto_01.jpg"
 status: "klaar"
-quote_nl: "Mensen komen hier binnen zonder te weten wat ze zoeken, en gaan naar buiten met iets dat ze nooit hadden verwacht."
-quote_en: "People walk in here not knowing what they're looking for, and walk out with something they never expected."
-interne_opmerking: "Categorie 'cultuur-vrije-tijd' is een voorlopige keuze voor de demo van de nieuwe overzichtspagina — kan net zo goed 'winkels' zijn. Definitief maken in fase 3 (ondernemersdata verifiëren)."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
+  Categorie 'cultuur-vrije-tijd' is een voorlopige keuze voor de demo van de nieuwe overzichtspagina - kan net zo goed 'winkels' zijn. Definitief maken in fase 3 (ondernemersdata verifiëren).
 meta_title_nl: "Velvet Music | Platenwinkel CD LP – Rozengracht Amsterdam"
 meta_description_nl: "Platenwinkel van Merel en Esther op Rozengracht 40 Amsterdam. Nieuwe en tweedehands cd's, lp's en dvd's in alle genres."
 tekst_nl: |

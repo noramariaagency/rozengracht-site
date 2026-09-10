@@ -5,13 +5,13 @@ categorie: "bakkers-snacks-togo"
 subcategorie: "Snackbar"
 status: "deels-klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Cléo's officiële ledenlijst plaatst deze zaak op Rozengracht 343, maar eerder onderzoek
   in dit project wees uit dat het adres feitelijk een Marnixstraat-hoekpand betreft.
   Adres bewust leeg gelaten tot dit met de ondernemer/Cléo bevestigd is. Bedrijf staat bij
   de KVK geregistreerd als "Snackbar Ma Baker Gebr. Hefny" (KVK 33187443), gerund door de
   broers Hefny. Geen werkende website gevonden; geen foto's beschikbaar in Drive of lokaal.
-quote_nl: "Wij zitten precies op de hoek waar de Rozengracht overgaat in de Marnixstraat. Niemand in de buurt hoeft ons uit te leggen wie we zijn."
-quote_en: "We sit right on the corner where the Rozengracht turns into the Marnixstraat. Nobody around here needs us explained to them."
 meta_title_nl: "Ma Baker | Snackbar – Rozengracht Amsterdam"
 meta_title_en: "Ma Baker | Snack Bar – Rozengracht Amsterdam"
 meta_description_nl: "Ma Baker is een snackbar op de hoek van de Rozengracht en de Marnixstraat in Amsterdam, dagelijks open voor broodjes, falafel en frituursnacks."

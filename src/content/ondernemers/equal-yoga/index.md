@@ -8,8 +8,8 @@ logo: "./logo.png"
 fotos:
   - "./foto_01.jpg"
 status: "klaar"
-quote_nl: "Je stapt hier binnen tussen het rennen door, en gaat toch net iets rustiger weer naar buiten."
-quote_en: "You step in here in the middle of a rushed day, and still walk back out a little calmer."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 meta_title_nl: "Equal Yoga | Yoga & Pilates studio – Rozengracht Amsterdam"
 meta_description_nl: "Equal Yoga op Rozengracht 191 is de grootste studio van de keten. Hot Pilates, Hot Fusion, Core Flow en meer. 2 yogazalen, douches, midden in Amsterdam."
 tekst_nl: |

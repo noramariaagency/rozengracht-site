@@ -8,9 +8,9 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 nieuw_sinds: 2022-09-30
-quote_nl: "We bakken elke burger nog steeds precies zo als op de openingsdag: recht voor je neus, geen shortcuts."
-quote_en: "We still grill every burger exactly like we did on opening day: right in front of you, no shortcuts."
 meta_title_nl: "Maijard Smashburgers Rozengracht"
 meta_description_nl: "Smashburgers van de broers Asselberghs op Rozengracht 9 Amsterdam. Maillard-korst, open keuken, verkozen tot beste burger van Nederland."
 tekst_nl: |

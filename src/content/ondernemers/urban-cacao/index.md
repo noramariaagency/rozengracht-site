@@ -17,9 +17,9 @@ fotos:
   - "./foto_02.jpg"
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Op nr. 200 staat Bakkerij Wolf op de ondernemerslijst van Cleo (8 sep 2026).
-quote_nl: "Wij werken met origin chocolade van meer dan 40 herkomsten, bonen die je kunt herleiden tot een specifieke regio."
-quote_en: "We work with origin chocolate from more than 40 origins, beans you can trace back to a specific region."
 meta_title_nl: "Urban Cacao Chocolate"
 meta_title_en: "Urban Cacao Chocolate"
 meta_description_nl: "Urban Cacao op Rozengracht 200 Amsterdam. 40+ herkomsten origin chocolade, truffels en macarons. Opgericht 2014. Dinsdag t/m zaterdag open vanaf 10:00."

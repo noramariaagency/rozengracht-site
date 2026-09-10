@@ -7,15 +7,15 @@ website: "https://eshop.meijerijzerwaren.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij zijn al meer dan 44 jaar een echte vakhandel in ijzerwaren, een van de weinige die de Jordaan nog heeft."
-quote_en: "We've been a genuine hardware trade shop for more than 44 years, one of the few the Jordaan has left."
 meta_title_nl: "Meijer IJzerwaren Amsterdam"
 meta_title_en: "Meijer IJzerwaren | Hardware & tools – Rozengracht Amsterdam"
 meta_description_nl: "Meijer IJzerwaren op Rozengracht 142 Amsterdam. 12.000+ artikelen, import uit Duitsland en Frankrijk. Vakhandel voor particulieren en professionals. Di-za."
 meta_description_en: "Meijer IJzerwaren at Rozengracht 142 Amsterdam. 12,000+ items, imported from Germany and France. Specialist hardware for private and professional."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
-  Meijer IJzerwaren zit al meer dan 44 jaar op Rozengracht 142 en is een van de weinige echte vakhandels in ijzerwaren en gereedschappen die de Jordaan nog heeft.
+  Meijer IJzerwaren zit al bijna vijftig jaar op Rozengracht 142 en is een van de weinige echte vakhandels in ijzerwaren en gereedschappen die de Jordaan nog heeft.
 
   Het assortiment telt meer dan 12.000 artikelen, handgereedschap, bevestigingsmiddelen, scharnieren, huishoudartikelen, waarvan een groot deel geïmporteerd uit Duitsland en Frankrijk. Zowel particulieren als vakmensen komen er terecht voor advies en materiaal. Wie niet langsgaat, kan bestellen via eshop.meijerijzerwaren.nl.
 
@@ -23,7 +23,7 @@ tekst_nl: |
 
   Open dinsdag t/m vrijdag 10:00–17:30, zaterdag 10:00–17:00 (maandag gesloten). Rozengracht 142, Amsterdam. Telefoon 020 626 37 12.
 tekst_en: |
-  Meijer IJzerwaren has been at Rozengracht 142 for more than 44 years and is one of the few genuine specialist hardware and tools shops still operating in the Jordaan.
+  Meijer IJzerwaren has been at Rozengracht 142 for nearly fifty years and is one of the few genuine specialist hardware and tools shops still operating in the Jordaan.
 
   The range runs to more than 12,000 items, hand tools, fasteners, hinges, household supplies, with a large share imported from Germany and France. Both private customers and tradespeople come for advice and materials. Those who can't make it in person can order from eshop.meijerijzerwaren.nl.
 

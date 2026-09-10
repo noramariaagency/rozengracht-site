@@ -7,13 +7,13 @@ website: "https://cannibaleroyale.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij nemen vlees serieus, en dat laten we gewoon op de kaart zien."
-quote_en: "We take meat seriously, and we let the menu show it."
 meta_title_nl: "Cannibale Royale Brasserie"
 meta_title_en: "Cannibale Royale Brasserie"
 meta_description_nl: "Cannibale Royale op Rozengracht 114 Amsterdam. Steaks, burgers, craft bier en cocktails. Beoordeling 9.2. Dagelijks open vanaf 12:00."
 meta_description_en: "Cannibale Royale at Rozengracht 114 Amsterdam. Steaks, burgers, craft beer, and cocktails. Rated 9.2. Open daily from 12:00."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Cannibale Royale op de Rozengracht 114 is een brasserie die het vlees serieus neemt en dat op de kaart laat zien.
 

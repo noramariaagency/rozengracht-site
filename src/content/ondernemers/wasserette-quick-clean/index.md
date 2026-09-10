@@ -4,8 +4,8 @@ huisnummer: "59"
 categorie: "reparatie"
 subcategorie: "Wasserette & stomerij"
 status: "klaar"
-quote_nl: "Breng je was voor elf uur, dan is 'ie dezelfde dag nog klaar."
-quote_en: "Drop your laundry off before eleven, and it's ready the same day."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 meta_title_nl: "Wasserette Quick & Clean"
 meta_title_en: "Wasserette Quick & Clean"
 meta_description_nl: "Wasserette Quick & Clean op Rozengracht 59 Amsterdam. Wassen, stomen en droogkuis. Zelfde dag service bij inlevering voor 11:00. Ophaal via Laundryheap."

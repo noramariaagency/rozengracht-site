@@ -8,13 +8,13 @@ website: "https://www.bar-theo.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Volledig veganistisch eten, elektronische muziek en wisselende kunst aan de muur: dat combineren wij bewust op één adres."
-quote_en: "Fully vegan food, electronic music and rotating art on the walls: we put all three together on purpose."
 meta_title_nl: "Bar Theo Veganistische bar Rozengracht"
 meta_title_en: "Bar Theo | Vegan bar & live DJ – Rozengracht Amsterdam"
 meta_description_nl: "Bar Theo op Rozengracht 160 Amsterdam. 100% veganistisch, elektronische muziek, wisseltentoonstellingen en natuurwijnen. Wo-za open vanaf 17:00."
 meta_description_en: "Bar Theo at Rozengracht 160 Amsterdam. 100% vegan food, electronic music, art exhibitions, and natural wines. Open Wednesday–Saturday from 17:00."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Bar Theo op Rozengracht 160 is op woensdag t/m zaterdag open vanaf 17:00 en combineert drie dingen die zelden op één adres samenkomen: volledig veganistisch eten, elektronische muziek en wisselende kunsttentoonstellingen.
 

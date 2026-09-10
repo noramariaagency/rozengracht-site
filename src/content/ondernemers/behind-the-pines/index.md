@@ -6,6 +6,8 @@ huisnummer: "34HS"
 status: "deels-klaar"
 nieuw_sinds: 2026-10-01
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   nieuw_sinds op 1 oktober 2026 gezet door Nora (10 september 2026). Behind the Pines staat niet op de ondernemerslijst van Cleo van 8 september, maar blijft op haar verzoek op de site.
 
   Tweede vestiging (eerste: Ceintuurbaan 248, De Pijp, sinds 2017). Rozengracht
@@ -14,8 +16,6 @@ interne_opmerking: >
   harde datum, dus nieuw_sinds bewust nog leeg. Ook nog geen foto's of
   openingstijden voor déze vestiging bekend. Bronnen: fashionunited.nl,
   zuid.nl (oprichtersverhaal), vastgoeddata.nl, retailtrends.nl.
-quote_nl: "Alles wat bij ons in de winkel ligt, hebben we zelf getest en gedragen. Dat is niet zomaar een verkooppraatje."
-quote_en: "Everything on our shelves is something we've tested and worn ourselves. That's not just a sales line."
 meta_title_nl: "Behind the Pines | Outdoorwinkel – Rozengracht Amsterdam"
 meta_title_en: "Behind the Pines | Outdoor Store – Rozengracht Amsterdam"
 meta_description_nl: "Behind the Pines opent een tweede winkel aan de Rozengracht in Amsterdam: outdoor- en snowboardgear met persoonlijk advies, sinds 2017 ook op de Ceintuurbaan."

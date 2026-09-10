@@ -6,15 +6,15 @@ subcategorie: "Nagelstudio"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij zijn zeven dagen per week open, ook op zondag, voor wie snel een afspraak wil of gewoon binnenloopt."
-quote_en: "We're open seven days a week, Sundays included, for anyone who wants a quick appointment or just walks in."
 meta_title_nl: "MapPy Nails Nagelstudio"
 meta_title_en: "MapPy Nails Studio Amsterdam"
 meta_description_nl: "MapPy Nails op Rozengracht 75 Amsterdam is zeven dagen per week open. Manicure, pedicure, gel, acryl, nail art en behandelingen voor mannen. Walk-ins."
 meta_description_en: "MapPy Nails at Rozengracht 75 Amsterdam is open seven days a week. Manicure, pedicure, gel nails, acrylics, nail art, and men's treatments. Walk-ins."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
-  MapPy Nails op de Rozengracht 75 is zeven dagen per week open, ook op zondag, voor wie snel een afspraak wil of gewoon binnenwandelt.
+  MapPy Nails op de Rozengracht 75 is zes dagen per week open, van maandag tot en met zaterdag, voor wie snel een afspraak wil of gewoon binnenwandelt.
 
   De nagelstudio biedt een volledig dienstenpakket: manicure, pedicure, acrylnagels, gel, dip powder, hybride nagels, nail art, visverzorging en behandelingen voor mannen. Geen wachttijden van weken, geen verplichte abonnementen. De focus ligt op goede behandelingen, nette hygiëne en een prettige sfeer in de studio aan de Rozengracht.
 
@@ -22,9 +22,9 @@ tekst_nl: |
 
   Loop binnen of maak een afspraak via 06 28 55 80 04 of mappynails75@gmail.com.
 
-  Openingstijden: maandag t/m vrijdag 10:30–19:00, zaterdag 10:30–18:30, zondag 11:00–18:30.
+  De actuele openingstijden staan hiernaast.
 tekst_en: |
-  MapPy Nails on the Rozengracht is open seven days a week, including Sundays, for walk-ins and appointments alike.
+  MapPy Nails on the Rozengracht is open six days a week, Monday to Saturday, for walk-ins and appointments alike.
 
   The nail studio on Rozengracht 75 offers a full range of treatments: manicure, pedicure, acrylic nails, gel, dip powder, hybrid nails, nail art, fish pedicure, and treatments for men. No waiting lists stretching weeks ahead, no subscriptions. Just good treatments, clean hygiene standards, and a relaxed atmosphere.
 
@@ -32,5 +32,5 @@ tekst_en: |
 
   Call in or make an appointment: 06 28 55 80 04 or mappynails75@gmail.com.
 
-  Opening hours: Monday–Friday 10:30–19:00, Saturday 10:30–18:30, Sunday 11:00–18:30.
+  Current opening hours are listed alongside this page.
 ---

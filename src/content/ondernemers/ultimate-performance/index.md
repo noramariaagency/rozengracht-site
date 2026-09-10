@@ -7,13 +7,13 @@ website: "https://ultimateperformance.com/nl/personal-trainer/amsterdam"
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
-quote_nl: "Bij ons bestaan geen groepslessen, geen open gymtijden en geen abonnementen. Alleen één-op-één coaching, op afspraak."
-quote_en: "We don't do group classes, open gym hours or memberships. Just one-on-one coaching, by appointment."
 meta_title_nl: "Ultimate Performance Training"
 meta_title_en: "Ultimate Performance Training"
 meta_description_nl: "Ultimate Performance op Rozengracht 207 Amsterdam. Privaat PT-centrum, 550m², geen abonnementen. Één-op-één coaching met elite trainers. Op afspraak."
 meta_description_en: "Ultimate Performance at Rozengracht 207 Amsterdam. Private PT facility, 550m², no memberships. One-to-one coaching with elite trainers. By appointment."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Ultimate Performance op de Rozengracht 207-F is geen gewone sportschool. Het is een privaat personal training centrum van meer dan 550 m² met alleen één-op-één coaching, op afspraak. Hier bestaan geen groepslessen, open gymtijden en geen abonnementen.
 
