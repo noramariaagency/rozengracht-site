@@ -98,6 +98,14 @@ kaartcomponent), niet omdat topic 03 ze blijvend claimt.
   Nora Maria-foto's staan in Lightroom. Geen actie voor de andere topics.
 - **Livegang:** komt later; `base`/CNAME blijven dus zoals ze nu staan, zie
   `public/DOMEIN-LEES-MIJ.txt`.
+- **Cloudflare: opgelost op 10 sep 2026.** De GitHub-app "Cloudflare Workers
+  and Pages" stond op "All repositories" en had dus ook deze repo. Nu op
+  "Only select repositories" met de drie andere repo's van het account
+  (`noramaria-agency`, `nm-content-selector`, `nm-content-selector-version`),
+  zodat `rozengracht-site` eruit valt en de rode "Workers Builds"-check hier
+  niet meer verschijnt. De app zelf is niet verwijderd, dus wat er in
+  Cloudflare aan die andere projecten hangt blijft werken. Oorspronkelijke
+  bevinding:
 - **Cloudflare:** mag weg. De rode check heet "Workers Builds:
   rozengracht-site" en komt van de GitHub-app "Cloudflare Workers and Pages",
   niet uit dit project (er staat geen wrangler-config in de repo). Weghalen kan
