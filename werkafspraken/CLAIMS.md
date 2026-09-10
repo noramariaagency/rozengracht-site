@@ -82,6 +82,28 @@ kaartcomponent), niet omdat topic 03 ze blijvend claimt.
   artikel. `nieuw_sinds` staat bij topic 00 in EIGENAARSCHAP.md (veld "al het
   overige", alleen op verzoek), vandaar dit verzoek i.p.v. het zelf te zetten.
 
+## Besluiten van Nora, 10 september 2026
+
+- **Redactie (topic 04):** Cléo heeft voorbeelden aangeleverd; Nora deelt die in
+  het gesprek en ze worden tot artikelen verwerkt. De "Jordaan"-lijn wordt eerst
+  samen met Nora bepaald voordat er tekst omheen wordt geschreven.
+- **Shoot-transcripten:** worden een scheduled task. De transcripten zijn
+  Fireflies-documenten in Google Drive; de links naar Drive/doc staan in
+  Airtable (base "Nora Maria Agency", tabel `Playbook` — veld "Playbook doc" is
+  het playbook zelf, tabel `Planning` heeft "Drive folder link"). Welk veld de
+  Fireflies-transcriptlink bevat is nog niet vastgesteld; in Drive is op
+  10 sep 2026 geen document met "transcript" of "Fireflies" in de titel
+  gevonden.
+- **Fotografie (topic 08):** doet Iggy zelf. De klantmappen staan klaar en de
+  Nora Maria-foto's staan in Lightroom. Geen actie voor de andere topics.
+- **Livegang:** komt later; `base`/CNAME blijven dus zoals ze nu staan, zie
+  `public/DOMEIN-LEES-MIJ.txt`.
+- **Cloudflare:** mag weg. De rode check heet "Workers Builds:
+  rozengracht-site" en komt van de GitHub-app "Cloudflare Workers and Pages",
+  niet uit dit project (er staat geen wrangler-config in de repo). Weghalen kan
+  alleen in het Cloudflare-dashboard of in de GitHub-app-instellingen; beide
+  vragen om Nora's eigen inlog.
+
 ## Wachtend op Cléo
 
 - ~~Definitieve lijst van ondernemers (blokkeert het afronden van 02, 05 en 08).~~
