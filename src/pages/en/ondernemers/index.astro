@@ -191,7 +191,7 @@ const groepen = categorieenPerGroep(lang);
     font-size: 0.78rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(251, 250, 247, 0.62);
+    color: rgba(251, 250, 247, 0.75);
   }
   .filter-groep-knoppen {
     display: flex;
@@ -202,8 +202,10 @@ const groepen = categorieenPerGroep(lang);
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    /* Iets meer licht in het vlak en een duidelijker randje: groen-op-groen
+       las te weinig als knop. */
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.42);
     color: #fbfaf7;
     border-radius: 999px;
     padding: 0.4rem 0.9rem;
@@ -213,6 +215,7 @@ const groepen = categorieenPerGroep(lang);
     touch-action: manipulation;
   }
   .filter-btn svg { width: 16px; height: 16px; }
+  .filter-btn:hover { background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.6); }
   .filter-btn.is-active {
     background: #fbfaf7;
     color: var(--green-deep);
