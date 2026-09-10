@@ -4,7 +4,10 @@ categorie: "mode-sport"
 subcategorie: "Outdoor- en snowboardwinkel"
 huisnummer: "34HS"
 status: "deels-klaar"
+nieuw_sinds: 2026-10-01
 interne_opmerking: >
+  nieuw_sinds op 1 oktober 2026 gezet door Nora (10 september 2026). Behind the Pines staat niet op de ondernemerslijst van Cleo van 8 september, maar blijft op haar verzoek op de site.
+
   Tweede vestiging (eerste: Ceintuurbaan 248, De Pijp, sinds 2017). Rozengracht
   34HS gehuurd sinds juli 2026 (Vastgoeddata, RetailTrends), opening volgens
   FashionUnited "eind augustus 2026, in afwachting van de verbouwing" — geen

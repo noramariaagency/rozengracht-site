@@ -140,7 +140,12 @@ const gerelateerdeItems = [
           <>
             <ul style="list-style: none; padding: 0; margin: var(--space-xs) 0 0 0;">
               {dagen.map(([key, label]) => {
-                const uren = data.openingstijden?.[key] ?? plekData?.hoursByDay?.[key];
+                // Google is leidend voor openingstijden (afspraak met Nora,
+                // 10 sep 2026): places.json wordt dagelijks vers opgehaald,
+                // terwijl een met de hand ingevuld openingstijden-veld
+                // stilletjes veroudert. Dat veld is nu alleen nog de terugval
+                // voor zaken die Google niet kent.
+                const uren = plekData?.hoursByDay?.[key] ?? data.openingstijden?.[key];
                 return uren && (
                   <li style="display: flex; justify-content: space-between; font-size: 0.9rem;">
                     <span>{label}</span><span>{uren}</span>
@@ -148,7 +153,7 @@ const gerelateerdeItems = [
                 );
               })}
             </ul>
-            {!data.openingstijden && plekData?.hoursByDay && (
+            {plekData?.hoursByDay && (
               <p style="font-size: 0.72rem; color: var(--color-muted); margin-top: var(--space-xs);">Source: Google</p>
             )}
           </>

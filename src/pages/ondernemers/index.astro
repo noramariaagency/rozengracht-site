@@ -63,6 +63,12 @@ const kaartItems = items
       tweedeLabel: item.tweedeLabel,
       lat: plek.lat,
       lng: plek.lng,
+      // Voor het Google-infokaartje bij een klik op de pin: adres,
+      // openingstijden zoals Google ze kent en het place-id waarmee we naar
+      // Google Maps zelf doorlinken.
+      adres: item.huisnummer ? `Rozengracht ${item.huisnummer}, Amsterdam` : 'Rozengracht, Amsterdam',
+      uren: plek.hoursByDay || null,
+      placeId: plek.placeId || null,
       href: getRelativeLocaleUrl(lang, `ondernemers/${item.slug}/`),
     };
   })
