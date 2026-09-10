@@ -14,7 +14,10 @@ meta_title_en: "De Kinderboekwinkel Oldest Rozengracht"
 meta_description_nl: "Sinds 1975 op de Rozengracht Amsterdam, sinds 2026 op nummer 101-103. De oudste gespecialiseerde kinderboekwinkel van Nederland, 7.000 titels, medewerkers die bijna alles hebben gelezen."
 meta_description_en: "Since 1975 on the Rozengracht Amsterdam, since 2026 at number 101-103. The oldest specialist children's bookshop in the Netherlands, 7,000 titles, staff who've read nearly all of them."
 status: "klaar"
+nieuw_sinds: 2026-06-18
 interne_opmerking: |
+  nieuw_sinds op 18 juni 2026 gezet: dat is de datum van het nieuwsartikel waarin de verhuizing van nr. 34 naar 101-103 als voldongen feit staat. Een exacte verhuisdatum is nergens vastgelegd.
+
   Verhuisd van Rozengracht 34 naar 101-103 (bevestigd via CityMom, juni 2026,
   en de eigen Facebook-aankondiging van de winkel). Huisnummer + tekst
   bijgewerkt. Let op: Backstage Make-up & Grime staat in onze lijst ook nog

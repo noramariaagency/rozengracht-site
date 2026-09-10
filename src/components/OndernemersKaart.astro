@@ -10,7 +10,21 @@ import { categorieIconen, categorieKleuren } from '../lib/categorieen';
 import ExternToestemming from './ExternToestemming.astro';
 
 export interface Props {
-  items: { slug: string; naam: string; categorie: string; tweedeLabel?: string | null; lat: number; lng: number; href: string }[];
+  items: {
+    slug: string;
+    naam: string;
+    categorie: string;
+    tweedeLabel?: string | null;
+    lat: number;
+    lng: number;
+    href: string;
+    // Voor het infokaartje bij een klik op de pin. Adres komt uit het
+    // huisnummer op de ondernemerspagina; uren en placeId komen uit
+    // places.json, dus rechtstreeks van Google.
+    adres?: string;
+    uren?: Record<string, string> | null;
+    placeId?: string | null;
+  }[];
   // 'cta' = donkere call-to-action-sectie op de homepage (andere
   // beeldverhouding/rand dan het standaard gebruik op de
   // ondernemers-overzichtspagina's).
@@ -128,6 +142,115 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
       });
     }
 
+    // Het infokaartje bij een klik op een pin: dezelfde informatie die je op
+    // Google zelf zou zien (naam, adres, of het nu open is, de openingstijden
+    // van de hele week, en een route- en Google Maps-link), samengesteld uit
+    // places.json. Dat is Google's eigen data, dagelijks opgehaald door de
+    // "Places verversen"-workflow, dus bij een klik hoeft er niets extra
+    // opgevraagd te worden en blijft de kaart snel.
+    var DAGEN = [
+      { sleutel: 'ma', label: 'Maandag' },
+      { sleutel: 'di', label: 'Dinsdag' },
+      { sleutel: 'wo', label: 'Woensdag' },
+      { sleutel: 'do', label: 'Donderdag' },
+      { sleutel: 'vr', label: 'Vrijdag' },
+      { sleutel: 'za', label: 'Zaterdag' },
+      { sleutel: 'zo', label: 'Zondag' },
+    ];
+    // getDay(): 0 = zondag. Onze sleutels beginnen bij maandag.
+    var DAG_INDEX = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
+
+    function nuOpen(urenVandaag) {
+      if (!urenVandaag) return null;
+      var nu = new Date();
+      var minutenNu = nu.getHours() * 60 + nu.getMinutes();
+      // Een dag kan meerdere blokken hebben ("09:00-13:00, 14:00-18:00").
+      var blokken = urenVandaag.split(',');
+      for (var i = 0; i < blokken.length; i++) {
+        var d = blokken[i].trim().split('-');
+        if (d.length !== 2) continue;
+        var van = d[0].split(':');
+        var tot = d[1].split(':');
+        if (van.length !== 2 || tot.length !== 2) continue;
+        var start = parseInt(van[0], 10) * 60 + parseInt(van[1], 10);
+        var eind = parseInt(tot[0], 10) * 60 + parseInt(tot[1], 10);
+        // Sluiten na middernacht (bv. 17:00-01:00) telt door in de nacht.
+        if (eind <= start) eind += 24 * 60;
+        if (minutenNu >= start && minutenNu < eind) return true;
+        if (minutenNu + 24 * 60 >= start && minutenNu + 24 * 60 < eind) return true;
+      }
+      return false;
+    }
+
+    function infoKaartje(item) {
+      var wrap = document.createElement('div');
+      wrap.className = 'kaart-info';
+
+      var titel = document.createElement('a');
+      titel.className = 'kaart-info__naam';
+      titel.href = item.href;
+      titel.textContent = item.naam;
+      wrap.appendChild(titel);
+
+      if (item.adres) {
+        var adres = document.createElement('p');
+        adres.className = 'kaart-info__adres';
+        adres.textContent = item.adres;
+        wrap.appendChild(adres);
+      }
+
+      if (item.uren) {
+        var vandaagSleutel = DAG_INDEX[new Date().getDay()];
+        var vandaag = item.uren[vandaagSleutel];
+        var open = nuOpen(vandaag);
+        var status = document.createElement('p');
+        status.className = 'kaart-info__status';
+        if (open === true) {
+          status.textContent = 'Nu open';
+          status.classList.add('is-open');
+        } else if (open === false) {
+          status.textContent = vandaag ? 'Nu gesloten' : 'Vandaag gesloten';
+          status.classList.add('is-dicht');
+        }
+        if (status.textContent) wrap.appendChild(status);
+
+        var tabel = document.createElement('table');
+        tabel.className = 'kaart-info__uren';
+        DAGEN.forEach(function (dag) {
+          var rij = tabel.insertRow();
+          if (dag.sleutel === vandaagSleutel) rij.className = 'is-vandaag';
+          rij.insertCell().textContent = dag.label;
+          rij.insertCell().textContent = item.uren[dag.sleutel] || 'gesloten';
+        });
+        wrap.appendChild(tabel);
+      }
+
+      var acties = document.createElement('p');
+      acties.className = 'kaart-info__acties';
+      var bestemming = encodeURIComponent(item.adres || item.naam);
+      var route = document.createElement('a');
+      route.href = 'https://www.google.com/maps/dir/?api=1&destination=' + bestemming +
+        (item.placeId ? '&destination_place_id=' + item.placeId : '');
+      route.target = '_blank';
+      route.rel = 'noopener';
+      route.textContent = 'Route';
+      acties.appendChild(route);
+      var opGoogle = document.createElement('a');
+      opGoogle.href = 'https://www.google.com/maps/search/?api=1&query=' + bestemming +
+        (item.placeId ? '&query_place_id=' + item.placeId : '');
+      opGoogle.target = '_blank';
+      opGoogle.rel = 'noopener';
+      opGoogle.textContent = 'Op Google Maps';
+      acties.appendChild(opGoogle);
+      var eigen = document.createElement('a');
+      eigen.href = item.href;
+      eigen.textContent = 'Naar de pagina';
+      acties.appendChild(eigen);
+      wrap.appendChild(acties);
+
+      return wrap;
+    }
+
     var bounds = new google.maps.LatLngBounds();
     var infoWindow = new google.maps.InfoWindow();
     var markers = [];
@@ -150,11 +273,7 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
           : undefined,
       });
       marker.addListener('click', function () {
-        var link = document.createElement('a');
-        link.href = item.href;
-        link.textContent = item.naam;
-        link.style.fontWeight = '600';
-        infoWindow.setContent(link);
+        infoWindow.setContent(infoKaartje(item));
         infoWindow.open(map, marker);
       });
       marker.categorie = item.categorie;
@@ -238,6 +357,66 @@ for (const [cat, iconPath] of Object.entries(categorieIconen)) {
       0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 6px #fff;
     white-space: nowrap;
     letter-spacing: 0.01em;
+  }
+
+  /* Het infokaartje in de Google-InfoWindow. Ook dit zet Google buiten onze
+     component-scope in de DOM, vandaar opnieuw is:global. Onze eigen
+     huisstijl, met de indeling die mensen van een Google-kaartje kennen:
+     naam, adres, open of dicht, de week, en de acties eronder. */
+  .kaart-info {
+    font-family: inherit;
+    min-width: 210px;
+    max-width: 260px;
+    padding-right: 4px;
+  }
+  .kaart-info__naam {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #14342a;
+    text-decoration: none;
+  }
+  .kaart-info__naam:hover,
+  .kaart-info__naam:focus-visible {
+    text-decoration: underline;
+  }
+  .kaart-info__adres {
+    margin: 2px 0 6px;
+    font-size: 0.8125rem;
+    color: #5b6b63;
+  }
+  .kaart-info__status {
+    margin: 0 0 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .kaart-info__status.is-open { color: #1b7a4b; }
+  .kaart-info__status.is-dicht { color: #a1443a; }
+  .kaart-info__uren {
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    color: #5b6b63;
+    margin-bottom: 8px;
+  }
+  .kaart-info__uren td {
+    padding: 1px 10px 1px 0;
+    white-space: nowrap;
+  }
+  .kaart-info__uren tr.is-vandaag td {
+    color: #14342a;
+    font-weight: 600;
+  }
+  .kaart-info__acties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin: 0;
+    font-size: 0.8125rem;
+  }
+  .kaart-info__acties a {
+    color: #1b3b2f;
+    text-decoration: underline;
   }
 </style>
 
