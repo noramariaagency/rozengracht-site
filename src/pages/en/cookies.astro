@@ -56,10 +56,18 @@ const bijgewerkt = '9 September 2026';
 
     <h2>Changing your mind</h2>
     <p>
-      Your choice sits in your own browser, so that is where you remove it. In
-      most browsers this is under settings, at "delete site data" or "clear
-      browsing data" for this site. After that the notice appears again and you
-      can choose differently.
+      You can do that here, whenever you like. Your current choice:
+    </p>
+    <div class="keuze-blok" data-keuze-blok>
+      <p class="keuze-status" data-keuze-status>Nothing chosen yet.</p>
+      <div class="keuze-knoppen">
+        <button type="button" class="keuze-btn keuze-btn-ja" data-keuze="alles">Allow third-party content</button>
+        <button type="button" class="keuze-btn" data-keuze="noodzakelijk">No thanks</button>
+      </div>
+    </div>
+    <p>
+      Your choice only sits in your own browser. Clear your site data and it is
+      gone, and you get the notice again.
     </p>
 
     <h2>What happens without your yes</h2>
@@ -74,7 +82,64 @@ const bijgewerkt = '9 September 2026';
   </div>
 </BaseLayout>
 
+<script is:inline>
+  // Leest en zet dezelfde keuze als de melding onderaan (window.rgCookieConsent
+  // uit BaseLayout), zodat deze pagina en de melding niet uit elkaar lopen.
+  (function () {
+    var blok = document.querySelector('[data-keuze-blok]');
+    if (!blok || !window.rgCookieConsent) return;
+    var status = blok.querySelector('[data-keuze-status]');
+    var TEKST = {
+      alles: 'Third-party content is allowed: the map and the Instagram feed load.',
+      noodzakelijk: 'Third-party content is off: the map and the Instagram feed do not load.',
+      leeg: 'Nothing chosen yet. Third-party content does not load.',
+    };
+    function toon() {
+      var keuze = window.rgCookieConsent.get();
+      status.textContent = TEKST[keuze] || TEKST.leeg;
+      blok.querySelectorAll('[data-keuze]').forEach(function (b) {
+        var actief = b.dataset.keuze === keuze;
+        b.setAttribute('aria-pressed', actief ? 'true' : 'false');
+        b.classList.toggle('is-actief', actief);
+      });
+    }
+    blok.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-keuze]');
+      if (!btn) return;
+      window.rgCookieConsent.set(btn.dataset.keuze);
+      document.dispatchEvent(new CustomEvent('rg-consent', { detail: btn.dataset.keuze }));
+      var melding = document.getElementById('cookiebanner');
+      if (melding) melding.hidden = true;
+      toon();
+    });
+    document.addEventListener('rg-consent', toon);
+    toon();
+  })();
+</script>
+
 <style>
+  .keuze-blok {
+    background: var(--cream-card);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: var(--space-sm) 0 var(--space-md);
+  }
+  .keuze-status { margin: 0 0 12px; font-weight: 600; }
+  .keuze-knoppen { display: flex; flex-wrap: wrap; gap: 10px; }
+  .keuze-btn {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    color: var(--color-text);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .keuze-btn.is-actief { background: var(--green-mid); border-color: var(--green-mid); color: #fff; }
   .tekstpagina { max-width: 680px; }
   .tekstpagina .lead { font-size: 1.08rem; line-height: 1.6; color: var(--ink-soft); }
   .tekstpagina h2 { margin-top: 2.2rem; }

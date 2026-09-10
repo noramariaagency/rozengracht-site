@@ -56,6 +56,12 @@ const cookiesHref = getRelativeLocaleUrl(lang, 'cookies/');
     var banner = document.getElementById('cookiebanner');
     if (!banner || !window.rgCookieConsent) return;
     if (!window.rgCookieConsent.get()) banner.hidden = false;
+    // Voorkeuren blijven aanpasbaar na de eerste keuze: de link in de footer
+    // en de knop op de cookiepagina zetten deze melding gewoon weer aan.
+    window.rgCookieVoorkeuren = function () {
+      banner.hidden = false;
+      banner.scrollIntoView({ block: 'nearest' });
+    };
     banner.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-consent]');
       if (!btn) return;

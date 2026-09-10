@@ -7,17 +7,19 @@ interface Props {
 }
 const { lang = 'nl' } = Astro.props;
 
-const TEKST: Record<Lang, { contact: string; privacy: string; cookies: string; copyright: string }> = {
+const TEKST: Record<Lang, { contact: string; privacy: string; cookies: string; voorkeuren: string; copyright: string }> = {
   nl: {
     contact: 'Contact',
     privacy: 'Privacy',
     cookies: 'Cookies',
+    voorkeuren: 'Cookievoorkeuren',
     copyright: 'BIZ Ondernemersvereniging Rozengracht',
   },
   en: {
     contact: 'Contact',
     privacy: 'Privacy',
     cookies: 'Cookies',
+    voorkeuren: 'Cookie preferences',
     copyright: 'BIZ Ondernemersvereniging Rozengracht',
   },
 };
@@ -30,11 +32,37 @@ const t = TEKST[lang];
       <li><a href={getRelativeLocaleUrl(lang, 'contact')}>{t.contact}</a></li>
       <li><a href={getRelativeLocaleUrl(lang, 'privacy')}>{t.privacy}</a></li>
       <li><a href={getRelativeLocaleUrl(lang, 'cookies')}>{t.cookies}</a></li>
+      <!-- Geen <a>: dit opent de melding opnieuw i.p.v. naar een pagina te
+           gaan. Wordt verborgen als er geen script draait, want dan doet hij
+           ook niets. -->
+      <li><button type="button" class="voorkeuren-knop" data-cookie-voorkeuren hidden>{t.voorkeuren}</button></li>
     </ul>
   </div>
 </footer>
 
+<script is:inline>
+  (function () {
+    var knop = document.querySelector('[data-cookie-voorkeuren]');
+    if (!knop) return;
+    knop.hidden = false;
+    knop.addEventListener('click', function () {
+      if (window.rgCookieVoorkeuren) window.rgCookieVoorkeuren();
+    });
+  })();
+</script>
+
 <style>
+  .voorkeuren-knop {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .voorkeuren-knop:hover { color: var(--green-deep); }
+
   .site-footer {
     border-top: 1px solid var(--color-border);
     margin-top: var(--space-xl);
