@@ -52,7 +52,7 @@ const meerNieuwsItems = await Promise.all(
 <BaseLayout title={data.titel_en} description={eersteAlinea(data.tekst_en, 155)} lang={lang}>
   <div class={`artikel-layout${heeftZijkolom ? ' met-zijkolom' : ''}`}>
     <article class="artikel">
-      <a class="back-link" href={getRelativeLocaleUrl(lang, 'nieuws')}>&larr; All news articles</a>
+      <a class="back-link" href={getRelativeLocaleUrl(lang, 'ontdek')}>&larr; Back to Discover</a>
       <span class="eyebrow">News</span>
       <h1>{data.titel_en}</h1>
       <p class="datum">{data.datum.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>

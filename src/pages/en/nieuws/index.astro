@@ -1,102 +1,26 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import ContentCard from '../../../components/ContentCard.astro';
-import { getCollection, getEntry } from 'astro:content';
-import { nieuwsToItem, resolveFoto } from '../../../lib/items';
-import type { Lang } from '../../../lib/i18n';
+// De losse nieuwspagina bestaat niet meer: alle artikelen staan door elkaar op
+// Ontdek. Deze pagina blijft alleen staan om bezoekers en zoekmachines met een
+// oude link (bladwijzer, oud zoekresultaat) door te sturen. Losse statische
+// pagina i.p.v. een astro.config.mjs-redirect, net als /lezen: werkt hetzelfde
+// op een static build en config.mjs is gedeeld gebied.
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-const lang: Lang = 'en';
-
-const berichten = (await getCollection('nieuws')).sort(
-  (a, b) => b.data.datum.valueOf() - a.data.datum.valueOf()
-);
-
-const items = await Promise.all(
-  berichten.map(async (bericht) => {
-    const ondernemer = bericht.data.gerelateerde_ondernemer
-      ? await getEntry(bericht.data.gerelateerde_ondernemer)
-      : null;
-    const foto = await resolveFoto(bericht.data.foto, 640, bericht.data.fotoFocus);
-    return nieuwsToItem(bericht, ondernemer, foto, lang);
-  })
-);
-
-const HERO_PATRONEN = [2, 1, 2, 3];
-let cursor = 0;
-const heroRijen: { cols: number; items: typeof items }[] = [];
-for (const cols of HERO_PATRONEN) {
-  const rij = items.slice(cursor, cursor + cols);
-  if (rij.length === 0) break;
-  heroRijen.push({ cols, items: rij });
-  cursor += rij.length;
-}
-const kleineItems = items.slice(cursor);
+const doel = getRelativeLocaleUrl('en', 'ontdek/');
 ---
-<BaseLayout title="News" description="All the news about businesses, events and developments on the Rozengracht in Amsterdam." lang={lang}>
-  <h1>News</h1>
-
-  {heroRijen.map((rij) => (
-    <div class={`hero-rij cols-${rij.cols}`}>
-      {rij.items.map((item) => (
-        <ContentCard item={item} variant="feature" />
-      ))}
-    </div>
-  ))}
-
-  {kleineItems.length > 0 && (
-    <div class="kleine-rij">
-      {kleineItems.map((item) => (
-        <ContentCard item={item} variant="compact" />
-      ))}
-    </div>
-  )}
-</BaseLayout>
-
-<style>
-  .hero-rij {
-    display: grid;
-    gap: var(--space-lg);
-    align-items: stretch;
-    margin-top: var(--space-lg);
-  }
-  .hero-rij.cols-1 { grid-template-columns: 1fr; }
-  .hero-rij.cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .hero-rij.cols-3 { grid-template-columns: repeat(3, 1fr); }
-
-  .hero-rij.cols-1 { --card-foto-ratio: 10/3; --card-title-size: 1.7rem; }
-  .hero-rij.cols-2 { --card-foto-ratio: 16/10; }
-  .hero-rij.cols-3 { --card-foto-ratio: 4/3; --card-title-size: 1.05rem; }
-
-  .hero-rij :global(.content-card.feature) {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .hero-rij :global(.content-card.feature .body) { flex: 1 1 auto; }
-  .hero-rij :global(.content-card.feature:hover) { border-color: var(--rose); transform: translateY(-3px); }
-
-  .kleine-rij {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm) var(--space-lg);
-    margin-top: var(--space-xl);
-  }
-
-  @media (max-width: 900px) {
-    .hero-rij.cols-3 { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 640px) {
-    .hero-rij.cols-1,
-    .hero-rij.cols-2,
-    .hero-rij.cols-3 {
-      grid-template-columns: 1fr;
-    }
-    .kleine-rij { grid-template-columns: 1fr; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-rij :global(.content-card.feature) { transition: none; }
-    .hero-rij :global(.content-card.feature:hover) { transform: none; }
-  }
-</style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${doel}`} />
+    <link rel="canonical" href={doel} />
+    <meta name="robots" content="noindex" />
+    <title>News is now on Discover</title>
+  </head>
+  <body>
+    <p>All articles are now on <a href={doel}>Discover</a>.</p>
+    <script define:vars={{ doel }}>
+      window.location.replace(doel);
+    </script>
+  </body>
+</html>
