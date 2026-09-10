@@ -7,10 +7,12 @@
 // op datum gesorteerd en de toekomst sorteert vooraan.
 //
 // De site is een statische build, dus "vandaag" is de dag waarop gebouwd
-// wordt. De deploy loopt bij elke commit en de workflow "Places verversen"
-// commit dagelijks op main, dus er wordt in de praktijk elke dag opnieuw
-// gebouwd en een artikel verschijnt uiterlijk een dag na zijn datum. Wil je
-// dat exacter, dan moet er een dagelijkse build-trigger bij.
+// wordt. Daarom loopt de deploy-workflow sinds 10 september 2026 ook elke
+// nacht op een schema (zie .github/workflows/deploy.yml), niet alleen bij een
+// push. Zonder die nachtelijke build zou een vooruit geschreven artikel
+// blijven wachten tot iemand toevallig iets pusht: de workflow "Places
+// verversen" draait maar één keer per week (maandagnacht), dus daar kun je
+// niet op leunen.
 //
 // De detailpagina van een vooruit geschreven artikel wordt wél gebouwd. Dat is
 // bewust: zo kunnen we een concept nakijken op de echte pagina voordat hij in

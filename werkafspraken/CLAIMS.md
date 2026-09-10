@@ -189,9 +189,12 @@ een groene sectie linksboven op halve breedte met de filters ernaast.
     houdt artikelen met een datum in de toekomst uit de blog-wall, /ontdek/, de
     bereikbaarheidspagina en het nieuws bij een ondernemer. De detailpagina
     wordt wel gebouwd, zodat een concept op de echte pagina na te kijken is.
-    Let op: de site is een statische build, dus een artikel verschijnt bij de
-    eerstvolgende build na zijn datum. De workflow "Places verversen" commit
-    dagelijks op main, dus in de praktijk binnen een dag.
+    Omdat de site een statische build is, verschijnt een artikel pas bij de
+    eerstvolgende build na zijn datum. Daarom loopt de deploy-workflow nu ook
+    elke nacht op een schema (04:30 UTC), niet alleen bij een push. Eerder
+    stond hier dat "Places verversen" dagelijks commit; dat is onjuist, die
+    draait maandagnacht en verandert alleen iets als Google iets anders
+    teruggeeft.
 
   Uitzonderingen op het eigenaarschap, met instemming van Nora: dit topic raakte
   `src/components/home/BlogWall.astro` en `src/pages/ontdek/**` (topic 03),
