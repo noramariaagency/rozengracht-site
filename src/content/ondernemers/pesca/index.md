@@ -7,13 +7,13 @@ website: "https://pesca.restaurant/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij noemen onszelf een Theatre of Fish, en dat is geen overdrijving: je loopt eerst langs onze eigen vismarkt."
-quote_en: "We call ourselves a Theatre of Fish, and that's not an exaggeration: you walk past our own fish market first."
 meta_title_nl: "Pesca | Theatre of Fish – Rozengracht Amsterdam"
 meta_title_en: "Pesca | Theatre of Fish – Rozengracht Amsterdam"
 meta_description_nl: "Pesca op Rozengracht 133 Amsterdam. Vis restaurant met dagelijkse vismarkt. Kies zelf je vis, dynamische prijzen. Reserveren noodzakelijk. Tel 020-3345136."
 meta_description_en: "Rozengracht 133 Amsterdam. Seafood restaurant with daily fish market. Choose your own fish, dynamic pricing throughout the evening. Reservations essential."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Pesca op Rozengracht 133 noemt zichzelf een "Theatre of Fish", en dat is geen overdrijving. Wie binnenkomt, wordt eerst naar de vismarkt aan de voorkant van het restaurant begeleid, waar de vangst van die dag ligt uitgestald.
 

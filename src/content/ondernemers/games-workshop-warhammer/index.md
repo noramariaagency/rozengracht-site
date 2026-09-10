@@ -6,6 +6,8 @@ subcategorie: "Hobbywinkel (miniaturen & tabletopspellen)"
 website: "https://www.games-workshop.com"
 status: "deels-klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging Rozengracht
   plus eigen onderzoek. Dit is een filiaal van de internationale Games Workshop-keten, dus bewust
   geen verzonnen lokaal ontstaansverhaal - de tekst focust op wat de winkel daadwerkelijk biedt.
@@ -13,8 +15,6 @@ interne_opmerking: >
   tussen bronnen (directories), daarom algemeen gehouden (dicht op maandag/zondag, pauze tussen de
   middag) in plaats van exacte tijden te verzinnen. Geen foto's gevonden op Google Drive of elders,
   aanvullen zodra bekend.
-quote_nl: "Wij zijn de Amsterdamse vestiging van Games Workshop. Kom langs als je weet wat Warhammer is, of juist niet."
-quote_en: "We're the Amsterdam branch of Games Workshop. Come by whether you already know what Warhammer is, or not yet."
 meta_title_nl: "Warhammer | Hobbywinkel miniaturen – Rozengracht Amsterdam"
 meta_title_en: "Warhammer | Hobby Store – Rozengracht Amsterdam"
 meta_description_nl: "Warhammer Amsterdam West op Rozengracht 99 verkoopt miniaturen en verf van Games Workshop, met ruimte om te schilderen en te spelen."

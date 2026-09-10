@@ -4,13 +4,14 @@ huisnummer: "222"
 categorie: "cadeaus-tabak"
 subcategorie: "Tabakszaak"
 status: "klaar"
-quote_nl: "Wij hebben een duidelijk aanbod voor wie weet wat hij wil, een van de laatste echte tabaksspeciaalzaken van de Jordaan."
-quote_en: "We keep a clear range for anyone who knows what they want, one of the last real tobacco specialists left in the Jordaan."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
+  Winkel tijdelijk gesloten wegens renovatie (zie tekst).
 meta_title_nl: "SK Tabakzaak | Tabaksspeciaalzaak – Rozengracht Amsterdam"
 meta_title_en: "SK Tabakzaak | Tobacco specialist – Rozengracht Amsterdam"
 meta_description_nl: "SK Tabakzaak op Rozengracht 222 Amsterdam. Tabak, sigaren, pijpen en tijdschriften. Momenteel tijdelijk gesloten wegens renovatie."
 meta_description_en: "SK Tabakzaak at Rozengracht 222 Amsterdam. Tobacco, cigars, pipes, and magazines. Currently temporarily closed for renovation."
-interne_opmerking: "Winkel tijdelijk gesloten wegens renovatie (zie tekst)."
 tekst_nl: |
   SK Tabakzaak op Rozengracht 222 is een van de tabaksspeciaalzaken die je in de Jordaan nog aantreft: een winkel met een duidelijk aanbod voor wie weet wat hij wil.
 

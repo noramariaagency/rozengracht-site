@@ -14,9 +14,9 @@ fotos:
   - "./foto_01.jpg"
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Op nr. 63 staat PTA Multistore op de ondernemerslijst van Cleo (8 sep 2026).
-quote_nl: "Een goed feest begint met iemand die weet waar je moet zoeken. Dat doen wij al meer dan 125 jaar."
-quote_en: "A good party starts with someone who knows where to look. We've been doing that for over 125 years."
 meta_title_nl: "Witbaard Feestartikelen"
 meta_description_nl: "Rozengracht 63 heeft alles voor elk feest: kostuums, pruiken, maskers en decoraties. Familiebedrijf in feestartikelen al meer dan 125 jaar in Amsterdam."
 tekst_nl: |

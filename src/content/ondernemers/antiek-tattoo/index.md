@@ -7,13 +7,13 @@ website: "https://antiektattooamsterdam.com"
 fotos:
   - "./foto_01.webp"
   - "./foto_02.webp"
-quote_nl: "Rembrandt woonde en stierf hier op nummer 184. Wij zitten er nu met de studio, en dat besef ik me elke dag als ik de deur opendoe."
-quote_en: "Rembrandt lived and died right here at number 184. I think about that every time I unlock the door to the studio."
 meta_title_nl: "Antiek Tattoo Tattoostudio Rozengracht Amsterdam"
 meta_title_en: "Antiektattoo Studio Rozengracht Amsterdam"
 meta_description_nl: "Antiek Tattoo op Rozengracht 184, het laatste woonhuis van Rembrandt. 220m² tattoostudio & kunstgalerie, actief sinds 2013. Walk-ins welkom, Amsterdam."
 meta_description_en: "Antiek Tattoo Rozengracht 184. 220m² tattoo studio and art gallery. Walk-ins welcome, Jordaan Amsterdam."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Rembrandt van Rijn woonde zijn laatste levensjaren op de Rozengracht 184. Hij stierf er op 4 oktober 1669. Tegenwoordig zit er een tattoostudio en kunstgalerie van 220 m², sinds 2013.
 

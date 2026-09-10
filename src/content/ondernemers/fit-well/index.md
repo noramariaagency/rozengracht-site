@@ -3,14 +3,14 @@ naam: "Fit Well Chinese Massage"
 huisnummer: "241"
 categorie: "sport-lichaam"
 subcategorie: "Massage"
-quote_nl: "Wij zijn zeven dagen per week open, van half elf 's ochtends tot half elf 's avonds."
-quote_en: "We're open seven days a week, from half past ten in the morning until half past ten at night."
 meta_title_nl: "Fit Well Chinese Massage"
 meta_title_en: "Fit Well Massage Amsterdam"
 meta_description_nl: "Fit Well Chinese Massage op Rozengracht 241 Amsterdam. Traditionele Chinese massage, ontspanning en oliemassage. Dagelijks open 10:30–22:30."
 meta_description_en: "Fit Well Chinese Massage at Rozengracht 241 Amsterdam. Traditional Chinese massage, relaxation, and oil massage. Open daily 10:30–22:30."
 status: "geen-interesse"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Staat als "Massagesalon Fit Well geen interesse in promotie" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Fit Well Chinese Massage op de Rozengracht 241 is zeven dagen per week open, van 10:30 tot 22:30, voor wie midden op de dag of laat op de avond een massagebehandeling wil.

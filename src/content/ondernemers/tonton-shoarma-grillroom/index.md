@@ -3,14 +3,14 @@ naam: "Tonton Shoarma Grillroom"
 huisnummer: "137"
 categorie: "bakkers-snacks-togo"
 subcategorie: "Shoarma en grillroom"
-quote_nl: "Wij zijn een van die plekken die buurtbewoners niet meer hoeven uit te leggen."
-quote_en: "We're one of those places the locals don't need explained to them anymore."
 meta_title_nl: "Tonton Shoarma | Grillroom halal – Rozengracht Amsterdam"
 meta_title_en: "Tonton Shoarma | Halal grillroom – Rozengracht Amsterdam"
 meta_description_nl: "Tonton Shoarma Grillroom op Rozengracht 137 Amsterdam. Halal shoarma, kapsalon, dürüm en grillgerechten. Bezorging via Thuisbezorgd."
 meta_description_en: "Tonton Shoarma Grillroom at Rozengracht 137 Amsterdam. Halal shawarma, kapsalon, dürüm, and grilled dishes. Delivery via Thuisbezorgd."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 137 staat alleen nog als Febo op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Tonton Shoarma Grillroom zit al jaren op de Rozengracht 137 en is een van die plekken die buurtbewoners niet nader hoeven uit te leggen.

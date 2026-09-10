@@ -7,14 +7,14 @@ website: "https://www.recoverfood.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Bij ons draait het om bowls, salades, smoothies, koffie en matcha: gezond, zonder gedoe."
-quote_en: "It's all about bowls, salads, smoothies, coffee and matcha here: healthy, without the fuss."
 meta_title_nl: "Recover | Gezond café & bowls – Rozengracht Amsterdam"
 meta_title_en: "Recover | Healthy café & bowls – Rozengracht Amsterdam"
 meta_description_nl: "Recover op Rozengracht 231 Amsterdam. Bowls, smoothies, salades, koffie en matcha. Vegan opties. Werkplek-vriendelijk. Bezorging via Uber Eats."
 meta_description_en: "Recover at Rozengracht 231 Amsterdam. Bowls, smoothies, salads, coffee, and matcha. Vegan options. Remote-worker friendly. Delivery via Uber Eats."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 229, 231 en 233 staan alle drie als "Leeg [Voorheen Velo/Recover]" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Recover op Rozengracht 231 is een gezond café waar je terecht kunt voor bowls, salades, smoothies, koffie en matcha.

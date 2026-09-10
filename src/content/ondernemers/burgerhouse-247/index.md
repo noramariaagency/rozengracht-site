@@ -9,14 +9,14 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek op de website en contactpagina van de zaak. Gabril
   staat volgens de ledenadministratie geregistreerd als contactpersoon; verdere
   persoonlijke achtergrond is niet gevonden en dus niet toegevoegd. 2 foto's
   toegevoegd via het bevestigde Instagram-account @24.7_burgerhouse (linkt naar
   eigen website); dit account heeft momenteel maar 2 posts.
-quote_nl: "Wij gaan om vijf uur 's middags open en pas om vijf uur de volgende ochtend weer dicht. Vraag maar niet waarom."
-quote_en: "We open at five in the afternoon and don't close until five the next morning. Don't ask me why."
 meta_title_nl: "24/7 BurgerHouse | Halal burgers – Rozengracht Amsterdam"
 meta_title_en: "24/7 BurgerHouse | Halal Burgers – Rozengracht Amsterdam"
 meta_description_nl: "24/7 BurgerHouse op Rozengracht 144 in Amsterdam: 100% halal burgers, snacks en milkshakes, dagelijks open van 17:00 tot 05:00."

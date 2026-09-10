@@ -7,13 +7,13 @@ website: "https://www.febo.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Muntje erin, klepje open, kroket eruit: bij ons is dat nog steeds precies zo simpel."
-quote_en: "Coin in, hatch open, kroket out: here it's still exactly that simple."
 meta_title_nl: "FEBO | Automatiek – Rozengracht Amsterdam"
 meta_title_en: "FEBO | Food automat – Rozengracht Amsterdam"
 meta_description_nl: "FEBO automatiek op Rozengracht 137 Amsterdam. Kroketten, frikandellen, friet en meer. Het originele Nederlandse fast food concept, opgericht 1941."
 meta_description_en: "FEBO automat at Rozengracht 137 Amsterdam. Croquettes, frikandellen, fries and more. The original Dutch fast food concept, founded 1941."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   FEBO op de Rozengracht 137 is het automatiek dat iedereen in Amsterdam kent: je gooit een muntje in, trekt de klep open en eet je kroket ter plekke op.
 

@@ -6,13 +6,13 @@ subcategorie: "Kapper"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ik knip niet zomaar. Ik bedenk eerst wat het haar nodig heeft."
-quote_en: "I don't just cut. I work out what the hair actually needs first."
 meta_title_nl: "Theatre de Coiffure | Kapper Fady – Rozengracht Amsterdam"
 meta_title_en: "Theatre de Coiffure Rozengracht"
 meta_description_nl: "van Fady op Rozengracht 11 in de Jordaan. Knippen, kleuren (ammoniakvrij) en permanent. Persoonlijke aanpak, internationale ervaring."
 meta_description_en: "Hair salon by Fady at Rozengracht 11 in Amsterdam's Jordaan. Haircuts, ammonia-free colouring, and perms. Personal approach with international experience."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Fady knipt niet zomaar. Hij bedenkt wat het haar nodig heeft.
 

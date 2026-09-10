@@ -3,13 +3,13 @@ naam: "Haar 33"
 huisnummer: "33"
 categorie: "haar-huid-nagels"
 subcategorie: "Kapsalon"
-quote_nl: "Ik knip hier al jaren dezelfde gezichten uit de buurt. Dat vertrouwen bouw je niet in een paar maanden op."
-quote_en: "I've been cutting the same neighbourhood faces here for years. You don't build that trust in a few months."
 meta_title_nl: "Haar 33 | Kapsalon – Rozengracht Amsterdam"
 meta_title_en: "Haar 33 | Hair salon – Rozengracht Amsterdam"
 meta_description_nl: "Kapsalon Haar 33 op Rozengracht 33 Amsterdam. Stylist Mandy, gespecialiseerd in highlights en extensions. Di-za open. Tel 020-6230187."
 meta_description_en: "Haar 33 hair salon at Rozengracht 33 Amsterdam. Stylist Mandy, specialising in highlights and extensions. Open Tuesday–Saturday. Tel 020-6230187."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Haar 33 is de kapsalon van stylist Mandy op Rozengracht 33. Een vertrouwde plek in de Jordaan voor wie zijn haar in goede handen wil laten.
 

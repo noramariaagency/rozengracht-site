@@ -10,6 +10,8 @@ fotos:
   - "./foto_03.jpg"
   - "./foto_04.jpg"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (diverse coffeeshop-directories, geen eigen website
   gevonden). Geen naam van de eigenaar of het personeel kunnen achterhalen, dus die is
@@ -17,8 +19,6 @@ interne_opmerking: >
   hier neutraal gehouden. 4 foto's toegevoegd via twee bevestigde Instagram-accounts
   (@coffeeshopflowerpower, adres in bio bevestigd, en @flowerpower.coffeeshop, adres
   bevestigd via smokemenus.com).
-quote_nl: "Wij gaan vroeg open, voor wie een joint liever combineert met een cappuccino dan met een avondje uit."
-quote_en: "We open early, for anyone who'd rather pair a joint with a cappuccino than a night out."
 meta_title_nl: "Coffeeshop Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_title_en: "Flower Power | Coffeeshop – Rozengracht Amsterdam"
 meta_description_nl: "Coffeeshop Flower Power aan de Rozengracht 139 in Amsterdam: een ouderwetse coffeeshop met pinballkast, open van 's ochtends vroeg tot diep in de nacht."

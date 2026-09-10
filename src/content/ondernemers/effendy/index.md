@@ -7,13 +7,13 @@ subcategorie: "Turkse bakkerij & cafe"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Bijna 2.000 Google-reviews en een 4,8 gemiddeld. Dat hebben we niet overnacht opgebouwd."
-quote_en: "Almost 2,000 Google reviews and a 4.8 average. We didn't build that overnight."
 meta_title_nl: "Effendy Turkish Rozengracht"
 meta_title_en: "Effendy Turkish Rozengracht"
 meta_description_nl: "Effendy Bakery & Cafe op Rozengracht 148 Amsterdam. Verse lahmacun, kebabs en Turkse desserts. Beoordeling 4.8 met bijna 2.000 reviews. Bezorging via Uber."
 meta_description_en: "Effendy Bakery & Cafe at Rozengracht 148 Amsterdam. Fresh lahmacun, kebabs, and Turkish desserts. Rated 4.8 with nearly 2,000 reviews. Delivery via Uber."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Effendy Bakery & Cafe op Rozengracht 148 heeft bijna 2.000 Google-recensies en een gemiddelde van 4,8. Het is een van de best beoordeelde eetgelegenheden op de straat.
 

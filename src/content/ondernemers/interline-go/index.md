@@ -4,14 +4,14 @@ huisnummer: "51a"
 categorie: "bakkers-snacks-togo"
 subcategorie: "Surinaamse keuken"
 fotos: []
-quote_nl: "Wij zijn het adres voor Surinaamse afhaalmaaltijden, ook als je een groter gezelschap moet voeden."
-quote_en: "We're the place for Surinamese takeaway, even when you need to feed a crowd."
 meta_title_nl: "INTERLINE & GO | Surinaams afhalen & catering – Rozengracht Amsterdam"
 meta_title_en: "INTERLINE & GO | Surinamese takeaway & catering – Rozengracht Amsterdam"
 meta_description_nl: "INTERLINE & GO op Rozengracht 51a Amsterdam. Surinaamse roti, wraps en vegetarische opties. Ook catering voor evenementen. Tel 020-6266012."
 meta_description_en: "INTERLINE & GO at Rozengracht 51a Amsterdam. Surinamese roti, wraps, and vegetarian options. Event catering available. Phone 020-6266012."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Op nr. 51 staat Scoops & Bubbles op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   INTERLINE & GO op Rozengracht 51a is het adres voor Surinaamse afhaalmaaltijden op de Rozengracht, en voor wie een groter gezelschap wil voeden.

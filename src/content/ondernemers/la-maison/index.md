@@ -9,10 +9,10 @@ fotos:
   - "./foto_02.jpg"
 status: "klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Pagina aangemaakt op basis van de officiële BIZ-ondernemerslijst en eigen onderzoek (website,
   about-us-pagina) om tekst toe te voegen aan een map die al foto's had maar nog geen index.md.
-quote_nl: "Ik begon deze salon in augustus 2012 en noemde 'm La Maison."
-quote_en: "I started this salon in August 2012 and called it La Maison."
 meta_title_nl: "La Maison | Kapsalon La Biosthétique – Rozengracht"
 meta_title_en: "La Maison | La Biosthétique salon – Rozengracht"
 meta_description_nl: "La Maison op Rozengracht 215: kapsalon en schoonheidsspecialist van Brigitte van den Dungen-Schreurs, met producten van La Biosthétique. Sinds 2012."

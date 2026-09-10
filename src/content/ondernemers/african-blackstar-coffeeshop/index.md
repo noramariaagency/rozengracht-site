@@ -5,6 +5,8 @@ categorie: "coffeeshop-speelhal"
 subcategorie: "Coffeeshop"
 status: "deels-klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (Yelp, Tripadvisor, CannaConnection,
   Coffeeshopfinder, Dutch-Coffeeshops.com). Het op de ledenlijst genoemde
@@ -13,8 +15,6 @@ interne_opmerking: >
   "Moheb", maar dit kon niet los bevestigd worden als eigenaarsnaam, dus in de
   tekst alleen als contactpersoon behandeld. Geen foto's beschikbaar,
   aanvullen zodra bekend.
-quote_nl: "Bij ons hoor je geen neonreclame, wel reggae, en dat zegt eigenlijk alles."
-quote_en: "You won't hear neon signs here, but you will hear reggae, and that pretty much says it all."
 meta_title_nl: "African Blackstar | Coffeeshop – Rozengracht Amsterdam"
 meta_title_en: "African Blackstar | Coffeeshop – Rozengracht Amsterdam"
 meta_description_nl: "African Blackstar op Rozengracht 1A: Black-owned coffeeshop met bar, rokersruimte en reggae, op loopafstand van het Anne Frank Huis in Amsterdam."

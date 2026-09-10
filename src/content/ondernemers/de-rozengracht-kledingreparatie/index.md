@@ -7,13 +7,13 @@ website: "https://de-rozengracht.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Wij repareren, stomen en strijken met de snelheid die een drukke winkelstraat nou eenmaal vraagt."
-quote_en: "We repair, dry-clean and press at the speed a busy shopping street actually needs."
 meta_title_nl: "Rozengracht Kledingreparatie"
 meta_title_en: "Rozengracht Clothing Repair"
 meta_description_nl: "De Rozengracht Kledingreparatie & Stomerij op Rozengracht 216. Meer dan 30 jaar ervaring. Spoedherstellingen binnen 1 uur. Stomen, innemen, trouwkleding."
 meta_description_en: "De Rozengracht at Rozengracht 216 Amsterdam. 30+ years of experience in clothing repair and dry cleaning. Express repairs in 1 hour. Wedding garments."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   De Rozengracht Kledingreparatie & Stomerij zit al meer dan 30 jaar op nummer 216. Het repareert, stoomt en strijkt kleding met de snelheid die een drukke winkelstraat vraagt.
 

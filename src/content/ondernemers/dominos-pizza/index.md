@@ -6,13 +6,13 @@ subcategorie: "Pizzabezorging"
 website: "https://www.dominos.nl/winkel/nl-amsterdamrozengracht-30778"
 status: "deels-klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek op de vestigingspagina van Domino's. Dit is een
   vestiging van de internationale bezorgketen; geen naam van een franchisenemer of
   vestigingsmanager gevonden, dus bewust niet opgenomen. Geen foto's beschikbaar,
   aanvullen zodra bekend.
-quote_nl: "Wij gaan om elf uur open en pas de volgende dag om vijf uur weer dicht."
-quote_en: "We open at eleven and don't close again until five the next day."
 meta_title_nl: "Domino's Pizza | Pizza bezorgen – Rozengracht Amsterdam"
 meta_title_en: "Domino's Pizza | Pizza Delivery – Rozengracht Amsterdam"
 meta_description_nl: "Domino's Pizza op Rozengracht 166 in Amsterdam: bezorging en afhalen, dagelijks open van 11:00 tot 05:00 's nachts."

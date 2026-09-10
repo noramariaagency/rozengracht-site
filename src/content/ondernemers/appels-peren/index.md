@@ -7,13 +7,13 @@ website: "https://appelsenperen.amsterdam"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Meer dan 150 soorten cider op de plank. Ik geloof niet dat iemand anders in Amsterdam dat kan zeggen."
-quote_en: "More than 150 kinds of cider on the shelf. I don't think anyone else in Amsterdam can say that."
 meta_title_nl: "Appels & Peren | Ciderwinkel – Rozengracht Amsterdam"
 meta_title_en: "Appels & Peren | Cider shop – Rozengracht Amsterdam"
 meta_description_nl: "Appels & Peren op Rozengracht 220B Amsterdam. Gespecialiseerde ciderwinkel met 150+ soorten. Kleine boerderijen uit Frankrijk, Engeland en meer."
 meta_description_en: "Appels & Peren at Rozengracht 220B Amsterdam. Specialist cider shop with 150+ varieties. Small farms from France, England, and beyond."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Appels & Peren op Rozengracht 220B is de enige gespecialiseerde ciderwinkel van Amsterdam met meer dan 150 soorten appel- en perencider op de plank.
 

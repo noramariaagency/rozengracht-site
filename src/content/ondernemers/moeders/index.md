@@ -7,13 +7,13 @@ website: "https://moeders.com/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ik vroeg mijn eerste gasten in 1990 een bord, glas en bestek mee te nemen. Daar dekken we de tafels nog steeds mee."
-quote_en: "In 1990 I asked my first guests to bring a plate, glass and cutlery. We still set the tables with those today."
 meta_title_nl: "Moeders | Nederlands restaurant – Rozengracht Amsterdam"
 meta_title_en: "Moeders | Dutch restaurant – Rozengracht Amsterdam"
 meta_description_nl: "Rozengracht 251 Amsterdam. Klassieke Nederlandse keuken, 38 stoelen, muren vol met moederfoto's. Sinds 1990."
 meta_description_en: "Rozengracht 251 Amsterdam. Classic Dutch home cooking, 38 seats, walls covered in photos of mothers. Since 1990."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Moeders opende in 1990. Eigenaar Jurriaan vroeg zijn eerste gasten een bord, glas en bestek mee te nemen; dat is het eetgerei waarmee de tafels tot op de dag van vandaag gedekt zijn.
 

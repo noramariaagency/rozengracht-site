@@ -19,6 +19,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { nieuwsToItem, verhaalToItem, resolveFoto } from '../../lib/items';
 import type { FeedItem } from '../../lib/items';
 import type { Lang } from '../../lib/i18n';
+import { alleenGepubliceerd } from '../../lib/publicatie';
 
 // Cap op de homepage — geen eindeloze lijst hier, de volledige lijst staat
 // op /lezen/.
@@ -37,7 +38,9 @@ type Bron =
   | { soort: 'verhaal'; datum: Date; entry: Awaited<ReturnType<typeof getCollection<'verhalen'>>>[number] };
 
 const bronnen: Bron[] = [
-  ...(await getCollection('nieuws')).map(
+  // Vooruit geschreven artikelen (datum in de toekomst) laten we hier weg,
+  // zie src/lib/publicatie.ts.
+  ...alleenGepubliceerd(await getCollection('nieuws')).map(
     (entry) => ({ soort: 'nieuws', datum: entry.data.datum, entry }) as Bron
   ),
   ...(await getCollection('verhalen'))

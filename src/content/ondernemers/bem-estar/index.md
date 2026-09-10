@@ -7,13 +7,13 @@ website: "https://www.bemestar.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Bem estar is Portugees voor welzijn, en dat is precies waar we hier op de Rozengracht mee bezig zijn."
-quote_en: "Bem estar is Portuguese for wellbeing, and that's exactly what we work on here on the Rozengracht."
 meta_title_nl: "Bem Estar Laserontharing Rozengracht"
 meta_title_en: "Bem Estar Laser Rozengracht Amsterdam"
 meta_description_nl: "Bem Estar Rozengracht 232. Laserontharing, wax, facials, massages. Professionele huidkliniek."
 meta_description_en: "Bem Estar Rozengracht 232. Laser hair removal, facials, massages. Professional skin clinic."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Bem Estar is Portugees voor welzijn. Die naam dekt precies wat de kliniek op de Rozengracht 232 nastreeft.
 

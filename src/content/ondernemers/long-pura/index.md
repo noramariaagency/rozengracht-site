@@ -7,13 +7,13 @@ website: "https://www.restaurant-longpura.com"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ons pand is zo'n 400 jaar oud, een echt Amsterdams grachtenpand, in de meest klassieke zin van het woord."
-quote_en: "Our building is around 400 years old, a genuine Amsterdam canal house, in the most classic sense of the word."
 meta_title_nl: "Long Pura Indonesisch"
 meta_title_en: "Long Pura Indonesian"
 meta_description_nl: "Long Pura op Rozengracht 46-48 Amsterdam. Indonesische en Balinese keuken in 400 jaar oud grachtenpand. Rijsttafel, à la carte, veggie opties. Dagelijks."
 meta_description_en: "Long Pura at Rozengracht 46-48 Amsterdam. Indonesian and Balinese cuisine in a 400-year-old canal house. Rice table, à la carte, veggie options."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Restaurant Long Pura zit aan de Rozengracht 46-48 in een pand dat zo'n 400 jaar oud is: een Amsterdams grachtenpand in de meest klassieke zin van het woord.
 

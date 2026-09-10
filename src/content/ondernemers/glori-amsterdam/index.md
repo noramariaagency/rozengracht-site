@@ -4,14 +4,14 @@ huisnummer: "194"
 categorie: "restaurants"
 subcategorie: "Restaurant"
 website: "https://gloriamsterdam.com"
-quote_nl: "Wij zijn met z'n tweeën: een chef uit Argentinië, een uit Italië. Samen maken we hier iets dat meer is dan de som der delen."
-quote_en: "There are two of us: one chef from Argentina, one from Italy. Together we make something here that's more than the sum of its parts."
 meta_title_nl: "Glori Amsterdam Restaurant"
 meta_title_en: "Glori Amsterdam Restaurant"
 meta_description_nl: "Glori Amsterdam op Rozengracht 194. Argentijnse, Spaanse en Italiaanse keuken. Wisselende kunsttentoonstellingen. Wo-za diner, zo pasta-lunch."
 meta_description_en: "Glori Amsterdam at Rozengracht 194. Argentine, Spanish, and Italian cuisine. Changing art exhibitions. Wed–Sat dinner, Sun pasta lunch."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 194 komt niet voor op de ondernemerslijst van Cleo (8 sep 2026). Door Nora bevestigd als vertrokken.
 tekst_nl: |
   Glori Amsterdam op Rozengracht 194 is het restaurant van twee chefs die allebei van ver kwamen: een uit Argentinië, een uit Italië. Samen maken ze op de Rozengracht iets dat meer is dan de som der delen.

@@ -12,14 +12,14 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Bij ons koop je niet alleen handgemaakte sieraden en keramiek, je maakt ze hier ook zelf."
-quote_en: "Here you don't just buy handmade jewellery and ceramics. You can make them yourself too."
 meta_title_nl: "Koud Kunstje Workshops"
 meta_title_en: "Koud Kunstje Workshops"
 meta_description_nl: "Bij Koud Kunstje op de Rozengracht koop je handgemaakt of maak je het zelf. Workshops voor volwassenen en kinderen, kinderfeestjes vanaf €25 p.p."
 meta_description_en: "At Koud Kunstje on the Rozengracht you buy handmade or make it yourself. Workshops for adults and kids, children's parties from €25 per person."
 status: "vertrokken"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nr. 49 staat als "In verbouwing (Voorheen DVision)" op de ondernemerslijst van Cleo (8 sep 2026).
 tekst_nl: |
   Bij Koud Kunstje op de Rozengracht 49E kun je niet alleen handgemaakte sieraden, keramiek en kaarsen kopen, je maakt ze er ook zelf.

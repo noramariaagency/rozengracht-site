@@ -8,13 +8,13 @@ website: "https://chinchinclub.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Kom binnen zonder precies te weten waar de avond heengaat. Dat werkt bij ons het beste."
-quote_en: "Walk in without knowing exactly where the night's headed. That's when it works best here."
 meta_title_nl: "Chin Chin Club Karaoke"
 meta_title_en: "Chin Chin Club Karaoke"
 meta_description_nl: "Chin Chin Club op Rozengracht 133 Amsterdam combineert Aziatische fusion, cocktailbar, karaoke en club. 750 gasten capaciteit. Open do/vr/za."
 meta_description_en: "Chin Chin Club at Rozengracht 133 Amsterdam: Asian fusion dining, cocktail bar, karaoke, and nightclub. Capacity 750. Open Thursday–Saturday."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Chin Chin Club op de Rozengracht 133 is restaurant, cocktailbar, karaokeplek en nachtclub tegelijk. Het werkt het beste als je op voorhand niet precies weet waar de avond naartoe gaat.
 

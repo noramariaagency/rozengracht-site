@@ -7,8 +7,6 @@ website: "https://kinderboekwinkel.nl"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "In 1975 begonnen mijn ouders hier de oudste gespecialiseerde kinderboekwinkel van Nederland, de op één na oudste ter wereld, zeggen ze."
-quote_en: "My parents started the Netherlands' oldest specialist children's bookshop here in 1975, the second-oldest in the world, they tell us."
 meta_title_nl: "De Kinderboekwinkel Oudste Rozengracht"
 meta_title_en: "De Kinderboekwinkel Oldest Rozengracht"
 meta_description_nl: "Sinds 1975 op de Rozengracht Amsterdam, sinds 2026 op nummer 101-103. De oudste gespecialiseerde kinderboekwinkel van Nederland, 7.000 titels, medewerkers die bijna alles hebben gelezen."
@@ -16,6 +14,8 @@ meta_description_en: "Since 1975 on the Rozengracht Amsterdam, since 2026 at num
 status: "klaar"
 nieuw_sinds: 2026-06-18
 interne_opmerking: |
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   nieuw_sinds op 18 juni 2026 gezet: dat is de datum van het nieuwsartikel waarin de verhuizing van nr. 34 naar 101-103 als voldongen feit staat. Een exacte verhuisdatum is nergens vastgelegd.
 
   Verhuisd van Rozengracht 34 naar 101-103 (bevestigd via CityMom, juni 2026,

@@ -8,12 +8,12 @@ fotos:
   - "./foto_01.jpg"
 status: "klaar"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Pagina aangemaakt op basis van de officiële BIZ-ondernemerslijst en eigen onderzoek (website,
   Resident Advisor, 3voor12) om tekst toe te voegen aan een map die al een foto had maar nog geen
   index.md. Naamspelling "Dejan en Linda Milojkovic" overgenomen van de socials-pagina van de eigen
   website, die afwijkt van de spelling "Milokovic" uit de eerdere projectnotities.
-quote_nl: "Ik verkoop hier al sinds 1999 platen. Mensen kennen me nog steeds als Dexon."
-quote_en: "I've been selling records here since 1999. People still know me as Dexon."
 meta_title_nl: "In Deep 'N Dance | Platenzaak – Rozengracht Amsterdam"
 meta_title_en: "In Deep 'N Dance | Record shop – Rozengracht Amsterdam"
 meta_description_nl: "Platenzaak op Rozengracht 60 sinds 1999, gerund door Dejan (DJ Dexon) en Linda Milojkovic. Techno, house en meer, plus dj-Tuesday in de Melkweg."

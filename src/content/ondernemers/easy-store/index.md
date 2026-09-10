@@ -4,8 +4,8 @@ huisnummer: "14"
 categorie: "cadeaus-tabak"
 subcategorie: "Tabakszaak"
 status: "klaar"
-quote_nl: "Wij zijn al meer dan honderd jaar een echte tabaksspeciaalzaak, en dat runnen we nog steeds zoals een vakhandel hoort."
-quote_en: "We've been a proper tobacco specialist for more than a hundred years, and we still run it the way a trade shop should."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 meta_title_nl: "Easy Store | Tabaksspeciaalzaak – Rozengracht Amsterdam"
 meta_title_en: "Easy Store | Specialist tobacco shop – Rozengracht Amsterdam"
 meta_description_nl: "Easy Store tabaksspeciaalzaak op Rozengracht 14 Amsterdam. Meer dan 100 jaar in de Jordaan. Tabak, sigaren, pijpen, tijdschriften en souvenirs."

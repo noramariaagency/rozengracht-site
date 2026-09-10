@@ -4,13 +4,13 @@ huisnummer: "146"
 categorie: "vervoer"
 subcategorie: "Fietsverhuur & -verkoop"
 fotos: []
-quote_nl: "Lekke band, oude fiets, elektrische ombouw: bij ons kun je met alles terecht, en we repareren het gewoon ter plekke."
-quote_en: "Flat tyre, old bike, electric conversion: bring it all in, we'll fix it on the spot."
 meta_title_nl: "Amstel Bike | Fietsverhuur & verkoop – Rozengracht Amsterdam"
 meta_title_en: "Amstel Bike | Bike rental & sales – Rozengracht Amsterdam"
 meta_description_nl: "Amstel Bike op Rozengracht 146 Amsterdam. Fietsverhuur, verkoop nieuwe en tweedehands fietsen, reparaties en accessoires. Persoonlijke service in de Jordaan."
 meta_description_en: "Amstel Bike at Rozengracht 146 Amsterdam. Bike rental, new and second-hand bicycle sales, repairs, and accessories. Personal service in the Jordaan."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Amstel Bike op Rozengracht 146 verhuurt en verkoopt fietsen, nieuwe én tweedehands, en repareert ze ook ter plekke.
 

@@ -6,13 +6,13 @@ subcategorie: "Theatermake-up & grime"
 website: "https://www.back-stage.nl/"
 fotos:
   - "./foto_01.jpg"
-quote_nl: "Wij zijn er voor mensen die meer nodig hebben dan wat de drogist verkoopt: visagisten, filmcrews, theatermakers."
-quote_en: "We're for people who need more than what the drugstore sells: make-up artists, film crews, theatre people."
 meta_title_nl: "Backstage Make-up Theatrical Rozengracht"
 meta_title_en: "Backstage Make-up Theatrical Rozengracht"
 meta_description_nl: "Backstage Make-up & Grime op Rozengracht 101-103 Amsterdam. Professionele theatermake-up, Ben Nye, Kryolan, special effects, pruiken. Tel 020-6221267."
 meta_description_en: "Backstage Make-up & Grime at Rozengracht 101-103 Amsterdam. Professional theatrical make-up, Ben Nye, Kryolan, special effects, wigs. Phone 020-6221267."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Backstage Make-up & Grime op Rozengracht 101-103 is de professionele make-upwinkel van Amsterdam voor theatermakers, filmcrew, visagisten en iedereen die meer nodig heeft dan wat er in een gewone drogisterij te vinden is.
 

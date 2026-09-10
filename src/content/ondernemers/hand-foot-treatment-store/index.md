@@ -11,12 +11,12 @@ fotos:
   - "./foto_03.jpg"
   - "./foto_04.jpg"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek (handandfoot.nl, incl. de "about"-pagina met
   het verhaal van eigenaar Angelique Piso). 4 foto's toegevoegd, alle afkomstig
   van de eigen website handandfoot.nl (manicure, pedicure, productenschap).
-quote_nl: "Ik zit al meer dan twintig jaar in de beautybranche, en sinds 2012 helemaal voor mezelf."
-quote_en: "I've been in the beauty business for more than twenty years, and fully on my own since 2012."
 meta_title_nl: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_title_en: "Hand & Foot Treatment Store – Rozengracht Amsterdam"
 meta_description_nl: "Hand & Foot Treatment Store op Rozengracht 77A in Amsterdam: de hand- en voetspa van Angelique Piso, met manicure, pedicure en eigen cosmetica."

@@ -7,13 +7,13 @@ website: "https://www.alexwijnen.nl/"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ik ben gediplomeerd vinoloog, dus ik verkoop geen wijn, ik adviseer 'm."
-quote_en: "I'm a certified wine expert, so I don't just sell wine here. I advise on it."
 meta_title_nl: "Alex Wijnen Wijnwinkel Rozengracht Amsterdam"
 meta_title_en: "Alex Wijnen Wine shop Rozengracht Amsterdam"
 meta_description_nl: "Alex Wijnen op Rozengracht 4 Amsterdam. Vinoloog Alexander Asjes. Europese wijnen, wijnproeverijen en cursussen. Di-vr 11-19, za 10:30-18."
 meta_description_en: "Alex Wijnen at Rozengracht 4 Amsterdam. Vinologist Alexander Asjes. European wines, wine tastings, and courses. Tue–Fri 11–19, Sat 10:30–18."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Alexander Asjes opende Alex Wijnen in 2008 aan het begin van de Rozengracht, op nummer 4, vlak bij de Prinsengracht. Als gediplomeerd vinoloog is hij niet alleen verkoper maar ook adviseur.
 

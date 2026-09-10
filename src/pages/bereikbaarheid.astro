@@ -7,6 +7,7 @@ import bereikbaarheidRoutes from '../data/bereikbaarheid-routes.json';
 import { getCollection, getEntry } from 'astro:content';
 import { nieuwsToItem, resolveFoto } from '../lib/items';
 import type { Lang } from '../lib/i18n';
+import { alleenGepubliceerd } from '../lib/publicatie';
 
 const lang: Lang = 'nl';
 
@@ -88,7 +89,8 @@ const garageRoute = bereikbaarheidRoutes.auto?.length > 1 ? bereikbaarheidRoutes
 // toe zodra er meer dan één tegelijk actief is). Alle bereikbaarheids-
 // updates, ook oudere/verlopen, blijven gewoon terug te vinden op /nieuws.
 const vandaag = new Date();
-const bereikbaarheidBerichten = (await getCollection('nieuws'))
+// Vooruit geschreven artikelen laten we hier weg, zie src/lib/publicatie.ts.
+const bereikbaarheidBerichten = alleenGepubliceerd(await getCollection('nieuws'))
   .filter((n) => n.data.categorie === 'bereikbaarheid')
   .filter((n) => !n.data.tot || n.data.tot >= vandaag)
   .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf());

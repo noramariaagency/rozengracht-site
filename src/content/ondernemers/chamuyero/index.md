@@ -14,13 +14,13 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Chamuyero is ons eerbetoon aan de delicatessenwinkels van Buenos Aires, vlak naast ons restaurant Salmuera."
-quote_en: "Chamuyero is our tribute to the delicatessens of Buenos Aires, right next to our restaurant Salmuera."
 meta_title_nl: "Chamuyero Argentijns Rozengracht"
 meta_title_en: "Chamuyero Argentinian Deli"
 meta_description_nl: "Rozengracht 104 is een authentieke Argentijnse deli met dagverse medialunas, empanadas, alfajores en Black Angus vlees. Van de makers van Salmuera."
 meta_description_en: "Rozengracht 104 is an authentic Argentine deli with daily-baked medialunas, empanadas, alfajores, and Black Angus beef, from the makers of Salmuera."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   De broers Uzcudun, half-Argentijns, met een vader die al decennia in de Amsterdamse horecawereld meedraait, openden Chamuyero als een eerbetoon aan de delicatessenwinkels van Buenos Aires, naast hun restaurant Salmuera op de Rozengracht 104.
 

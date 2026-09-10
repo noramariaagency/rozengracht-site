@@ -12,6 +12,8 @@ fotos:
   - "./foto_04.jpg"
   - "./foto_05.jpg"
 interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
+
   Nieuw aangemaakt op basis van de officiële ledenlijst van BIZ-Ondernemersvereniging
   Rozengracht plus eigen onderzoek. De zaak handelt zowel onder de naam "Wulf
   Meubelen" als "Wulf Wonen"; de website wulfmeubelen.nl uit de ledenlijst gaf
@@ -22,8 +24,6 @@ interne_opmerking: >
   via een woonwinkel-directory die deze tekst overneemt. 5 foto's toegevoegd
   (showroom-interieur en portret via wulfwonen.nl, 3 productfoto's via Instagram
   @wulfwonenamsterdam).
-quote_nl: "Ik ben de derde generatie Wulf die hier meubels verkoopt, al meer dan zestig jaar op dezelfde plek."
-quote_en: "I'm the third generation of Wulfs selling furniture here, on the same spot for more than sixty years."
 meta_title_nl: "Wulf Meubelen | Interieur & meubels – Rozengracht"
 meta_title_en: "Wulf Meubelen | Furniture & Interiors – Rozengracht"
 meta_description_nl: "Wulf Meubelen (Wulf Wonen) op Rozengracht 74-78 in Amsterdam: drie generaties familiebedrijf, 1.000 m² banken, kasten, tafels en interieuradvies."

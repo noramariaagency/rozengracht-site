@@ -9,8 +9,8 @@ fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
 status: "klaar"
-quote_nl: "Wij werken zonder wachtlijst, en scoren een 9,4 op Google op basis van meer dan 125 beoordelingen."
-quote_en: "We work without a waiting list, and score 9.4 on Google from more than 125 reviews."
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 meta_title_nl: "TOPCHIRO Jordaan | Chiropractor – Rozengracht Amsterdam"
 meta_title_en: "TOPCHIRO Jordaan | Chiropractor – Rozengracht Amsterdam"
 meta_description_nl: "TOPCHIRO Jordaan op Rozengracht 217 Amsterdam. 9,4/10 op Google. Chiropractie, sportgeneeskunde, geen wachtlijst. Behandeling van nek-, rug- en."

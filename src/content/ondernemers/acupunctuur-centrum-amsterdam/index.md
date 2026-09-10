@@ -14,13 +14,13 @@ openingstijden:
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Ik ben de derde generatie in mijn familie die dit vak doorgeeft. Mijn opa deed het, mijn moeder deed het, en nu ik, hier op de Rozengracht."
-quote_en: "I'm the third generation in my family doing this. My grandfather did it, my mother did it, and now I do, right here on the Rozengracht."
 meta_title_nl: "Acupunctuur Centrum Amsterdam | Xiu Deng – Rozengracht"
 meta_title_en: "Acupunctuur Centrum Amsterdam | Xiu Deng – Rozengracht"
 meta_description_nl: "Xiu Deng, 3e generatie TCM-therapeut op Rozengracht 53 Amsterdam. Acupunctuur, cupping, tuina massage en Chinese kruiden voor uiteenlopende klachten."
 meta_description_en: "Xiu Deng, 3rd-generation TCM practitioner at Rozengracht 53 Amsterdam. Acupuncture, cupping, tuina massage, and Chinese herbs for a wide range of."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Xiu Deng groeide op tussen naalden en kruiden. Haar grootvader was acupuncturist, haar moeder ook, en zij is de derde generatie die deze kennis doorgeeft, nu vanuit haar praktijk op de Rozengracht 53.
 

@@ -10,6 +10,7 @@ import { nieuwsToItem, verhaalToItem, eventToItem } from '../../../lib/items';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Lang } from '../../../lib/i18n';
 import plekken from '../../../data/places.json';
+import { alleenGepubliceerd } from '../../../lib/publicatie';
 
 const lang: Lang = 'en';
 const categorieLabels = getCategorieLabels(lang);
@@ -46,7 +47,8 @@ const dagen = [
   ['vr', 'Friday'], ['za', 'Saturday'], ['zo', 'Sunday'],
 ];
 
-const alNieuws = await getCollection('nieuws');
+// Vooruit geschreven artikelen laten we hier weg, zie src/lib/publicatie.ts.
+const alNieuws = alleenGepubliceerd(await getCollection('nieuws'));
 const gerelateerdNieuwsItems = alNieuws
   .filter((n) => n.data.gerelateerde_ondernemer?.slug === entry.slug)
   .sort((a, b) => b.data.datum.valueOf() - a.data.datum.valueOf())

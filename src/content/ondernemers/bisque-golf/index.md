@@ -6,13 +6,13 @@ subcategorie: "Golfwinkel"
 fotos:
   - "./foto_01.jpg"
   - "./foto_02.jpg"
-quote_nl: "Amsterdam had gewoon een goede golfwinkel nodig, dus die hebben we in 2023 zelf maar geopend."
-quote_en: "Amsterdam just needed a proper golf shop, so in 2023 we opened one ourselves."
 meta_title_nl: "Bisque Golf Rozengracht"
 meta_title_en: "Bisque Golf Rozengracht"
 meta_description_nl: "Golfwinkel van Ido de Voos, Marc van Dodewaard en Cheng op Rozengracht 17 Amsterdam. Merken als Malbon, Local Rule en eigen lijn. Wo–zo open."
 meta_description_en: "Golf store by Ido de Voos, Marc van Dodewaard and Cheng at Rozengracht 17 Amsterdam. Brands including Malbon, Local Rule and Bisque's own line."
 status: "klaar"
+interne_opmerking: >
+  Citaten verwijderd op 10 september 2026, in opdracht van Nora. Ze waren door ons opgeschreven op basis van de profieltekst, niet uitgesproken door de ondernemer (zie commit 622b54c). Nieuwe citaten komen van de ondernemers zelf, via de map die met hen gedeeld wordt.
 tekst_nl: |
   Ido, Marc en Cheng openden in 2023 de golfwinkel die Amsterdam eigenlijk nodig had.
 
