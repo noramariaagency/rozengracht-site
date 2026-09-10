@@ -118,9 +118,12 @@ const TEKST = {
   /* Zelfde kaartvorm als de artikelen ernaast: wit, geen randje, zelfde
      ronding. Zo leest het filter als de eerste tegel van de wand en niet als
      een losse balk die er per ongeluk in is gevallen. */
+  /* De artikelkaartjes hebben rechte hoeken, maar het filterkaartje houdt op
+     verzoek zijn ronding: zo leest het als bedieningspaneel en niet als een
+     artikel zonder foto. */
   .wall-filter {
     background: #ffffff;
-    border-radius: 0;
+    border-radius: 14px;
     padding: 20px;
     box-shadow: var(--card-shadow);
   }
