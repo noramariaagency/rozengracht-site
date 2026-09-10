@@ -59,11 +59,6 @@ const TEKST = {
 };
 ---
 <BaseLayout title={TEKST.titel} description={TEKST.intro} lang={lang} fullBleed>
-  <div class="container kop-en-filters">
-    <h1>{TEKST.titel}</h1>
-    <p class="intro">{TEKST.intro}</p>
-
-  </div>
 
   <div class="container">
     <div class="wall" data-wall>
@@ -116,10 +111,8 @@ const TEKST = {
 </script>
 
 <style>
-  .kop-en-filters { padding-top: 2.5rem; }
-  .container { padding-bottom: 2.5rem; }
+  .container { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 
-  .intro { color: var(--color-muted); max-width: 620px; margin-top: var(--space-xs); }
 
   .filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem var(--space-xs); }
   /* Zelfde kaartvorm als de artikelen ernaast: wit, geen randje, zelfde
@@ -153,7 +146,9 @@ const TEKST = {
     cursor: pointer;
     touch-action: manipulation;
   }
-  .filter-btn.is-active { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+  /* Geselecteerd = duidelijk groen (niet bijna-zwart), precies omgekeerd
+     aan de donkergroene secties elders, waar de gekozen chip juist licht is. */
+  .filter-btn.is-active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
 
   .wall {
     column-count: 3;

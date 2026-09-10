@@ -122,31 +122,42 @@ const t = TEKST[lang];
     font-size: 0.82rem;
     font-weight: 500;
     font-family: var(--font-body);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: rgba(255, 255, 255, 0.13);
     padding: 7px 15px;
     border-radius: 100px;
     color: #fbfaf7;
     cursor: pointer;
     touch-action: manipulation;
   }
+  .chip:hover { background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.6); }
   .chip.is-active {
     background: #fbfaf7;
     color: var(--green-deep);
     border-color: #fbfaf7;
   }
+  /* Geen witte pil meer: een tekstlink met een pijltje. Dat vraagt minder
+     aandacht dan de kaart en de chips ernaast, en dat is ook de bedoeling. */
   .btn {
-    display: inline-block;
-    background: #fbfaf7;
-    color: var(--green-black);
-    padding: 14px 30px;
-    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    color: #fbfaf7;
+    padding: 0;
     font-weight: 600;
     font-size: 0.95rem;
-    margin-top: 8px;
+    margin-top: 14px;
     text-decoration: none;
+    border-bottom: 1px solid rgba(251, 250, 247, 0.45);
+    padding-bottom: 3px;
+    transition: border-color 0.15s ease, gap 0.15s ease;
   }
-  .btn:hover { background: #fff; opacity: 1; }
+  .btn::after { content: '\2192'; font-size: 1.05em; line-height: 1; }
+  .btn:hover { border-bottom-color: #fbfaf7; gap: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
 
   /* Verschijn-animatie, maar alleen als het script op de pagina daadwerkelijk
      draait: dat zet html.reveal-aan. Zonder die klasse is alles gewoon

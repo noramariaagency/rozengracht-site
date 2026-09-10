@@ -16,6 +16,9 @@
   /* Merkkleuren, exact uit de brief */
   --green-deep: #1b3b2f;
   --green-black: #12241d;
+  /* Middengroen voor kleine vlakken (bv. een geselecteerde filterchip op een
+     lichte achtergrond): --green-deep leest op chipformaat als zwart. */
+  --green-mid: #2a5f4a;
   --rose: #d9a9a0;
   --rose-deep: #c0847a;
   --ochre: #b9793f;
