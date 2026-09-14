@@ -4,7 +4,7 @@
     "lat": 52.373394499999996,
     "lng": 4.8813173999999995,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:56:48.418Z"
+    "fetchedAt": "2026-09-14T09:35:32.550Z"
   },
   "african-blackstar-coffeeshop": {
     "placeId": "ChIJgUINtcQJxkcR7jj0KwrcnM8",
@@ -19,7 +19,7 @@
       "vr": "11:00-01:00",
       "za": "11:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:56:48.816Z"
+    "fetchedAt": "2026-09-14T09:35:32.924Z"
   },
   "akitsu": {
     "placeId": "ChIJRdXgpd4JxkcR_0joPy89tPY",
@@ -32,7 +32,7 @@
       "vr": "18:00-22:00",
       "za": "18:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:56:49.183Z"
+    "fetchedAt": "2026-09-14T09:35:33.292Z"
   },
   "alex-wijnen": {
     "placeId": "ChIJ8zHZysQJxkcRbx5gwzxLnZo",
@@ -45,7 +45,7 @@
       "vr": "11:30-19:00",
       "za": "11:30-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:49.548Z"
+    "fetchedAt": "2026-09-14T09:35:33.631Z"
   },
   "amigo-grill": {
     "placeId": "ChIJ35H6tMQJxkcRBKR7oU3makc",
@@ -60,7 +60,7 @@
       "vr": "12:00-23:30",
       "za": "12:00-23:30"
     },
-    "fetchedAt": "2026-09-07T08:56:49.922Z"
+    "fetchedAt": "2026-09-14T09:35:33.984Z"
   },
   "amstel-bike": {
     "placeId": "ChIJTzRq68QJxkcR9fbwRbouG4g",
@@ -75,7 +75,7 @@
       "vr": "10:30-22:00",
       "za": "10:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:56:50.299Z"
+    "fetchedAt": "2026-09-14T09:35:34.329Z"
   },
   "antiek-tattoo": {
     "placeId": "ChIJR1ZvitsJxkcRflbOwnrJKl8",
@@ -90,7 +90,7 @@
       "vr": "11:00-19:00",
       "za": "11:00-19:00"
     },
-    "fetchedAt": "2026-09-07T08:56:50.680Z"
+    "fetchedAt": "2026-09-14T09:35:34.675Z"
   },
   "apotheek-benu-rozengracht": {
     "placeId": "ChIJvfGIRNsJxkcRvh2s7VjSSEU",
@@ -103,14 +103,14 @@
       "do": "08:30-12:00, 14:00-17:30",
       "vr": "08:30-12:00, 14:00-17:30"
     },
-    "fetchedAt": "2026-09-07T08:56:51.077Z"
+    "fetchedAt": "2026-09-14T09:35:35.045Z"
   },
   "appels-peren": {
     "placeId": "ChIJ5XMqKr4JxkcRU9ZpkL6JDEs",
     "lat": 52.3725734,
     "lng": 4.876735699999999,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:56:51.443Z"
+    "fetchedAt": "2026-09-14T09:35:35.394Z"
   },
   "babylon-kadoshop": {
     "placeId": "ChIJh6aTRdsJxkcRZTojyNd9BfM",
@@ -125,7 +125,7 @@
       "vr": "10:30-18:00",
       "za": "10:30-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:51.803Z"
+    "fetchedAt": "2026-09-14T09:35:35.756Z"
   },
   "backstage": {
     "placeId": "ChIJORCBe9sJxkcRkzOQZmyXr2M",
@@ -138,7 +138,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:56:52.176Z"
+    "fetchedAt": "2026-09-14T09:35:36.100Z"
   },
   "bar-theo": {
     "placeId": "ChIJQzQbQJMJxkcRRelrc5C_qoY",
@@ -152,7 +152,7 @@
       "vr": "16:00-03:00",
       "za": "16:00-03:00"
     },
-    "fetchedAt": "2026-09-07T08:56:52.557Z"
+    "fetchedAt": "2026-09-14T09:35:37.311Z"
   },
   "bbrood": {
     "placeId": "ChIJ2fAjitsJxkcR4MqOn6RLHlY",
@@ -166,7 +166,7 @@
       "vr": "07:00-18:00",
       "za": "07:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:52.916Z"
+    "fetchedAt": "2026-09-14T09:35:37.641Z"
   },
   "bem-estar": {
     "placeId": "ChIJTy7AwMQJxkcRcXg_DegCj-w",
@@ -180,14 +180,14 @@
       "vr": "10:00-20:30",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:56:53.539Z"
+    "fetchedAt": "2026-09-14T09:35:38.171Z"
   },
   "ben-cohen-tel-aviv-streetfood": {
     "placeId": "ChIJkd4pGooJxkcRbhcUPOs5Mqw",
     "lat": 52.371923499999994,
     "lng": 4.8754905,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:56:53.915Z"
+    "fetchedAt": "2026-09-14T09:35:38.659Z"
   },
   "bianco": {
     "placeId": "ChIJXZc4CtwJxkcRxtxTRzWj4z0",
@@ -201,7 +201,7 @@
       "vr": "09:00-19:00",
       "za": "09:00-19:00"
     },
-    "fetchedAt": "2026-09-07T08:56:54.284Z"
+    "fetchedAt": "2026-09-14T09:35:38.969Z"
   },
   "bisque-golf": {
     "placeId": "ChIJ0yWpOJ3hxUcRMisJR3pzeSE",
@@ -214,7 +214,7 @@
       "vr": "11:00-19:00",
       "za": "11:00-17:30"
     },
-    "fetchedAt": "2026-09-07T08:56:54.678Z"
+    "fetchedAt": "2026-09-14T09:35:39.297Z"
   },
   "blokker": {
     "placeId": "ChIJIVF1NdsJxkcRiIQKTvlomCw",
@@ -229,7 +229,7 @@
       "vr": "09:00-19:00",
       "za": "09:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:55.036Z"
+    "fetchedAt": "2026-09-14T09:35:39.640Z"
   },
   "boom-chicago": {
     "placeId": "ChIJWyCxX-gJxkcRkUmcs2uB-5U",
@@ -242,14 +242,14 @@
       "vr": "18:00-01:00",
       "za": "16:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:56:55.423Z"
+    "fetchedAt": "2026-09-14T09:35:39.966Z"
   },
   "brandstof": {
     "placeId": "ChIJoV84AdwJxkcRzuImV9BOroU",
     "lat": 52.3725151,
     "lng": 4.8760965,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:56:55.763Z"
+    "fetchedAt": "2026-09-14T09:35:40.291Z"
   },
   "broodje-mokum": {
     "placeId": "ChIJV17ISdsJxkcREY_GHCZrWsM",
@@ -263,7 +263,7 @@
       "vr": "09:00-17:00",
       "za": "09:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:56:56.111Z"
+    "fetchedAt": "2026-09-14T09:35:40.608Z"
   },
   "burgerhouse-247": {
     "placeId": "ChIJq54OhQ0JxkcRVhU4CfKsnyY",
@@ -272,7 +272,7 @@
     "hoursByDay": {
       "zo": "00:00-24:00"
     },
-    "fetchedAt": "2026-09-07T08:56:56.473Z"
+    "fetchedAt": "2026-09-14T09:35:40.942Z"
   },
   "cafe-brakke": {
     "placeId": "ChIJH3H1NdsJxkcRT1zyf7SrX9c",
@@ -287,7 +287,7 @@
       "vr": "09:00-01:00",
       "za": "09:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:56:56.842Z"
+    "fetchedAt": "2026-09-14T09:35:41.266Z"
   },
   "cafetaria-super-star": {
     "placeId": "ChIJXV-TlpcJxkcRxXQgRhA1Fiw",
@@ -296,7 +296,7 @@
     "hoursByDay": {
       "ma": "15:00-00:00"
     },
-    "fetchedAt": "2026-09-07T08:56:57.193Z"
+    "fetchedAt": "2026-09-14T09:35:42.048Z"
   },
   "calma-clinic": {
     "placeId": "ChIJiwbtcjcJxkcRbuCk_LJk_18",
@@ -311,7 +311,7 @@
       "vr": "09:00-21:00",
       "za": "09:00-19:00"
     },
-    "fetchedAt": "2026-09-07T08:56:57.572Z"
+    "fetchedAt": "2026-09-14T09:35:42.362Z"
   },
   "cannibale-royale": {
     "placeId": "ChIJ_yRiXyMJxkcR51uCTGlqlpc",
@@ -326,14 +326,14 @@
       "vr": "12:00-01:00",
       "za": "12:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:56:57.919Z"
+    "fetchedAt": "2026-09-14T09:35:42.683Z"
   },
   "chamuyero": {
     "placeId": "ChIJ_ZhiyswJxkcRP_9qd0R1rE8",
     "lat": 52.3732496,
     "lng": 4.8794740999999995,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:56:58.258Z"
+    "fetchedAt": "2026-09-14T09:35:42.993Z"
   },
   "chin-chin-club": {
     "placeId": "ChIJu_wKgNsJxkcRcvWywIjFd4M",
@@ -344,22 +344,22 @@
       "vr": "19:00-05:00",
       "za": "19:00-05:00"
     },
-    "fetchedAt": "2026-09-07T08:56:58.595Z"
+    "fetchedAt": "2026-09-14T09:35:43.316Z"
   },
   "coffeeshop-flower-power": {
     "placeId": "ChIJAYqsgNsJxkcRhnmnYVsAKXQ",
     "lat": 52.3727163,
     "lng": 4.8785989,
     "hoursByDay": {
-      "zo": "13:00-23:55",
-      "ma": "13:00-23:55",
-      "di": "13:00-23:55",
-      "wo": "13:00-23:55",
-      "do": "13:00-00:55",
-      "vr": "13:00-00:55",
-      "za": "13:00-00:55"
+      "zo": "07:00-01:00",
+      "ma": "07:00-01:00",
+      "di": "07:00-01:00",
+      "wo": "07:00-01:00",
+      "do": "07:00-01:00",
+      "vr": "07:00-01:00",
+      "za": "07:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:56:58.950Z"
+    "fetchedAt": "2026-09-14T09:35:43.638Z"
   },
   "coppenhagen-1001-kralen": {
     "placeId": "ChIJycEfQtsJxkcREQJCKe2m8dk",
@@ -374,7 +374,7 @@
       "vr": "11:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:59.278Z"
+    "fetchedAt": "2026-09-14T09:35:43.944Z"
   },
   "de-kinderboekwinkel": {
     "placeId": "ChIJB6k2RtsJxkcRncPC7F7Gs8Q",
@@ -389,7 +389,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:59.614Z"
+    "fetchedAt": "2026-09-14T09:35:44.275Z"
   },
   "de-rozengracht-kledingreparatie": {
     "placeId": "ChIJfbN6CdwJxkcRqaSZiP0x-V0",
@@ -403,7 +403,7 @@
       "vr": "09:00-18:00",
       "za": "09:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:56:59.995Z"
+    "fetchedAt": "2026-09-14T09:35:44.602Z"
   },
   "dierendokters-amsterdam": {
     "placeId": "ChIJOTv2rt4JxkcR1OpzcqnwQNA",
@@ -416,7 +416,7 @@
       "do": "09:00-18:00",
       "vr": "09:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:00.347Z"
+    "fetchedAt": "2026-09-14T09:35:44.920Z"
   },
   "dijkman": {
     "placeId": "ChIJIXYgfNsJxkcRu1oZk_HeKFc",
@@ -430,7 +430,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:00.676Z"
+    "fetchedAt": "2026-09-14T09:35:45.237Z"
   },
   "dioniry-nails-beauty": {
     "placeId": "ChIJPWkVdNwJxkcRvhhiZHy8OgI",
@@ -445,7 +445,7 @@
       "vr": "08:00-19:00",
       "za": "08:00-19:00"
     },
-    "fetchedAt": "2026-09-07T08:57:01.017Z"
+    "fetchedAt": "2026-09-14T09:35:45.562Z"
   },
   "dominos-pizza": {
     "placeId": "ChIJW_n_iNsJxkcRS4ETFXJW6mU",
@@ -460,7 +460,7 @@
       "vr": "11:00-05:00",
       "za": "11:00-05:00"
     },
-    "fetchedAt": "2026-09-07T08:57:01.393Z"
+    "fetchedAt": "2026-09-14T09:35:45.885Z"
   },
   "doner-palace": {
     "placeId": "ChIJZ4s_ZtsJxkcRa8_8zcNMux0",
@@ -474,7 +474,7 @@
       "vr": "10:00-02:30",
       "za": "10:00-02:30"
     },
-    "fetchedAt": "2026-09-07T08:57:01.766Z"
+    "fetchedAt": "2026-09-14T09:35:46.210Z"
   },
   "easy-store": {
     "placeId": "ChIJPycKRtsJxkcRjcYja197txw",
@@ -489,7 +489,7 @@
       "vr": "10:00-20:00",
       "za": "10:00-20:00"
     },
-    "fetchedAt": "2026-09-07T08:57:02.099Z"
+    "fetchedAt": "2026-09-14T09:35:46.870Z"
   },
   "effendy": {
     "placeId": "ChIJOej4g9sJxkcRiQ7pacbRLwE",
@@ -504,7 +504,7 @@
       "vr": "10:00-20:00",
       "za": "10:00-21:00"
     },
-    "fetchedAt": "2026-09-07T08:57:02.427Z"
+    "fetchedAt": "2026-09-14T09:35:47.517Z"
   },
   "elmer-repairs": {
     "placeId": "ChIJCylSi-sJxkcR2xx9-otSr5M",
@@ -517,7 +517,7 @@
       "do": "10:00-18:00",
       "vr": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:02.768Z"
+    "fetchedAt": "2026-09-14T09:35:47.850Z"
   },
   "equal-yoga": {
     "placeId": "ChIJjwRodNwJxkcR_4WZBP0Sx9Y",
@@ -532,7 +532,7 @@
       "vr": "06:45-20:30",
       "za": "08:15-17:45"
     },
-    "fetchedAt": "2026-09-07T08:57:03.088Z"
+    "fetchedAt": "2026-09-14T09:35:48.153Z"
   },
   "fabula-rosa": {
     "placeId": "ChIJhSGe65QJxkcRNZjkTKAL37c",
@@ -545,22 +545,22 @@
       "vr": "11:00-18:00",
       "za": "11:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:03.434Z"
+    "fetchedAt": "2026-09-14T09:35:48.481Z"
   },
   "febo": {
     "placeId": "ChIJ_9cF2aT9xUcRu5eu0Sr7_YU",
     "lat": 52.372742099999996,
     "lng": 4.8786703,
     "hoursByDay": {
-      "zo": "11:00-23:00",
-      "ma": "11:00-23:00",
-      "di": "11:00-23:00",
-      "wo": "11:00-23:00",
-      "do": "11:00-05:00",
-      "vr": "11:00-05:00",
-      "za": "11:00-05:00"
+      "zo": "16:00-22:00",
+      "ma": "16:00-22:00",
+      "di": "16:00-22:00",
+      "wo": "16:00-22:00",
+      "do": "16:00-04:30",
+      "vr": "16:00-04:30",
+      "za": "16:00-04:30"
     },
-    "fetchedAt": "2026-09-07T08:57:03.772Z"
+    "fetchedAt": "2026-09-14T09:35:49.137Z"
   },
   "fietstop": {
     "placeId": "ChIJkaSbeNwJxkcRZmCNT1WOfIA",
@@ -574,7 +574,7 @@
       "vr": "08:00-18:00",
       "za": "08:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:04.104Z"
+    "fetchedAt": "2026-09-14T09:35:49.454Z"
   },
   "fit-well": {
     "placeId": "ChIJ34jipt4JxkcRJJPM3e5kLCU",
@@ -589,7 +589,7 @@
       "vr": "11:00-22:00",
       "za": "11:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:57:04.450Z"
+    "fetchedAt": "2026-09-14T09:35:49.790Z"
   },
   "fjallraven": {
     "placeId": "ChIJ3U6MDNwJxkcRit5Esa0i42o",
@@ -604,7 +604,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:04.765Z"
+    "fetchedAt": "2026-09-14T09:35:50.112Z"
   },
   "games-workshop-warhammer": {
     "placeId": "ChIJT1B5fNsJxkcRXfXhAFWHMf0",
@@ -617,21 +617,21 @@
       "vr": "11:00-14:30, 15:00-21:00",
       "za": "11:00-14:30, 15:00-17:30"
     },
-    "fetchedAt": "2026-09-07T08:57:05.101Z"
+    "fetchedAt": "2026-09-14T09:35:50.435Z"
   },
   "gebroeders-winter": {
     "placeId": "ChIJ9bSUadsJxkcRjcNjypW6v4A",
     "lat": 52.373534,
     "lng": 4.880616,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:05.419Z"
+    "fetchedAt": "2026-09-14T09:35:50.734Z"
   },
   "glori-amsterdam": {
     "placeId": "ChIJnUIoe2UJxkcR6w3v001XaZg",
     "lat": 52.372777,
     "lng": 4.877553,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:05.760Z"
+    "fetchedAt": "2026-09-14T09:35:51.067Z"
   },
   "haar-33": {
     "placeId": "ChIJce1BT9sJxkcRyfRXWAFhXZE",
@@ -644,7 +644,7 @@
       "vr": "10:30-17:00",
       "za": "10:30-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:06.103Z"
+    "fetchedAt": "2026-09-14T09:35:51.703Z"
   },
   "hand-foot-treatment-store": {
     "placeId": "ChIJqwqAGpsJxkcR4ubyHlc_hxc",
@@ -657,14 +657,14 @@
       "vr": "10:00-18:00",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:06.441Z"
+    "fetchedAt": "2026-09-14T09:35:52.361Z"
   },
   "hennys-homemade": {
     "placeId": "ChIJYWVk_jgJxkcRC8hrA_2Ac1I",
     "lat": 52.3398164,
     "lng": 5.1385422,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:06.783Z"
+    "fetchedAt": "2026-09-14T09:35:52.691Z"
   },
   "in-deep-n-dance": {
     "placeId": "ChIJ_Y3uadsJxkcRZDkr5FvMSCQ",
@@ -677,14 +677,14 @@
       "vr": "13:00-18:00",
       "za": "13:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:07.119Z"
+    "fetchedAt": "2026-09-14T09:35:53.014Z"
   },
   "interline-go": {
     "placeId": "ChIJZ900RNsJxkcRlZ1j4JpX504",
     "lat": 52.3734262,
     "lng": 4.8813973,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:07.474Z"
+    "fetchedAt": "2026-09-14T09:35:53.337Z"
   },
   "kc-move-studio": {
     "placeId": "ChIJ1YStZtsJxkcRTbZd7r5uvXM",
@@ -699,7 +699,7 @@
       "vr": "07:00-22:00",
       "za": "07:00-19:00"
     },
-    "fetchedAt": "2026-09-07T08:57:07.822Z"
+    "fetchedAt": "2026-09-14T09:35:53.663Z"
   },
   "kessens": {
     "placeId": "ChIJ-3W8SdsJxkcRGYsdshtf-MM",
@@ -714,14 +714,14 @@
       "vr": "08:30-16:00",
       "za": "09:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:08.151Z"
+    "fetchedAt": "2026-09-14T09:35:53.973Z"
   },
   "koud-kunstje": {
     "placeId": "ChIJaxaYRdsJxkcR9R709bo9Xx0",
     "lat": 52.3734385,
     "lng": 4.881439500000001,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:08.496Z"
+    "fetchedAt": "2026-09-14T09:35:54.291Z"
   },
   "la-maison": {
     "placeId": "ChIJA2moDNwJxkcRzzMrJUSs0zE",
@@ -736,7 +736,7 @@
       "vr": "09:00-18:00",
       "za": "09:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:08.828Z"
+    "fetchedAt": "2026-09-14T09:35:54.595Z"
   },
   "long-pura": {
     "placeId": "ChIJ5apPQdsJxkcRkI4MrXpLt6s",
@@ -751,7 +751,7 @@
       "vr": "17:30-23:00",
       "za": "17:30-23:00"
     },
-    "fetchedAt": "2026-09-07T08:57:09.161Z"
+    "fetchedAt": "2026-09-14T09:35:54.901Z"
   },
   "lucky-jack": {
     "placeId": "ChIJUwZ4p94JxkcR30gzzgqVan4",
@@ -766,7 +766,7 @@
       "vr": "10:00-00:00",
       "za": "10:00-00:00"
     },
-    "fetchedAt": "2026-09-07T08:57:09.480Z"
+    "fetchedAt": "2026-09-14T09:35:55.203Z"
   },
   "maijard-smashburgers": {
     "placeId": "ChIJWQ8vAyUJxkcRLJ8j4QCqYv8",
@@ -781,7 +781,7 @@
       "vr": "12:00-21:30",
       "za": "12:00-21:30"
     },
-    "fetchedAt": "2026-09-07T08:57:09.811Z"
+    "fetchedAt": "2026-09-14T09:35:55.846Z"
   },
   "mappy-nails": {
     "placeId": "ChIJM4YqOhEJxkcRfZdBDCt8bXo",
@@ -795,7 +795,7 @@
       "vr": "11:00-19:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:10.147Z"
+    "fetchedAt": "2026-09-14T09:35:56.157Z"
   },
   "meijer-ijzerwaren": {
     "placeId": "ChIJ3ZMxgtsJxkcR-ISc5Vn1g7U",
@@ -808,7 +808,7 @@
       "vr": "10:00-17:30",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:10.519Z"
+    "fetchedAt": "2026-09-14T09:35:56.472Z"
   },
   "mirinda": {
     "placeId": "ChIJh3TGMFYJxkcRaqo9lZNbIQg",
@@ -823,7 +823,7 @@
       "vr": "11:00-00:00",
       "za": "11:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:57:10.875Z"
+    "fetchedAt": "2026-09-14T09:35:56.781Z"
   },
   "moeders": {
     "placeId": "ChIJU9-Lo94JxkcRBzlvVAQV7n8",
@@ -838,7 +838,7 @@
       "vr": "17:00-23:30",
       "za": "17:00-23:30"
     },
-    "fetchedAt": "2026-09-07T08:57:11.198Z"
+    "fetchedAt": "2026-09-14T09:35:57.079Z"
   },
   "moychay-amsterdam": {
     "placeId": "ChIJL9r0CgMJxkcRYcip3em1zC8",
@@ -853,7 +853,7 @@
       "vr": "11:00-20:00",
       "za": "11:00-20:30"
     },
-    "fetchedAt": "2026-09-07T08:57:11.522Z"
+    "fetchedAt": "2026-09-14T09:35:58.032Z"
   },
   "nature-skin-cosmetics": {
     "placeId": "ChIJORCBe9sJxkcRkzOQZmyXr2M",
@@ -866,7 +866,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:11.868Z"
+    "fetchedAt": "2026-09-14T09:35:58.362Z"
   },
   "nepal-tabakshop": {
     "placeId": "ChIJ6YxpjVgJxkcRw-nPbVBwuJQ",
@@ -881,7 +881,7 @@
       "vr": "09:00-22:00",
       "za": "09:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:57:12.233Z"
+    "fetchedAt": "2026-09-14T09:35:58.685Z"
   },
   "oude-wester": {
     "placeId": "ChIJ3QX9ysQJxkcRbwelKBJNiGA",
@@ -896,7 +896,7 @@
       "vr": "10:00-23:00",
       "za": "10:00-23:00"
     },
-    "fetchedAt": "2026-09-07T08:57:12.589Z"
+    "fetchedAt": "2026-09-14T09:35:59.019Z"
   },
   "party-balloon": {
     "placeId": "ChIJKwXcQtsJxkcRWcMoz3MC-Co",
@@ -910,7 +910,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:12.909Z"
+    "fetchedAt": "2026-09-14T09:35:59.314Z"
   },
   "pesca": {
     "placeId": "ChIJrRtggNsJxkcRIpqO9nQb448",
@@ -925,7 +925,7 @@
       "vr": "12:00-23:00",
       "za": "12:00-23:00"
     },
-    "fetchedAt": "2026-09-07T08:57:13.246Z"
+    "fetchedAt": "2026-09-14T09:35:59.633Z"
   },
   "pizza-dam": {
     "placeId": "ChIJvxzO53QJxkcRrJwi2AOAbNg",
@@ -940,14 +940,14 @@
       "vr": "12:00-05:30",
       "za": "12:00-05:30"
     },
-    "fetchedAt": "2026-09-07T08:57:13.606Z"
+    "fetchedAt": "2026-09-14T09:35:59.962Z"
   },
   "recover": {
     "placeId": "ChIJOxdwhgEJxkcRw80RZ2UyF_I",
     "lat": 52.3722461,
     "lng": 4.876765,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:13.979Z"
+    "fetchedAt": "2026-09-14T09:36:00.610Z"
   },
   "representable": {
     "placeId": "ChIJMbMaYO8JxkcRM27kF6wAuZ0",
@@ -961,7 +961,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:14.303Z"
+    "fetchedAt": "2026-09-14T09:36:00.917Z"
   },
   "sabina-handicraft-store": {
     "placeId": "ChIJe5mbdtwJxkcR_KnYKVi_D8w",
@@ -975,7 +975,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:14.691Z"
+    "fetchedAt": "2026-09-14T09:36:01.892Z"
   },
   "salmuera": {
     "placeId": "ChIJ8TC-edsJxkcRJaQoPxTsOmQ",
@@ -990,7 +990,7 @@
       "vr": "17:00-01:00",
       "za": "17:00-01:00"
     },
-    "fetchedAt": "2026-09-07T08:57:15.036Z"
+    "fetchedAt": "2026-09-14T09:36:02.206Z"
   },
   "scooterrent": {
     "placeId": "ChIJRfsoT9sJxkcRlQ6juYTaoUA",
@@ -1005,7 +1005,7 @@
       "vr": "09:00-18:00",
       "za": "09:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:15.396Z"
+    "fetchedAt": "2026-09-14T09:36:02.856Z"
   },
   "shoarma-mesut": {
     "placeId": "ChIJ-TOIiNsJxkcRKHYh1aKfwe0",
@@ -1020,7 +1020,7 @@
       "vr": "17:00-05:45",
       "za": "17:00-05:45"
     },
-    "fetchedAt": "2026-09-07T08:57:15.732Z"
+    "fetchedAt": "2026-09-14T09:36:03.177Z"
   },
   "sk-tabakzaak": {
     "placeId": "ChIJTUPqCNwJxkcRkmU-rjhyo1Q",
@@ -1034,14 +1034,14 @@
       "vr": "10:00-20:00",
       "za": "10:00-20:00"
     },
-    "fetchedAt": "2026-09-07T08:57:16.111Z"
+    "fetchedAt": "2026-09-14T09:36:03.508Z"
   },
   "spang-makandra": {
     "placeId": "ChIJAQAXCtwJxkcRL5xxcddsKzo",
     "lat": 52.3726852,
     "lng": 4.8769851,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:16.458Z"
+    "fetchedAt": "2026-09-14T09:36:04.168Z"
   },
   "studio-henk": {
     "placeId": "ChIJteyv7WsJxkcRXmCGqBCGK88",
@@ -1056,7 +1056,7 @@
       "vr": "10:00-17:30",
       "za": "10:00-17:30"
     },
-    "fetchedAt": "2026-09-07T08:57:16.795Z"
+    "fetchedAt": "2026-09-14T09:36:04.489Z"
   },
   "super-roos-market": {
     "placeId": "ChIJw9nBgNsJxkcRgutOlUucTsg",
@@ -1071,7 +1071,7 @@
       "vr": "09:00-22:00",
       "za": "09:00-22:00"
     },
-    "fetchedAt": "2026-09-07T08:57:17.124Z"
+    "fetchedAt": "2026-09-14T09:36:04.801Z"
   },
   "tandartspraktijk-rozengracht": {
     "placeId": "ChIJDZEiadsJxkcRUXOFLRhi4OI",
@@ -1097,7 +1097,7 @@
       "vr": "11:00-21:00",
       "za": "11:00-21:00"
     },
-    "fetchedAt": "2026-09-07T08:57:17.815Z"
+    "fetchedAt": "2026-09-14T09:36:05.460Z"
   },
   "theatre-de-coiffure": {
     "placeId": "ChIJz05KStsJxkcRamkGrS67Hko",
@@ -1110,21 +1110,21 @@
       "vr": "09:30-18:30",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:18.153Z"
+    "fetchedAt": "2026-09-14T09:36:05.786Z"
   },
   "toni-guy": {
     "placeId": "ChIJnwfmS9sJxkcROBq0hK8BAVY",
     "lat": 52.373591999999995,
     "lng": 4.8822817,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:18.475Z"
+    "fetchedAt": "2026-09-14T09:36:06.096Z"
   },
   "tonton-shoarma-grillroom": {
     "placeId": "ChIJqTa3gNsJxkcRMgK3zy_dKxI",
     "lat": 52.3727543,
     "lng": 4.8786377,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:18.815Z"
+    "fetchedAt": "2026-09-14T09:36:06.424Z"
   },
   "topchiro-amsterdam": {
     "placeId": "ChIJRaLr4kEJxkcRe8SGfMht6CU",
@@ -1138,14 +1138,14 @@
       "vr": "08:30-12:00, 16:00-19:00",
       "za": "08:30-12:00"
     },
-    "fetchedAt": "2026-09-07T08:57:19.188Z"
+    "fetchedAt": "2026-09-14T09:36:06.747Z"
   },
   "trib3": {
     "placeId": "ChIJFeNJ_c0JxkcRxxGNKYJl4Dk",
     "lat": 52.3734055,
     "lng": 4.8797323,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:19.517Z"
+    "fetchedAt": "2026-09-14T09:36:07.059Z"
   },
   "tuk-tuk-thai": {
     "placeId": "ChIJd3eI-jIJxkcRYpRhzN9qcLY",
@@ -1159,7 +1159,7 @@
       "vr": "12:00-20:00",
       "za": "12:00-20:00"
     },
-    "fetchedAt": "2026-09-07T08:57:19.873Z"
+    "fetchedAt": "2026-09-14T09:36:07.402Z"
   },
   "ultimate-performance": {
     "placeId": "ChIJw_Ccm8UJxkcRSTKFoWeSxiU",
@@ -1174,14 +1174,14 @@
       "vr": "06:00-20:00",
       "za": "06:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:20.211Z"
+    "fetchedAt": "2026-09-14T09:36:07.725Z"
   },
   "urban-cacao": {
     "placeId": "ChIJR_tWddwJxkcRSifdJtSdzKo",
     "lat": 52.372729,
     "lng": 4.87738,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:20.539Z"
+    "fetchedAt": "2026-09-14T09:36:08.346Z"
   },
   "vakhuis": {
     "placeId": "ChIJ3wsTCdwJxkcRODB2WxRtE0A",
@@ -1194,7 +1194,7 @@
       "do": "12:00-17:30",
       "vr": "12:00-17:30"
     },
-    "fetchedAt": "2026-09-07T08:57:20.867Z"
+    "fetchedAt": "2026-09-14T09:36:08.650Z"
   },
   "van-der-linde": {
     "placeId": "ChIJSYVYSNsJxkcRjJNIM7kOHN4",
@@ -1208,7 +1208,7 @@
       "vr": "09:00-18:00",
       "za": "11:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:21.164Z"
+    "fetchedAt": "2026-09-14T09:36:08.947Z"
   },
   "velvet-music-amsterdam": {
     "placeId": "ChIJIYrsRtsJxkcRbkhaXDepBAw",
@@ -1223,7 +1223,7 @@
       "vr": "10:00-18:00",
       "za": "10:00-18:00"
     },
-    "fetchedAt": "2026-09-07T08:57:21.510Z"
+    "fetchedAt": "2026-09-14T09:36:09.277Z"
   },
   "venezia-del-noord": {
     "placeId": "ChIJ7wjTDM4JxkcRkgewMmvv-qw",
@@ -1238,7 +1238,7 @@
       "vr": "08:00-00:00",
       "za": "08:00-00:00"
     },
-    "fetchedAt": "2026-09-07T08:57:21.870Z"
+    "fetchedAt": "2026-09-14T09:36:09.615Z"
   },
   "waries-thai-food": {
     "placeId": "ChIJM6qwD9wJxkcRnjEQ8VgaQ4o",
@@ -1252,7 +1252,7 @@
       "vr": "16:30-22:20",
       "za": "16:30-22:20"
     },
-    "fetchedAt": "2026-09-07T08:57:22.206Z"
+    "fetchedAt": "2026-09-14T09:36:09.945Z"
   },
   "wasserette-quick-clean": {
     "placeId": "ChIJQ5R8Q9sJxkcRwFq66Angay4",
@@ -1266,21 +1266,21 @@
       "vr": "09:00-18:00",
       "za": "09:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:22.558Z"
+    "fetchedAt": "2026-09-14T09:36:10.278Z"
   },
   "wegewijs": {
     "placeId": "ChIJBzJ_SNsJxkcR0EQPBOAraLI",
     "lat": 52.3737753,
     "lng": 4.8816045,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:22.886Z"
+    "fetchedAt": "2026-09-14T09:36:10.599Z"
   },
   "witbaard-feestartikelen": {
     "placeId": "ChIJnUyQvJoJxkcRrNMltkAd49c",
     "lat": 52.3733107,
     "lng": 4.8809857,
     "hoursByDay": null,
-    "fetchedAt": "2026-09-07T08:57:23.199Z"
+    "fetchedAt": "2026-09-14T09:36:10.894Z"
   },
   "wulf-meubelen": {
     "placeId": "ChIJnb18b9sJxkcRF3Y-1FQF0Qg",
@@ -1294,6 +1294,253 @@
       "vr": "09:30-18:00",
       "za": "10:00-17:00"
     },
-    "fetchedAt": "2026-09-07T08:57:23.526Z"
+    "fetchedAt": "2026-09-14T09:36:11.241Z"
+  },
+  "bahn-mi-ba-my": {
+    "placeId": "ChIJk0hnL30JxkcR6htgzVIee28",
+    "lat": 52.371918,
+    "lng": 4.875489,
+    "hoursByDay": {
+      "zo": "12:00-20:00",
+      "di": "13:00-21:00",
+      "wo": "13:00-21:00",
+      "do": "13:00-21:00",
+      "vr": "13:00-21:00",
+      "za": "12:00-21:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:36.569Z"
+  },
+  "bakkerij-wolf": {
+    "placeId": "ChIJmac1IDwJxkcRc2xUVl_r9mQ",
+    "lat": 52.372765,
+    "lng": 4.8773234,
+    "hoursByDay": {
+      "zo": "08:00-16:00",
+      "ma": "08:00-16:00",
+      "di": "08:00-16:00",
+      "wo": "08:00-16:00",
+      "do": "08:00-16:00",
+      "vr": "08:00-16:00",
+      "za": "08:00-16:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:36.928Z"
+  },
+  "cafe-de-gouden-florijn": {
+    "placeId": "ChIJMWJ1SNsJxkcRxbA1DIaie0Q",
+    "lat": 52.37379,
+    "lng": 4.881701,
+    "hoursByDay": null,
+    "fetchedAt": "2026-09-14T09:35:41.588Z"
+  },
+  "dong-son": {
+    "placeId": "ChIJd3eI-jIJxkcRYpRhzN9qcLY",
+    "lat": 52.373872299999995,
+    "lng": 4.882007199999999,
+    "hoursByDay": {
+      "zo": "12:00-20:00",
+      "ma": "12:00-20:00",
+      "wo": "12:00-20:00",
+      "do": "12:00-20:00",
+      "vr": "12:00-20:00",
+      "za": "12:00-20:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:46.541Z"
+  },
+  "eethuis-ali-baba": {
+    "placeId": "ChIJM5p9CdwJxkcRamUPsrFCIM4",
+    "lat": 52.3726377,
+    "lng": 4.8770229,
+    "hoursByDay": {
+      "zo": "12:00-03:00",
+      "ma": "12:00-03:00",
+      "wo": "12:00-03:00",
+      "do": "12:00-03:00",
+      "vr": "12:00-06:00",
+      "za": "12:00-06:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:47.203Z"
+  },
+  "fanke": {
+    "placeId": "ChIJd14j0gIJxkcR2Lsku_i6EAw",
+    "lat": 52.3731553,
+    "lng": 4.8803854,
+    "hoursByDay": {
+      "zo": "10:00-18:00",
+      "ma": "09:00-17:00",
+      "di": "09:00-17:00",
+      "wo": "09:00-17:00",
+      "do": "09:00-17:00",
+      "vr": "09:00-17:00",
+      "za": "10:00-18:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:48.820Z"
+  },
+  "grillroom-hilal": {
+    "placeId": "ChIJmyqOhtsJxkcRvhnCqzNOng0",
+    "lat": 52.3729945,
+    "lng": 4.8784675,
+    "hoursByDay": {
+      "zo": "17:00-02:50",
+      "di": "17:00-02:50",
+      "wo": "17:00-02:50",
+      "do": "17:00-02:50",
+      "vr": "17:00-05:50",
+      "za": "17:00-05:50"
+    },
+    "fetchedAt": "2026-09-14T09:35:51.389Z"
+  },
+  "haku-specialty-coffee": {
+    "placeId": "ChIJsTHDhlcJxkcRCnAHjYMBalU",
+    "lat": 52.373287999999995,
+    "lng": 4.880800499999999,
+    "hoursByDay": {
+      "zo": "09:00-18:00",
+      "ma": "08:00-17:00",
+      "di": "08:00-17:00",
+      "wo": "08:00-17:00",
+      "do": "08:00-17:00",
+      "vr": "08:00-17:00",
+      "za": "09:00-18:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:52.034Z"
+  },
+  "ma-baker": {
+    "placeId": "ChIJHRS8BtwJxkcRz-gdCvNzzJ8",
+    "lat": 52.372500800000005,
+    "lng": 4.8761596,
+    "hoursByDay": null,
+    "fetchedAt": "2026-09-14T09:35:55.536Z"
+  },
+  "mokum-vintage": {
+    "placeId": "ChIJC_uJ2O8IxkcRQc0nalyhkSI",
+    "lat": 52.3735309,
+    "lng": 4.8818816,
+    "hoursByDay": {
+      "zo": "12:00-18:00",
+      "ma": "13:00-19:00",
+      "di": "12:00-19:00",
+      "wo": "12:00-19:00",
+      "do": "12:00-19:00",
+      "vr": "12:00-19:00",
+      "za": "12:00-18:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:57.401Z"
+  },
+  "mondzorggilde": {
+    "placeId": "ChIJDZEiadsJxkcRUXOFLRhi4OI",
+    "lat": 52.373526999999996,
+    "lng": 4.8804606,
+    "hoursByDay": {
+      "ma": "08:30-17:00",
+      "di": "08:30-17:00",
+      "wo": "08:30-17:00",
+      "do": "08:30-17:00"
+    },
+    "fetchedAt": "2026-09-14T09:35:57.721Z"
+  },
+  "pta-multistore": {
+    "placeId": "ChIJrxuGGgAJxkcRGiyTDxS2u18",
+    "lat": 52.3733107,
+    "lng": 4.8809857,
+    "hoursByDay": {
+      "zo": "12:00-20:00",
+      "ma": "10:00-20:00",
+      "di": "10:00-20:00",
+      "wo": "10:00-20:00",
+      "do": "10:00-20:00",
+      "vr": "10:00-20:00",
+      "za": "10:00-20:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:00.306Z"
+  },
+  "rush": {
+    "placeId": "ChIJoxk-MeMJxkcRhFFvURI9HQk",
+    "lat": 52.3734055,
+    "lng": 4.8797323,
+    "hoursByDay": {
+      "zo": "08:00-14:00",
+      "ma": "06:00-22:00",
+      "di": "06:00-22:00",
+      "wo": "06:00-22:00",
+      "do": "06:00-22:00",
+      "vr": "06:00-20:00",
+      "za": "07:00-14:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:01.233Z"
+  },
+  "sabai-thai-wellness": {
+    "placeId": "ChIJmbxD530jl0UR_hBHpClEFGE",
+    "lat": 52.373466799999996,
+    "lng": 4.8803548999999995,
+    "hoursByDay": {
+      "zo": "11:00-21:00",
+      "ma": "11:30-21:00",
+      "di": "11:30-21:00",
+      "wo": "11:30-21:00",
+      "do": "11:30-21:00",
+      "vr": "11:00-21:00",
+      "za": "11:00-21:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:01.574Z"
+  },
+  "scoops-en-bubbles": {
+    "placeId": "ChIJuX1BbQAJxkcR3VUAPASfKyQ",
+    "lat": 52.373422,
+    "lng": 4.881397,
+    "hoursByDay": {
+      "zo": "13:00-17:30",
+      "ma": "13:00-20:00",
+      "di": "13:00-19:00",
+      "wo": "14:00-20:00",
+      "do": "14:00-20:00",
+      "vr": "15:00-20:00",
+      "za": "12:00-20:30"
+    },
+    "fetchedAt": "2026-09-14T09:36:02.524Z"
+  },
+  "sneakerdistrict": {
+    "placeId": "ChIJ66SyTtsJxkcRtr15T5c5jPw",
+    "lat": 52.3735481,
+    "lng": 4.8819988,
+    "hoursByDay": {
+      "zo": "11:00-17:00",
+      "ma": "11:00-19:00",
+      "di": "11:00-19:00",
+      "wo": "11:00-19:00",
+      "do": "11:00-19:00",
+      "vr": "11:00-19:00",
+      "za": "10:00-18:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:03.842Z"
+  },
+  "supermarkt-jordaan": {
+    "placeId": "ChIJBdH7adsJxkcR3NmbBVxYLDo",
+    "lat": 52.373584,
+    "lng": 4.880776,
+    "hoursByDay": {
+      "zo": "10:00-22:00",
+      "ma": "10:00-22:00",
+      "di": "10:00-22:00",
+      "wo": "10:00-22:00",
+      "do": "10:00-22:00",
+      "vr": "10:00-22:00",
+      "za": "10:00-22:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:05.126Z"
+  },
+  "uno-mas": {
+    "placeId": "ChIJc5wvCu0JxkcRPGFRJx2teHc",
+    "lat": 52.3736709,
+    "lng": 4.8824682,
+    "hoursByDay": {
+      "zo": "12:00-23:00",
+      "ma": "12:00-23:00",
+      "di": "12:00-23:00",
+      "wo": "12:00-23:00",
+      "do": "12:00-23:00",
+      "vr": "12:00-23:00",
+      "za": "12:00-23:00"
+    },
+    "fetchedAt": "2026-09-14T09:36:08.037Z"
   }
 }
