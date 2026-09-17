@@ -18,6 +18,7 @@ Cléo) → `klaar` (gemerged op main).
 | 07 | Contact, de BIZ en juridisch | `topic/07-contact-biz-juridisch` | kan starten | – | |
 | 08 | Fotografie en beeldpijplijn | `topic/08-fotografie` | kan starten | – | Drive/Lightroom-inventarisatie kan al wel |
 | 00 | Coördinatie en release | `main` | bezig | 7 sep 2026 | opzet gemaakt |
+| 09 | Paginaovergangen en interactie | `topic/09-interactie` | klaar | 17 sep 2026 | zachte overgang tussen pagina's (view transitions) in BaseLayout + global.css; gedaan vanuit een eigen branch omdat topic/01-fundament aan de Mac-kant uitgechecked staat |
 | 00b | Ondernemerslijst doorvoeren | `topic/00-ondernemerslijst` | klaar | 8 sep 2026 | definitieve lijst van Cleo doorgevoerd: 18 vertrokken, 15 nieuw, 2 geen interesse, naam- en adrescorrecties |
 
 ## Openstaande verzoeken aan een ander topic

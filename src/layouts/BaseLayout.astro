@@ -15,9 +15,34 @@ import '@fontsource-variable/petrona/wght-italic.css';
 import Nav from '../components/Nav.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { kaalPad, type Lang } from '../lib/i18n';
 import '../styles/global.css';
+
+// Paginaovergangen. Zonder dit springt elke klik hard naar de volgende
+// pagina; met de router eronder vervaagt de oude inhoud kort en komt de nieuwe
+// een paar pixels omhoog in beeld. Bewust kort (onder de 0,3 seconde) en klein:
+// een overgang mag de indruk geven dat de pagina er al was, niet dat je ergens
+// op moet wachten. De keyframes rg-inhoud-uit en rg-inhoud-in staan in
+// global.css, samen met de uitzondering voor bezoekers die in hun systeem
+// "minder beweging" hebben aangezet.
+const zachteOvergang = {
+  old: {
+    name: 'rg-inhoud-uit',
+    duration: '0.12s',
+    easing: 'cubic-bezier(0.4, 0, 1, 1)',
+    fillMode: 'both',
+  },
+  new: {
+    name: 'rg-inhoud-in',
+    duration: '0.32s',
+    delay: '0.06s',
+    easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    fillMode: 'both',
+  },
+};
+const paginaOvergang = { forwards: zachteOvergang, backwards: zachteOvergang };
 
 interface Props {
   title: string;
@@ -55,15 +80,16 @@ const enHref = getRelativeLocaleUrl('en', restPad);
     <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL(nlHref, Astro.site)} />
     <link rel="icon" href="data:," />
+    <ViewTransitions />
   </head>
   <body>
     <Nav lang={lang} />
     {fullBleed ? (
-      <main id="main-content">
+      <main id="main-content" transition:animate={paginaOvergang}>
         <slot />
       </main>
     ) : (
-      <main id="main-content" class="container" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">
+      <main id="main-content" class="container" style="padding-top: 2.5rem; padding-bottom: 2.5rem;" transition:animate={paginaOvergang}>
         <slot />
       </main>
     )}
