@@ -185,3 +185,43 @@ img { max-width: 100%; display: block; border-radius: var(--radius); }
   white-space: nowrap;
   border: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Paginaovergangen
+
+   De router in BaseLayout.astro laat de browser tussen twee pagina's een korte
+   overgang maken in plaats van het scherm in een keer te vervangen. De nieuwe
+   inhoud komt acht pixels omhoog in beeld terwijl hij doorschijnend begint; de
+   oude inhoud vervaagt sneller dan de nieuwe verschijnt, zodat het geheel licht
+   aanvoelt in plaats van traag. Het menu en de voettekst blijven staan.
+
+   Bewuste grenzen: niets duurt langer dan een derde van een seconde en niets
+   beweegt verder dan acht pixels. Grotere schuifbewegingen of langere tijden
+   lezen bij elke tweede klik als vertraging.
+--------------------------------------------------------------------------- */
+@keyframes rg-inhoud-uit {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes rg-inhoud-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* De overgang tussen de twee "schermen" zelf (alles buiten de inhoud, zoals de
+   achtergrondkleur van de donkere Ontdek-zone) mag net zo kort zijn. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.18s;
+}
+
+/* Heeft iemand in zijn systeem "minder beweging" aangezet, dan is dat geen
+   voorkeur maar een noodzaak: dan geen overgang, ook geen vervaging. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
