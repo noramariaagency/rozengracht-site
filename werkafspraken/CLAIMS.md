@@ -20,7 +20,19 @@ Cléo) → `klaar` (gemerged op main).
 | 00 | Coördinatie en release | `main` | bezig | 7 sep 2026 | opzet gemaakt |
 | 09 | Paginaovergangen en interactie | `topic/09-interactie` | klaar | 17 sep 2026 | zachte overgang tussen pagina's (view transitions) in BaseLayout + global.css; gedaan vanuit een eigen branch omdat topic/01-fundament aan de Mac-kant uitgechecked staat |
 | 00b | Ondernemerslijst doorvoeren | `topic/00-ondernemerslijst` | klaar | 8 sep 2026 | definitieve lijst van Cleo doorgevoerd: 18 vertrokken, 15 nieuw, 2 geen interesse, naam- en adrescorrecties |
-| 10 | Kaart op ondernemerspagina achter de toestemmingsbanner | `topic/10-kaart-toestemming` | bezig | 18 sep 2026 | eigen branch omdat de worktree van topic 05 aan de andere kant vastzit |
+| 10 | Kaart op ondernemerspagina achter de toestemmingsbanner | `topic/10-kaart-toestemming` | klaar | 18 sep 2026 | eigen branch omdat de worktree van topic 05 aan de andere kant vastzit; raakte alleen de twee ondernemerspagina's van topic 05, op verzoek van Nora |
+
+## Nog open: Google Maps-API-sleutel niet beperkt (topic 00)
+
+Gecontroleerd op 18 september 2026: de browsersleutel die in
+`OndernemersKaart.astro` en `BereikbaarheidKaart.astro` staat, laadt de Maps
+JavaScript API ook vanaf een willekeurig ander domein zonder foutmelding. Er
+staat dus geen HTTP-referrer-beperking op. Bij een browsersleutel is het
+onvermijdelijk dat hij in de paginabron staat, maar zonder beperking kan
+iedereen die hem kopieert de kaartaanroepen op onze rekening laten schrijven.
+Op te lossen in de Google Cloud Console (Credentials, de sleutel, Application
+restrictions op "Websites" met `noramariaagency.github.io/*` en later het
+echte domein erbij). Vraagt Nora's eigen inlog, vandaar hier en niet in code.
 
 ## Openstaande verzoeken aan een ander topic
 
