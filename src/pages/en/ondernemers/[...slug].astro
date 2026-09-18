@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import FotoFallback from '../../../components/FotoFallback.astro';
+import ExternToestemming from '../../../components/ExternToestemming.astro';
 import ContentCard from '../../../components/ContentCard.astro';
 import { getCollection, getEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -126,14 +127,37 @@ const gerelateerdeItems = [
         <p class="adres-onbekend"><strong>Address</strong><br />Coming soon</p>
       )}
       {data.huisnummer && (
-        <div class="mini-kaart">
-          <iframe
-            src={`https://www.google.com/maps?q=${encodeURIComponent(`${data.naam}, Rozengracht ${data.huisnummer}, Amsterdam`)}&z=17&output=embed`}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title={`Map: ${data.naam}, Rozengracht ${data.huisnummer}`}
-          ></iframe>
-        </div>
+        <>
+          <ExternToestemming />
+          <div class="mini-kaart" id="mini-kaart"></div>
+          <script
+            is:inline
+            define:vars={{
+              kaartSrc: `https://www.google.com/maps?q=${encodeURIComponent(`${data.naam}, Rozengracht ${data.huisnummer}, Amsterdam`)}&z=17&output=embed`,
+              kaartTitel: `Map: ${data.naam}, Rozengracht ${data.huisnummer}`,
+              kaartUitleg: "The map comes from Google. Loading it sends your IP address there.",
+              kaartKnop: "Load map",
+            }}
+          >
+            // De kaart is een insluiting van Google. Zonder deze route stond hij
+            // rechtstreeks in de markup en ging het IP-adres van elke bezoeker al
+            // naar Google voordat die iets kon kiezen. Nu pas na toestemming,
+            // net als de kaart op de bereikbaarheidspagina en de Instagram-feed.
+            window.rgExternLaden({
+              houderId: 'mini-kaart',
+              uitleg: kaartUitleg,
+              knop: kaartKnop,
+              laad: function () {
+                var f = document.createElement('iframe');
+                f.src = kaartSrc;
+                f.loading = 'lazy';
+                f.referrerPolicy = 'no-referrer-when-downgrade';
+                f.title = kaartTitel;
+                document.getElementById('mini-kaart').append(f);
+              },
+            });
+          </script>
+        </>
       )}
       {data.website && <p><a href={data.website} target="_blank">{data.website.replace(/^https?:\/\//, '')}</a></p>}
       <div>
