@@ -149,7 +149,6 @@ const gerelateerdeItems = [
               knop: kaartKnop,
               laad: function () {
                 var f = document.createElement('iframe');
-                f.src = kaartSrc;
                 f.loading = 'lazy';
                 f.referrerPolicy = 'no-referrer-when-downgrade';
                 f.title = kaartTitel;
@@ -161,6 +160,12 @@ const gerelateerdeItems = [
                 // kaart maar een deel van het vlak vulde.
                 f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
                 document.getElementById('mini-kaart').append(f);
+                // src pas na het plaatsen: Google bepaalt het middelpunt van de
+                // kaart bij het laden, aan de hand van de afmeting die het
+                // venster dan heeft. Zetten we de src al voor het inhangen, dan
+                // rekent Google met de verkeerde maat en staat de speld half
+                // buiten beeld.
+                f.src = kaartSrc;
               },
             });
           </script>
