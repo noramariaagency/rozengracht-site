@@ -22,17 +22,18 @@ Cléo) → `klaar` (gemerged op main).
 | 00b | Ondernemerslijst doorvoeren | `topic/00-ondernemerslijst` | klaar | 8 sep 2026 | definitieve lijst van Cleo doorgevoerd: 18 vertrokken, 15 nieuw, 2 geen interesse, naam- en adrescorrecties |
 | 10 | Kaart op ondernemerspagina achter de toestemmingsbanner | `topic/10-kaart-toestemming` | klaar | 18 sep 2026 | eigen branch omdat de worktree van topic 05 aan de andere kant vastzit; raakte alleen de twee ondernemerspagina's van topic 05, op verzoek van Nora |
 
-## Nog open: Google Maps-API-sleutel niet beperkt (topic 00)
+## Gecontroleerd en in orde: de Google Maps-API-sleutel (topic 00)
 
-Gecontroleerd op 18 september 2026: de browsersleutel die in
-`OndernemersKaart.astro` en `BereikbaarheidKaart.astro` staat, laadt de Maps
-JavaScript API ook vanaf een willekeurig ander domein zonder foutmelding. Er
-staat dus geen HTTP-referrer-beperking op. Bij een browsersleutel is het
-onvermijdelijk dat hij in de paginabron staat, maar zonder beperking kan
-iedereen die hem kopieert de kaartaanroepen op onze rekening laten schrijven.
-Op te lossen in de Google Cloud Console (Credentials, de sleutel, Application
-restrictions op "Websites" met `noramariaagency.github.io/*` en later het
-echte domein erbij). Vraagt Nora's eigen inlog, vandaar hier en niet in code.
+Op 18 september 2026 in de Cloud Console nagekeken, project
+`rozengracht-website`, sleutel "Rozengracht - Maps JavaScript API (publiek,
+browser)". Die staat goed: Application restrictions op Websites, met
+derozengracht.com, www.derozengracht.com en noramariaagency.github.io, en
+beperkt tot alleen de Maps JavaScript API. Er hoeft niets aan te gebeuren.
+
+Eerder stond hier dat de sleutel onbeperkt zou zijn. Dat was een verkeerde
+conclusie uit een test vanaf een vreemd domein: het laden van
+maps/api/js lukt daar altijd, ongeacht de referrer-beperking, dus het
+uitblijven van een foutmelding zei niets. Alleen de Console geeft uitsluitsel.
 
 ## Openstaande verzoeken aan een ander topic
 
