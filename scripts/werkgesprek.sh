@@ -105,7 +105,7 @@ koppel_node_modules() {
 
 TOPICS="01-fundament 02-categorieen 03-homepage-magazine 04-blog-en-artikelen \
 05-ondernemers-en-kaart 06-bereikbaarheid 07-contact-biz-juridisch 08-fotografie \
-00-ondernemerslijst 09-interactie"
+00-ondernemerslijst 09-interactie 10-kaart-toestemming"
 
 fout() { printf '\n  FOUT: %s\n\n' "$1" >&2; exit 1; }
 kop()  { printf '\n== %s ==\n' "$1"; }
