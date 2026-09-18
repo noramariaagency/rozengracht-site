@@ -153,6 +153,13 @@ const gerelateerdeItems = [
                 f.loading = 'lazy';
                 f.referrerPolicy = 'no-referrer-when-downgrade';
                 f.title = kaartTitel;
+                // De opmaak staat hier en niet in de <style> hieronder: Astro
+                // beperkt zijn CSS tot elementen die bij het bouwen in de
+                // markup stonden (via een data-astro-cid-attribuut). Een
+                // iframe dat hier pas ontstaat, krijgt dat attribuut niet en
+                // viel dus buiten .mini-kaart iframe { ... }, waardoor de
+                // kaart maar een deel van het vlak vulde.
+                f.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
                 document.getElementById('mini-kaart').append(f);
               },
             });
