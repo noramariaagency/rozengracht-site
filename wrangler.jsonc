@@ -1,0 +1,21 @@
+{
+  // Deployconfig voor de Worker die de Rozengracht-site serveert.
+  //
+  // Zelfde opzet als de noramaria.nl-site: een assets-only Worker. Er is geen
+  // "main" en dus geen servercode: Astro bouwt statisch naar dist/ en
+  // Cloudflare serveert die bestanden rechtstreeks. Zet hier geen adapter of
+  // bindings bij zonder dat er ook echt code is die ze gebruikt.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rozengracht-site",
+  "compatibility_date": "2026-09-18",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "assets": {
+    "directory": "./dist",
+    // Zonder deze regel geeft een onbekende URL een lege 404 in plaats van
+    // src/pages/404.astro. Astro schrijft die naar dist/404.html.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
